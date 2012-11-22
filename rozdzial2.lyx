@@ -1,0 +1,2270 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass pwszdpl
+\begin_preamble
+\chapter{Pierwszy dokument}
+\label{cha:pierwszyDokument}
+
+W rozdziale tym przedstawiono podstawowe informacje dotyczące struktury prostych plików \LaTeX a. Omówiono również metody kompilacji plików z zastosowaniem programów \emph{latex} oraz \emph{pdflatex}.
+
+%---------------------------------------------------------------------------
+
+\section{Struktura dokumentu}
+\label{sec:strukturaDokumentu}
+
+Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia formatujące ten tekst (analogicznie do języka HTML). Plik składa się z dwóch części:
+\begin{enumerate}%[1)]
+\item Preambuły -- określającej klasę dokumentu oraz zawierającej m.in. polecenia dołączającej dodatkowe pakiety;
+
+\item Części głównej -- zawierającej zasadniczą treść dokumentu.
+\end{enumerate}
+
+
+
+\begin{lstlisting}
+      % preambuła
+
+
+
+\usepackage{times}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language polish
+\language_package default
+\inputencoding latin2
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Indeks
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 9 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Rozpoznawanie sygnału mowy
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:wprowadzenie-1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mowa jest najbardziej naturalnym oraz skutecznym sposobem porozumiewania
+ się ludzi.
+ Jest znacznie szybsza niż pisanie czy gestykulacja, a co najważniejsze
+ nie wymaga użycia rąk.
+ Nie dziwi więc fakt, że wraz z rozwojem sprzętu komputerowego, wzrostem
+ jego mocy obliczeniowej oraz miniaturyzacji, systemy rozpoznawania mowy
+ mają coraz częstsze zastosowanie.
+\end_layout
+
+\begin_layout Standard
+Oto lista przykładowych zastosowań takich systemów:
+\end_layout
+
+\begin_layout Itemize
+sterowanie głosem urządzeń elektronicznych i elektromechanicznych,
+\end_layout
+
+\begin_layout Itemize
+teleinformatyczne systemy informacyjne, 
+\end_layout
+
+\begin_layout Itemize
+systemy STT (ang.
+ Speech To Text), 
+\end_layout
+
+\begin_layout Itemize
+urządzenia dla osób niepełnosprawnych,
+\end_layout
+
+\begin_layout Itemize
+programy do nauki języków obcych,
+\end_layout
+
+\begin_layout Itemize
+systemy diagnostyki medycznej i logopedycznej,
+\end_layout
+
+\begin_layout Itemize
+systemy identyfikacji mówców.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Warto zaznaczyć, że systemy rozpoznawania mowy, nie znajdą zastosowania
+ tam gdzie sterowanie jest bardziej skomplikowane oraz wymaga od użytkownika
+ szybkiej reakcji.
+ Są sytuacje w których szybciej dotrzemy do odbiorcy (pozwolimy mu zrozumieć
+ naszą ideę) używając rąk, np.
+ za pomocą gestów lub rysunków niż przy pomocy komunikacji głosowej.
+ 
+\end_layout
+
+\begin_layout Standard
+W obecnych czasach tworzenie systemów rozpoznawania mowy jest dużo prostsze,
+ ze względu na obecność gotowych narzędzi wspomagających, m.in.
+ HTK czy Sphinx, które posiadają zaimplementowane algorytmy, pozwalające
+ stworzyć system rozpoznawania mowy nawet osobie nie znającej szczegółów
+ aparatu matematycznego.
+ Użytkownik korzystający z takich bibliotek często używa ich jak 
+\begin_inset Quotes pld
+\end_inset
+
+czarnej skrzynki
+\begin_inset Quotes prd
+\end_inset
+
+ niemniej jednak potrafi stworzyć w pełni działający system.
+ Na tyle skuteczny, by nie musieć zagłębiać szczegółów zaimplementowanych
+ algorytmów.
+ Co prawda taka niewiedza stwarza problemy, przy doborze optymalnych parametrów
+ mających istotny wpływ na działanie systemu lecz nie przeszkadza w doborze
+ ich w sposób eksperymentalny i osiągnięciu zadowalającej skuteczności.
+\end_layout
+
+\begin_layout Section
+Mowa w języku polskim
+\end_layout
+
+\begin_layout Standard
+Alfabet języka polskiego składa sie˛ z 32 liter: a, ą, b, c, ć, d, e, ę,
+ f, g, h, i, j, k, l, ł, m, n, ń, o, ó, p, r, s, ś, t, u, w, y, z, ź, ż.
+ Łacińskie litery q, v i x występują jedynie w pisowni wyrazów obcych.
+ Alfabet fonetyczny języka polskiego składa się z około 78 dźwięków.
+ Dokładna liczba głosek zależy od sposobu traktowania wariantów.
+ Relacja litera – głoska jest typu wiele – wiele.
+ Tak jest również w wielu innych językach.
+ Strukturę języka możemy przedstawić w postaci modelu warstwowego (rys.
+ 1).
+ Warstwa wyższa zawiera pewną liczbę elementów warstwy niższej.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+myśl
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+wypowiedź
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+zdania
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+słowa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sylaby
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+głoski/fonemy
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Warstwowy model języka
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Badaniem struktury dźwiękowej języka zajmują się dwa pokrewne działy, fonetyka
+ oraz fonologia.
+ Fonetyka jest nauką o głoskach, czyli dźwiękach mowy.
+ 
+\begin_inset Quotes pld
+\end_inset
+
+Bada i opisuje dźwięki mowy ze wględu na ich właściwości fizyczne, tzn.
+ ustala artykulacyjne i akustyczne ich cechy.
+\begin_inset Quotes prd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fone"
+
+\end_inset
+
+ Fonologia natomiast bada dźwięki mowy, pod kątem pełnionych przez nich
+ funkcji w procesie komunikacji.
+ Podstawową jednostką fonologii jest fonem.
+ Fonem uznaje się za najmniejszy rozróżnialny segment dźwiękowy mowy, który
+ może odróżniać znaczenie dzwieków mowy danego jezyka o różnicach wynikajacych
+ wyłacznie z charakteru indywidualnej wymowy lub kontekstu.
+ Dla systemów rozpoznawania mowy istotne jest to, że każdy fonem, jest zespołem
+ cech dystynktywnych pozwalających na odróżnienie go od pozostałych fonemów,
+ co przekłada się bezpośrednio na parametry akustyczne sygnału.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fone"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Miarę podobieństwa między sygnałem mowy możemy podzielić na dwie kategorie,
+ podobieństwo akustyczne oraz fonetyczne.
+\end_layout
+
+\begin_layout Itemize
+Podobieństwo fonetyczne dwóch słów jest ustalane na podstawie tzw.
+ odległości Levenshteina określanej jako minimalny koszt przekształcenia
+ jednego słowa w drugie.
+\end_layout
+
+\begin_layout Itemize
+Podobieństwo akustyczne dwóch słów jest ustalane na podstawie odległości
+ (prawdopodobieństwa identyczności) między dwoma słowami wynikającej z przyjętyc
+h cech sygnału mowy w ramce oraz przyjętej metody klasyfikacji.
+\end_layout
+
+\begin_layout Standard
+Zazwyczaj im słowa są bardziej podobne fonetycznie, tym bardziej są podobne
+ akustycznie.
+ Zdarzają się jednak sytuacje, w których zależność taka nie zachodzi.
+ [
+\series bold
+Przypis z Pana wykładów? Czy wyrzucić stąd akapit o podobieństwach?
+\series default
+] 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+System rozpoznawania mowy
+\end_layout
+
+\begin_layout Standard
+Na początek warto określić miejsce systemów rozpoznawania mowy na tle innych
+ zagadnień z tej dziedziny (rys.
+ 2).
+ Na czerwono zaznaczono dziedzinę w której znajduje się system stworzony
+ na potrzeby tej pracy.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ogolnypodzial.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Ogólny podział systemów przetwarzania mowy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parametry wpływające na skuteczność rozpoznawania:
+\end_layout
+
+\begin_layout Itemize
+stopień zależności od mówcy (systemy zależne (ang.
+ speaker-depentent) i niezależne od mówcy (ang.
+ speaker-independent)),
+\end_layout
+
+\begin_layout Itemize
+liczba roznawanych słów (mała < 20 słów, duża > 20 000 słów),
+\end_layout
+
+\begin_layout Itemize
+podobieństwo akustyczne i fonetyczne,
+\end_layout
+
+\begin_layout Itemize
+SNR sygnału mowy (mały < 10 dB, duży > 30 dB),
+\end_layout
+
+\begin_layout Itemize
+parametry transmisji sygnału mowy (zniekształcenia analogowego sygnału mowy
+ wnoszone przez kanał transmisyjny, liczba poziomów kwantyzacji 8-16 bitów/próbk
+ę, częstotliwość próbkowania 8-44 kHz).
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Skuteczność rozpoznawania zależy również od środowiska w jakim działa dany
+ system.
+ Może być ona inna dla zamkniętego pomieszczenia oraz otwartej przestrzeni.
+ Negatywny wpływ mają tutaj wszelkiego rodzaju szumy (np.
+ ruch uliczny, odgłosy rozmów innych ludzi).
+ Nie bez wpływu pozostają również cechy samego mówcy.
+ Istotny jest sposób wymowy (gwara, akcent), szybkość oraz głośność.
+ Na rysunku 3 jest widoczny ogólny schemat działania systemu rozpoznawania
+ mowy.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename schematsystemu.png
+	display false
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Ogólny schemat blokowy rozpoznawania mowy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Opisać poszczególne etapy?
+\end_layout
+
+\begin_layout Standard
+Systemy automatycznego rozpoznawania mowy, zwane ASR (ang.
+ Automatic Speech Recognition) cechują się tym, że działają w czasie rzeczywisty
+m (ang.
+ real time).
+ System ten ma za zadanie przeprowadzić detekcję sygnału mowy (wykryć kiedy
+ została wypowiedziana jakaś sentencja) następnie jako wynik rozpoznawania
+ utworzyć jej transkrypcję fonetyczną (zamienić mowę na tekst).
+ Wszystko to powinno zostać zrobione automatycznie, tzn.
+ bez ingerencji użytkownika.
+ Taka sama idea przyświeca systemowi stworzonemu na potrzeby tej pracy.
+\end_layout
+
+\begin_layout Section
+Reprezentacja sygnału mowy
+\end_layout
+
+\begin_layout Standard
+Sygnał mowy
+\series bold
+ 
+\series default
+może być opisywany na różne sposoby.
+ Podstawowym i najprostszym jest opis w dziedzinie czasu (rys.
+ 4).
+ Ma on jednak skomplikowany przebieg, będący odzwierciedleniem złożonego
+ charakteru artykulacji i często zawierający różne przypadkowe szumy pochodzące
+ z otoczenia.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename reprezentacja_czasowa.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Reprezentacja słowa 
+\begin_inset Quotes pld
+\end_inset
+
+trzy
+\begin_inset Quotes prd
+\end_inset
+
+ w dziedzinie czasu
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Matematycznie możemy go przedstawić jako splot przebiegu czasowego sygnału
+ źródła 
+\begin_inset Formula $u{}_{z}\left(t\right)$
+\end_inset
+
+i odpowiedzi impulsowej kanału głosowego 
+\begin_inset Formula $h\left(t\right)$
+\end_inset
+
+, czyli:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $u\left(t\right)=\int_{0}^{τ}h(t-\text{τ})u_{z}\text{(τ})d\text{τ}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Źródłem sygnału mogą być drgania wiązadeł głosowych (głoski dźwięczne) jak
+ i szum powstający w skutek przepływu powietrza przez narządy mowy (głoski
+ bezdźwięczne).
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Obrazowarep"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zanim jednak otrzymamy powyższy przebieg sygnału mowy, musi być wykonana
+ jego dyskretyzacja, czyli próbkowanie i kwantyzacja.
+ Z punktu widzenia rozpoznawania mowy, reprezentacja czasowa sygnału mowy
+ nie przenosi wystarczającej ilości informacji.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AnalizaS"
+
+\end_inset
+
+ Potrzeba zatem dokonać transformaty Fouriera sygnału w celu umożliwienia
+ jego analizy w dziedzinie częstotliwości.
+ Wadą klasycznej transformacji Fouriera jest brak jawnych informacji o czasie
+ w widmie sygnału, która jest bardzo istotna w analizie sygnału mowy, ponieważ
+ jest on ciągiem pewnych zdarzeń (zmian częstotliwości, amplitudy oraz następstw
+ fonemów i słów), których kolejność jest bardzo istotna.
+ Dlatego stosuje się tzn.
+ króktookresową transformację Fouriera (STFT ang.
+ Short-Time Fourier Transform) zwaną też okienkową transformacją Fouriera
+ (ang.
+ Windowed Fourier Transform).
+ Polega ona na dokonywaniu transformat krótkich fragmentów sygnału wyznaczonych
+ za pomocą okna 
+\begin_inset Formula $w(t)$
+\end_inset
+
+.
+ Dyskretna realizacja tego przekształcenia ma postać:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $F(k,\text{τ)=}\frac{1}{\sqrt{M}}\sum_{t=0}^{\text{M-1}}[f_{τ+t}e^{-i2\text{πkt/M}}*w_{τ}^{t}]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $F(k,τ)$
+\end_inset
+
+ jest transformatą Fouriera, dla pojedynczej ramki (o indeksie 
+\begin_inset Formula $τ$
+\end_inset
+
+, częstotliwości 
+\begin_inset Formula $k$
+\end_inset
+
+, oraz szerokości 
+\begin_inset Formula $M$
+\end_inset
+
+) otrzymanej w chwili 
+\begin_inset Formula $t=\text{τ}$
+\end_inset
+
+ uzyskaną wskutek złożenia sygnału 
+\begin_inset Formula $f(t)$
+\end_inset
+
+ z funkcją okna 
+\begin_inset Formula $w$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Szerokość okna determinuje roździelczość częstotliwościową i czasową otrzymanego
+ widma czasowo-częstotliwościowego.
+ Najprostszą funkcją okna jest okno prostokątne:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $w_{τ}^{t}=$
+\end_inset
+
+
+\begin_inset Formula $\begin{cases}
+1 & dla\, t=\{\text{τ+0,\,τ+1,\,...,\,τ+M-1}\},\\
+0 & w\, przeciwnym\, razie.
+\end{cases}\begin{array}{c}
+\\
+\\
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wprowadza ono jednak znaczne zniekształcenia widma analizowanego sygnału,
+ które są związane z efektami brzegowymi wyciętego fragmentu.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Przetw"
+
+\end_inset
+
+To zjawisko możemy minimalizować stosując inny typ okna, np.
+ okno Hamminga, które ma węższe widmo:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $w_{τ}^{t}=$
+\end_inset
+
+
+\begin_inset Formula $\begin{cases}
+0.54-0.46cos(\frac{2\text{πt}}{M-1}) & dla\, t=\{\text{τ+0,\,τ+1,\,...,\,τ+M-1}\},\\
+0 & w\, przeciwnym\, razie.
+\end{cases}\begin{array}{c}
+\\
+\\
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Niestety okno Hamminga posiada również pewne negatywne właściwości, mianowicie
+ poszerza wszystkie pasma filtrów analizujących widmo co wiąże się pogorszeniem
+ rozdzielczości częstotliwościowej prowadzonej analizy.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rozp"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Po dokonaniu transformaty sygnał mowy może zostać przedstawiony na spektrogramie
+ (rys.
+ 5).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename spektrogram_trzy.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Reprezentacja słowa 
+\begin_inset Quotes pld
+\end_inset
+
+trzy
+\begin_inset Quotes prd
+\end_inset
+
+ w dziedzinie częstotliwości
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Patrząc na spektrogram (rys.
+ 5) możemy zauważyć różnice pomiędzy głoskami bezdźwięcznymi a głoską dźwięczną
+ 
+\begin_inset Quotes pld
+\end_inset
+
+y
+\begin_inset Quotes prd
+\end_inset
+
+.
+ W przypadku głosek dźwięcznych możemy wyróżnić pewną okresowość, natomiast
+ głoski bezdźwięczne często mieszają się z szumem (rys.
+ 6).
+ Co za tym idzie, słowa różniące się tylko częścią bezdźwięczną trudno rozpoznać.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename segment_dzwieczny_bezdzwieczny.png
+	display false
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Segment dźwięczny i bezdźwięczny słowa 
+\begin_inset Quotes pld
+\end_inset
+
+trzy
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Typowym formatem zapisu sygnału analogowego w postaci cyfrowej jest WAV
+ (ang.
+ wave form audio format), został on opracowany przez Microsoft oraz IBM
+ w roku 1991.
+ Jest to format bezstratny.
+\end_layout
+
+\begin_layout Standard
+Strukturę pliku WAV (tab.
+ 1) można opisać następująco.
+\end_layout
+
+\begin_layout Itemize
+Początkowy napis 
+\begin_inset Quotes pld
+\end_inset
+
+RIFF
+\begin_inset Quotes prd
+\end_inset
+
+ identyfikuje rodzaj pliku jako RIFF.
+\end_layout
+
+\begin_layout Itemize
+Następnie 32-bitowe pole podaje rozmiar danych = rozmiar pliku - 8 bajtów.
+\end_layout
+
+\begin_layout Itemize
+Napis 
+\begin_inset Quotes pld
+\end_inset
+
+WAVE
+\begin_inset Quotes prd
+\end_inset
+
+ identyfikuje rodzaj pliku dźwiękowego.
+\end_layout
+
+\begin_layout Itemize
+Napis 
+\begin_inset Quotes pld
+\end_inset
+
+fmt
+\begin_inset Quotes prd
+\end_inset
+
+ identyfikuje pole formatu danych, elementy tego formatu to:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+rozmiar pola formatu (16 bajtów struktury WAVEFORMATEX),
+\end_layout
+
+\begin_layout Itemize
+pole 
+\begin_inset Quotes pld
+\end_inset
+
+nChannels
+\begin_inset Quotes prd
+\end_inset
+
+ (= 1- mono, 2- stereo),
+\end_layout
+
+\begin_layout Itemize
+pole 
+\begin_inset Quotes pld
+\end_inset
+
+nSamplesPerSec
+\begin_inset Quotes prd
+\end_inset
+
+ (= próbki na sekundę, np.
+ 44 100),
+\end_layout
+
+\begin_layout Itemize
+pole 
+\begin_inset Quotes pld
+\end_inset
+
+nAvgBytesPerSec
+\begin_inset Quotes prd
+\end_inset
+
+ (= próbki na sekundę 
+\begin_inset Formula $∗$
+\end_inset
+
+ liczba kanałów
+\begin_inset Formula $∗$
+\end_inset
+
+rozmiar próbki/8, zaokrąglone w górę),
+\end_layout
+
+\begin_layout Itemize
+pole 
+\begin_inset Quotes pld
+\end_inset
+
+nBlockAlign
+\begin_inset Quotes prd
+\end_inset
+
+ (= liczba kanałów 
+\begin_inset Formula $∗$
+\end_inset
+
+ rozmiar próbki w bajtach / 8, zaokrąglone w górę),
+\end_layout
+
+\begin_layout Itemize
+pole 
+\begin_inset Quotes pld
+\end_inset
+
+wBitsPerSample
+\begin_inset Quotes prd
+\end_inset
+
+ (= liczba kanałów 
+\begin_inset Formula $∗$
+\end_inset
+
+ rozmiar próbki w bajtach).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Napis 
+\begin_inset Quotes pld
+\end_inset
+
+data
+\begin_inset Quotes prd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+32-bitowy format zapisu danych użytkowych.
+\end_layout
+
+\begin_layout Itemize
+Wszystkie próbki danych użytkowych.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Struktura pliku WAV 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rozp"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="15" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Adres bazowy
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Liczba bajtów
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dane
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Napis 
+\begin_inset Quotes pld
+\end_inset
+
+RIFF
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0004
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rozmiar danych = rozmiar pliku -8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0008
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Napis 
+\begin_inset Quotes pld
+\end_inset
+
+WAVE
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+000C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Napis 
+\begin_inset Quotes pld
+\end_inset
+
+fmt
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0010
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rozmiar formatu (16 bajtów)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0014
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+wf.wFormatTag = WAVEŹFORMATŹPCM = 1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+wf.nChannels
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0018
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+wf.nSamplesPerSec
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+wf.nAvgBytesPerSec
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0020
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+wf.nBlockAlign
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0022
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+wf.wBitsPerSample
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0024
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Napis 
+\begin_inset Quotes pld
+\end_inset
+
+data
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0028
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Format danych użytkowych
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+002C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DANE użytkowe
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Detekcja sygnału mowy 
+\end_layout
+
+\begin_layout Standard
+W każdym systemie analizy mowy możemy wyróżnić początkowe etapy analizy
+ tzn.
+ przetwarzanie wstępne do którego mogą należeć następujące kroki:
+\end_layout
+
+\begin_layout Itemize
+preemfaza, stosuje się ją w celu wzmocnienia wyższych częstostliwości w
+ sygnale mowy osłabionych na skutek filtracji przez kanał transmisyjny,
+\end_layout
+
+\begin_layout Itemize
+usuwanie zakłóceń impulsowych z sygnału za pomocą fitru medianowego,
+\end_layout
+
+\begin_layout Itemize
+normowanie parametrów zależnych od mówcy,
+\end_layout
+
+\begin_layout Itemize
+odszumianie sygnału mowy (metoda odejmowania widmowego (ang.
+ spectral substraction), filtr Kalmana, filtr Wienera, metody perceptualne),
+\end_layout
+
+\begin_layout Itemize
+inne rodzaje fitracji.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Opisać wszystkie podpunkty?
+\end_layout
+
+\begin_layout Standard
+W widmie mowy więcej energii znajduje się w niskich częstotliwościach, to
+ niekorzystne z punktu widzenia przetwarzania sygnałów zjawisko nazywane
+ jest przekrzywieniem widma (ang.
+ spectral tilt).
+ Aby usunąć skutki przekrzywienia stosuje się w/w preemfazę według następującego
+ wzoru:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $y(n)=x(n)-a*x(n-1)$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Standard
+gdzie 
+\begin_inset Formula $a$
+\end_inset
+
+ to współczynnik preemfazy 
+\begin_inset Formula $0.9\leq a\leq1$
+\end_inset
+
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rozp"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Detekcję sygnału mowy wykonuje się w celu podniesienia skuteczności rozpoznawani
+a oraz skrócenia czasu obliczeń.
+ Dokonuje się jej po uprzednim podziale sygnału mowy na ramki.
+ Można ją przeprowadzić w oparciu o kilka parametrów (tab.
+ 2).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Parametry detekcji sygnału mowy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Parametr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Kryterium detekcji
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moc sygnału w ramce 
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P\geq P_{tr}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P=10log(ε+\frac{1}{N}\sum_{i=1}^{N}x_{i}^{2})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Liczba przejść przez zero w ramce L
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $L<L_{tr1}$
+\end_inset
+
+lub 
+\begin_inset Formula $L>L_{tr2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Entropia widma E
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $H=-\sum_{k=1}^{N}w_{k}p_{k}logp_{k}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $H\geq H_{tr}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+gdzie 
+\begin_inset Formula $p_{k}=s(f_{k})l\sum_{i=1}^{N}s(f_{i}),$
+\end_inset
+
+
+\begin_inset Formula $k=1,...,N$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W każdej ramce obliczany jest wybrany parametr a następnie na podstawie
+ jego wartości podejmowana jest decyzja o zaakceptowaniu ramki jako sygnału
+ mowy lub jej odrzuceniu.
+ W przypadku stosowania entropii widmowej najpierw dokonuje się obliczenia
+ modułu FFT.
+ Wagi 
+\begin_inset Formula $w{}_{k}$
+\end_inset
+
+dobierane są doświadczalnie.
+ Odrzucane są najmniejsze i największe wartości 
+\begin_inset Formula $p_{k}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Możemy też przyjąć zasadę, że po wstępnej detekcji sygnału mowy odrzuca
+ się fragmenty sygnału krótsze niż 100 ms, chyba że leżą w odległości czasowej
+ mniejszej niż 100 ms od innych fragmentów sygnału.
+ [
+\series bold
+Przypis z Pana wykładów
+\series default
+?] 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Ekstrakcja cech sygnału mowy
+\end_layout
+
+\begin_layout Standard
+W wyniku ekstrakcji cech otrzymujemy wartości parametrów zawierających informacj
+ę o treści wypowiedzi i będących niezależnymi od indywidualnych cech głosu
+ mówcy.
+ Parametry te tworzą wektory cech, na podstawie których dokonuje się klasyfikacj
+i sygnału.
+ Przykładowy podział na ramki pokazano na rysunku 7, wektory 6 parametrów
+ ekstrahowanych w ramkach o czasie trwania 30 ms, zachodzących na siebie
+ na odcinkach 20 ms.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename podzial_ramki.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Ekstrakcja cech
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Najczęściej stosowane cechy sygnału mowy:
+\end_layout
+
+\begin_layout Itemize
+bank filtrów,
+\end_layout
+
+\begin_layout Itemize
+współczynniki LPC (ang.
+ Linear Prediction Coefficients),
+\end_layout
+
+\begin_layout Itemize
+parametry cepstralne,
+\end_layout
+
+\begin_layout Itemize
+parametry mel-cepstralne (MFCC ang.
+ Mel-frequency cepstral coefficients),
+\end_layout
+
+\begin_layout Itemize
+parametry mel-spektralne (MFC ang.
+ Mel-frequency cepstrum),
+\end_layout
+
+\begin_layout Itemize
+parametry dyskretnej transformacji falkowej (ang.
+ DWT - Discrete Wavelet Transform).
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Każdy zestaw cech może być uzupełniony o tzn.
+ cechy dynamiczne, czyli współczynniki różnicowe.
+ Polega to na obliczeniu pierwszej i drugiej pochodnej powyższych współczynników
+ (tzw.
+ współczynników delta oraz delta-delta) względem kilku ramek.
+ 
+\end_layout
+
+\begin_layout Standard
+Pakiet HTK może korzystać zarówno z cech mel-cepstralnych jak i LPC.
+ Opisane zostaną jedynie cechy mel-cepstralne oraz mel-spektralne ponieważ
+ są ze sobą powiązane.
+ W systemie stworzonym na potrzeby tej pracy zostały użyte cechy mel-cepstralne.
+\end_layout
+
+\begin_layout Standard
+Ucho człowieka reaguje nieliniowo na zmieniającą się częstotliwość dzwięku.
+ Częstotliwości powyżej 1 kHz są słabiej odczuwane niż różnice w zakresie
+ niskich częstotliwości.
+ Dlatego im wyższa częstotliwość tym są potrzebne coraz większe odstępy
+ między kolejnymi pasmami dla zrekompensowania nieliniowości.
+ Po to właśnie wprowadzono skalę melową (Mel) zamiast hercowej (Hz).
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rozp"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $ω{}_{Mel}=2595log(1+\frac{\text{ω}}{700Hz})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Widma ramek sygnału po uprzednim przeprowadzeniu DFT poddawane są filtracji
+ za pomocą melowego banku filtrów pasmowo przepustowych.
+ W systemach rozpoznawania mowy zazwyczaj stosuje się banki 26 filtrów melowych.
+ Filtry tworzone są dla kolejnych pasm częstotliwości, rozmieszczonych w
+ nieliniowy sposób wyznaczony przez skalę Mel.
+ Zdefiniowane są w dziedzinie częstotliwości co umożliwia łatwe wymnożenie
+ ich przez przekształcony sygnał.
+ Do wyznaczenia cech mel-spektralnych dla każdej ramki sygnału wykorzyje
+ się zbiór 
+\begin_inset Formula $l$
+\end_inset
+
+ trójkątnych filtrów D(l, k).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $MFC(l,\text{τ)=}\sum_{k=0}^{M-1}[D(l,k)*FC(k,\text{τ})]\text{, l=1,...,L}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wartość pojedyńczego współczynnika MFC odpowiada ważonej sumie wartości
+ FC należących do zakresu trójkątnego filtra pasmowego odpowiadającego danemu
+ MFC.
+\end_layout
+
+\begin_layout Standard
+Chcąc wyliczyć spektrum energii dla każdej ramki, stosujemy FFT dla każdego
+ splotu sygnału z kolejnym oknem i obliczamy kwadrat amplitudy każdego współczyn
+nika zespolonego Fouriera.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $FC(k,\text{τ)=}\mid\sum_{t=0}^{M-1}[x(\text{τ}+t)e^{-i2πkt/M}*w_{\text{τ}}(t)]\mid^{2}$
+\end_inset
+
+ dla 
+\begin_inset Formula $k=0,...,M-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Współczynniki mel-cepstralne możemy wyznaczyć ze wzoru:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $MFCC(k,\text{τ)=}\sum_{l=0}^{L-1}[logMFC(l,\text{τ)}*cos(\frac{k*(2l+1)\text{π}}{2L})]$
+\end_inset
+
+, 
+\begin_inset Formula $k=1,...,K$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Natężenie dźwięku jest odczuwane przez ludzi w skali logarytmicznej dlatego
+ przy obliczaniu cepstrum sygnał otrzymany po przejściu przez bank filtrów
+ melowych jest logarytmowany.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes pld
+\end_inset
+
+Ponieważ układ głosu ma charakter ciągły, zatem poziomy energii w sąsiednich
+ pasmach są skorelowane.
+ Dlatego też niebędna do tego transformata odwrotna Fouriera (tu wystarczy
+ przekształcenie cosinusowe) zamienia zbiór logarytmów energii na nieskolerowane
+ ze sobą wspołczynniki cepstralne.
+\begin_inset Quotes prd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rozp"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aby usunąć szkodliwy wpływ podstawowych drgań krtaniowych na zestaw cech
+ możemy zastosować przekształcenie zwane liftrowaniem.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $c_{n}^{lift}=(1+\frac{\text{λ}}{2}sin(\frac{\text{πn}}{\text{λ}}))c_{n}$
+\end_inset
+
+ dla 
+\begin_inset Formula $n=1,...,\text{λ}$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Standard
+gdzie 
+\begin_inset Formula $c{}_{n}$
+\end_inset
+
+ to 
+\begin_inset Formula $n$
+\end_inset
+
+-ty współczynnik MFCC a stała λ odpowiada indeksowi cechy związanej z częstotliw
+ością podstawową.
+\end_layout
+
+\begin_layout Standard
+Podstawowy wektor cech możemy uzupełnić o tzn.
+ cechę 
+\begin_inset Quotes pld
+\end_inset
+
+energetyczną
+\begin_inset Quotes prd
+\end_inset
+
+, która pomaga odróżnić sygnał ciszy od sygnału mowy a także słabe bezdźwięczne
+ spółgłoski od silnych dźwięcznych samogłosek.
+ Sumaryczną energię w ramce sygnału τ obliczamy sumując kwadraty próbek
+ w dziedzinie czasu według nastepującego wzoru:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $E{}^{(\text{τ)}}=\sum_{i=1}^{M}f_{i}^{2}$
+\end_inset
+
+ 
+\begin_inset space \quad{}
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rozp"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AnalizaS"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Podsumowując, wyznaczanie wpółczynników MFCC możemy przestawić w następujących
+ krokach:
+\end_layout
+
+\begin_layout Itemize
+blokowanie sygnału w ramki, okienkowanie oknem Hamminga,
+\end_layout
+
+\begin_layout Itemize
+przeprowadzenie FFT na zokienkowanych ramkach sygnału,
+\end_layout
+
+\begin_layout Itemize
+filtracja za pomocą melowego banku filtrów,
+\end_layout
+
+\begin_layout Itemize
+obliczenie mocy FFT w określonych pasmach częstotliwościowych,
+\end_layout
+
+\begin_layout Itemize
+obliczenie logarytmu zakumulowanych współczynników widmowych,
+\end_layout
+
+\begin_layout Itemize
+przeprowadzenie DCT na zlogarytmowanych współczynnikach widmowych,
+\end_layout
+
+\begin_layout Itemize
+opcjonalnie, wyznaczenie cech dynamicznych.
+\end_layout
+
+\begin_layout Standard
+DCT (ang.
+ discrete cosine transform) przeprowadzamy według następującego wzoru:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $x(n)=c(n)\sum_{k=0}^{K-1}ln(S_{k})cos(\frac{\text{π(2k+1)n}}{2K})$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Standard
+\align center
+gdzie 
+\begin_inset Formula $c(0)=\sqrt{\frac{1}{K}},$
+\end_inset
+
+dla 
+\begin_inset Formula $n>0$
+\end_inset
+
+ 
+\begin_inset Formula $c(n)=\sqrt{\frac{2}{K}}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Przetw"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Otrzymany wektor cech MFCC zawiera liczbę elementów równą liczbie pasm melowych.
+ Do dalszego przetwarzania bierzemy zazwyczaj pierwsze 12 współczynników,
+ do których dokładamy energię sygnału w ramce oraz jeśli chcemy uwzględnić
+ dynamikę zmian współczynników w czasie (wielkość zmian oraz ich tempo),
+ poszerzamy nasz wektor o ich przyrosty kolejno pierwszego i drugiego rzędu
+ (czyli współczynniki delta oraz delta-delta).
+ W wyniku tych operacji otrzymujemy 39-elementowy wektor cech mel-cepstralnych.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Czy pod rysunkami z Pana wykładów dawać przypisy?
+\end_layout
+
+\end_body
+\end_document

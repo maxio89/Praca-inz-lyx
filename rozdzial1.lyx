@@ -1,0 +1,143 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass pwszdpl
+\options pdflatex
+\use_default_options false
+\maintain_unincluded_children false
+\language polish
+\language_package default
+\inputencoding latin2
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize 11
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 0
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Indeks
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Wstęp
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:wprowadzenie"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wiek w którym żyjemy, zwany jest często wiekiem komunikacji w różnych jej
+ formach.
+ Jest ona bardzo ważnym aspektem życia człowieka.
+ Tematyka tej pracy związana jest z komunikacją werbalną na lini człowiek
+ - maszyna.
+ 
+\end_layout
+
+\begin_layout Standard
+Jeszcze do niedawna sterowanie sprzętem elektronicznym za pomocą komend
+ głosowych, było spotykane częściej w filmach s-f niż w rzeczywistych zastosowan
+iach.
+ Obecnie jest to zadanie możliwe do wykonania, niemniej jednak, ze względu
+ na skomplikowany charakter sygnału mowy, czasem trudne do realizacji.
+ 
+\end_layout
+
+\begin_layout Standard
+Systemy rozpoznawania mowy są rozwijane od wielu lat, zarówno jako projekty
+ komercyjne (Dragon, ViaVoice, Google speech API) jak i naukowe (HTK, Julius,
+ VoxForge, Sphinx lub rodzimy projekt SARMATA).
+ Obecnie większość smartfonów posiada aplikacje pozwalające na wybieranie
+ głosowe połączeń lub zamieniające mowę na tekst.
+ Liczba zastosowań systemów rozpoznawania mowy ciągle rośnie, ze względu
+ na oczywisty fakt, że mowa jest naturalnym oraz jakże wygodnym sposobem
+ przekazywania myśli i odczuć człowieka.
+ Uzyskiwana jest również coraz większa skuteczność takich systemów, jednakże
+ nie tak duża, by pozwalała na bezpieczne i efektywne wykorzystywanie ich
+ w każdym przypadku.
+ Co za tym idzie, poprawianie skuteczności wiąże się z dalszym rozwojem
+ tej dziedziny a więc może być ona bardzo ciekawym obiektem zainteresowań.
+ 
+\end_layout
+
+\begin_layout Standard
+Przeglądając artykuły i prace dotyczące tematyki tutaj poruszanej często
+ spotykałem się ze stwierdzeniem że problem rozpoznawania mowy dla języka
+ polskiego, nie został dotychczas tak dobrze opracowany jak to zostało zrobione
+ w przypadku innych języków, tzw.
+ języków dominujących, takich jak angielski, niemiecki, francuski, hiszpański
+ czy chiński.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ops"
+
+\end_inset
+
+ Z dużą dozą pewności jestem w stanie stwierdzić, iż powyższe zdanie jest
+ nadal aktualne.
+\end_layout
+
+\begin_layout Standard
+Niniejsza praca koncentruje się na wykorzystaniu osiągnięć projektu HTK
+ i stworzeniu systemu rozpoznawania mowy dla języka polskiego na przykładzie
+ sterowania robotem przemysłowym w grze planszowej.
+ Rozgrywka polega na wydawaniu komend głosowych które sterują ruchami robota.
+ Jest on zarówno przeciwnikiem użytkownika jak również wykonuje za niego
+ wszystkie ruchy podczas rozgrywki, użytkownik skupia się tylko na wydawaniu
+ poleceń głosowych.
+ Gra z robotem jest formą demonstracji systemu stworzonego na potrzeby tej
+ pracy a więc jest jej poświęcone mniej uwagi niż tematyce rozpoznawania
+ mowy.
+\end_layout
+
+\end_body
+\end_document

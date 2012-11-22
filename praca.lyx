@@ -1,0 +1,295 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass pwszdpl
+\begin_preamble
+
+% \documentclass{aghdpl}               % przy kompilacji programem latex
+% \documentclass[pdflatex,en]{aghdpl}  % praca w języku angielskim
+
+
+
+% dodatkowe pakiety
+\usepackage{enumerate}
+\usepackage{listings}
+\lstloadlanguages{TeX}
+
+%---------------------------------------------------------------------------
+
+\author{Marcin Szpyrka}
+\shortauthor{M. Szpyrka}
+
+\titlePL{Przygotowanie pracy dyplomowej w~systemie \LaTeX}
+
+\shorttitlePL{Przygotowanie pracy dyplomowej w~systemie \LaTeX} % skrócona wersja tytułu jeśli jest bardzo długi
+
+\thesistypePL{Praca magisterska}
+
+\supervisorPL{dr hab. Marcin Szpyrka}
+
+\date{2009}
+
+\facultyPL{Wydział Elektrotechniki, Automatyki, Informatyki i Elektroniki}
+
+\acknowledgements{Serdecznie dziękuję \dots tu ciąg dalszych podziękowań np. dla promotora, żony, sąsiada itp.}
+
+%---------------------------------------------------------------------------
+\departmentPL{Katedra Automatyki}
+
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+\counterwithout{table}{section}
+\end_preamble
+\options pdflatex
+\use_default_options true
+\maintain_unincluded_children false
+\language polish
+\language_package default
+\inputencoding latin2
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Indeks
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 9 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{Piotr Kozłowski}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+shortauthor{P.
+ Kozłowski}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+titlePL{Sterowanie głosowe robotem Kawasaki w wybranych grach planszowych}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+shorttitlePL{Sterowanie głosowe robotem Kawasaki w wybranych grach planszowych}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+thesistypePL{Praca inżynierska}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+supervisorPL{dr Robert Wielgat}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+acknowledgements{Serdecznie dziękuję mojemu promotorowi za cenne wskazówki,
+ które pomogły mi ukończyć tą pracę.} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{2012}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+facultyPL{Informatyka Stosowana} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+departmentPL{Instytut Politechniczny}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+titlepages   
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "rozdzial1.lyx"
+
+\end_inset
+
+ 
+\begin_inset CommandInset include
+LatexCommand include
+filename "rozdzial2.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "rozdzial3.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "rozdzial4.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "rozdzial5.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "rozdzial6.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "bibliografia"
+options "alpha"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "dodatek.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
