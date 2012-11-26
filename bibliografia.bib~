@@ -46,10 +46,6 @@ organization = {Cambridge},
 year = {2006},
 note = {\url{http://htk.eng.cam.ac.uk/docs/docs.shtml}}
 }
-@Manual{Htk,
-title = {HTK (Hidden Model Markov Toolkit)},
-note = {\url{http://htk.eng.cam.ac.uk/}
-}
 @Manual{Gma,
 author = {Google Inc.},
 title = {Google Mobile App},

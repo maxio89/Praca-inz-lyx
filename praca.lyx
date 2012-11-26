@@ -40,6 +40,7 @@
 \usepackage{chngcntr}
 \counterwithout{figure}{section}
 \counterwithout{table}{section}
+\usepackage{hyperref}
 \end_preamble
 \options pdflatex
 \use_default_options true
@@ -274,7 +275,7 @@ filename "rozdzial6.lyx"
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "bibliografia"
-options "alpha"
+options "plain"
 
 \end_inset
 

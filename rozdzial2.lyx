@@ -161,10 +161,148 @@ Warto zaznaczyć, że systemy rozpoznawania mowy, nie znajdą zastosowania
  
 \end_layout
 
+\begin_layout Section
+Przegląd gotowych rozwiązań
+\end_layout
+
+\begin_layout Standard
+Wśród rozwiązań komercyjnych obecnie przodujących na rynku warto wymienić
+ te przeznaczone dla urządzeń mobilnych, czyli m.in.
+ telefonów komórkowych, które w obecnych czasach często posiadają możliwości
+ zbliżone do komputerów osobistych.
+ Firmy których produkty zdominowały rynek systemów przeznaczonych na urządzenia
+ mobilne mają opracowane własne technologie rozpoznawania mowy połączone
+ ze sztuczną inteligencją oraz syntezą mowy.
+ I tak kolejno, Apple posiada Siri 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Sr"
+
+\end_inset
+
+, Google - Google Now 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gn"
+
+\end_inset
+
+ a Microsoft - TellMe 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Tlm"
+
+\end_inset
+
+.
+ Produkty te, mają za zadanie ułatwić korzystanie z telefonu.
+ Pełnią rolę wirtualnego asystenta, z którym można porozmawiać, zapytać
+ o pogodę, najbliższą restaurację, poprosić o wpis do kalendarza lub przeczytani
+e sms'a.
+ Produkt firmy Apple był najwcześniej wprowadzony na rynek więc wydaje się
+ być technologią najbardziej zaawansowaną.
+ Natomiast Google prócz najnowszej technologii Google Now, posiada również
+ aplikację Google Mobile App 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gma"
+
+\end_inset
+
+, która służy głównie do wyszukiwania głosowego (np.
+ kontaktów, wiadomości lub innych rzeczy korzystając z wyszukiwarki internetowej
+ Google).
+ Poza produktami wymienionych wcześniej firm, powstaje coraz więcej aplikacji
+ typu third-party (czyli tworzone przez osoby lub firmy niezwiązane z producenta
+mi systemów operacyjnych) posiadających podobne funkcjonalności (np.
+ S-Voice firmy Samsung lub Iris, obie przeznaczone na platformę Android
+ firmy Google).
+ 
+\end_layout
+
+\begin_layout Standard
+Do najstarszych projektów komercyjnych, rozwijających technologię rozpoznawania
+ mowy, można zaliczyć IBM ViaVoice, Microsoft Speech API, Oracle Java Speech
+ API lub Dragon NaturallySpeaking firmy Nuance, która ostatecznie przejęła
+ od IBM technologię ViaVoice 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Drag"
+
+\end_inset
+
+.
+ W Polsce powstaje coraz więcej firm projektujących i wdrażających rozwiązania
+ biznesowe oparte na rozpoznawaniu mowy, zwane systemami IVR (ang.
+ Interactive Voice Response), umożliwiające interaktywną obsługę osoby dzwoniące
+j.
+ Są to m.in.
+ firma Primespeech (produkująca systemy przeznaczone na rynek telekomunikacyjny,
+ np.
+ dla Zarządu Transportu Miejskiego w Warszawie, działające na zasadzie wirtualny
+ch konsultantów, informujących o rozkładach jazdy, cenach biletów, aktualnościac
+h lub przyjmujący różnego rodzaju skargi klientów) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Pri"
+
+\end_inset
+
+, MagicScribe (systemy zamieniające mowę na tekst, MagicScribeMedical -
+ system stworzony dla medycyny, wpomagający obsługę pacjenta, tworzenie
+ dokumentacji medycznej itp.
+ oraz MagicScribeLegal, rozwiązanie dla adwokatów, notariuszy, radców prawnych)
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mags"
+
+\end_inset
+
+, Stanusch Technologies S.A.
+ lub VOICE LAB.
+\end_layout
+
+\begin_layout Standard
+Z pośród projektów naukowych związanych z rozpoznawaniem mowy warto wymienić
+ HTK 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htk"
+
+\end_inset
+
+, Julius 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jul"
+
+\end_inset
+
+, CMUSphinx 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Sphi"
+
+\end_inset
+
+ lub rodzimy projekt SARMATA (używany m.in.
+ przez instytucje wymiaru sprawiedliwości do zarządzania dokumentacją procesową)
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Sar"
+
+\end_inset
+
+.
+ 
+\end_layout
+
 \begin_layout Standard
 W obecnych czasach tworzenie systemów rozpoznawania mowy jest dużo prostsze,
  ze względu na obecność gotowych narzędzi wspomagających, m.in.
- HTK czy Sphinx, które posiadają zaimplementowane algorytmy, pozwalające
+ HTK czy CMUSphinx, które posiadają zaimplementowane algorytmy, pozwalające
  stworzyć system rozpoznawania mowy nawet osobie nie znającej szczegółów
  aparatu matematycznego.
  Użytkownik korzystający z takich bibliotek często używa ich jak 
@@ -204,7 +342,7 @@ Alfabet języka polskiego składa sie˛ z 32 liter: a, ą, b, c, ć, d, e, ę,
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1040,7 +1178,7 @@ Wszystkie próbki danych użytkowych.
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -1074,6 +1212,8 @@ key "Rozp"
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Adres bazowy
 \end_layout
 
@@ -1083,6 +1223,8 @@ Adres bazowy
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Liczba bajtów
 \end_layout
 
@@ -1092,6 +1234,8 @@ Liczba bajtów
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Dane
 \end_layout
 
@@ -1644,7 +1788,7 @@ a oraz skrócenia czasu obliczeń.
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -2258,6 +2402,10 @@ Otrzymany wektor cech MFCC zawiera liczbę elementów równą liczbie pasm melow
  poszerzamy nasz wektor o ich przyrosty kolejno pierwszego i drugiego rzędu
  (czyli współczynniki delta oraz delta-delta).
  W wyniku tych operacji otrzymujemy 39-elementowy wektor cech mel-cepstralnych.
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Standard

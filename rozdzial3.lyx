@@ -65,17 +65,34 @@
 Ukryte Modele Markowa jako jedna z metod klasyfikacji
 \end_layout
 
-\begin_layout Section
-Wprowadzenie teoretyczne
+\begin_layout Standard
+Współczesne systemy rozpoznawania mowy zakadają, że sygnał mowy jest sekwencją
+ pewnych elementarnych jednostek fonetycznych (np.
+ głosek, fonemów, słów).
+ Charakteruzyje się on również pewna przypadkowością.
+ Wypowiedź tego samego mówcy za każdym razem posiada niepowtarzalny przebieg.
+ A coza tym idzie nie możemy przyporządkować jej jednoznacznej sekwencji
+ jednostek mowy.
+ Wiąże się to z tym, że nagrany sygnał mowy często bywa zaszumiony i zniekształc
+ony.
 \end_layout
 
 \begin_layout Standard
-Ukryte modele markowa stanowią serce większości współczesnych systemów rozpoznaw
-ania mowy.
+Metody klasyfikacji wykorzystywane w systemach rozpoznawania mowy możemy
+ podzielić na dwie kategorie:
+\end_layout
+
+\begin_layout Itemize
+metody deterministyczne, gdzie obliczane są błedy porównując dźwięk ze wzorcem,
+\end_layout
+
+\begin_layout Itemize
+metody niederministyczne, gdzie obliczamy wartości prawdopodobieństw, które
+ reprezentują dopasowanie dźwięku do stosowanych modeli probalistycznych.
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Ops"
+key "RmHMM"
 
 \end_inset
 
@@ -83,8 +100,94 @@ key "Ops"
 \end_layout
 
 \begin_layout Standard
-S.
- Young et al., The HTK Book, Cambridge 2006,
+Do metod deterministycznych należy m.in.
+ nieliniowa transformata czasowa w skrócie DTW (ang.
+ dynamic time wrapping), metoda skuteczna dla izolowanych słów.
+ 
+\end_layout
+
+\begin_layout Standard
+Inne ograniczenia metod deterministycznych:
+\end_layout
+
+\begin_layout Itemize
+duża zajętość pamięci potrzebnej na przechowywanie wzorców (dla dużych słowników
+),
+\end_layout
+
+\begin_layout Itemize
+czas rozpoznawania proporcjonalny do rozmiaru słownika.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Biorąc pod uwagę to, że bardziej naturalnym dla człowieka jest wypowiadanie
+ słów ciągiem (bez znaczących przerw między nimi) oraz, że przy analizie
+ sygnału mowy warto uwzględnić jego przypadkowość, metody niederministyczne
+ osiągają lepszą skuteczność rozpoznawania.
+ Do takich właśnie metod należą Ukryte Modele Markowa, w skrócie HMM (ang.
+ hidden markov models).
+ 
+\end_layout
+
+\begin_layout Section
+Wprowadzenie teoretyczne
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes pld
+\end_inset
+
+Ukryte Modele Markowa stanowią serce większości współczesnych systemów rozpoznaw
+ania mowy.
+\begin_inset Quotes prd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ops"
+
+\end_inset
+
+ Sprawdzają się również w wielu innych zastosowaniach, tam gdzie mamy doczynieni
+a z sygnałem niederministycznym, np.:
+\end_layout
+
+\begin_layout Itemize
+rozpoznawanie obrazów,
+\end_layout
+
+\begin_layout Itemize
+modelowaniu DNA,
+\end_layout
+
+\begin_layout Itemize
+oraz modelowaniu danych ekonomicznych.
+\end_layout
+
+\begin_layout Standard
+Pierwsze prace na temat Ukrytych (niejawnych) Modeli Markowa prowadził Baum
+ wraz ze współpracownikami w latach 60-tych oraz 70-tych.
+ Dotyczyły one metody estymacji parametrów modeli HMM nazwanej algorytmem
+ Bauma-Welcha.
+ Algorytm ten jest oparty na kryterium (ML) (Maximum Likelihood) maksymalizacji
+ prawdopodobieństwa wygenerowania sekwencji obserwacji przez model HMM.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RmHMM"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -101,29 +204,6 @@ W przypadku rozpoznawania mowy rozważa się jednak nieco odmienną sytuację,
  Znana jest natomiast sekwencja obserwacji O.
  W przypadku mowy, obserwacja jest to wektor cech wyekstrahowanych z pojedynczej
  ramki nagrania.
-\end_layout
-
-\begin_layout Standard
-
-\lang english
-Pierwsze publikacje dotyczące Ukrytych (niejawnych) Modeli Markowa były
- opracowane przez Bauma oraz jego współpracowników w latach 60-tych oraz
- wczesnych latach 70-tych.
- Prace te dotyczyły metody estymacji parametrów modeli HMM nazywanej algorytmem
- Bauma-Welcha.
-\end_layout
-
-\begin_layout Standard
-
-\lang english
-Poza algorytmem Bauma-Welcha został opracowanych algorytm segmental k-means
- estymacji parametrów HMM.
- Algorytm ten jest oparty na zmodyfikowanym kryterium maksymalizacji (segmental
- ML).
- Modyfikacja kryterium polega na wprowadzeniu optymalnej ścieżki oraz maksymaliz
-acji prawdopodobieństwa na optymalnej ścieżce.
- Stosowana w algorytmie ściezka wyznaczana jest z wykorzystywaniem algorytmu
- Viterbiego.
 \end_layout
 
 \begin_layout Section
