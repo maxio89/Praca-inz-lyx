@@ -26,7 +26,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize 11
-\spacing single
+\spacing onehalf
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -62,11 +62,23 @@
 \begin_body
 
 \begin_layout Chapter
-Podsumowanie
+System sterujący robotem za pomocą komend głosowych
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
+Schemat działania systemu
+\end_layout
 
+\begin_layout Section
+Robot przemysłowy 
+\end_layout
+
+\begin_layout Section
+Urządzenie na którym działa cały system
+\end_layout
+
+\begin_layout Section
+Gry planszowe 
 \end_layout
 
 \end_body

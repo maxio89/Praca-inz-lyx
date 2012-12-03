@@ -37,10 +37,11 @@
 %---------------------------------------------------------------------------
 \departmentPL{Katedra Automatyki}
 
-\usepackage{chngcntr}
-\counterwithout{figure}{section}
-\counterwithout{table}{section}
 \usepackage{hyperref}
+\usepackage{babel}
+\AtBeginDocument{%
+  \renewcommand\tablename{Tabela}
+}
 \end_preamble
 \options pdflatex
 \use_default_options true
@@ -208,6 +209,9 @@ LatexCommand tableofcontents
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
 
@@ -272,10 +276,43 @@ filename "rozdzial6.lyx"
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "rozdzial7.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "bibliografia"
 options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList table
 
 \end_inset
 

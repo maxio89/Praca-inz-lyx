@@ -25,8 +25,9 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement H
 \paperfontsize 11
-\spacing single
+\spacing onehalf
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -62,19 +63,1101 @@
 \begin_body
 
 \begin_layout Chapter
-HTK (Hidden Markov Model Toolkit)
+Ukryte Modele Markowa
 \end_layout
 
 \begin_layout Section
-Rozpoczęcie pracy z bibliotekami
+Wprowadzenie teoretyczne
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes pld
+\end_inset
+
+Ukryte Modele Markowa stanowią serce większości współczesnych systemów rozpoznaw
+ania mowy.
+\begin_inset Quotes prd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ops"
+
+\end_inset
+
+ Sprawdzają się również w wielu innych zastosowaniach, najczęściej tam gdzie
+ mamy doczynienia z sygnałem niederministycznym, np.:
+\end_layout
+
+\begin_layout Itemize
+rozpoznawanie obrazów,
+\end_layout
+
+\begin_layout Itemize
+modelowanie DNA,
+\end_layout
+
+\begin_layout Itemize
+modelowanie danych ekonomicznych.
+\end_layout
+
+\begin_layout Standard
+Pierwsze prace na temat Ukrytych (niejawnych) Modeli Markowa prowadził Baum
+ wraz ze współpracownikami w latach 60-tych oraz 70-tych.
+ Dotyczyły one metody estymacji parametrów modeli HMM nazwanej algorytmem
+ Bauma-Welcha.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RmHMM"
+
+\end_inset
+
+Do celów rozpoznawania mowy zostały użyte poraz pierwszy w połowie lat siedemdzi
+esiątych przez pracowników firmy IBM.
+ W obecnych czasach jest to najczęściej wykorzystywane narzędzie klasyfikacji
+ w systemach rozpoznawania mowy.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ops"
+
+\end_inset
+
+ Opisane zostało w wielu pozycjach literaturowych, m.in.
+ w 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fosr"
+
+\end_inset
+
+, tutaj zostanie przestawiony jedynie ogólny zarys tej metody.
+\end_layout
+
+\begin_layout Standard
+W HMM wykorzystywane są modele statystyczne posiadające własności Markowa
+ pierwszego rzędu co oznacza, że aktualny stan modelu zależy tylko od stanu
+ poprzedniego.
+ W Ukrytym Modelu Markowa zakłada się, że stany są niewidoczne dla obserwatora,
+ natomiast wyjście (wartości obserwowane) jest jawne.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rozp"
+
+\end_inset
+
+ W przypadku mowy, wartości obserwowane bądź też obserwacje są to wektory
+ cech wyekstrahowane z pojedynczej ramki sygnału mowy.
+ Ukryty Model Markowa opisuje pewien układ (proces stochastyczny), który
+ w danym momencie może znajdować się tylko w jednym ze stanów.
+ 
+\end_layout
+
+\begin_layout Standard
+Ogólne założenia metody HMM z punktu widzenia rozpoznawania mowy można przedstaw
+ić następująco:
+\end_layout
+
+\begin_layout Itemize
+dla każdej klasy (np.
+ głoski, fonemu lub słowa) tworzy się pewien model stochastyczny Λ
+\begin_inset Formula $_{m}$
+\end_inset
+
+, m=1, … , M, gdzie M to liczba klas,
+\end_layout
+
+\begin_layout Itemize
+dla każdej nieznanej sekwencji wektorów X oblicza się prawdopodobieństwa
+ generowania sekwencji wektorów p(X|Λ
+\begin_inset Formula $_{m}$
+\end_inset
+
+) przez modele dla poszczególnych klas,
+\end_layout
+
+\begin_layout Itemize
+klasyfikacja odbywa się na zasadzie największego prawdopodobieństwa, X jest
+ przypisywane do takiej klasy Λ
+\begin_inset Formula $_{m}$
+\end_inset
+
+, która posiada największe prawdopodobieństwo p(X|Λ
+\begin_inset Formula $_{m}$
+\end_inset
+
+).
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Trenowanie modeli
+Parametry modeli Markowa
+\end_layout
+
+\begin_layout Standard
+Macierz przejść definiuje możliwe przejścia pomiędzy stanami oraz wartości
+ ich prawdopodobieństw:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\begin{bmatrix}0 & a_{12} & 0 & 0 & 0\\
+0 & a_{22} & a_{23} & 0 & 0\\
+0 & 0 & a_{33} & a_{34} & 0\\
+0 & 0 & 0 & a_{44} & a_{45}\\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dla każdego przejścia z chwili czasowej t do t+1 przejście ze stanu 
+\begin_inset Formula $s{}_{i}$
+\end_inset
+
+ do stanu 
+\begin_inset Formula $s{}_{j}$
+\end_inset
+
+ następuje z prawdopodobieństwem 
+\begin_inset Formula $a{}_{ij}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Suma prawdopodobieństw w wierszach a więc suma wszystkich wyjść ze stanu
+ zawsze wynosi jeden.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys8"
+
+\end_inset
+
+ widoczny jest 5-cio stanowy model markowa typu left-to-right z przejściami
+ zapisanymi w powyższej macierzy.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename hmm.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Model Markowa 5-cio stanowy typu left-to-right
+\begin_inset CommandInset label
+LatexCommand label
+name "rys8"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W rozpoznawaniu mowy zazwyczaj wykorzystywane są modele typu left-to-right
+ (wyjątek to np.
+ model ciszy) oznacza to, że z aktualnego stanu możliwe jest przejście do
+ stanu kolejnego, pozostanie w danym stanie, lub przeskoczenie o kilka stanów
+ do przodu, nie można się cofać.
+ 
+\end_layout
+
+\begin_layout Standard
+Stan początkowy oraz końcowy czyli w przypadku 5-cio stanowego modelu stan
+ 1 oraz stan 5 zwane są stanami nieemitującymi ponieważ nie generują żadnych
+ obserwacji, mają za zadanie jedynie rozpocząć oraz zakończyć proces.
+\end_layout
+
+\begin_layout Standard
+Dla każdej ramki czasowej t, może być przez każdy stan 
+\begin_inset Formula $s_{θ}$
+\end_inset
+
+ modelu 
+\begin_inset Formula $\text{Λ}{}_{m}$
+\end_inset
+
+ generowany wektor obserwacji 
+\begin_inset Formula $o_{t}$
+\end_inset
+
+.
+ Suma prawdopodobieństw generowania obserwacji dla jednego stanu zawsze
+ wynosi jeden.
+\end_layout
+
+\begin_layout Standard
+Obserwacje (wektory cech) 
+\begin_inset Formula $o_{t}$
+\end_inset
+
+ emitowane są z prawdopodobieństwem 
+\begin_inset Formula $b{}_{j}$
+\end_inset
+
+ określanym zazwyczaj jako wielowymiarowy rozkład Gaussa: 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula 
+\begin{align*}
+b_{j}(o_{t})= & \frac{1}{\sqrt{(2π)^{n}\left|\sum_{j}\right|}}e^{-\frac{1}{2}(o_{t}-\text{μ}_{j})'\sum_{j}(o_{t}-\text{μ}_{j})}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gdzie:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sum_{j}$
+\end_inset
+
+- macierz kowariancji,
+\end_layout
+
+\begin_layout Standard
+μ
+\begin_inset Formula $_{j}$
+\end_inset
+
+- wektor średni obserwacji,
+\end_layout
+
+\begin_layout Standard
+n - wymiar wektora obserwacji.
+\end_layout
+
+\begin_layout Standard
+Prawdopodobieństwo obserwacji możemy również aproskymować za pomocą kombinacji
+ liniowej wielowymiarowych rozkładów Gaussa:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula 
+\begin{align*}
+p_{j}(o_{t})= & \sum_{k=0}^{K-1}c_{jk}b_{jk}(o_{t})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula 
+\begin{align*}
+\sum_{k=0}^{K-1}c_{jk}= & 1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gdzie:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $K$
+\end_inset
+
+ - liczba rozkładów Gaussa,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $c{}_{jk}$
+\end_inset
+
+ - k-ty współczynnik wagowy mieszaniny dla stanu 
+\begin_inset Formula $j$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $b{}_{jk}$
+\end_inset
+
+ - k-te prawdopodobieńśtwo obserwacji dla stanu 
+\begin_inset Formula $j$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Duża liczba parametrów w przypadku mieszanin o większej liczbie rozkładów
+ wymusza użycie dużej ilości danych treningowych.
+ Możemy jednak uprościć model redukując liczbę jego parametrów np.
+ poprzez: 
+\end_layout
+
+\begin_layout Itemize
+wiązanie parametrów, podczas którego stosujemy wspólną macierz kowariancji
+ dla tych rozkładów dla których wartości kowariancji są zbliżone,
+\end_layout
+
+\begin_layout Itemize
+zastosowanie diagonalnej macierzy kowariancji, gdzie zakłada się, że elementy
+ wektora cech są wzajemnie nieskorelowane dlatego dopuszczalne jest zastosowanie
+ macierzy posiadającej elementy tylko na diagonali, powstają przez to błędy
+ aproksymacji, które można minimalizować przez zastosowanie większej liczby
+ rozkładów.
+\end_layout
+
+\begin_layout Standard
+Prawdopodobieństwo 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $p(X|\text{Λ}{}_{m})$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang polish
+ (gdzie sekwencja wektorów 
+\begin_inset Formula $X$
+\end_inset
+
+ oznacza sekwencję obserwacji 
+\begin_inset Formula $o$
+\end_inset
+
+) wygenerowania przykładowej sekwencji wektorów obserwacji 
+\begin_inset Formula $o_{1}$
+\end_inset
+
+,
+\begin_inset Formula $o_{2}$
+\end_inset
+
+,
+\begin_inset Formula $o_{4}$
+\end_inset
+
+,
+\begin_inset Formula $o_{6}$
+\end_inset
+
+ nawiązując do modelu przedstawionego na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys8"
+
+\end_inset
+
+ obliczamy następująco:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $p(X|\text{Λ}{}_{m})=a_{12}*b_{2}(o_{1})*a_{22}*b_{2}(o_{2})*a_{23}*b_{3}(o_{4})*a_{34}*b_{4}(o_{6})*a_{45}$
+\end_inset
+
+ 
+\begin_inset space \space{}
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Rozpoznawanie
+Trenowanie 
+\end_layout
+
+\begin_layout Standard
+Schemat blokowy fazy trenowania modeli Markowa widoczny jest na rysunku
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys9"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename trenowanie-hmm.png
+	display false
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Trenowanie modeli Markowa 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys9"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jednofonowe modele Markowa dla ciszy i krótkich pauz są przedstawione kolejno
+ na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys10"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys11"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename hmm-cisza.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Model HMM dla ciszy
+\begin_inset CommandInset label
+LatexCommand label
+name "rys10"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W modelu ciszy mamy dodatkowe przejście ze stanu 2 do stanu 4 oraz ze stanu
+ 4 do stanu 2.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename hmm-pauza.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Model HMM dla krótkiej pauzy
+\begin_inset CommandInset label
+LatexCommand label
+name "rys11"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W modelu krótkiej pauzy mamy dodatkowe przejście pomiędzy stanami 1 oraz
+ 3 czyli stanami nieemitującymi.
+\end_layout
+
+\begin_layout Standard
+Stan 3 z modelu ciszy oraz stan 2 z modelu krótkiej pauzy są takie same.
+ Model krótkiej pauzy tworzymy na podstawie modelu ciszy, usuwając stany
+ 2 oraz 4, powstaje wówczas model 3 stanowy, gdzie poprzedni stan 3 staje
+ się stanem 2 modelu.
+\end_layout
+
+\begin_layout Standard
+W przypadku gdy najmniejszą niepodzielną jednostką fonetyczną systemu są
+ fonemy musimy rozpatrywać modele nie tylko dla jednofonów lecz również
+ dla trójfonów, czyli możliwych kombinacji fonemów w otoczeniu innych fonemów.
+\end_layout
+
+\begin_layout Standard
+Zapis jednofonowy pokazany jest na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys12"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename jednofony.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Zapis jednofonowy 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys12"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Natomiast zapis trójfonowy na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys13"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename trojfony.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Zapis trójfonowy 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys13"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Znak '-' oznacza fonem poprzedzający, natomiast znak '+' fonem następujący.
+\end_layout
+
+\begin_layout Section
+Algorytm Bauma-Welcha
+\end_layout
+
+\begin_layout Standard
+Algorytm ten jest oparty na kryterium ML (ang.
+ Maximum Likelihood) - maksymalizacji prawdopodobieństwa wygenerowania sekwencji
+ obserwacji przez model HMM.
+ Wykorzystywany jest w procesie trenowania HMM.
+ Jest to procedura iteracyjna w wyniku której możemy otrzymać lepsze estymaty
+ parametrów HMM.
+ Schemat blokowy przedstawiony jest na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys14"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename baum-welch.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Reestymacja Bauma-Welcha 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys14"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Problem estymacji parametrów polega na doborze jak najlepszych prawdopodobieństw
+ przejść pomiędzy stanami oraz prawdopodobieństw wystąpienia obserwacji.
+ Najpierw ustalamy początkowe wartości tych parametrów a następnie przebiega
+ reestymacja parametrów, czyli poprawianie ich wartości.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RmHMM"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Rozpoznawanie 
+\end_layout
+
+\begin_layout Standard
+Fazę rozpoznawania przedstawia schemat blokowy widoczny na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys15"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename rozpoznawanie-hmm.png
+	display false
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schemat blokowy rozpoznawania 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys15"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Najważniejszym etapem tej fazy jest wyznaczenie sekwencji najbardziej prawdopodo
+bnych stanów a więc optymalnej ścieżki w modelu.
+ Do rozwiązania tego problemu stosowany jest zazwyczaj algorytm Viterbiego.
+\end_layout
+
+\begin_layout Section
+Algorytm Viterbiego
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys17"
+
+\end_inset
+
+ przedstawiony jest przykład użycia algorytmu Viterbiego dla modelu z rysunku
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys16"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename hmm-viterbi.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykładowy model HMM
+\begin_inset CommandInset label
+LatexCommand label
+name "rys16"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename viterbi.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Algorytm Viterbiego 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys17"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W każdym kolejnym kroku algorytmu zapamiętywany jest argument maksymalny,
+ wynikiem działania algorytmu jest ścieżka dająca największe prawdopodobieństwo.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RmHMM"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
