@@ -74,22 +74,19 @@ name "cha:wprowadzenie"
 \end_layout
 
 \begin_layout Standard
-Wiek w którym żyjemy, zwany jest często wiekiem komunikacji w różnych jej
- formach.
- Jest ona bardzo ważnym aspektem życia człowieka.
- Tematyka tej pracy związana jest z komunikacją werbalną na lini człowiek
+Tematyka niniejszej pracy jest związana z komunikacją werbalną na lini człowiek
  - maszyna.
  Jeszcze do niedawna sterowanie sprzętem elektronicznym za pomocą komend
  głosowych, było spotykane częściej w filmach s-f niż w rzeczywistych zastosowan
 iach.
- Obecnie jest to zadanie możliwe do wykonania, niemniej jednak, ze względu
- na skomplikowany charakter sygnału mowy, często trudne do realizacji.
+ Obecnie jest to zadanie możliwe do wykonania, niemniej jednak ze względu
+ na skomplikowany charakter sygnału mowy bywa często trudne do realizacji.
  
 \end_layout
 
 \begin_layout Standard
-Systemy rozpoznawania mowy są rozwijane od wielu lat, zarówno jako projekty
- komercyjne jak i naukowe.
+Systemy rozpoznawania mowy są rozwijane od wielu lat zarówno jako projekty
+ komercyjne, jak i naukowe.
  Obecnie większość telefonów komórkowych, tzw.
  
 \begin_inset Quotes pld
@@ -102,20 +99,18 @@ smartfonów
  posiada aplikacje ułatwiające korzystanie z nich, pozwalające na głosowe
  wybieranie połączeń lub zamieniające mowę na tekst.
  Liczba zastosowań systemów rozpoznawania mowy ciągle rośnie, ze względu
- na oczywisty fakt, że mowa jest naturalnym oraz jakże wygodnym sposobem
- przekazywania myśli i odczuć człowieka.
+ na oczywisty fakt, że mowa jest naturalnym oraz wygodnym sposobem przekazywania
+ myśli i odczuć człowieka.
  Uzyskiwana jest również coraz większa skuteczność takich systemów, jednakże
  nie tak duża, by pozwalała na bezpieczne i efektywne wykorzystywanie ich
  w każdym przypadku.
- Co za tym idzie, poprawianie skuteczności wiąże się z dalszym rozwojem
- tej dziedziny a więc może być ona bardzo ciekawym obiektem zainteresowań.
- 
+ W celu poprawienia skuteczności wciąż trzeba szukać nowych rozwiazań.
 \end_layout
 
 \begin_layout Standard
 Przeglądając artykuły i prace dotyczące tematyki tutaj poruszanej często
- spotkać się można ze stwierdzeniem że problem rozpoznawania mowy dla języka
- polskiego, nie został dotychczas tak dobrze opracowany jak to zostało zrobione
+ spotkać się można ze stwierdzeniem, że problem rozpoznawania mowy dla języka
+ polskiego nie został dotychczas tak dobrze opracowany, jak to zostało zrobione
  w przypadku innych języków, tzw.
  języków dominujących, takich jak angielski, niemiecki, francuski, hiszpański
  czy chiński.
@@ -139,15 +134,33 @@ key "Htk"
 
 \end_inset
 
- i stworzeniu systemu rozpoznawania mowy dla języka polskiego na przykładzie
+ oraz stworzeniu systemu rozpoznawania mowy dla języka polskiego na przykładzie
  sterowania robotem przemysłowym w grze planszowej.
  Rozgrywka polega na wydawaniu komend głosowych które sterują ruchami robota.
- Jest on zarówno przeciwnikiem użytkownika jak również wykonuje za niego
+ Jest on zarówno przeciwnikiem użytkownika, jak również wykonuje za niego
  wszystkie ruchy podczas rozgrywki, użytkownik skupia się zatem tylko na
  wydawaniu poleceń głosowych.
  Gra z robotem jest formą demonstracji systemu stworzonego na potrzeby tej
  pracy, a więc jest jej poświęcone mniej uwagi niż tematyce rozpoznawania
  mowy.
+\end_layout
+
+\begin_layout Standard
+W rozdziale drugim opisane są podstawy systemów rozpoznawania mowy (m.in.
+ ich zastosowanie, parametry wpływające na skuteczność działania).
+ Rozdział trzeci opisuje sygnał mowy, m.in.
+ ekstrakcję cech, która jest bardzo ważnym punktem tworzenia systemów rozpoznawa
+nia mowy.
+ W rozdziale czwartym przedstawiona jest metoda Ukrytych Modeli Markowa,
+ która jest podstawą działania systemu stworzonemu na potrzeby niniejszej
+ pracy.
+ W kolejnym rozdziale, zostało opisane narzędzie HTK, wykorzystane przy
+ tworzeniu tego systemu.
+ Następnie w rozdziale szóstym zaprezentowany jest efekt końcowy wraz z
+ jego opisem.
+ Ostatni rozdział podsumowuje niniejszą pracę oraz zawiera wnioski autora
+ na temat zaprezentowanych wcześniej zagadnień / wyników zaimplementowanego
+ systemu.
 \end_layout
 
 \end_body

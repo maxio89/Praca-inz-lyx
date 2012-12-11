@@ -105,6 +105,12 @@ Podział zagadnień
 \end_layout
 
 \begin_layout Standard
+
+\series bold
+Używać można czy możemy?
+\end_layout
+
+\begin_layout Standard
 Na początek warto określić miejsce systemów rozpoznawania mowy na tle innych
  zagadnień z tej dziedziny (rys.
  
@@ -115,8 +121,8 @@ reference "rys1"
 \end_inset
 
 ).
- Na czerwono zaznaczono dziedzinę w której znajduje się system stworzony
- na potrzeby tej pracy.
+ Na czerwono zaznaczono miejsce w którym znajduje się system stworzony na
+ potrzeby niniejszej pracy.
 \end_layout
 
 \begin_layout Standard
@@ -162,17 +168,19 @@ name "rys1"
 \end_layout
 
 \begin_layout Standard
-Systemy automatycznego rozpoznawania mowy, zwane ASR (ang.
+Systemy automatycznego rozpoznawania mowy (ASR, ang.
  Automatic Speech Recognition) cechują się tym, że działają w czasie rzeczywisty
 m (ang.
  real time).
  System ten ma za zadanie przeprowadzić detekcję sygnału mowy (wykryć kiedy
- została wypowiedziana jakaś sentencja) następnie jako wynik rozpoznawania
- utworzyć jej transkrypcję fonetyczną (zamienić mowę na tekst).
+ została wypowiedziana jakaś sentencja) następnie, jako wynik rozpoznawania
+ utworzyć jej transkrypcję fonetyczną (zamienić mowę na tekst) lub wykonać
+ określone zadanie (np.
+ przestawienie wybranej figury szachowej).
  Wszystko to powinno zostać zrobione automatycznie, tzn.
  bez ingerencji użytkownika.
- Taka sama idea przyświeca systemowi stworzonemu na potrzeby tej pracy,
- który działa dla mowy ciągłej.
+ Taka sama idea przyświeca systemowi stworzonemu na potrzeby niniejszej
+ pracy, który działa dla mowy ciągłej.
 \end_layout
 
 \begin_layout Section
@@ -186,11 +194,14 @@ Mowa jest najbardziej naturalnym oraz skutecznym sposobem porozumiewania
  nie wymaga użycia rąk.
  Nie dziwi więc fakt, że wraz z rozwojem sprzętu komputerowego, wzrostem
  jego mocy obliczeniowej oraz miniaturyzacji, systemy rozpoznawania mowy
- mają coraz częstsze zastosowanie.
-\end_layout
-
-\begin_layout Standard
-Oto lista przykładowych zastosowań takich systemów:
+ mają coraz częstsze zastosowanie
+\series bold
+.
+ 
+\series default
+Wśród przykładowych zastosowań takich systemów można wymienić:
+\series bold
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -207,19 +218,7 @@ systemy STT (ang.
 \end_layout
 
 \begin_layout Itemize
-urządzenia dla osób niepełnosprawnych,
-\end_layout
-
-\begin_layout Itemize
-programy do nauki języków obcych,
-\end_layout
-
-\begin_layout Itemize
-systemy diagnostyki medycznej i logopedycznej,
-\end_layout
-
-\begin_layout Itemize
-systemy identyfikacji mówców.
+urządzenia dla osób niepełnosprawnych.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -231,12 +230,13 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-Warto zaznaczyć, że systemy rozpoznawania mowy, nie znajdą zastosowania
- tam gdzie sterowanie jest bardziej skomplikowane oraz wymaga od użytkownika
- szybkiej reakcji.
- Są sytuacje w których szybciej dotrzemy do odbiorcy (pozwolimy mu zrozumieć
- naszą ideę) używając rąk, np.
- za pomocą gestów lub rysunków niż przy pomocy komunikacji głosowej.
+Warto zaznaczyć, że systemy rozpoznawania mowy, nie znajdą zastosowania,
+ tam 
+\color black
+gdzie jest wymagana szybka reakcja użytkownika (np.
+ sytuacja prowadzenia pojazdu) lub istnieją alternatywne, prostsze sposoby
+ komunikacji na lini człowiek - maszyna (np.
+ za pomocą wygodnego i ergonomicznego panelu operatora).
  
 \end_layout
 
@@ -249,13 +249,13 @@ Parametry wpływające na skuteczność rozpoznawania:
 \end_layout
 
 \begin_layout Itemize
-stopień zależności od mówcy (systemy zależne (ang.
- speaker-depentent) i niezależne od mówcy (ang.
+stopień zależności od mówcy (systemy zależne od mówcy (ang.
+ speaker-depentent) oraz niezależne od mówcy (ang.
  speaker-independent)),
 \end_layout
 
 \begin_layout Itemize
-liczba roznawanych słów (mała < 20 słów, duża > 20 000 słów),
+rozmiar słownika, w którym zdefiniowane są słowa rozpoznawane przez system,
 \end_layout
 
 \begin_layout Itemize
@@ -263,13 +263,12 @@ podobieństwo akustyczne i fonetyczne,
 \end_layout
 
 \begin_layout Itemize
-SNR sygnału mowy (mały < 10 dB, duży > 30 dB),
+stosunek sygnału do szumu (SNR, ang.
+ signal-to-noise ratio) sygnału mowy,
 \end_layout
 
 \begin_layout Itemize
-parametry transmisji sygnału mowy (zniekształcenia analogowego sygnału mowy
- wnoszone przez kanał transmisyjny, liczba poziomów kwantyzacji 8-16 bitów/próbk
-ę, częstotliwość próbkowania 8-44 kHz).
+parametry transmisji sygnału mowy.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -281,16 +280,46 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-Skuteczność rozpoznawania zależy również od środowiska w jakim działa dany
+System stworzony na potrzeby tej pracy jest zależny od mówcy, oznacza to,
+ że największą skuteczność uzyskuje dla osoby, której próbki głosu zostały
+ wykorzystane do jego wytrenowania.
+ Systemy niezależne od mówcy z założenia mają działać dla różnych osób,
+ wymaga to jednak większego oraz bardziej zróżnicowanego zbioru treningowego.
+ Rozmiar słownika ma wpływ na skuteczność rozpoznawania jak i na szybkość
+ działania systemu.
+ Dla większych słowników rozpoznawanie trwa trochę dłużej a skuteczność
+ zmniejsza się ze względu na większe prawdopodobieństwo wystąpienia słów
+ podobnych fonetycznie lub akustycznie.
+ Przy wyborze słownika, chcąc osiągnąć zadowalające wyniki warto wybierać
+ słowa dłuższe oraz jak najbardziej różniące się od siebie w wymowie.
+ Krótkie jednostki (słowa) trudniej rozpoznawać niż długie wypowiedzi.
+
+\series bold
+ 
+\series default
+Jako parametry transmisji sygnału mowy na które warto zwrócić uwagę warto
+ wymienić m.in.
+ zniekształcenia analogowego sygnału mowy wnoszone przez kanał transmisyjny,
+ liczbę poziomów kwantyzacji oraz częstotliwość próbkowania.
+ Skuteczność rozpoznawania zależy również od środowiska w jakim działa dany
  system.
  Może być ona inna dla zamkniętego pomieszczenia oraz otwartej przestrzeni.
  Negatywny wpływ mają tutaj wszelkiego rodzaju szumy (np.
- ruch uliczny, odgłosy rozmów innych ludzi).
+ szum komputera, ruch uliczny, odgłosy rozmów innych ludzi).
  Nie bez wpływu pozostają również parametry sprzętu użytego do nagrań próbek
  głosu (np.
  redukcja szumu, czułość mikrofonu) jak również cechy samego mówcy.
  Istotny jest sposób wymowy (gwara, akcent), szybkość oraz głośność.
  
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Jeśli czułość mikrofonu podczas nagrywania zostanie ustawiona na niską,
+ wymaga to głośniejszych wypowiedzi w celu poprawnego zarejestrowania sygnału
+ mowy, lecz w zamian za to przenosi mniej szumow otoczenia, ktore moga być
+ obecne w czasie pracy systemu.
 \end_layout
 
 \begin_layout Section
@@ -302,7 +331,7 @@ Wśród rozwiązań komercyjnych obecnie przodujących na rynku warto wymienić
  te przeznaczone dla urządzeń mobilnych, czyli m.in.
  telefonów komórkowych, które w obecnych czasach często posiadają możliwości
  zbliżone do komputerów osobistych.
- Firmy których produkty zdominowały rynek systemów przeznaczonych na urządzenia
+ Firmy, których produkty zdominowały rynek systemów przeznaczonych na urządzenia
  mobilne mają opracowane własne technologie rozpoznawania mowy połączone
  ze sztuczną inteligencją oraz syntezą mowy.
  I tak kolejno, Apple posiada Siri 
@@ -356,7 +385,7 @@ mi systemów operacyjnych) posiadających podobne funkcjonalności (np.
 \begin_layout Standard
 Do najstarszych projektów komercyjnych korzystających z rozpoznawania mowy
  można zaliczyć IBM ViaVoice, Microsoft Speech API, Oracle Java Speech API
- oraz Dragon NaturallySpeaking firmy Nuance, która ostatecznie przejęła
+ oraz Dragon Naturally Speaking firmy Nuance, która ostatecznie przejęła
  od IBM technologię ViaVoice 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -369,16 +398,20 @@ key "Drag"
  dostępne dla języka polskiego.
  Rozwiązania przeznaczone na urządzenia mobilne są uzupełniane o nowe języki
  więc w najbliższej przyszłości będą one dostępne również dla języka polskiego.
- W Polsce powstaje coraz więcej firm projektujących i wdrażających rozwiązania
+ 
+\end_layout
+
+\begin_layout Standard
+W Polsce powstaje coraz więcej firm projektujących i wdrażających rozwiązania
  biznesowe oparte na rozpoznawaniu mowy, zwane systemami IVR (ang.
- Interactive Voice Response), umożliwiające interaktywną obsługę osoby dzwoniące
-j.
+ Interactive Voice Response), które umożliwiają interaktywną obsługę osoby
+ dzwoniącej.
  Są to m.in.
  firma Primespeech (produkująca systemy przeznaczone na rynek telekomunikacyjny,
  np.
  dla Zarządu Transportu Miejskiego w Warszawie, działające na zasadzie wirtualny
 ch konsultantów, informujących o rozkładach jazdy, cenach biletów, aktualnościac
-h lub przyjmujący różnego rodzaju skargi klientów) 
+h lub przyjmujący różnego rodzaju zgłoszenia klientów) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Pri"
@@ -449,11 +482,11 @@ czarnej skrzynki
 \begin_inset Quotes prd
 \end_inset
 
- niemniej jednak potrafi stworzyć w pełni działający system.
+, niemniej jednak potrafi stworzyć w pełni działający system.
  Na tyle skuteczny, by nie musieć zagłębiać szczegółów zaimplementowanych
  algorytmów.
- Co prawda taka niewiedza stwarza problemy, przy doborze optymalnych parametrów
- mających istotny wpływ na działanie systemu lecz nie przeszkadza w doborze
+ Co prawda taka niewiedza stwarza problemy przy doborze optymalnych parametrów
+ mających istotny wpływ na działanie systemu, lecz nie przeszkadza w doborze
  ich w sposób eksperymentalny i osiągnięciu zadowalającej skuteczności.
 \end_layout
 
@@ -521,8 +554,8 @@ Proces tworzenia systemu rozpoznawania mowy możemy podzielić na dwe fazy,
  Trenowanie ma na celu poprawę skuteczności rozpoznawania, co za tym idzie
  odbywa się najpierw.
  Podczas tej fazy przy pomocy wypowiedzi uczących tworzone są i ulepszane
- wzorce z których korzystamy w trakcie rozpoznawania.
- Podczas rozpoznawania system dopasowuje najbardziej prawdopodobny wzorzec
+ wzorce, z których korzystamy w trakcie rozpoznawania.
+ Podczas rozpoznawania system dopasowuje najbardziej prawdopodobny wzorzec,
  czego wynikiem jest transkrypcja fonetyczna nieznanej wypowiedzi.
  Szczegóły wymienionych wyżej faz opisane są w kolejnych rozdziałach.
 \end_layout
@@ -536,11 +569,11 @@ Współczesne systemy rozpoznawania mowy zakładają, że sygnał mowy jest sekw
  pewnych elementarnych jednostek fonetycznych (np.
  głosek, fonemów lub słów).
  Charakteruzyje się on również pewna przypadkowością.
- Wypowiedź tego samego mówcy za każdym razem posiada niepowtarzalny przebieg.
- A coza tym idzie nie możemy przyporządkować jej jednoznacznej sekwencji
- jednostek mowy.
- Wiąże się to z tym, że nagrany sygnał mowy często bywa zaszumiony i zniekształc
-ony.
+ Wypowiedź tego samego mówcy za każdym razem posiada niepowtarzalny przebieg
+ czasowy, a co za tym idzie, nie możemy przyporządkować jej jednoznacznej
+ sekwencji jednostek mowy.
+ Wiąże się to m.in.
+ z tym, że nagrany sygnał mowy często bywa zaszumiony i zniekształcony.
 \end_layout
 
 \begin_layout Standard
@@ -549,13 +582,13 @@ Metody klasyfikacji wykorzystywane w systemach rozpoznawania mowy możemy
 \end_layout
 
 \begin_layout Itemize
-metody deterministyczne, gdzie obliczane są błedy porównania dźwięku ze
- wzorcem,
+metody deterministyczne, w których obliczane są błedy porównania dźwięku
+ ze wzorcem,
 \end_layout
 
 \begin_layout Itemize
-metody niederministyczne, gdzie obliczane są wartości prawdopodobieństw,
- które reprezentują dopasowanie dźwięku do stosowanych modeli probalistycznych
+metody niederministyczne, w których obliczane są wartości prawdopodobieństw,
+ reprezentujące dopasowanie dźwięku do stosowanych modeli probalistycznych
  (wzorców).
  
 \begin_inset CommandInset citation
@@ -569,22 +602,16 @@ key "RmHMM"
 
 \begin_layout Standard
 Do metod deterministycznych należy m.in.
- nieliniowa transformata czasowa w skrócie DTW (ang.
+ nieliniowa transformata czasowa (DTW, ang.
  dynamic time wrapping), metoda skuteczna dla izolowanych słów.
  
 \end_layout
 
 \begin_layout Standard
-Inne ograniczenia metod deterministycznych:
-\end_layout
-
-\begin_layout Itemize
-duża zajętość pamięci potrzebnej na przechowywanie wzorców (dla dużych słowników
-),
-\end_layout
-
-\begin_layout Itemize
-czas rozpoznawania proporcjonalny do rozmiaru słownika.
+Ograniczenia metod deterministycznych, to również m.in.
+ duża zajętość pamięci potrzebnej na przechowywanie wzorców (dla dużych
+ słowników) oraz to, że czas rozpoznawania jest proporcjonalny do rozmiaru
+ słownika.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -596,12 +623,12 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-Biorąc pod uwagę to, że bardziej naturalnym dla człowieka jest wypowiadanie
+Biorąc pod uwagę iż bardziej naturalnym dla człowieka jest wypowiadanie
  słów ciągiem (bez znaczących przerw między nimi) oraz, że przy analizie
  sygnału mowy warto uwzględnić jego przypadkowość, metody niederministyczne
  osiągają lepszą skuteczność rozpoznawania.
- Do takich właśnie metod należą Ukryte Modele Markowa, w skrócie HMM (ang.
- hidden markov models).
+ Do takich właśnie metod należą Ukryte Modele Markowa (HMM, ang.
+ Hidden Markov Models).
  
 \end_layout
 

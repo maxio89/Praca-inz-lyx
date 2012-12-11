@@ -25,7 +25,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement H
+\float_placement !h
 \paperfontsize 11
 \spacing onehalf
 \use_hyperref false
@@ -87,7 +87,7 @@ key "Ops"
 \end_inset
 
  Sprawdzają się również w wielu innych zastosowaniach, najczęściej tam gdzie
- mamy doczynienia z sygnałem niederministycznym, np.:
+ mamy doczynienia z sygnałem niederministycznym, m.in.:
 \end_layout
 
 \begin_layout Itemize
@@ -142,7 +142,11 @@ W HMM wykorzystywane są modele statystyczne posiadające własności Markowa
  poprzedniego.
  W ukrytym modelu Markowa zakłada się, że stany są niewidoczne dla obserwatora,
  natomiast wyjście (wartości obserwowane) jest jawne, stąd w nazwie występuje
- słowo 'ukryte'.
+ słowo 
+\emph on
+ukryte
+\emph default
+.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -164,33 +168,43 @@ ić następująco:
 
 \begin_layout Itemize
 dla każdej klasy (np.
- głoski, fonemu lub słowa) tworzy się pewien model stochastyczny Λ
-\begin_inset Formula $_{m}$
+ głoski, fonemu lub słowa) tworzy się pewien model stochastyczny 
+\begin_inset Newline newline
 \end_inset
 
-, m=1, … , M, gdzie M to liczba klas,
+
+\begin_inset Formula $\text{Λ}_{m},m=1,\text{…},M$
+\end_inset
+
+, gdzie M to liczba klas,
 \end_layout
 
 \begin_layout Itemize
-dla każdej nieznanej sekwencji stanów X oblicza się prawdopodobieństwa generowan
-ia sekwencji wektorów p(O, X|Λ
-\begin_inset Formula $_{m}$
+dla każdej nieznanej sekwencji stanów 
+\begin_inset Formula $X$
 \end_inset
 
-) przez modele dla poszczególnych klas,
+ oblicza się prawdopodobieństwa generowania sekwencji wektorów 
+\begin_inset Formula $p(O,X|\text{Λ}_{m})$
+\end_inset
+
+ przez modele dla poszczególnych klas,
 \end_layout
 
 \begin_layout Itemize
-klasyfikacja odbywa się na zasadzie największego prawdopodobieństwa, X jest
- przypisywane do takiej klasy Λ
-\begin_inset Formula $_{m}$
+klasyfikacja odbywa się na zasadzie największego prawdopodobieństwa, 
+\begin_inset Formula $X$
 \end_inset
 
-, która posiada największe prawdopodobieństwo p(O, X|Λ
-\begin_inset Formula $_{m}$
+ jest przypisywane do takiej klasy 
+\begin_inset Formula $\text{Λ}_{m}$
 \end_inset
 
-).
+, która posiada największe prawdopodobieństwo 
+\begin_inset Formula $p(O,X|\text{Λ}_{m})$
+\end_inset
+
+.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -212,19 +226,31 @@ Macierz przejść definiuje możliwe przejścia pomiędzy stanami oraz wartości
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $\begin{bmatrix}0 & a_{12} & 0 & 0 & 0\\
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}0 & a_{12} & 0 & 0 & 0\\
 0 & a_{22} & a_{23} & 0 & 0\\
 0 & 0 & a_{33} & a_{34} & 0\\
 0 & 0 & 0 & a_{44} & a_{45}\\
 0 & 0 & 0 & 0 & 0
-\end{bmatrix}$
+\end{bmatrix}
+\end{equation}
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Dla każdego przejścia z chwili czasowej t do t+1 przejście ze stanu 
+Dla każdego przejścia z chwili czasowej 
+\begin_inset Formula $t$
+\end_inset
+
+ do 
+\begin_inset Formula $t+1$
+\end_inset
+
+ przejście ze stanu 
 \begin_inset Formula $x{}_{i}$
 \end_inset
 
@@ -309,7 +335,7 @@ W rozpoznawaniu mowy zazwyczaj wykorzystywane są modele typu left-to-right
 
 \begin_layout Standard
 Stan początkowy oraz końcowy czyli w przypadku 5-cio stanowego modelu stan
- 1 oraz stan 5 zwane są stanami nieemitującymi ponieważ nie generują żadnych
+ 1 oraz stan 5 zwane są stanami nieemitującymi, ponieważ nie generują żadnych
  obserwacji, mają za zadanie jedynie rozpocząć oraz zakończyć proces.
 \end_layout
 
@@ -373,9 +399,9 @@ Obserwacje (wektory cech)
 \begin_layout Standard
 \align center
 \begin_inset Formula 
-\begin{align*}
-b_{j}(o_{t})= & \frac{1}{\sqrt{(2π)^{n}\left|\sum_{j}\right|}}e^{-\frac{1}{2}(o_{t}-\text{μ}_{j})'\sum_{j}^{-1}(o_{t}-\text{μ}_{j})}
-\end{align*}
+\begin{equation}
+b_{j}(o_{t})=\frac{1}{\sqrt{(2π)^{n}\left|\sum_{j}\right|}}e^{-\frac{1}{2}(o_{t}-\text{μ}_{j})'\sum_{j}^{-1}(o_{t}-\text{μ}_{j})}
+\end{equation}
 
 \end_inset
 
@@ -413,9 +439,9 @@ Prawdopodobieństwo obserwacji możemy również aproskymować za pomocą miesza
 \begin_layout Standard
 \align center
 \begin_inset Formula 
-\begin{align*}
-p_{j}(o_{t})= & \sum_{k=0}^{K-1}c_{jk}b_{jk}(o_{t})
-\end{align*}
+\begin{equation}
+p_{j}(o_{t})=\sum_{k=0}^{K-1}c_{jk}b_{jk}(o_{t})
+\end{equation}
 
 \end_inset
 
@@ -425,9 +451,9 @@ p_{j}(o_{t})= & \sum_{k=0}^{K-1}c_{jk}b_{jk}(o_{t})
 \begin_layout Standard
 \align center
 \begin_inset Formula 
-\begin{align*}
-\sum_{k=0}^{K-1}c_{jk}= & 1
-\end{align*}
+\begin{equation}
+\sum_{k=0}^{K-1}c_{jk}=1
+\end{equation}
 
 \end_inset
 
@@ -476,7 +502,7 @@ Duża liczba parametrów w przypadku mieszanin o większej liczbie rozkładów
 
 \begin_layout Itemize
 wiązanie parametrów, podczas którego stosuje się wspólną macierz kowariancji
- dla tych rozkładów dla których wartości kowariancji są zbliżone,
+ dla tych rozkładów, dla których wartości kowariancji są zbliżone,
 \end_layout
 
 \begin_layout Itemize
@@ -554,11 +580,11 @@ reference "rys8"
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $P(O,\, X|\text{Λ}{}_{m})=a_{12}b_{2}(o_{1})a_{22}b_{2}(o_{2})a_{23}b_{3}(o_{4})a_{34}b_{4}(o_{6})a_{45}$
-\end_inset
+\begin_inset Formula 
+\begin{equation}
+P(O,\, X|\text{Λ}{}_{m})=a_{12}b_{2}(o_{1})a_{22}b_{2}(o_{2})a_{23}b_{3}(o_{4})a_{34}b_{4}(o_{6})a_{45}
+\end{equation}
 
- 
-\begin_inset space \space{}
 \end_inset
 
 
@@ -572,17 +598,28 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-W praktyce jedynie sekwencja obserwacji O jest znana, natomiast sekwencja
- stanów X jest ukryta.
+W praktyce jedynie sekwencja obserwacji 
+\begin_inset Formula $O$
+\end_inset
+
+ jest znana, natomiast sekwencja stanów 
+\begin_inset Formula $X$
+\end_inset
+
+ jest ukryta.
  Wymagane prawdopodobieństwo jest wyliczane przez sumę wszystkich możliwych
- sekwencji stanów X = x(1), x(2), x(3), ..., x(T) daną wzorem:
+ sekwencji stanów 
+\begin_inset Formula $X=x(1),\, x(2),\, x(3),\,...,\, x(T)$
+\end_inset
+
+ daną wzorem:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-P(O|\text{Λ}{}_{m})=\sum_{X} & a_{x(0)x(1)}\prod_{t=1}^{T}b_{x(t)}(o_{t})a_{x(t)x(t+1)}
-\end{align*}
+\begin{equation}
+P(O|\text{Λ}{}_{m})=\sum_{X}a_{x(0)x(1)}\prod_{t=1}^{T}b_{x(t)}(o_{t})a_{x(t)x(t+1)}
+\end{equation}
 
 \end_inset
 
@@ -590,15 +627,15 @@ P(O|\text{Λ}{}_{m})=\sum_{X} & a_{x(0)x(1)}\prod_{t=1}^{T}b_{x(t)}(o_{t})a_{x(t
 \end_layout
 
 \begin_layout Standard
-Jako alternatywę dla powyższego wzoru możemy rozważać w przybliżeniu najbardziej
+Jako alternatywę dla powyższego wzoru można rozważać w przybliżeniu, najbardziej
  prawdopodobną sekwencję stanów daną wzorem:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
+\begin{equation}
 P(O|\text{Λ}{}_{m})=\underset{X}{max}\left\{ a_{x(0)x(1)}\prod_{t=1}^{T}b_{x(t)}(o_{t})a_{x(t)x(t+1)}\right\} 
-\end{align*}
+\end{equation}
 
 \end_inset
 
@@ -652,7 +689,7 @@ Tutaj właśnie leży elegancja i skuteczność metody HMM
 \begin_inset Quotes prd
 \end_inset
 
-
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Htkb"
@@ -699,12 +736,12 @@ reference "rys9"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename trenowanie-hmm.png
+	filename hmm-trenowanie.png
 	display false
 	scale 90
 
@@ -756,21 +793,21 @@ Gdzie:
 \begin_inset Formula $\sum_{j}$
 \end_inset
 
-- macierz kowariancji,
+ - macierz kowariancji,
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula $\mu{}_{j}$
 \end_inset
 
-- wektor średni obserwacji,
+ - wektor średni obserwacji,
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula $A{}_{T}$
 \end_inset
 
-- macierz przejść modelu.
+ - macierz przejść modelu.
 \end_layout
 
 \begin_layout Standard
@@ -893,13 +930,13 @@ W modelu krótkiej pauzy mamy dodatkowe przejście pomiędzy stanami 1 oraz
 \begin_layout Standard
 Stan 3 z modelu ciszy oraz stan 2 z modelu krótkiej pauzy są takie same.
  Model krótkiej pauzy tworzymy na podstawie modelu ciszy, usuwając stany
- 2 oraz 4, powstaje wówczas model trzy stanowy, gdzie poprzedni stan 3 staje
+ 2 oraz 4, powstaje wówczas model trzy-stanowy, gdzie poprzedni stan 3 staje
  się stanem 2 modelu.
 \end_layout
 
 \begin_layout Standard
 W przypadku gdy najmniejszą niepodzielną jednostką fonetyczną systemu są
- fonemy musimy rozpatrywać modele nie tylko dla jednofonów lecz również
+ fonemy trzeba rozpatrywać modele nie tylko dla jednofonów, lecz również
  dla trójfonów, czyli możliwych kombinacji fonemów w otoczeniu innych fonemów.
 \end_layout
 
@@ -1018,7 +1055,23 @@ name "rys13"
 \end_layout
 
 \begin_layout Standard
-Znak '-' oznacza fonem poprzedzający, natomiast znak '+' fonem następujący.
+Znak 
+\begin_inset Quotes pld
+\end_inset
+
+-
+\begin_inset Quotes prd
+\end_inset
+
+ oznacza fonem poprzedzający, natomiast znak 
+\begin_inset Quotes pld
+\end_inset
+
++
+\begin_inset Quotes prd
+\end_inset
+
+ fonem następujący.
 \end_layout
 
 \begin_layout Standard
@@ -1129,9 +1182,9 @@ Początkowe parametry HMM określane są na zasadzie zgadywania, dokładniejsze
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\hat{\mu_{j}} & =\frac{\sum_{t=1}^{T}L_{j}(t)o_{t}}{\sum_{t=1}^{T}L_{j}(t)}
-\end{align*}
+\begin{equation}
+\hat{\mu_{j}}=\frac{\sum_{t=1}^{T}L_{j}(t)o_{t}}{\sum_{t=1}^{T}L_{j}(t)}
+\end{equation}
 
 \end_inset
 
@@ -1140,9 +1193,9 @@ Początkowe parametry HMM określane są na zasadzie zgadywania, dokładniejsze
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{alignat*}{1}
-\hat{\sum}_{j} & =\frac{\sum_{t=1}^{T}L_{j}(t)(o_{t}-\mu_{j})'}{\sum_{t=1}^{T}L_{j}(t)}
-\end{alignat*}
+\begin{equation}
+\hat{\sum}_{j}=\frac{\sum_{t=1}^{T}L_{j}(t)(o_{t}-\mu_{j})'}{\sum_{t=1}^{T}L_{j}(t)}
+\end{equation}
 
 \end_inset
 
@@ -1196,12 +1249,24 @@ Prawdodobieństwo
 \shape italic
 forward
 \shape default
- dla modelu M zawierającemu N stanów jest zdefiniowane jako:
+ dla modelu 
+\emph on
+M
+\emph default
+ zawierającemu 
+\emph on
+N
+\emph default
+ stanów jest zdefiniowane jako:
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $\alpha_{j}(t)=P(o_{1},\,...,\, o_{t},\, x(t)=j\mid M)$
+\begin_inset Formula 
+\begin{equation}
+\alpha_{j}(t)=P(o_{1},\,...,\, o_{t},\, x(t)=j\mid M)
+\end{equation}
+
 \end_inset
 
 
@@ -1226,9 +1291,9 @@ Jest to połączone prawdopodobieństwo obserwacji pierwszego
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\alpha_{j}(t) & =\left[\sum_{i=2}^{N-1}\alpha_{j}(t-1)a_{ij}\right]b_{j}(o_{t})
-\end{align*}
+\begin{equation}
+\alpha_{j}(t)=\left[\sum_{i=2}^{N-1}\alpha_{j}(t-1)a_{ij}\right]b_{j}(o_{t})
+\end{equation}
 
 \end_inset
 
@@ -1255,13 +1320,21 @@ eństwa przejść
 \end_inset
 
 .
- Stany 1 oraz N są stanami nieemitującymi.
+ Stany 1 oraz 
+\emph on
+N
+\emph default
+ są stanami nieemitującymi.
  Początkowe warunki powyższej rekursji są następujące:
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $\alpha_{1}(1)=1$
+\begin_inset Formula 
+\begin{equation}
+\alpha_{1}(1)=1
+\end{equation}
+
 \end_inset
 
 
@@ -1269,7 +1342,11 @@ eństwa przejść
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $\alpha_{j}(1)=a_{1j}b_{j}(o_{1})$
+\begin_inset Formula 
+\begin{equation}
+\alpha_{j}(1)=a_{1j}b_{j}(o_{1})
+\end{equation}
+
 \end_inset
 
 
@@ -1289,9 +1366,9 @@ Zatem finalne waruki:
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\alpha_{N}(T) & =\sum_{i=2}^{N-1}\alpha_{i}(T)a_{iN}
-\end{align*}
+\begin{equation}
+\alpha_{N}(T)=\sum_{i=2}^{N-1}\alpha_{i}(T)a_{iN}
+\end{equation}
 
 \end_inset
 
@@ -1308,7 +1385,11 @@ Trzeba zauważyć, że z definicji
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $P(O\mid M)=\alpha_{N}(T)$
+\begin_inset Formula 
+\begin{equation}
+P(O\mid M)=\alpha_{N}(T)
+\end{equation}
+
 \end_inset
 
 
@@ -1336,7 +1417,11 @@ jest zdefiniowane jako:
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $\beta_{j}(t)=P(o_{t+1},\,...,\, o_{T},\, x(t)=j\mid M)$
+\begin_inset Formula 
+\begin{equation}
+\beta_{j}(t)=P(o_{t+1},\,...,\, o_{T},\, x(t)=j\mid M)
+\end{equation}
+
 \end_inset
 
 
@@ -1356,9 +1441,9 @@ również liczone jest za pomocą rekursji:
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\beta_{j}(t) & =\sum_{j=2}^{N-1}a_{1j}b_{j}(o_{t+1})\beta_{j}(t+1)
-\end{align*}
+\begin{equation}
+\beta_{j}(t)=\sum_{j=2}^{N-1}a_{1j}b_{j}(o_{t+1})\beta_{j}(t+1)
+\end{equation}
 
 \end_inset
 
@@ -1384,7 +1469,11 @@ z warunkami początkowymi:
 \noun off
 \color none
 \lang english
-\begin_inset Formula $\beta_{j}(T)=a_{iN}$
+\begin_inset Formula 
+\begin{equation}
+\beta_{j}(T)=a_{iN}
+\end{equation}
+
 \end_inset
 
 
@@ -1401,9 +1490,9 @@ dla
 \begin_layout Standard
 \align center
 \begin_inset Formula 
-\begin{align*}
-\beta_{1}(1) & =\sum_{j=2}^{N-1}a_{1j}b_{j}(o_{1})\beta_{j}(1)
-\end{align*}
+\begin{equation}
+\beta_{1}(1)=\sum_{j=2}^{N-1}a_{1j}b_{j}(o_{1})\beta_{j}(1)
+\end{equation}
 
 \end_inset
 
@@ -1430,7 +1519,11 @@ Prawdopodobieństwo przebywania w danych stanie jest wyznaczane przez iloczyn
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $\alpha_{j}(t)\beta_{j}(t)=P(O,x(t)=j\mid M)$
+\begin_inset Formula 
+\begin{equation}
+\alpha_{j}(t)\beta_{j}(t)=P(O,x(t)=j\mid M)
+\end{equation}
+
 \end_inset
 
 
@@ -1443,9 +1536,9 @@ Stąd:
 \begin_layout Standard
 \align center
 \begin_inset Formula 
-\begin{align*}
+\begin{equation}
 L_{j}(t)=P(x(t)=j\mid O,M)=\frac{P(O,x(t)=j\mid M)}{P(O|M)}=\frac{1}{P}\alpha_{j}(t)\beta_{j}(t)
-\end{align*}
+\end{equation}
 
 \end_inset
 
@@ -1453,14 +1546,26 @@ L_{j}(t)=P(x(t)=j\mid O,M)=\frac{P(O,x(t)=j\mid M)}{P(O|M)}=\frac{1}{P}\alpha_{j
 \end_layout
 
 \begin_layout Standard
-Gdzie:
-\end_layout
-
-\begin_layout Standard
+Gdzie 
 \begin_inset Formula $P=P(O|M)$
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Operacja odcinania polega na zakończeniu sumowania prawdopodobieństw w algorytmi
+e 
+\shape italic
+Forward-Backward,
+\emph on
+ gdy mamy doczynienia z bardzo dużą bazą treningową
+\emph default
+.
+
+\shape default
+ Nie wpływa ona na skuteczność rozpoznawania, lecz zmniejsza ilość obliczeń
+ a co za tym idzie, złożoność obliczeniową algorytmu.
 \end_layout
 
 \begin_layout Standard
@@ -1723,7 +1828,7 @@ key "TM"
 
 \begin_layout Standard
 W każdym kolejnym kroku algorytmu zapamiętywany jest argument maksymalny,
- wynikiem działania algorytmu jest ścieżka dająca największe prawdopodobieństwo
+ wynikiem działania algorytmu jest ścieżka dająca największe prawdopodobieństwo,
  czyli najbardziej prawdopodobna sekwencja jednostek fonetycznych które
  zostały przyjęte.
  
@@ -1747,9 +1852,9 @@ forward
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\phi_{j}(t) & =\underset{t}{max\{\phi_{i}(t-1)a_{ij}\}b_{j}(o_{t})}
-\end{align*}
+\begin{equation}
+\phi_{j}(t)=\underset{t}{max\{\phi_{i}(t-1)a_{ij}\}b_{j}(o_{t})}
+\end{equation}
 
 \end_inset
 
@@ -1758,9 +1863,9 @@ forward
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\phi_{1}(1) & =1
-\end{align*}
+\begin{equation}
+\phi_{1}(1)=1
+\end{equation}
 
 \end_inset
 
@@ -1769,9 +1874,9 @@ forward
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\phi_{j}(1) & =a_{1j}b_{j}(o_{1})
-\end{align*}
+\begin{equation}
+\phi_{j}(1)=a_{1j}b_{j}(o_{1})
+\end{equation}
 
 \end_inset
 
@@ -1796,9 +1901,9 @@ Największe prawdopodobieństwo
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\phi_{N}(T) & =\underset{i}{max}\{\phi_{i}(T)a_{iN}\}
-\end{align*}
+\begin{equation}
+\phi_{N}(T)=\underset{i}{max}\{\phi_{i}(T)a_{iN}\}
+\end{equation}
 
 \end_inset
 
@@ -1812,39 +1917,24 @@ Jak w przypadku reestymacji tutaj też jest stosowana skala logarytmiczna,
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\psi_{j}(t) & =\underset{i}{max}\{\psi_{i}(t-1)+log(a_{ij})\}+log(b_{j}(o_{t}))\}
-\end{align*}
+\begin{equation}
+\psi_{j}(t)=\underset{i}{max}\{\psi_{i}(t-1)+log(a_{ij})\}+log(b_{j}(o_{t}))\}
+\end{equation}
 
 \end_inset
 
 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
-[Htkb]
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-\lang polish
- 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
 \end_layout
 
 \end_body

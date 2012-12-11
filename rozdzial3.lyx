@@ -72,12 +72,20 @@ Mowa w języku polskim
 
 \begin_layout Standard
 Alfabet języka polskiego składa sie˛ z 32 liter.
- Łacińskie litery q, v i x występują jedynie w pisowni wyrazów obcych.
+ Łacińskie litery 
+\emph on
+q, v
+\emph default
+ oraz 
+\emph on
+x
+\emph default
+ występują jedynie w pisowni wyrazów obcych.
  Alfabet fonetyczny języka polskiego składa się z około 78 dźwięków.
  Dokładna liczba głosek zależy od sposobu traktowania wariantów.
  Relacja litera – głoska jest typu wiele – wiele.
  Tak jest również w wielu innych językach.
- Strukturę języka możemy przedstawić w postaci modelu warstwowego (rys.
+ Strukturę języka można przedstawić w postaci modelu warstwowego (rys.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -238,7 +246,7 @@ key "Fone"
 \end_layout
 
 \begin_layout Standard
-Miarę podobieństwa między sygnałem mowy możemy podzielić na dwie kategorie,
+Miarę podobieństwa między sygnałem mowy można podzielić na dwie kategorie,
  podobieństwo akustyczne oraz fonetyczne.
 \end_layout
 
@@ -343,7 +351,7 @@ name "rys4"
 \end_layout
 
 \begin_layout Standard
-Matematycznie możemy go przedstawić jako splot przebiegu czasowego sygnału
+Matematycznie można go przedstawić jako splot przebiegu czasowego sygnału
  źródła 
 \begin_inset Formula $u{}_{z}\left(t\right)$
 \end_inset
@@ -356,8 +364,11 @@ i odpowiedzi impulsowej kanału głosowego
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset Formula $u\left(t\right)=\int_{0}^{τ}h(t-\text{τ})u_{z}\text{(τ})d\text{τ}$
+\begin_inset Formula 
+\begin{equation}
+u\left(t\right)=\int_{0}^{τ}h(t-\text{τ})u_{z}\text{(τ})d\text{τ}
+\end{equation}
+
 \end_inset
 
 
@@ -378,10 +389,11 @@ key "Obrazowarep"
 \end_layout
 
 \begin_layout Standard
-Zanim jednak otrzymamy powyższy przebieg sygnału mowy, musi być wykonana
+Zanim jednak otrzymamy powyższy przebieg sygnału mowy, musi zostać wykonana
  jego dyskretyzacja, czyli próbkowanie i kwantyzacja.
  Z punktu widzenia rozpoznawania mowy, reprezentacja czasowa sygnału mowy
  nie przenosi wystarczającej ilości informacji.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AnalizaS"
@@ -390,12 +402,22 @@ key "AnalizaS"
 
  Potrzeba zatem dokonać transformaty Fouriera sygnału w celu umożliwienia
  jego analizy w dziedzinie częstotliwości.
- Wadą klasycznej transformacji Fouriera jest brak jawnych informacji o czasie
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Jest jakaś różnica między słowem transformacja a transformata?
+\end_layout
+
+\begin_layout Standard
+Wadą klasycznej transformacji Fouriera jest brak jawnych informacji o czasie
  w widmie sygnału, która jest bardzo istotna w analizie sygnału mowy, ponieważ
  jest on ciągiem pewnych zdarzeń (zmian częstotliwości, amplitudy oraz następstw
  fonemów i słów), których kolejność jest bardzo istotna.
  Dlatego stosuje się tzn.
- króktookresową transformację Fouriera (STFT ang.
+ króktookresową transformację Fouriera (STFT, ang.
  Short-Time Fourier Transform) zwaną też okienkową transformacją Fouriera
  (ang.
  Windowed Fourier Transform).
@@ -409,8 +431,11 @@ key "AnalizaS"
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset Formula $F(k,\text{τ)=}\frac{1}{\sqrt{M}}\sum_{t=0}^{\text{M-1}}[f_{τ+t}e^{-i2\text{πkt/M}}*w_{τ}^{t}]$
+\begin_inset Formula 
+\begin{equation}
+F(k,\text{τ)=}\frac{1}{\sqrt{M}}\sum_{t=0}^{\text{M-1}}[f_{τ+t}e^{-i2\text{πkt/M}}*w_{τ}^{t}]
+\end{equation}
+
 \end_inset
 
 
@@ -455,17 +480,17 @@ Szerokość okna determinuje roździelczość częstotliwościową i czasową ot
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $w_{τ}^{t}=$
-\end_inset
-
-
-\begin_inset Formula $\begin{cases}
+\begin_inset Formula 
+\begin{equation}
+w_{τ}^{t}=\begin{cases}
 1 & dla\, t=\{\text{τ+0,\,τ+1,\,...,\,τ+M-1}\},\\
 0 & w\, przeciwnym\, razie.
 \end{cases}\begin{array}{c}
 \\
 \\
-\end{array}$
+\end{array}
+\end{equation}
+
 \end_inset
 
 
@@ -481,23 +506,23 @@ key "Przetw"
 
 \end_inset
 
-To zjawisko możemy minimalizować stosując inny typ okna, np.
+ To zjawisko można minimalizować stosując inny typ okna, np.
  okno Hamminga, które ma węższe widmo:
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $w_{τ}^{t}=$
-\end_inset
-
-
-\begin_inset Formula $\begin{cases}
+\begin_inset Formula 
+\begin{equation}
+w_{τ}^{t}=\begin{cases}
 0.54-0.46cos(\frac{2\text{πt}}{M-1}) & dla\, t=\{\text{τ+0,\,τ+1,\,...,\,τ+M-1}\},\\
 0 & w\, przeciwnym\, razie.
 \end{cases}\begin{array}{c}
 \\
 \\
-\end{array}$
+\end{array}
+\end{equation}
+
 \end_inset
 
 
@@ -588,7 +613,7 @@ reference "rys5"
 
 \end_inset
 
-) możemy zauważyć różnice pomiędzy głoskami bezdźwięcznymi a głoską dźwięczną
+) można zauważyć różnice pomiędzy głoskami bezdźwięcznymi a głoską dźwięczną
  
 \begin_inset Quotes pld
 \end_inset
@@ -598,7 +623,7 @@ y
 \end_inset
 
 .
- W przypadku głosek dźwięcznych możemy wyróżnić pewną okresowość, natomiast
+ W przypadku głosek dźwięcznych można wyróżnić pewną okresowość, natomiast
  głoski bezdźwięczne często mieszają się z szumem (rys.
  
 \begin_inset CommandInset ref
@@ -669,7 +694,7 @@ Typowym formatem zapisu sygnału analogowego w postaci cyfrowej jest WAV
  w roku 1991.
  Jest to format bezstratny.
  Opis struktury pliku WAV można znaleść w wielu źródłach, np.
- na stronie 
+ w pozycji 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Wav"
@@ -729,15 +754,18 @@ W widmie mowy więcej energii znajduje się w niskich częstotliwościach, to
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset Formula $y(n)=x(n)-a*x(n-1)$
+\begin_inset Formula 
+\begin{equation}
+y(n)=x(n)-a*x(n-1)
+\end{equation}
+
 \end_inset
 
-, 
+
 \end_layout
 
 \begin_layout Standard
-gdzie 
+Gdzie 
 \begin_inset Formula $a$
 \end_inset
 
@@ -783,8 +811,8 @@ W każdej ramce obliczany jest wybrany parametr a następnie na podstawie
 \end_layout
 
 \begin_layout Standard
-Możemy też przyjąć zasadę, że po wstępnej detekcji sygnału mowy odrzuca
- się fragmenty sygnału krótsze niż 100 ms, chyba że leżą w odległości czasowej
+Można też przyjąć zasadę, że po wstępnej detekcji sygnału mowy odrzuca się
+ fragmenty sygnału krótsze niż 100 ms, chyba że leżą w odległości czasowej
  mniejszej niż 100 ms od innych fragmentów sygnału.
  
 \begin_inset CommandInset citation
@@ -876,18 +904,18 @@ parametry cepstralne,
 \end_layout
 
 \begin_layout Itemize
-parametry mel-cepstralne (MFCC ang.
+parametry mel-cepstralne (MFCC, ang.
  Mel-frequency cepstral coefficients),
 \end_layout
 
 \begin_layout Itemize
-parametry mel-spektralne (MFC ang.
+parametry mel-spektralne (MFC, ang.
  Mel-frequency cepstrum),
 \end_layout
 
 \begin_layout Itemize
-parametry dyskretnej transformacji falkowej (ang.
- DWT - Discrete Wavelet Transform).
+parametry dyskretnej transformacji falkowej (DWT, ang.
+ Discrete Wavelet Transform).
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -933,15 +961,20 @@ key "Rozp"
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $ω{}_{Mel}=2595log(1+\frac{\text{ω}}{700Hz})$
+\begin_inset Formula 
+\begin{equation}
+ω{}_{Mel}=2595log(1+\frac{\text{ω}}{700Hz})
+\end{equation}
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Widma ramek sygnału po uprzednim przeprowadzeniu DFT poddawane są filtracji
- za pomocą melowego banku filtrów pasmowo przepustowych.
+Widma ramek sygnału po uprzednim przeprowadzeniu DFT (ang.
+ Discrete Fourier Transform poddawane są filtracji za pomocą melowego banku
+ filtrów pasmowo przepustowych.
  W systemach rozpoznawania mowy zazwyczaj stosuje się banki 26 filtrów melowych.
  Filtry tworzone są dla kolejnych pasm częstotliwości, rozmieszczonych w
  nieliniowy sposób wyznaczony przez skalę Mel.
@@ -957,7 +990,11 @@ Widma ramek sygnału po uprzednim przeprowadzeniu DFT poddawane są filtracji
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $MFC(l,\text{τ)=}\sum_{k=0}^{M-1}[D(l,k)*FC(k,\text{τ})]\text{, l=1,...,L}$
+\begin_inset Formula 
+\begin{equation}
+MFC(l,\text{τ)=}\sum_{k=0}^{M-1}[D(l,k)*FC(k,\text{τ})]\text{ dla l=1,...,L }
+\end{equation}
+
 \end_inset
 
 
@@ -970,34 +1007,34 @@ Wartość pojedyńczego współczynnika MFC odpowiada ważonej sumie wartości
 \end_layout
 
 \begin_layout Standard
-Chcąc wyliczyć spektrum energii dla każdej ramki, stosujemy FFT dla każdego
- splotu sygnału z kolejnym oknem i obliczamy kwadrat amplitudy każdego współczyn
-nika zespolonego Fouriera.
+Chcąc wyliczyć spektrum energii dla każdej ramki, stosuje się FFT (ang.
+ Fast Fourier Transform) dla każdego splotu sygnału z kolejnym oknem i oblicza
+ kwadrat amplitudy każdego współczynnika zespolonego Fouriera.
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $FC(k,\text{τ)=}\mid\sum_{t=0}^{M-1}[x(\text{τ}+t)e^{-i2πkt/M}*w_{\text{τ}}(t)]\mid^{2}$
-\end_inset
+\begin_inset Formula 
+\begin{equation}
+FC(k,\text{τ)=}\mid\sum_{t=0}^{M-1}[x(\text{τ}+t)e^{-i2πkt/M}*w_{\text{τ}}(t)]\mid^{2}\, dla\, k=0,\,...,\, M-1
+\end{equation}
 
- dla 
-\begin_inset Formula $k=0,...,M-1$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Współczynniki mel-cepstralne możemy wyznaczyć ze wzoru:
+Współczynniki mel-cepstralne wyznacza się ze wzoru:
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $MFCC(k,\text{τ)=}\sum_{l=0}^{L-1}[logMFC(l,\text{τ)}*cos(\frac{k*(2l+1)\text{π}}{2L})]$
-\end_inset
+\begin_inset Formula 
+\begin{equation}
+MFCC(k,\text{τ)=}\sum_{l=0}^{L-1}[logMFC(l,\text{τ)}*cos(\frac{k*(2l+1)\text{π}}{2L})]\, dla\, k=1,\,...,\, K
+\end{equation}
 
-, 
-\begin_inset Formula $k=1,...,K$
 \end_inset
 
 
@@ -1015,7 +1052,7 @@ Natężenie dźwięku jest odczuwane przez ludzi w skali logarytmicznej dlatego
 
 Ponieważ układ głosu ma charakter ciągły, zatem poziomy energii w sąsiednich
  pasmach są skorelowane.
- Dlatego też niebędna do tego transformata odwrotna Fouriera (tu wystarczy
+ Dlatego też niezbędna do tego transformata odwrotna Fouriera (tu wystarczy
  przekształcenie cosinusowe) zamienia zbiór logarytmów energii na nieskolerowane
  ze sobą wspołczynniki cepstralne.
 \begin_inset Quotes prd
@@ -1033,24 +1070,24 @@ key "Rozp"
 
 \begin_layout Standard
 Aby usunąć szkodliwy wpływ podstawowych drgań krtaniowych na zestaw cech
- możemy zastosować przekształcenie zwane liftrowaniem.
+ można zastosować przekształcenie zwane liftrowaniem.
  
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $c_{n}^{lift}=(1+\frac{\text{λ}}{2}sin(\frac{\text{πn}}{\text{λ}}))c_{n}$
+\begin_inset Formula 
+\begin{equation}
+c_{n}^{lift}=(1+\frac{\text{λ}}{2}sin(\frac{\text{πn}}{\text{λ}}))c_{n}\, dla\, n=1,\,...,\,\text{λ}
+\end{equation}
+
 \end_inset
 
- dla 
-\begin_inset Formula $n=1,...,\text{λ}$
-\end_inset
 
-, 
 \end_layout
 
 \begin_layout Standard
-gdzie 
+Gdzie 
 \begin_inset Formula $c{}_{n}$
 \end_inset
 
@@ -1074,20 +1111,20 @@ energetyczną
 
 , która pomaga odróżnić sygnał ciszy od sygnału mowy a także słabe bezdźwięczne
  spółgłoski od silnych dźwięcznych samogłosek.
- Sumaryczną energię w ramce sygnału τ obliczamy sumując kwadraty próbek
+ Sumaryczną energię w ramce sygnału τ oblicza się sumując kwadraty próbek
  w dziedzinie czasu według nastepującego wzoru:
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $E{}^{(\text{τ)}}=\sum_{i=1}^{M}f_{i}^{2}$
+\begin_inset Formula 
+\begin{equation}
+E{}^{(\text{τ)}}=\sum_{i=1}^{M}f_{i}^{2}
+\end{equation}
+
 \end_inset
 
- 
-\begin_inset space \quad{}
-\end_inset
 
- 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AnalizaS,Rozp"
@@ -1098,7 +1135,7 @@ key "AnalizaS,Rozp"
 \end_layout
 
 \begin_layout Standard
-Podsumowując, wyznaczanie wpółczynników MFCC możemy przestawić w następujących
+Podsumowując, wyznaczanie wpółczynników MFCC można przedstawić w następujących
  krokach:
 \end_layout
 
@@ -1123,7 +1160,8 @@ obliczenie logarytmu zakumulowanych współczynników widmowych,
 \end_layout
 
 \begin_layout Itemize
-przeprowadzenie DCT na zlogarytmowanych współczynnikach widmowych,
+przeprowadzenie DCT (ang.
+ discrete cosine transform) na zlogarytmowanych współczynnikach widmowych,
 \end_layout
 
 \begin_layout Itemize
@@ -1131,21 +1169,24 @@ opcjonalnie, wyznaczenie cech dynamicznych.
 \end_layout
 
 \begin_layout Standard
-DCT (ang.
- discrete cosine transform) przeprowadzamy według następującego wzoru:
+DCT przeprowadzana jest według następującego wzoru:
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $x(n)=c(n)\sum_{k=0}^{K-1}ln(S_{k})cos(\frac{\text{π(2k+1)n}}{2K})$
+\begin_inset Formula 
+\begin{equation}
+x(n)=c(n)\sum_{k=0}^{K-1}ln(S_{k})cos(\frac{\text{π(2k+1)n}}{2K})
+\end{equation}
+
 \end_inset
 
-, 
+
 \end_layout
 
 \begin_layout Standard
-\align center
-gdzie 
+\align left
+Gdzie 
 \begin_inset Formula $c(0)=\sqrt{\frac{1}{K}},$
 \end_inset
 
@@ -1169,12 +1210,12 @@ key "Przetw"
 
 \begin_layout Standard
 Otrzymany wektor cech MFCC zawiera liczbę elementów równą liczbie pasm melowych.
- Do dalszego przetwarzania bierzemy zazwyczaj pierwsze 12 współczynników,
- do których dokładamy energię sygnału w ramce oraz jeśli chcemy uwzględnić
- dynamikę zmian współczynników w czasie (wielkość zmian oraz ich tempo),
- poszerzamy nasz wektor o ich przyrosty kolejno pierwszego i drugiego rzędu
- (czyli współczynniki delta oraz delta-delta).
- W wyniku tych operacji otrzymujemy 39-elementowy wektor cech mel-cepstralnych.
+ Do dalszego przetwarzania brane pod uwagę są zazwyczaj pierwsze 12 współczynnik
+ów, do których dokłada się energię sygnału w ramce oraz opcjonalnie dynamikę
+ zmian współczynników w czasie (wielkość zmian oraz ich tempo), wtedy wektor
+ jest poszerzany o ich przyrosty kolejno pierwszego i drugiego rzędu (czyli
+ współczynniki delta oraz delta-delta).
+ W wyniku tych operacji otrzymamy 39-elementowy wektor cech mel-cepstralnych.
 \end_layout
 
 \end_body

@@ -125,7 +125,9 @@ shortauthor{P.
 
 
 \backslash
-titlePL{Sterowanie głosowe robotem Kawasaki w wybranych grach planszowych}
+titlePL{Sterowanie głosowe robotem Kawasaki 
+\backslash
+linebreak w wybranych grach planszowych}
 \end_layout
 
 \begin_layout Plain Layout
@@ -154,7 +156,7 @@ supervisorPL{dr Robert Wielgat}
 
 \backslash
 acknowledgements{Serdecznie dziękuję mojemu promotorowi za cenne wskazówki,
- które pomogły mi ukończyć tą pracę.} 
+ które pomogły mi ukończyć niniejszą pracę.} 
 \end_layout
 
 \begin_layout Plain Layout
@@ -314,7 +316,27 @@ options "plain"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "dodatek.lyx"
+filename "dodatek1.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "dodatek2.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "dodatek3.lyx"
 
 \end_inset
 

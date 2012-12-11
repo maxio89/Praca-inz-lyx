@@ -25,7 +25,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement H
+\float_placement !h
 \paperfontsize 11
 \spacing onehalf
 \use_hyperref false
@@ -305,7 +305,8 @@ reference "rys21"
 
 \end_inset
 
- przedstawione są typowe narzędzia HTK i pokazane interfejsy wejś oraz wyjś.
+ przedstawione są typowe narzędzia HTK i pokazane interfejsy wejść oraz
+ wyjść.
 \end_layout
 
 \begin_layout Standard
@@ -460,14 +461,59 @@ Narzędzia HTK posiadają tradycyjny konsolowy interfejs użytkownika.
  Przykład ich użycia zostanie zaprezentowany na nieistniejącym narzędziu
  nazwanym 
 \shape italic
-HFoo.
+HFoo 
+\shape default
+(
+\shape italic
+\emph on
+listing
+\emph default
+ 
+\emph on
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis1"
+
+\end_inset
+
+
+\emph default
+).
 \end_layout
 
 \begin_layout Standard
 \align center
 \begin_inset listings
+lstparams "float"
 inline false
 status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykład wywołania narzędzia 
+\shape italic
+HFoo 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -489,7 +535,14 @@ i
  file2 
 \shape default
 oraz argumenty opcjonalne.
- Opcje zawsze zaczynają się od pojedyńczej litery poprzedzonej znakiem minus
+ Opcje zawsze zaczynają się od pojedyńczej litery poprzedzonej znakiem 
+\begin_inset Quotes pld
+\end_inset
+
+-
+\begin_inset Quotes prd
+\end_inset
+
  a następnie podawana jest wartość opcji.
  Kolejne opcje rozdzielone są znakiem spacji.
  Czasem wartość opcji jest wartością typu zmiennoprzecinkowego (opcja
@@ -500,14 +553,14 @@ oraz argumenty opcjonalne.
 \shape italic
  -T, 
 \shape default
-która zawsze kontroluje wyjście narzędzia czyli co zostanie wydrukowane
+która zawsze kontroluje wyjście narzędzia czyli, to co zostanie wydrukowane
  w konsoli) lub też ciąg znaków (opcja
 \shape italic
  -s
 \shape default
 ).
  Bywa też, że opcje są zwykłą flagą (tzw.
- przełącznikiem), nie potrzebują żadnej wartości, np.
+ przełącznikiem) i nie potrzebują żadnej wartości, np.
  opcja 
 \shape italic
 -a
@@ -517,8 +570,16 @@ która zawsze kontroluje wyjście narzędzia czyli co zostanie wydrukowane
 \end_layout
 
 \begin_layout Standard
-Narzędzia mogą być również parametryzowane za pomocą pliku konfiguracyjnego.
- Dla przykładu:
+Narzędzia mogą być również parametryzowane za pomocą pliku konfiguracyjnego
+ (listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis2"
+
+\end_inset
+
+).
+ 
 \end_layout
 
 \begin_layout Standard
@@ -526,6 +587,30 @@ Narzędzia mogą być również parametryzowane za pomocą pliku konfiguracyjneg
 \begin_inset listings
 inline false
 status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykład wywołania narzędzia wraz z plikiem konfiguracyjnym 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -538,7 +623,11 @@ HFoo -C config -f 34.3 -a -s myfile file1 file2
 \end_layout
 
 \begin_layout Standard
-Wywołanie powyższego polecenia ustawia parametry zapisane w pliku.
+Wywołanie powyższego polecenia ustawia parametry zapisane w pliku 
+\emph on
+config
+\emph default
+.
  Pliki konfiguracyjne mogą być czasami alternatywą dla argumentów podawanych
  podczas wywołania narzędzia w konsoli.
  
@@ -548,7 +637,7 @@ Wywołanie powyższego polecenia ustawia parametry zapisane w pliku.
 Konsolowe działanie narzędzi HTK może wydawać się trochę staromodne w porównaniu
  z graficznymi interfejsami użytkownika różnych współczesnych aplikacji,
  lecz daje przejrzysty podgląd działania poszczególnych narzędzi oraz pozwala
- w prosty sposób zautomatyzować wykonanie kilku narzędzi poprzez pisanie
+ w prosty sposób zautomatyzować wykonanie kilku funkcji poprzez pisanie
  skryptów.
  Aby mieć podgląd wszystkich możliwych opcji wybranego narzędzia wystarczy
  wywołać je w konsoli bez żadnych dodatkowych argumentów.
@@ -575,10 +664,18 @@ subsection{Przygotowanie danych}
 \end_layout
 
 \begin_layout Standard
-Pierwszym krokiem jest stworzenie słownika systemu w którym zapisane są
+Pierwszym krokiem jest stworzenie słownika systemu, w którym zapisane są
  wszystkie używane słowa wraz z ich zapisem fonetycznym.
  Następnie trzeba ustalić gramatykę systemu, czyli format wypowiedzi które
- będą rozpoznawane np.:
+ będą rozpoznawane (listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis3"
+
+\end_inset
+
+).
+ 
 \end_layout
 
 \begin_layout Standard
@@ -586,6 +683,30 @@ Pierwszym krokiem jest stworzenie słownika systemu w którym zapisane są
 \begin_inset listings
 inline false
 status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykładowe wypowiedzi 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -615,11 +736,18 @@ Dzwoń do Kowalski
 \begin_layout Standard
 HTK dostarcza język definicji gramatyki.
  Składa się on z zestawu definicji zmiennych zawierających wyrażenia regularne
- będące słowami które będą rozpoznawane.
+ będące słowami, które będą rozpoznawane.
 \end_layout
 
 \begin_layout Standard
-Dla powyższych wypowiedzi poniżej jest pokazany przykład definicji gramatyki:
+Dla powyższych wypowiedzi na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis4"
+
+\end_inset
+
+ jest pokazany przykład definicji gramatyki.
 \end_layout
 
 \begin_layout Standard
@@ -627,6 +755,30 @@ Dla powyższych wypowiedzi poniżej jest pokazany przykład definicji gramatyki:
 \begin_inset listings
 inline false
 status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykład definicji gramatyki 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis4"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -718,7 +870,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Gramatyka systemu rozpoznawania mowy 
+Przykładowa gramatyka systemu 
 \begin_inset CommandInset label
 LatexCommand label
 name "rys22"
@@ -758,9 +910,16 @@ sample1.wav
 \shape default
  zawierającego nagranie słów 
 \shape italic
-jeden dwa trzy
-\shape default
-:
+jeden dwa trzy 
+\emph on
+pokazano na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis5"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -768,6 +927,30 @@ jeden dwa trzy
 \begin_inset listings
 inline false
 status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykład transkrypcji wypowiedzi w formacie MLF 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis5"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -876,9 +1059,9 @@ HInit
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\hat{\mu_{j}} & =\frac{1}{T}\sum_{t=1}^{T}o_{t}
-\end{align*}
+\begin{equation}
+\hat{\mu_{j}}=\frac{1}{T}\sum_{t=1}^{T}o_{t}
+\end{equation}
 
 \end_inset
 
@@ -887,9 +1070,9 @@ HInit
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\hat{\sum}_{j} & =\frac{1}{T}\sum_{t=1}^{T}(o_{t}-\mu_{j})(o_{t}-\mu_{j})'
-\end{align*}
+\begin{equation}
+\hat{\sum}_{j}=\frac{1}{T}\sum_{t=1}^{T}(o_{t}-\mu_{j})(o_{t}-\mu_{j})'
+\end{equation}
 
 \end_inset
 
@@ -959,6 +1142,7 @@ status collapsed
 \begin_inset Graphics
 	filename htk-trenowanie.png
 	display false
+	scale 80
 
 \end_inset
 
@@ -1035,10 +1219,21 @@ HVite.
 Narzędzie to na wejściu przyjmuje sieć opisującą dostępne sekwencje słów,
  słownik definiujący dostępne słowa wraz z ich zapisem fonetycznym oraz
  zestaw modeli HMM.
-\end_layout
+ Jako wynik jego działania otrzymujemy plik z transkypcją nieznanej wypowiedzi
+ w formacie 
+\emph on
+MLF 
+\emph default
+(listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis6"
 
-\begin_layout Standard
-Przykładowy wynik rozpoznawania może wyglądać następująco:
+\end_inset
+
+)
+\emph on
+.
 \end_layout
 
 \begin_layout Standard
@@ -1046,6 +1241,30 @@ Przykładowy wynik rozpoznawania może wyglądać następująco:
 \begin_inset listings
 inline false
 status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykładowy wynik rozpoznawania w formacie MLF
+\begin_inset CommandInset label
+LatexCommand label
+name "lis6"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -1096,7 +1315,7 @@ status open
 \begin_layout Standard
 W wygenerowanym pliku podana jest transkrypcja rozpoznanej wypowiedzi, czas
  (region czasowy) w którym poszczególne słowo zostało wykryte oraz prawdopodobie
-ństwo podane w skali logarytmicznej.
+ństwo (z jakim zostało wykryte) podane w skali logarytmicznej.
 \end_layout
 
 \begin_layout Standard
@@ -1123,7 +1342,14 @@ HResults,
 \shape default
 które na wejśćiu przyjmuje testowe próbki wypowiedzi wraz z ich transkrypcjami
  a następnie porównuje transkrypcje otrzymane w wyniku rozpoznawania i określa
- procentową skuteczność takiego systemu, np.:
+ procentową skuteczność takiego systemu (listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis7"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -1131,6 +1357,30 @@ które na wejśćiu przyjmuje testowe próbki wypowiedzi wraz z ich transkrypcja
 \begin_inset listings
 inline false
 status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykładowy wynik narzędzia HResults 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis7"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -1206,11 +1456,11 @@ WORD
 \end_layout
 
 \begin_layout Itemize
-H słowa nierozpoznane,
+H oznacza liczbę słów nierozpoznanych,
 \end_layout
 
 \begin_layout Itemize
-S słowa rozpoznane,
+S słów rozpoznanych,
 \end_layout
 
 \begin_layout Itemize
