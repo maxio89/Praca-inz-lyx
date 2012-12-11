@@ -21,6 +21,13 @@ publisher = {WKi\L},
 year = {2005},
 address = {Warszawa}
 }
+@Book{Fosr,
+author = {Rabiner L., Juang B-I},
+title = {Fundamentals of Speech recognition},
+publisher = {Prentice Hall},
+year = {1993},
+address = {Warszawa}
+}
 
 @Article{Obrazowarep,
 author = {Grad L.},

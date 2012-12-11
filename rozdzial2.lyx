@@ -51,7 +51,7 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement H
+\float_placement h
 \paperfontsize 12
 \spacing onehalf
 \use_hyperref false
@@ -91,6 +91,13 @@ Plik \LaTeX owy jest plikiem tekstowym, który oprócz tekstu zawiera polecenia 
 
 \begin_layout Chapter
 Systemy rozpoznawania mowy
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:2"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -518,20 +525,6 @@ Proces tworzenia systemu rozpoznawania mowy możemy podzielić na dwe fazy,
  Podczas rozpoznawania system dopasowuje najbardziej prawdopodobny wzorzec
  czego wynikiem jest transkrypcja fonetyczna nieznanej wypowiedzi.
  Szczegóły wymienionych wyżej faz opisane są w kolejnych rozdziałach.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Opisać poszczególne etapy?
-\end_layout
-
-\begin_layout Standard
-(W bloku klasyfikacji nastepuje porównanie nadchodzacych ciagów obrazów
- wypowiedzi ze znajdujacymi sie w pamieci wzorcami, które stanowia uogólniony
- (usredniony) opis klas dzwieków.
- Klasa moga byc fonemy, wyrazy lub nawet całe zdania.
- Obrazy wzorcowe sa tworzone w procesie uczenia.)
 \end_layout
 
 \begin_layout Section

@@ -79,11 +79,7 @@ Wiek w którym żyjemy, zwany jest często wiekiem komunikacji w różnych jej
  Jest ona bardzo ważnym aspektem życia człowieka.
  Tematyka tej pracy związana jest z komunikacją werbalną na lini człowiek
  - maszyna.
- 
-\end_layout
-
-\begin_layout Standard
-Jeszcze do niedawna sterowanie sprzętem elektronicznym za pomocą komend
+ Jeszcze do niedawna sterowanie sprzętem elektronicznym za pomocą komend
  głosowych, było spotykane częściej w filmach s-f niż w rzeczywistych zastosowan
 iach.
  Obecnie jest to zadanie możliwe do wykonania, niemniej jednak, ze względu
@@ -103,8 +99,8 @@ smartfonów
 \begin_inset Quotes prd
 \end_inset
 
- posiada aplikacje ułatwiające korzystanie z nich, pozwalające na wybieranie
- głosowe połączeń lub zamieniające mowę na tekst.
+ posiada aplikacje ułatwiające korzystanie z nich, pozwalające na głosowe
+ wybieranie połączeń lub zamieniające mowę na tekst.
  Liczba zastosowań systemów rozpoznawania mowy ciągle rośnie, ze względu
  na oczywisty fakt, że mowa jest naturalnym oraz jakże wygodnym sposobem
  przekazywania myśli i odczuć człowieka.
@@ -150,7 +146,7 @@ key "Htk"
  wszystkie ruchy podczas rozgrywki, użytkownik skupia się zatem tylko na
  wydawaniu poleceń głosowych.
  Gra z robotem jest formą demonstracji systemu stworzonego na potrzeby tej
- pracy a więc jest jej poświęcone mniej uwagi niż tematyce rozpoznawania
+ pracy, a więc jest jej poświęcone mniej uwagi niż tematyce rozpoznawania
  mowy.
 \end_layout
 

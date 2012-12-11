@@ -69,6 +69,10 @@ System sterujący robotem za pomocą komend głosowych
 Schemat działania systemu
 \end_layout
 
+\begin_layout Standard
+connected speech recognition
+\end_layout
+
 \begin_layout Section
 Robot przemysłowy 
 \end_layout

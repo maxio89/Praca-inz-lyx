@@ -25,6 +25,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement H
 \paperfontsize 11
 \spacing onehalf
 \use_hyperref false
@@ -70,21 +71,45 @@ Podstawy HTK
 \end_layout
 
 \begin_layout Standard
-HTK jest zbiorem narzędzi służących do tworzenia Ukrytych Modeli Markowa.
+HTK jest zbiorem narzędzi napisanych w języku C i korzystających z HMM w
+ kontekście rozpoznawania mowy.
+ Pierwsza wersja projektu powstała w 1995 na uniwersytecie w Cambridge.
+ Zespołem kierował profesor Steve Young.
+ Projekt początkowo był finansowany przez Microsoft Corporation, ostatecznie
+ jego prawa autorskie przejął Cambridge University Engineering Department.
+ Ostatnia jego wersja o numerze 3.4 powstała w 2006 roku.
+ Na tej właśnie wersji opiera się niniejsza praca.
+\end_layout
+
+\begin_layout Standard
+HTK posiada kompleksowy zestaw bibliotek pozwalających przetwarzać sygnał
+ mowy.
+ Jak widać na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys18"
+
+\end_inset
+
+, działanie HTK można ogólnie podzielić na dwie główne fazy.
+ Pierwsza w której odbywa się estymacja parametrów HMM i druga podczas której
+ przy użyciu narzędzi do rozpoznawania mowy otrzymujemy transkrypcję fonetyczną
+ nieznanej wypowiedzi.
+ 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename htk-ogolny.png
 	display false
-	scale 90
+	scale 80
 
 \end_inset
 
@@ -95,7 +120,14 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Ogólny schemat działania HTK 
+Organizacja bibliotek HTK 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys18"
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Htkb"
@@ -119,12 +151,1090 @@ key "Htkb"
 
 \end_layout
 
-\begin_layout Section
-Trenowanie modeli
+\begin_layout Standard
+Podstawowe założenia HTK można zobrazować prostym schematem widocznym na
+ rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys19"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ogolna-idea-htk.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Enkodowanie/dekodowanie wiadomości 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys19"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Założenie, że mowa jest sekwencją pewnych dyskretnych jednostek fonetycznych
+ jest typowym założeniem współczesnych systemów rozpoznawania mowy o czym
+ zostało wspomniane w rozdziale 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:2"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Budowa systemu rozpoznawania mowy ciągłej opartego o fonemy przy pomocy
+ narzędzi HTK przebiega w czterech fazach (rys.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys20"
+
+\end_inset
+
+).
+ Zostały one opisane w jednym z kolejnych podrozdziałów.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename htk-fazy.png
+	display false
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Cztery główne fazy budowy systemu rozpoznawania mowy z HTK 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys20"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Rozpoznawanie
+Architektura
+\end_layout
+
+\begin_layout Standard
+Większość funkcjonalności HTK jest wbudowane w moduły, które są bibliotekami
+ systemowymi (pliki z rozszerzeniem *.dll w systemach Windows lub *.lib dla
+ systemów Unix).
+ Te moduły zapewniają każdemu narzędziu interfejs do komunikowania się ze
+ światem zewnętrznym w podobny sposób.
+ Dostarczają również centralny zasób najczęściej używanych funkcji.
+ Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys21"
+
+\end_inset
+
+ przedstawione są typowe narzędzia HTK i pokazane interfejsy wejś oraz wyjś.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename htk-architektura.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Architektura HTK 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys21"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nad interakcją z użytkownikiem czuwa biblioteka 
+\shape italic
+HShell 
+\shape default
+oraz biblioteka zarządzająca pamięcią 
+\shape italic
+HMem
+\shape default
+.
+ Wsparcie matematyczne zapewnia 
+\shape italic
+HMath
+\shape default
+, a operacje związane z przetwarzaniem sygnałów dźwiękowych są kontrolowane
+ przez bibliotekę 
+\shape italic
+HSigP.
+ 
+\shape default
+Dla każdego interfejsu są przeznaczone odpowiednie typy plików.
+ 
+\shape italic
+HLabel 
+\shape default
+dostarcza pliki etykiet, 
+\shape italic
+HLM
+\shape default
+ pliki modelu językowego, 
+\shape italic
+HNet
+\shape default
+ sieci i krat słów, 
+\shape italic
+HDict 
+\shape default
+słownika,
+\shape italic
+ HModel 
+\shape default
+definicji HMM.
+ Wszystkie wejściowe oraz wyjściowe pliki dźwiękowe w formacie WAVE kontroluje
+ bilbioteka 
+\shape italic
+HWave,
+\shape default
+ parametry tych plików 
+\shape italic
+HParm.
+ 
+\shape default
+Bezpośrednie wejście dzwięku zapewnia 
+\shape italic
+HAudio
+\shape default
+, z kolei 
+\shape italic
+HGraf
+\shape default
+ rysuje wykresy.
+ 
+\shape italic
+HUtil 
+\shape default
+zawiera narzędzia manipulujące modelami HMM podczas gdy 
+\shape italic
+HTrain
+\shape default
+ oraz 
+\shape italic
+HFB
+\shape default
+ zapewnia wsparcie w trakcie trenowania modeli.
+ 
+\shape italic
+HRec 
+\shape default
+z kolei zawiera główne funkcje procesu rozpoznawania.
+ Szczegóły wspomnianych jak i pozostałych narzędzi z pakietu HTK znajdują
+ się w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Parametry narzędzi
+\end_layout
+
+\begin_layout Standard
+Narzędzia HTK posiadają tradycyjny konsolowy interfejs użytkownika.
+ Każde narzędzie posiada zestaw wymaganych argumentów oraz argumenty opcjonalne.
+ Przykład ich użycia zostanie zaprezentowany na nieistniejącym narzędziu
+ nazwanym 
+\shape italic
+HFoo.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+HFoo -T 1 -f 34.3 -a -s myfile file1 file2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To narzędzie posiada dwa główne argumenty nazwane 
+\shape italic
+file1 
+\shape default
+i
+\shape italic
+ file2 
+\shape default
+oraz argumenty opcjonalne.
+ Opcje zawsze zaczynają się od pojedyńczej litery poprzedzonej znakiem minus
+ a następnie podawana jest wartość opcji.
+ Kolejne opcje rozdzielone są znakiem spacji.
+ Czasem wartość opcji jest wartością typu zmiennoprzecinkowego (opcja
+\shape italic
+ -f)
+\shape default
+ a czasem jest to wartość całkowita (opcja
+\shape italic
+ -T, 
+\shape default
+która zawsze kontroluje wyjście narzędzia czyli co zostanie wydrukowane
+ w konsoli) lub też ciąg znaków (opcja
+\shape italic
+ -s
+\shape default
+).
+ Bywa też, że opcje są zwykłą flagą (tzw.
+ przełącznikiem), nie potrzebują żadnej wartości, np.
+ opcja 
+\shape italic
+-a
+\shape default
+, która odblokowuje lub zablokowuje pewną cechę narzędzia.
+ 
+\end_layout
+
+\begin_layout Standard
+Narzędzia mogą być również parametryzowane za pomocą pliku konfiguracyjnego.
+ Dla przykładu:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+HFoo -C config -f 34.3 -a -s myfile file1 file2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wywołanie powyższego polecenia ustawia parametry zapisane w pliku.
+ Pliki konfiguracyjne mogą być czasami alternatywą dla argumentów podawanych
+ podczas wywołania narzędzia w konsoli.
+ 
+\end_layout
+
+\begin_layout Standard
+Konsolowe działanie narzędzi HTK może wydawać się trochę staromodne w porównaniu
+ z graficznymi interfejsami użytkownika różnych współczesnych aplikacji,
+ lecz daje przejrzysty podgląd działania poszczególnych narzędzi oraz pozwala
+ w prosty sposób zautomatyzować wykonanie kilku narzędzi poprzez pisanie
+ skryptów.
+ Aby mieć podgląd wszystkich możliwych opcji wybranego narzędzia wystarczy
+ wywołać je w konsoli bez żadnych dodatkowych argumentów.
+\end_layout
+
+\begin_layout Section
+Fazy budowy systemu rozpoznawania mowy
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Przygotowanie danych}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pierwszym krokiem jest stworzenie słownika systemu w którym zapisane są
+ wszystkie używane słowa wraz z ich zapisem fonetycznym.
+ Następnie trzeba ustalić gramatykę systemu, czyli format wypowiedzi które
+ będą rozpoznawane np.:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Wybierz jeden dwa cztery jeden pięć
+\end_layout
+
+\begin_layout Plain Layout
+
+Wybierz dwa zero zero osiem
+\end_layout
+
+\begin_layout Plain Layout
+
+Zadzwoń do Stefan Młody
+\end_layout
+
+\begin_layout Plain Layout
+
+Dzwoń do Kowalski
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+HTK dostarcza język definicji gramatyki.
+ Składa się on z zestawu definicji zmiennych zawierających wyrażenia regularne
+ będące słowami które będą rozpoznawane.
+\end_layout
+
+\begin_layout Standard
+Dla powyższych wypowiedzi poniżej jest pokazany przykład definicji gramatyki:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$cyfry = JEDEN | DWA | TRZY | CZTERY | PIĘĆ | 
+\end_layout
+
+\begin_layout Plain Layout
+
+SZEŚĆ | SIEDEM | OSIEM | DZIEWIĘĆ | ZERO; 
+\end_layout
+
+\begin_layout Plain Layout
+
+$osoba = [ JAN ] KOWALSKI | 
+\end_layout
+
+\begin_layout Plain Layout
+
+[ STEFAN ] MŁODY; 
+\end_layout
+
+\begin_layout Plain Layout
+
+( SENT-START ( WYBIERZ <$cyfry> | (ZADZWOŃ|DZWOŃ) DO $osoba) SENT-END )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Znak 
+\begin_inset Quotes pld
+\end_inset
+
+|
+\begin_inset Quotes prd
+\end_inset
+
+ oznacza alternatywe, kwadratowe nawiasy oznaczają opcjonalność a nawiasy
+ ostre (
+\begin_inset Quotes pld
+\end_inset
+
+<
+\begin_inset Quotes prd
+\end_inset
+
+ oraz 
+\begin_inset Quotes pld
+\end_inset
+
+>
+\begin_inset Quotes prd
+\end_inset
+
+) występowanie powtórzeń.
+ Kompletna gramatyka systemu może być przedstawiona jako sieć słów pokazana
+ na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys22"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename htk-gramatyka.png
+	display false
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Gramatyka systemu rozpoznawania mowy 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys22"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Do poprawnego wytrenowania modeli HMM potrzeba wielu próbek zawierających
+ wielokrotne nagrania wszystkich słów ze słownika oraz powiązane z nimi
+ pliki transkrypcji.
+ Transkrypcje te muszą być zapisane w odpowiednim formacie, dla HTK będzie
+ to format 
+\shape italic
+MLF
+\shape default
+.
+ Przykład dla pliku dźwiękowego 
+\shape italic
+sample1.wav
+\shape default
+ zawierającego nagranie słów 
+\shape italic
+jeden dwa trzy
+\shape default
+:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!MLF!# 
+\end_layout
+
+\begin_layout Plain Layout
+
+"*/sample1.wav" 
+\end_layout
+
+\begin_layout Plain Layout
+
+JEDEN 
+\end_layout
+
+\begin_layout Plain Layout
+
+DWA
+\end_layout
+
+\begin_layout Plain Layout
+
+TRZY 
+\end_layout
+
+\begin_layout Plain Layout
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Do nagrania próbek sygnału mowy może zostać użyte narzędzie 
+\shape italic
+HSLab
+\shape default
+ lub inny rejestrator dźwięku.
+\end_layout
+
+\begin_layout Standard
+Otrzymane nagrania trzeba zparametryzować (dokonać ekstrakcji cech).
+ Dokonuje się tego przy użyciu narzędzia 
+\shape italic
+HCopy, 
+\shape default
+które konwertuje pliki dźwiękowe do plików zawierających odpowiednie cechy
+ sygnału mowy.
+\end_layout
+
+\begin_layout Standard
+Transkrypcje plików dźwiękowych również muszą zostać odpowiednio przygotowane.
+ Jeśli tworzy się system oparty o fonemy, narzędzie 
+\shape italic
+HLEd
+\shape default
+ konwertuje pliki transkrypcji, do plików zawierających transkrypcje fonemowe,
+ czyli zamienia zwykły alfabet języka na alfabet fonetyczny.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Trenowanie}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Przed rozpoczęciem trenowania trzeba utworzyć prototyp modelu HMM, zapisany
+ jako zwykły plik tekstowy, gdzie definiuje się topologię modelu (określa
+ ilość stanów, dopuszczalne przejścia między nimi oraz kilka innych parametrów).
+ HTK zawiera skrypty generujące gotowe prototypy.
+\end_layout
+
+\begin_layout Standard
+Modele HMM są tworzone dla każdego słowa ze słownika.
+ Procedura reestymacji przebiega równolegle dla każdego modelu w przypadku
+ mowy ciągłej, lub indywidualnie w przypadku izolowanych słów.
+ 
+\end_layout
+
+\begin_layout Standard
+Inicjalizacja niektórych parametrów HMM jest wykonywana za pomocą narzędzia
+ zwanego 
+\shape italic
+HInit
+\shape default
+.
+ Narzędzie to, najpierw przydziela po równo wektory obserwacji do każdego
+ ze stanów modelu (prócz stanów nieemitujących) a następnie wyznacza dla
+ nich początkowe wartości parametrów za pomocą wzorów:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\hat{\mu_{j}} & =\frac{1}{T}\sum_{t=1}^{T}o_{t}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\hat{\sum}_{j} & =\frac{1}{T}\sum_{t=1}^{T}(o_{t}-\mu_{j})(o_{t}-\mu_{j})'
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tak dzieje się w przypadku izolowanych słów.
+ Dla mowy ciągłej zamiast narzędzia 
+\shape italic
+HInit 
+\shape default
+wykorzystywane jest narzędzie 
+\shape italic
+HCompV 
+\shape default
+a początkowe parametry są jednakowe dla wszystkich modeli.
+\end_layout
+
+\begin_layout Standard
+Warto wspomnieć, że podczas wyznaczania prawdopodobieństw 
+\shape italic
+forward
+\shape default
+ i 
+\shape italic
+backward
+\shape default
+ liczony jest iloczyn dużej liczby prawdopodobieństw.
+ Oznacza to, że przetwarzane liczby mogą stać się bardzo małe.
+ Stąd aby uniknąć problemów numerycznych, powyższe obliczenia przeprowadzane
+ są przez HTK w skali logarytmicznej.
+ HTK używa algorytmu Bauma-Welcha do reestymacji parametrów HMM.
+ Ten algorytm jest zaimplementowany w narzędziu zwanym 
+\shape italic
+HERest 
+\shape default
+oraz 
+\shape italic
+HRest
+\shape default
+.
+ Narzędzie 
+\shape italic
+HRest 
+\shape default
+wykorzystywane jest tylko w przypadku izolowanych słów.
+ Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys23"
+
+\end_inset
+
+ pokazano jak przebiega trenowanie za pomocą narzędzi HTK.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename htk-trenowanie.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Proces trenowania 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys23"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Narzędzie 
+\shape italic
+HHEd 
+\shape default
+przygotowuje modele HMM w zależności od kontekstu wypowiedzi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Testowanie}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Testowanie czyli właściwie faza rozpoznawania, polega na znalezieniu najbardziej
+ prawdopodobnej sekwencji przejść między stanami modelu HMM za pomocą algorytmu
+ Viterbiego zaimplementowanego w narzędziu 
+\shape italic
+HVite.
+ 
+\shape default
+Narzędzie to na wejściu przyjmuje sieć opisującą dostępne sekwencje słów,
+ słownik definiujący dostępne słowa wraz z ich zapisem fonetycznym oraz
+ zestaw modeli HMM.
+\end_layout
+
+\begin_layout Standard
+Przykładowy wynik rozpoznawania może wyglądać następująco:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!MLF!# 
+\end_layout
+
+\begin_layout Plain Layout
+
+"*/sample1.rec" 
+\end_layout
+
+\begin_layout Plain Layout
+
+0 5000000 SENT-START -2374.491211 
+\end_layout
+
+\begin_layout Plain Layout
+
+5000000 22100000 DZWOŃ -8464.383789 
+\end_layout
+
+\begin_layout Plain Layout
+
+22100000 24200000 DO -2054.89383 
+\end_layout
+
+\begin_layout Plain Layout
+
+24200000 31200000 KOWALSKI -804.563265 
+\end_layout
+
+\begin_layout Plain Layout
+
+31200000 42100000 SENT-END -1054.473267 
+\end_layout
+
+\begin_layout Plain Layout
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W wygenerowanym pliku podana jest transkrypcja rozpoznanej wypowiedzi, czas
+ (region czasowy) w którym poszczególne słowo zostało wykryte oraz prawdopodobie
+ństwo podane w skali logarytmicznej.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Analiza}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Po stworzeniu systemu rozpoznawania mowy warto przetestować jego skuteczność.
+ HTK udostępnia narzędzie zwane 
+\shape italic
+HResults, 
+\shape default
+które na wejśćiu przyjmuje testowe próbki wypowiedzi wraz z ich transkrypcjami
+ a następnie porównuje transkrypcje otrzymane w wyniku rozpoznawania i określa
+ procentową skuteczność takiego systemu, np.:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+====================== HTK Results Analysis ============== 
+\end_layout
+
+\begin_layout Plain Layout
+
+Date: Sun Oct 22 16:14:45 1995 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ref : testrefs.mlf 
+\end_layout
+
+\begin_layout Plain Layout
+
+Rec : recout.mlf 
+\end_layout
+
+\begin_layout Plain Layout
+
+------------------------ Overall Results ----------------- 
+\end_layout
+
+\begin_layout Plain Layout
+
+SENT: %Correct=98.50 [H=197, S=3, N=200]
+\end_layout
+
+\begin_layout Plain Layout
+
+WORD: %Corr=99.77, Acc=99.65 [H=853, D=1, S=1, I=1, N=855]
+\end_layout
+
+\begin_layout Plain Layout
+
+==========================================================
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gdzie w linii z 
+\shape italic
+SENT
+\shape default
+: 
+\end_layout
+
+\begin_layout Itemize
+H oznacza liczbę sentencji rozpoznanych, 
+\end_layout
+
+\begin_layout Itemize
+S sentencji nierozpoznanych, 
+\end_layout
+
+\begin_layout Itemize
+a N oznacza liczbę wszystkich sentencji.
+\end_layout
+
+\begin_layout Standard
+W przypadku linii z 
+\shape italic
+WORD
+\shape default
+ analogicznie tylko, że tutaj chodzi o pojedyńcze słowa i tak kolejno: 
+\end_layout
+
+\begin_layout Itemize
+H słowa nierozpoznane,
+\end_layout
+
+\begin_layout Itemize
+S słowa rozpoznane,
+\end_layout
+
+\begin_layout Itemize
+N oznacza liczbę wszystkich słów,
+\end_layout
+
+\begin_layout Itemize
+a D oraz I to są błędy.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Acc
+\shape default
+ oznacza skuteczność rozpoznawania podaną oczywiście w procentach.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
