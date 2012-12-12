@@ -25,6 +25,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement !h
 \paperfontsize 11
 \spacing onehalf
 \use_hyperref false
@@ -70,11 +71,41 @@ Opis
 \end_layout
 
 \begin_layout Standard
-zdjecie stanowiska
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Zdjęcie stanowiska
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-connected speech recognition
+System stworzony na potrzeby niniejszej pracy jest zależny od mówcy (w tym
+ przypadku od głosu autora), działa dla mowy ciągłej a jego najmniejszą
+ jednostką fonetyczną są całe słowa, zamiast pojedyńczych fonemów.
+ Strategia ta, zwana jest w literaturze connected speech recognition 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Section
@@ -102,7 +133,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-
+Uproszczony schemat sterowania robotem
 \end_layout
 
 \end_inset
@@ -140,7 +171,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-
+Schemat blokowy opisujący działanie systemu
 \end_layout
 
 \end_inset
@@ -162,10 +193,773 @@ Słownik
 \end_layout
 
 \begin_layout Standard
-Dodam jeszcze, że nazwy pól to dość krótkie 'słowa' (rozumiane jako jednostka
- rozpoznawania, a nie językoznawczo) a takie się paradoksalnie trudniej
- rozpoznaje od słów długich, bo krótkie różnią się między sobą na mniejszej
- liczbie pozycji (bo są krótsze).
+W początkowym etapie prac, nazwy pól szachownicy określane były bardziej
+ naturalnie, jako kombinacja litery i cyfry (np.
+ A2, D8).
+ Jako jednostka rozpoznowania są to słowa krótkie.
+ Skuteczność rozpoznawania takich wyrazów nie była zadowalająca (na poziomie
+ około 70%).
+ Dosyć często zdarzały się przypadki, że pola zaczynające się od litery
+ A były mylone z polami zaczynającymi się od litery H.
+ Podobne błędy były w przypadku liter E oraz F.
+ Ich źródłem był fakt, że te litery różnią się od siebie tylko częścią bezdzwięc
+zną, co utrudnia rozpoznawanie.
+ Paradoksalnie krótkie słowa są trudniejsze do rozpoznawania od słów długich,
+ ponieważ różnią się między sobą na mniejszej liczbie pozycji (bo są krótsze).
+ W celu poprawienia skuteczności i wyeliminowania błędów rozpoznawania zastosowa
+no zamiast zwykłego alfabetu z pojedyńczymi literami alfabet fonetyczny
+ ICAO.
+ Zastosowano wymowę polską.
+ W tabeli 1 oraz 2 wypisano wykorzystywane litery oraz cyfry i ich odpowiedniki
+ z alfabetu ICAO.
+ Zmiana wymowy w przypadku cyfry nastąpiła jedynie dla cyfry 1 oraz 5.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Alfabet fonetyczny ICAO wykorzystywany w systemie - litery
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Litera
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Kod
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Wymowa polska
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alpha
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+alfa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bravo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+brawo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Charlie
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+czarli
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Delta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+delta
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+E
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Echo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+eko
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Foxtrot
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+fokstrot
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Golf
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+golf
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+H
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hotel
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+hotel
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Alfabet fonetyczny ICAO wykorzystywany w systemie - cyfry
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cyfra
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Wymowa polska
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+jedynka
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+dwa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+trzy
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+cztery
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+piątka
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sześć
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+siedem
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+osiem
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+lstparams "float"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Słownik systemu
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ALFA 
+\end_layout
+
+\begin_layout Plain Layout
+
+BRAVO 
+\end_layout
+
+\begin_layout Plain Layout
+
+CHARLIE 
+\end_layout
+
+\begin_layout Plain Layout
+
+CIEMNY
+\end_layout
+
+\begin_layout Plain Layout
+
+CISZA 
+\end_layout
+
+\begin_layout Plain Layout
+
+CZTERY 
+\end_layout
+
+\begin_layout Plain Layout
+
+DELTA 
+\end_layout
+
+\begin_layout Plain Layout
+
+DWA 
+\end_layout
+
+\begin_layout Plain Layout
+
+ECHO 
+\end_layout
+
+\begin_layout Plain Layout
+
+FOXTROT 
+\end_layout
+
+\begin_layout Plain Layout
+
+GOLF 
+\end_layout
+
+\begin_layout Plain Layout
+
+HOTEL 
+\end_layout
+
+\begin_layout Plain Layout
+
+JASNY
+\end_layout
+
+\begin_layout Plain Layout
+
+JEDYNKA 
+\end_layout
+
+\begin_layout Plain Layout
+
+JESTEM
+\end_layout
+
+\begin_layout Plain Layout
+
+KASZEL 
+\end_layout
+
+\begin_layout Plain Layout
+
+KONIEC 
+\end_layout
+
+\begin_layout Plain Layout
+
+NA 
+\end_layout
+
+\begin_layout Plain Layout
+
+ODDECH 
+\end_layout
+
+\begin_layout Plain Layout
+
+OSIEM 
+\end_layout
+
+\begin_layout Plain Layout
+
+OWCAMI
+\end_layout
+
+\begin_layout Plain Layout
+
+PIATKA 
+\end_layout
+
+\begin_layout Plain Layout
+
+PIOTR
+\end_layout
+
+\begin_layout Plain Layout
+
+RESET 
+\end_layout
+
+\begin_layout Plain Layout
+
+SIEDEM 
+\end_layout
+
+\begin_layout Plain Layout
+
+SLUCHAWKI 
+\end_layout
+
+\begin_layout Plain Layout
+
+START 
+\end_layout
+
+\begin_layout Plain Layout
+
+STOP 
+\end_layout
+
+\begin_layout Plain Layout
+
+SZESC 
+\end_layout
+
+\begin_layout Plain Layout
+
+TRZY 
+\end_layout
+
+\begin_layout Plain Layout
+
+WILKIEM
+\end_layout
+
+\begin_layout Plain Layout
+
+WITAJ
+\end_layout
+
+\begin_layout Plain Layout
+
+WSZACHY
+\end_layout
+
+\begin_layout Plain Layout
+
+WWILKIOWCE
+\end_layout
+
+\begin_layout Plain Layout
+
+ZAGRAJMY
+\end_layout
+
+\begin_layout Plain Layout
+
+ZATRZYMAJ 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -406,7 +1200,9 @@ status collapsed
 \align center
 \begin_inset Graphics
 	filename etap5.pdf
+	lyxscale 80
 	display false
+	scale 80
 
 \end_inset
 
@@ -492,7 +1288,7 @@ Parametry/Schemat
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
