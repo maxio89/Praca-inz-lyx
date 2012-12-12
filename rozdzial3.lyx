@@ -83,7 +83,7 @@ x
  wystÄ™pujÄ… jedynie w pisowni wyrazÃ³w obcych.
  Alfabet fonetyczny jÄ™zyka polskiego skÅ‚ada siÄ™ z okoÅ‚o 78 dÅºwiÄ™kÃ³w.
  DokÅ‚adna liczba gÅ‚osek zaleÅ¼y od sposobu traktowania wariantÃ³w.
- Relacja litera â€“ gÅ‚oska jest typu wiele â€“ wiele.
+ Relacja litera â€“ gÅ‚oska jest typu wiele â€“ wielu.
  Tak jest rÃ³wnieÅ¼ w wielu innych jÄ™zykach.
  StrukturÄ™ jÄ™zyka moÅ¼na przedstawiÄ‡ w postaci modelu warstwowego (rys.
  
@@ -94,14 +94,19 @@ reference "rys3"
 \end_inset
 
 ).
- Warstwa wyÅ¼sza zawiera pewnÄ… liczbÄ™ elementÃ³w warstwy niÅ¼szej.
+ 
+\series bold
+Elementy warstwy wyÅ¼szej zawierajÄ…
+\series default
+ pewnÄ… liczbÄ™ elementÃ³w warstwy niÅ¼szej np.
+ sylaby skÅ‚adajÄ… siÄ™ z fonemÃ³w.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -114,7 +119,9 @@ status collapsed
 \begin_inset Text
 
 \begin_layout Plain Layout
-myÅ›l
+
+\series bold
+myÅ›li
 \end_layout
 
 \end_inset
@@ -125,7 +132,9 @@ myÅ›l
 \begin_inset Text
 
 \begin_layout Plain Layout
-wypowiedÅº
+
+\series bold
+wypowiedzi
 \end_layout
 
 \end_inset
@@ -550,673 +559,57 @@ Po dokonaniu transformaty sygnaÅ‚ mowy moÅ¼e zostaÄ‡ przedstawiony na spektrogra
 LatexCommand ref
 reference "rys5"
 
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename spektrogram_trzy.png
-	display false
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Reprezentacja sÅ‚owa 
-\begin_inset Quotes pld
-\end_inset
-
-trzy
-\begin_inset Quotes prd
-\end_inset
-
- w dziedzinie czÄ™stotliwoÅ›ci
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "rys5"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-PatrzÄ…c na spektrogram (rys.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "rys5"
-
-\end_inset
-
-) moÅ¼na zauwaÅ¼yÄ‡ rÃ³Å¼nice pomiÄ™dzy gÅ‚oskami bezdÅºwiÄ™cznymi a gÅ‚oskÄ… dÅºwiÄ™cznÄ…
- 
-\begin_inset Quotes pld
-\end_inset
-
-y
-\begin_inset Quotes prd
-\end_inset
-
-.
- W przypadku gÅ‚osek dÅºwiÄ™cznych moÅ¼na wyrÃ³Å¼niÄ‡ pewnÄ… okresowoÅ›Ä‡, natomiast
- gÅ‚oski bezdÅºwiÄ™czne czÄ™sto mieszajÄ… siÄ™ z szumem (rys.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "rys6"
-
-\end_inset
-
-).
- Co za tym idzie, sÅ‚owa rÃ³Å¼niÄ…ce siÄ™ tylko czÄ™Å›ciÄ… bezdÅºwiÄ™cznÄ… trudno rozpoznaÄ‡.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename segment_dzwieczny_bezdzwieczny.png
-	display false
-	scale 70
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Segment dÅºwiÄ™czny i bezdÅºwiÄ™czny sÅ‚owa 
-\begin_inset Quotes pld
-\end_inset
-
-trzy
-\begin_inset Quotes prd
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "rys6"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Typowym formatem zapisu sygnaÅ‚u analogowego w postaci cyfrowej jest WAV
- (ang.
- wave form audio format), zostaÅ‚ on opracowany przez Microsoft oraz IBM
- w roku 1991.
- Jest to format bezstratny.
- Opis struktury pliku WAV moÅ¼na znaleÅ›Ä‡ w wielu ÅºrÃ³dÅ‚ach, np.
- w pozycji 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Wav"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Section
-Detekcja sygnaÅ‚u mowy 
-\end_layout
-
-\begin_layout Standard
-W kaÅ¼dym systemie analizy mowy moÅ¼emy wyrÃ³Å¼niÄ‡ poczÄ…tkowe etapy analizy
- tzn.
- przetwarzanie wstÄ™pne do ktÃ³rego mogÄ… naleÅ¼eÄ‡ nastÄ™pujÄ…ce kroki:
-\end_layout
-
-\begin_layout Itemize
-preemfaza, stosuje siÄ™ jÄ… w celu wzmocnienia wyÅ¼szych czÄ™stostliwoÅ›ci w
- sygnale mowy osÅ‚abionych na skutek filtracji przez kanaÅ‚ transmisyjny,
-\end_layout
-
-\begin_layout Itemize
-usuwanie zakÅ‚Ã³ceÅ„ impulsowych z sygnaÅ‚u za pomocÄ… fitru medianowego,
-\end_layout
-
-\begin_layout Itemize
-normowanie parametrÃ³w zaleÅ¼nych od mÃ³wcy,
-\end_layout
-
-\begin_layout Itemize
-odszumianie sygnaÅ‚u mowy (metoda odejmowania widmowego (ang.
- spectral substraction), filtr Kalmana, filtr Wienera, metody perceptualne),
-\end_layout
-
-\begin_layout Itemize
-inne rodzaje fitracji.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "TM"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-W widmie mowy wiÄ™cej energii znajduje siÄ™ w niskich czÄ™stotliwoÅ›ciach, to
- niekorzystne z punktu widzenia przetwarzania sygnaÅ‚Ã³w zjawisko nazywane
- jest przekrzywieniem widma (ang.
- spectral tilt).
- Aby usunÄ…Ä‡ skutki przekrzywienia stosuje siÄ™ w/w preemfazÄ™ wedÅ‚ug nastÄ™pujÄ…cego
- wzoru:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-y(n)=x(n)-a*x(n-1)
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Gdzie 
-\begin_inset Formula $a$
-\end_inset
-
- to wspÃ³Å‚czynnik preemfazy 
-\begin_inset Formula $0.9\leq a\leq1$
-\end_inset
-
-.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Rozp"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-DetekcjÄ™ sygnaÅ‚u mowy wykonuje siÄ™ w celu podniesienia skutecznoÅ›ci rozpoznawani
-a oraz skrÃ³cenia czasu obliczeÅ„.
- Dokonuje siÄ™ jej po uprzednim podziale sygnaÅ‚u mowy na ramki.
- MoÅ¼na jÄ… przeprowadziÄ‡ w oparciu o kilka parametrÃ³w m.in.:
-\end_layout
-
-\begin_layout Itemize
-moc sygnaÅ‚u w ramce,
-\end_layout
-
-\begin_layout Itemize
-liczba przejÅ›Ä‡ przez zero w ramce,
-\end_layout
-
-\begin_layout Itemize
-entropia widma.
-\end_layout
-
-\begin_layout Standard
-W kaÅ¼dej ramce obliczany jest wybrany parametr a nastÄ™pnie na podstawie
- jego wartoÅ›ci podejmowana jest decyzja o zaakceptowaniu ramki jako sygnaÅ‚u
- mowy lub jej odrzuceniu.
- 
-\end_layout
-
-\begin_layout Standard
-MoÅ¼na teÅ¼ przyjÄ…Ä‡ zasadÄ™, Å¼e po wstÄ™pnej detekcji sygnaÅ‚u mowy odrzuca siÄ™
- fragmenty sygnaÅ‚u krÃ³tsze niÅ¼ 100 ms, chyba Å¼e leÅ¼Ä… w odlegÅ‚oÅ›ci czasowej
- mniejszej niÅ¼ 100 ms od innych fragmentÃ³w sygnaÅ‚u.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "TM"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Ekstrakcja cech sygnaÅ‚u mowy
-\end_layout
-
-\begin_layout Standard
-W wyniku ekstrakcji cech otrzymujemy wartoÅ›ci parametrÃ³w zawierajÄ…cych informacj
-Ä™ o treÅ›ci wypowiedzi i bÄ™dÄ…cych niezaleÅ¼nymi od indywidualnych cech gÅ‚osu
- mÃ³wcy.
- Parametry te tworzÄ… wektory cech, na podstawie ktÃ³rych dokonuje siÄ™ klasyfikacj
-i sygnaÅ‚u.
- PrzykÅ‚adowy podziaÅ‚ na ramki pokazano na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "rys7"
-
-\end_inset
-
-, wektory 6 parametrÃ³w ekstrahowanych w ramkach o czasie trwania 30 ms,
- zachodzÄ…cych na siebie na odcinkach 20 ms.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename podzial_ramki.png
-	display false
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Ekstrakcja cech
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "rys7"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-NajczÄ™Å›ciej stosowane cechy sygnaÅ‚u mowy:
-\end_layout
-
-\begin_layout Itemize
-bank filtrÃ³w,
-\end_layout
-
-\begin_layout Itemize
-wspÃ³Å‚czynniki LPC (ang.
- Linear Prediction Coefficients),
-\end_layout
-
-\begin_layout Itemize
-parametry cepstralne,
-\end_layout
-
-\begin_layout Itemize
-parametry mel-cepstralne (MFCC, ang.
- Mel-frequency cepstral coefficients),
-\end_layout
-
-\begin_layout Itemize
-parametry mel-spektralne (MFC, ang.
- Mel-frequency cepstrum),
-\end_layout
-
-\begin_layout Itemize
-parametry dyskretnej transformacji falkowej (DWT, ang.
- Discrete Wavelet Transform).
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "TM"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-KaÅ¼dy zestaw cech moÅ¼e byÄ‡ uzupeÅ‚niony o tzn.
- cechy dynamiczne, czyli wspÃ³Å‚czynniki rÃ³Å¼nicowe.
- Polega to na obliczeniu pierwszej i drugiej pochodnej powyÅ¼szych wspÃ³Å‚czynnikÃ³w
- (tzw.
- wspÃ³Å‚czynnikÃ³w delta oraz delta-delta) wzglÄ™dem kilku ramek.
- 
-\end_layout
-
-\begin_layout Standard
-Pakiet HTK moÅ¼e korzystaÄ‡ zarÃ³wno z cech mel-cepstralnych jak i LPC.
- Opisane zostanÄ… jedynie cechy mel-cepstralne oraz mel-spektralne poniewaÅ¼
- sÄ… ze sobÄ… powiÄ…zane.
- W systemie stworzonym na potrzeby tej pracy zostaÅ‚y uÅ¼yte cechy mel-cepstralne.
-\end_layout
-
-\begin_layout Standard
-Ucho czÅ‚owieka reaguje nieliniowo na zmieniajÄ…cÄ… siÄ™ czÄ™stotliwoÅ›Ä‡ dzwiÄ™ku.
- CzÄ™stotliwoÅ›ci powyÅ¼ej 1 kHz sÄ… sÅ‚abiej odczuwane niÅ¼ rÃ³Å¼nice w zakresie
- niskich czÄ™stotliwoÅ›ci.
- Dlatego im wyÅ¼sza czÄ™stotliwoÅ›Ä‡ tym sÄ… potrzebne coraz wiÄ™ksze odstÄ™py
- miÄ™dzy kolejnymi pasmami dla zrekompensowania nieliniowoÅ›ci.
- Po to wÅ‚aÅ›nie wprowadzono skalÄ™ melowÄ… (Mel) zamiast hercowej (Hz).
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Rozp"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula 
-\begin{equation}
-Ï‰{}_{Mel}=2595log(1+\frac{\text{Ï‰}}{700Hz})
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Widma ramek sygnaÅ‚u po uprzednim przeprowadzeniu DFT (ang.
- Discrete Fourier Transform poddawane sÄ… filtracji za pomocÄ… melowego banku
- filtrÃ³w pasmowo przepustowych.
- W systemach rozpoznawania mowy zazwyczaj stosuje siÄ™ banki 26 filtrÃ³w melowych.
- Filtry tworzone sÄ… dla kolejnych pasm czÄ™stotliwoÅ›ci, rozmieszczonych w
- nieliniowy sposÃ³b wyznaczony przez skalÄ™ Mel.
- Zdefiniowane sÄ… w dziedzinie czÄ™stotliwoÅ›ci co umoÅ¼liwia Å‚atwe wymnoÅ¼enie
- ich przez przeksztaÅ‚cony sygnaÅ‚.
- Do wyznaczenia cech mel-spektralnych dla kaÅ¼dej ramki sygnaÅ‚u wykorzyje
- siÄ™ zbiÃ³r 
-\begin_inset Formula $l$
-\end_inset
-
- trÃ³jkÄ…tnych filtrÃ³w D(l, k).
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula 
-\begin{equation}
-MFC(l,\text{Ï„)=}\sum_{k=0}^{M-1}[D(l,k)*FC(k,\text{Ï„})]\text{ dla l=1,...,L }
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-WartoÅ›Ä‡ pojedyÅ„czego wspÃ³Å‚czynnika MFC odpowiada waÅ¼onej sumie wartoÅ›ci
- FC naleÅ¼Ä…cych do zakresu trÃ³jkÄ…tnego filtra pasmowego odpowiadajÄ…cego danemu
- MFC.
-\end_layout
-
-\begin_layout Standard
-ChcÄ…c wyliczyÄ‡ spektrum energii dla kaÅ¼dej ramki, stosuje siÄ™ FFT (ang.
- Fast Fourier Transform) dla kaÅ¼dego splotu sygnaÅ‚u z kolejnym oknem i oblicza
- kwadrat amplitudy kaÅ¼dego wspÃ³Å‚czynnika zespolonego Fouriera.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula 
-\begin{equation}
-FC(k,\text{Ï„)=}\mid\sum_{t=0}^{M-1}[x(\text{Ï„}+t)e^{-i2Ï€kt/M}*w_{\text{Ï„}}(t)]\mid^{2}\, dla\, k=0,\,...,\, M-1
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-WspÃ³Å‚czynniki mel-cepstralne wyznacza siÄ™ ze wzoru:
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula 
-\begin{equation}
-MFCC(k,\text{Ï„)=}\sum_{l=0}^{L-1}[logMFC(l,\text{Ï„)}*cos(\frac{k*(2l+1)\text{Ï€}}{2L})]\, dla\, k=1,\,...,\, K
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-NatÄ™Å¼enie dÅºwiÄ™ku jest odczuwane przez ludzi w skali logarytmicznej dlatego
- przy obliczaniu cepstrum sygnaÅ‚ otrzymany po przejÅ›ciu przez bank filtrÃ³w
- melowych jest logarytmowany.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Quotes pld
-\end_inset
-
-PoniewaÅ¼ ukÅ‚ad gÅ‚osu ma charakter ciÄ…gÅ‚y, zatem poziomy energii w sÄ…siednich
- pasmach sÄ… skorelowane.
- Dlatego teÅ¼ niezbÄ™dna do tego transformata odwrotna Fouriera (tu wystarczy
- przeksztaÅ‚cenie cosinusowe) zamienia zbiÃ³r logarytmÃ³w energii na nieskolerowane
- ze sobÄ… wspoÅ‚czynniki cepstralne.
-\begin_inset Quotes prd
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Rozp"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Aby usunÄ…Ä‡ szkodliwy wpÅ‚yw podstawowych drgaÅ„ krtaniowych na zestaw cech
- moÅ¼na zastosowaÄ‡ przeksztaÅ‚cenie zwane liftrowaniem.
- 
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula 
-\begin{equation}
-c_{n}^{lift}=(1+\frac{\text{Î»}}{2}sin(\frac{\text{Ï€n}}{\text{Î»}}))c_{n}\, dla\, n=1,\,...,\,\text{Î»}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Gdzie 
-\begin_inset Formula $c{}_{n}$
-\end_inset
-
- to 
-\begin_inset Formula $n$
-\end_inset
-
--ty wspÃ³Å‚czynnik MFCC a staÅ‚a Î» odpowiada indeksowi cechy zwiÄ…zanej z czÄ™stotliw
-oÅ›ciÄ… podstawowÄ….
-\end_layout
-
-\begin_layout Standard
-Podstawowy wektor cech moÅ¼emy uzupeÅ‚niÄ‡ o tzn.
- cechÄ™ 
-\begin_inset Quotes pld
-\end_inset
-
-energetycznÄ…
-\begin_inset Quotes prd
-\end_inset
-
-, ktÃ³ra pomaga odrÃ³Å¼niÄ‡ sygnaÅ‚ ciszy od sygnaÅ‚u mowy a takÅ¼e sÅ‚abe bezdÅºwiÄ™czne
- spÃ³Å‚gÅ‚oski od silnych dÅºwiÄ™cznych samogÅ‚osek.
- SumarycznÄ… energiÄ™ w ramce sygnaÅ‚u Ï„ oblicza siÄ™ sumujÄ…c kwadraty prÃ³bek
- w dziedzinie czasu wedÅ‚ug nastepujÄ…cego wzoru:
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula 
-\begin{equation}
-E{}^{(\text{Ï„)}}=\sum_{i=1}^{M}f_{i}^{2}
-\end{equation}
-
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "AnalizaS,Rozp"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-PodsumowujÄ…c, wyznaczanie wpÃ³Å‚czynnikÃ³w MFCC moÅ¼na przedstawiÄ‡ w nastÄ™pujÄ…cych
- krokach:
-\end_layout
-
-\begin_layout Itemize
-blokowanie sygnaÅ‚u w ramki, okienkowanie oknem Hamminga,
-\end_layout
-
-\begin_layout Itemize
-przeprowadzenie FFT na zokienkowanych ramkach sygnaÅ‚u,
-\end_layout
-
-\begin_layout Itemize
-filtracja za pomocÄ… melowego banku filtrÃ³w,
-\end_layout
-
-\begin_layout Itemize
-obliczenie mocy FFT w okreÅ›lonych pasmach czÄ™stotliwoÅ›ciowych,
-\end_layout
-
-\begin_layout Itemize
-obliczenie logarytmu zakumulowanych wspÃ³Å‚czynnikÃ³w widmowych,
-\end_layout
-
-\begin_layout Itemize
-przeprowadzenie DCT (ang.
- discrete cosine transform) na zlogarytmowanych wspÃ³Å‚czynnikach widmowych,
-\end_layout
-
-\begin_layout Itemize
-opcjonalnie, wyznaczenie cech dynamicznych.
-\end_layout
-
-\begin_layout Standard
-DCT przeprowadzana jest wedÅ‚ug nastÄ™pujÄ…cego wzoru:
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula 
-\begin{equation}
-x(n)=c(n)\sum_{k=0}^{K-1}ln(S_{k})cos(\frac{\text{Ï€(2k+1)n}}{2K})
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align left
-Gdzie 
-\begin_inset Formula $c(0)=\sqrt{\frac{1}{K}},$
-\end_inset
-
-dla 
-\begin_inset Formula $n>0$
-\end_inset
-
- 
-\begin_inset Formula $c(n)=\sqrt{\frac{2}{K}}$
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Przetw"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Otrzymany wektor cech MFCC zawiera liczbÄ™ elementÃ³w rÃ³wnÄ… liczbie pasm melowych.
- Do dalszego przetwarzania brane pod uwagÄ™ sÄ… zazwyczaj pierwsze 12 wspÃ³Å‚czynnik
-Ã³w, do ktÃ³rych dokÅ‚ada siÄ™ energiÄ™ sygnaÅ‚u w ramce oraz opcjonalnie dynamikÄ™
- zmian wspÃ³Å‚czynnikÃ³w w czasie (wielkoÅ›Ä‡ zmian oraz ich tempo), wtedy wektor
- jest poszerzany o ich przyrosty kolejno pierwszego i drugiego rzÄ™du (czyli
- wspÃ³Å‚czynniki delta oraz delta-delta).
- W wyniku tych operacji otrzymamy 39-elementowy wektor cech mel-cepstralnych.
-\end_layout
-
-\end_body
-\end_document
+\en>ûfÜ!ÜJô£=ßøD¨|]ƒH¦ë²5>ººèúÎª|6Væí7åD!)uÈ„jv–¶9¥‚ÙóÉáL4ÒX ?_vüú¿Yê$é¤°ñßm©}-®ÒC$?EûsÑrÊÈp‚Âse@Öèd´°äH‰–LÚhwžº”G?Þ°ß‡._%ZDÂ¾ù…Á³B~6ŠŒP¯5aÙþŽ†$ìE<ÄÛ>pÅ™œ¥Ô¤´=WYaÛÙJ$fAê"š#[5Õ$"¤º–Z;„ÿ[‹%ý…Qý­ðPó•ÀpI™¸ÌH¾nˆVy°m“P½³É¿ÎE‘æã˜™Yx~Œã-8czSj4å­$HÑ#«M6ÚGºÿ=ˆ×hÑá˜¸½l0Ð÷»]Q#ßÌ3Xª)Ú²&é-—ƒÏNuûW·Ka0]‚äNžm—òYkÅ·,Ü¡ï`N‹A’ðÂæš ÅÚà®Ør”}^\šê—e [XùÞ¥&¨Y—/fqùÓÔä—$|÷‹%š.œÆd´ß#Ê:ØùÐNŸ ;ôærÚzÿÝÂÇ-o!¶ƒ+ÓÓƒAµs@ªÌ6F–¢Z[+¾¾ŠßD@7sl]PÜfIã|ÚJs`_Ã›O?˜ ë5iÐ­*v«µ“§òºxšÙ ^Vê.Æ§ÅÊàØÁÛ*VRÿÄùL9éÞÿáHºPaÒLq±Ž°GÈA¥Aà©·÷¸Yø "XÊ…XàÂšœBjuœQï‹äšpjz3Ö¡C­itwøé®³1Ôå:{w‚%G‰‰)UŽSB%èãjàŒK[o¥WŠÐ½*þ$º«"ÕœínQ«…U‰m
+ H\üK7Ÿ+ÁÂ9Œ~«0ë.Þå`Yû¶06Î0|6Ã[u0†õ»ÁM±¢-Y¦žÁÓôRu©ñ;b0s¢>3;.ƒþ~|yõþ6EF<]m¸ÀÏU?=êæ&LˆQtâÏYÑçMÈÆŸYÊá~]Ç–‹³+Óa"e³è¼N$åü×Ô0´q¹áa–áÞÜM•³_Ô£bƒíÏU !6¨™>ÖÅ–‰òÄiÏ±çHa‚h±˜ ¸5"½KB»ŠŽzwýó@ç]±ñ‡p/úµ=¾÷ÌýE{_»Czc>"ŸÊÌš'oÞÝã¤±×P†þw½Í´vÌlÐ¸‘‹u‰7Æ
+ëSržÓ¨è°¡k„9Ó{L… -c¶íUÏÿj!-à¢¡ò…Î-ßx~¿ö0ÒÒ,p®ûx^u»øž_½×­ô´:ÌŒz¥†uóZ»¿«½õwîß/ž‹.l^Û&c`Çlå¾…ŸvZ¾!éaiî—`¢AþZZˆ¿ÆÏ÷9V/ÅL³èš>Éà“1ðHTµ®e %»[™ÿ½0’+ô6“UÐõÅvŠ‹C£ÎtteèL@ÿ»ŠºÓªôóxV—fý,f)d¥Ìi‚Î©rX‰„3ç}ÞzNCô™Å’ùËªãq–mqMºLM,&rQss2ª« íf«/`Šp\¨¢þ0$X¤”jÞöñ¯4B”T¯“IâX0ë
+ØxeÏ§Ð¯—ùx8rÆ›)ßÞ£‘Þ¼LQ3ö"˜J¤ŒÚÚè…Ú“^/´j_ŒqŠŒ`g"^A¹	 Ê‘Û„ý°û¡ïœh%ñº.-7
+VÊO“£0Ä”7u&F>ý½×yOêõ?ù»3jŸ9RmŸ”ÅgKù¦	ÿÇîè‡n|ïNPx‚£n¶8˜ÚÅ¯öY/çÞÎ–gó¢”Y,&¹piÔ¾wøòÎrÏ@TÛà¸oÊë:ã®q!à;‹—C—•áPZƒz´7YD¶#5ö°‹ÙJ$ÞV3§3V-ŽâHc…‚b0¹MÌ²T)pªp¿\é„ç!Ä.qùÈ/H8-"{RX]FpTÙVøZ¶Ñ­È ð‘ÖàWŒÞëºO­Æôf>Tò31Ç|E`<~ª«2®¯yj¼Ô…?í`éq ³ÄÌÅVÕU%
+vêTÐG!ðÑžH8ÿuìð	4í[›¢òùÂ–¾€l­j5ž¤¥{ž3»6'p‰ú’Œlb~ñÖyåø›Â[þv8rKy’Ù<ûaÐ•\{æñ]ä"J•ð®¾“ÔÚŒ¤g¡«¸¢Û	¾k‘¢ÊBIQ¯áCÊÝCðr§µˆ¿€¦Õ¥gÐ©Þ!Ð‚°yä[á=öún¼ry'¾ã¦¡=Äe®[¬•ÛØ¡ß›³}`(0J§9¢¤ò0¶B·óß©["è‹Í8ðãÁŒª­#P¨÷ŸÄd4vGLX˜F¿­JZ„çñ?šD†Ï™
+-ÙêÖŽÙå‰’•¶2Ô"»4áÄÒt[j'õ½K”ä»ñ×¨*¡hµ:|«€»«^$Œmù™ß¯E’tnÒV–Æ‰¹éAØ\Lå‹ËI—´PMôŒæüªqtÿßûº|à†ì›Ñ8á
+î‰²#	HÊ˜¦a}ÝÂË]çŽ&õóØ¾Û‡O!<ÃÈ#%”K³?2AìV»	‹»`Ve=(„Œçq{ø©SÝ;oòóÚ\}è?#<${0&Ø‚Ù}V¸‰ú®«³9 P‹Þ h©Xž°tLWüÅ÷ôä¸Á*VµÎª"(+‘h[Q4ïbÂèj®°:×Æw¹Öœ2þ~½ühŠMº.ò‚‘oÚ×~ää¬pÖ{f|pÇ4}}Jt–¥	iUÁìÕ×½Ì‡"B¬ëëÚ§ªßª9ö2Ðaï<Ùµè(®2ÐÏïµ"E¹6dDÌµ‡Û"š[Ù9Å®Ø¤æ¦»soóÇ&ø½)°êwJe.á­¼Ábü
+ÑÐ¾\°ëÆÀÕèØ6xè&È!Ô±Yòîí¼t6ÕÚ0áEZ•¾ûÂ+pGQ©ÃEˆ¹šª@™mÐ]HFeï„{êgð)[ådCX³KL`*‹«M|zXý±í÷•t4xm¦¶OOSŽõ:œ!ãÒåë*PJWÃ}d@t'-±u´àƒØí°ÿö(CQ³Á‡¦gìfƒ½ÇÏÇk BÈ…	ÿÛÒ ºüy¸’OavÔiƒ]-Ð»:ï]|X¯c¿¦4HôÎüz¹N™ê/Gƒ.9Ö»ÁÁfÅiÖO¢$ÒnóW^oºý5ÎD¦W<KæÞÙÊe#î€Í_ÁzØÒ*§Å?éÔÛÉLsº ·å9HÒ³¯Þ×=x¼Tä‡ÿ*°›H«¿å|ˆ “šúMk#GŒWÿ ¸.[àÅ?Ìæ`·l½í:íÞf¨"êB“¡«Çèk|¢Ó;æ›=µ |3„rã8÷9§‰ví*Í ûxr o†f»ÉiÈLl<tÐ7²V(oSU{!?1ªâƒ›5¯~;¤UIyF¾/jŸ>Ež'¸­_]>6âqk¤Û‚l±É|€ý€VÁšœÌÇÕ’`ééRöÒ²®Àh2_K!‘Af@ÓûÑÚ«ûšSÉ f½=­ö¦uÈ/ÊÅääW \ðû62lr_xoP‰Ö:‹Â¾³Öp°NÿÜ µ´Ð´—j+SÂÆ+ÃEËþû:Yh÷Ûñ¹Èèýü °;g—a8g;Ü·¾ýâëÀi¼¹á 9Ô9®DÓ0[bvžFÊqéàÄ9DºàÓäu’©‘²çÓþ?qÇ˜‰ê–‡³–²j,fÆÏí‹uu¢¨‡7Äû·ÖøÄj‹wt¾híË)t³ðâ°ì9ºJR|Åþ6«!x$'*Ï†¸§ïºÂù¤`›¼(r–åªO‚+±ô/€.×(>Ë
+í¢á=/¥nuP.´²ópª!ÔîFÎ•¼LÁDû÷ÿGoÜk§¡ü¶¸—¼çÙ¥NyßÁçòÃNJwtq{ûXõq÷L}ËŸÅ­4ð§ô£3$g;nœ¿{ùí¸wH]•žÇÎ§Ñ…ŠCwŽí¹ù'ûñ&2ßÇøzU¹U\³Îµ•~ø"R‰MÏ>AwëÜ'¯Ž3Kî…ü×(ÒhkÎ”Ke—ÊšHA2Ã9Æ«ç¼œ{EÆi#fn…@`BØkànK«d\¬sŠŠo£B£.þ·ë/
+3Ë„·WdÅšý'Vúë(ð¼¸¶Ÿæ†±)¼F×VùŸ£lÄ—?‡&Q `p1¡ä¦—JkÊÜ*˜°I8ÜèY|ÄbùÖL2þÆŽÆ\©#ó¶ Ì«­^a¢u]C¨ªP˜ÌoH´J:s±$ÓÑêwÍ¹tõE‘³Q“Ó íêªR{Ýù[(?8dµ‹ò«_¨ä†4D˜=ÇßÒ4À[oR—!ˆt|$°—oÂø s-,yô˜’ä—ØýG‘õ2ÌÐŽÉÍ©ß:T¥¢ôÉß!©d(þsÅ<Ô²~Ýnsl?’å¾_‘£có²&è”zz_:?¶ÍWÒiJz÷¢ïf¶ ï	ÒÉWf¤{¿ó<hSù­j°°|!êÝ3¢9ˆÙÍ©lKRÑ·S<¼»µ—Ô´¥Ë©‡-ÌGRn 2ÃÙºk|cèžwÏÊÜ~,w0·Ît8’à@»ÓËýFûê"g´¹GÌ¼Þls¢äà™+„êÎ\¡2‘Ü¢^(#ê®ƒù·G$€îîiÜ¡»­‘Ê¿%~PvTˆ³I M(?Š±L (’é@¨<HÝ#1 R‹Ÿ€¯‡4í®vëo-“ËÀ„e%tjûí¸ñ#VŠz^ÂZÌ¡¡ÂèÈ´$^CV‚	j×·Ö2Ï’°”‹È·š8:)Xïl;ðÅšM”{tˆ¼6W¥ùwï­;·ÝÖ„›ôõ7 ú‰QÃõ¸w@hhŽç½5ÆÔŠÒ=Õ2¯Í®ÓÊÃƒ¥Þ~€9[Á'¾ºXÔ£ÏVÊ)ç„ÿSlZjv'RÌ½Ÿ«ÄüËUÝÒü:l™„$!!è:b–%}¥
+:U€ìÉmŒfà hxtOoëŒ‡öÔ‰„p¸s´VM¯ªÄ¤ÇÜÙ¶oÈc|Í±ð©‚ë"»ú8—3ÔÕZäW(iPH“p™îFïV¢ÒA}×ÁQÓó²Û€\PøD!rYùŠv­;¨Ò65¥Ú„8D&@SÐG89Ã)?´¯ÂŸ8æ¿¼³Î—ŽÉ‘àîúF7·-©äÍúMRA»ÄYâ?•Û(®pnù®EÚbKÓ!ªB†\¼¬º.Žÿ2mùÊ²Œ£Cë‚„åÓó¡ï>ƒ¥ÔG­üÕ¤~ÓE„õ&Øj¥%=£àfŸm$¦Jf'èo›J‹¿ÀÝuÌjw¤ä¸5Ð2¢ú‘m|Žr‹”¼&žcL÷Š ÞÈ*´~U±§lIÛ°jr3ØÉZLˆ¥ÓO¸œÚ¨#&·¯çbFPxEÃÄC¿Ñpq“»Æ¾%m!÷€èÐ>6œ–tp=2º[Û4ñ,~øwŸªÕ.Ýí7Ú©r††®z¸(?êù5;QèAþ¨t-¨ÑB¡ØëA·;;¡†ÏÈ¬er©¯g@H¢ÿ—¼4à³¸Ì™o’pê!^fTþP9¬E<*ã„q^Ë2¨{m«8¿™Lç˜àÆ¶Á.y4útû§±ÂÍ™5¡€b–‰|DëzàÎKGôpë! ¼wKŽßK9$Ç”(A“{Ì©ê^…¶ë{¬Qu3»¿ÅìdH=¡-²Ï:§Úû.î-E™àü…s±/ß¯„ˆ(¹0OHÝlåÀié°µË@¾ñÁ€wuØü±§pžƒ»út±p’ÅD"‡%¿o£`ë6Sdè‰¹Éu@ù±ÆÚN§4“P²<‘„£l8‹r@å@‹ÅxŠß¨x‚óG 9VH`årT	£P€Ömgd/¦* p‚ü‡Ö ÃFÆ0JZwxR¨ÞïÑí\ÎöêÄX} |I®ŸîÀ‘l©‘Êg×},&ì)*‰éê™£&måRoŸ\_²P`á™!IuAùM³Ók\a/$ìzk£€šòë,òv45N5KrmAuVs3Í÷\”OåùgvEÔšãìèOÛ¤3ôß•ù=N»6ggx\GOk¨ò¨9Í_&§!NËÄM¬v·;^D³6Î¢|ú•^ªOÀ¾†'y¨eqO?È”,aót
+ZCègC†ŽLõ	·V3 ®7ãƒÝq›˜Dó~ºÈI}ÅÓEGüT<Þw€
+)üjj>üYÀ>5èê>N~t§œ¸%ü„ìÀ´.9õ¹³®[UqŽ"c:†BÂà¶µ²*)Ù5`¿£?é‘¡ýÚÁò9\	94¶ƒD³Oêºc]s1«—H\&×ÏB»)r„)ž³NÎ	2·ÖW_k_ÕÜ—BqÃWŒÔGU9·O±¤áÎðç»ÍÊ«çŸ— „UœÒ ÊˆŽÕTî?ß®ñÄoŽkQ¦$µ3÷*¿¯°µ,Ìs|%ý®5)Àbç÷;É9P	kb¤–PË§Â‰Ô¾pÞ‰¨=™Î’ç_XßzÑ(¥ú¸ésmÖFh¢ŒýEóQ’º4£Ô_x_9CKØ¨€Æ¸žMbv™™¬¥	ÿu¨ŒæÌ8RªnzMÆ”‚âoç±tÏÆl%gÒž¶Éøä|ü@I7£Šä\|µj“É·µ`ûf÷ÂÀ§ïö´Â³†ÑõîanC«ÅöÃgšíüû„û.hq‡	áƒ¾F&­<íÐ¦´¬¿`'—ƒöìèüè˜tlý¿¾V”@U¯2;B.ÇÓ€Oè7§4k‹–ðL‚èÑ¢69ÛãR[LPØˆ¹Ö¥‹úWôäÔ‰“Í‘)èþ¿’ÕFWê¡Øl”@òióVÏ£™ñ”²,U' ƒ6ªJ)ÐíTÈçÅ?lrO+o&³>ÁÄpQn3º
+WØ*Š‰JÄ Á`A³f×Ï/ƒ[;›J¶¥÷Ó1;†¡’Ï×;Y
+Š» ƒÐDU•cOLÌZ¯CÝñgwŸá—ŒÄÖÎâ&æýÖ8…F÷aþº´›ž¶L&th¤8P¼NÇ€jžò,ÊL·—y0±Y§ïMe­þÏñ)RAš¦ò~Á‡ÎÎaa'VÏ)äôÔ‚†µíôw=ùx°Ñ;>hD«úÚ¸m¡¶¼¸¿	oUŠ¹¡»A½·CùP&#˜U*ÄxÖçàhŒQc„Ù¶·«"Ñh.ÎXá¿ýíß7K>1)ðã
+…èŸÚÎ9•ìâùû­ùµ_SÖé÷Ù6§=Ëâ°}s{¦_ªÝöGÿ;Å»¯¼mïóU¼í²Ùø;éà‰PÃèÑª¿)6G>9ûå¬©™äi9ÊßÉdóÝ	¿OýžV¡¸yŒª‘L¸¡ÃB­‰ä†³ ¦kº=]›ådÈgæa‹¸^i2=‹›¿+FÙS»úÊáÂû«¨TqÓ—D°5ädH¢öž4›š¤O!ì•¸e¯•¢´`Í¶t­ñ¢¿Wƒ«©^q¹!¥[†Ü·ö[óx¶tåV í›úßú 3ê]©Ú·eo÷mü\x±±î]YŽƒÁ;œç@)SºËoûýƒ³˜u!…š»ÚmjÑÉ+1G,Ž?)äçêŒÙh,&…ß jÞ8^ÅXŠõ`‰–k&•Ä}›ù»–Ïxõ·î¹€Ñ°{)¡œÊ¥“{›lKÂöŽfÖ%[CŽÒyÐ\ÐÉD…iøI=0 ôŒU%"PÙ›8(Ü(º…LÈÍôHn†jë©m»•k¹ü3mwK$©O+wþØ?^róÝ³Øï§ý;ÜÙ{Ã\§®0K+o‹›Èâ48õò	¹í2wºD¯&ØÑw>:U÷¸øXK¡¹¨È."%9€Á	'Œ³;ìæ>Î´ ”DCÛ.azË7uLñJÐâWÏRîËlp1% UÈÁoï2$RíÂ ‚ÏÏÙGò‹ R2’V£Û$ï/2‘ïNÚ'xÏN5Šæ›1:X<`‡fë ì£4Dç2TÅ­á¬«Þ&¶¦¤Þô¢ûIó–âElÔá8PÙüK;e‹;Û¹éT»Í.}eáYÆzäo”‰Å¬B3!¢Íä`¥a4åßoKB<åXIGÍ·9ÞvË·E
+±à?„x³GCÐâ&ŸP¹üÃŒVç2M††D³mãX_0•Ô`&“:[Ìi%t8.Ù˜&•ØkA­Ò÷Þù‹ûØ-3êlÍ=rdº¨búé—I8ˆÜÌg²¥éâ·÷Î˜öÓ¥×‰‹½ã‘Ò)Bæ-Ü4:wðË­¡×]ê¡Ûp4Â¯;m˜­,Ñ´-Êkú†¥àK­	 ÃqÈ,Æ76ÁrÔ5ú82µžóÄ&}WRícdd”G¹¨K«H1•ÇƒS)0mx®‰—Ù¬ÇðWF6²®j’OPÓC÷ÎG«†zdç¥¿þÉ)˜ÏþÚPÓôñÖq>rìêP(bD\¨SúIw('0?´oÈ„C§ìmÛ¹áiÀ4vÿüwˆ~«è‡yCÏÈnKã·íó½‹“~¥.ˆÿr÷qùy_V›.Whæ8V!t”A¾33_Ðw3!}iú%‰ÜÑ¤,*ºtº„þÍãÎ9„–êØòÃ ÎViœÆc4Mt²´è†nŒ’¾{aò#-98›ný²Ú®¹,Cu}M¹œ’[a
+UQëW/ï_íÞk¯i}ŽåÎ#0¹­õ%F
+-fKƒ€IÁÇ·S×Ù'ØÎ²fg- [ªÌÄø HÃs‹|áQXäC+[ñS›Ñ	ò$<a¿ñá‹Òê#-‚S¹Vö¾º¢õ4¨'îs$rœ[w}¿(I.®Ü}hˆù
+!'Y;‘×nÞîEÑ’$årEZpªjxˆ•bDû«§±ÀŸþõ<Üõæ	§˜
+
+/ú[1jœ«bÞ3îú\8 ¶ð½jè ü„«yTÍžÞÌ2f88w´ ’+ã%k3àHØÂ	ñÕâ¼šÃ: &=Êg¸Ü	ÃFT{KÁil5÷Pû3ÒŸZtÏ=YO27ôÇi’ñ†ÁéØ~l(PˆÒk„vÔañÂáÆÊ¸uÏ›1P¾ù’ï€ûƒ—}XÌTx‚>#fëgEE™›÷ˆaxf3ò]8Ç½®	»ÿ÷ú«ÇÄ…˜T\„$Tˆ§æsa CBEîõxMóÃ½X“n{°†EÎr»çümýÇ0Ð_0Ðe,¾¤De€Ïn{D£i>B|³]?¯Y¢¤[ŸÀæƒ”¼’¸‹ü¥Pu‰"L©‹…{£=X±z¼äÏ´Z‘è×RìÞ”.Nãº^òãüû¬ð¿üÇ‹dƒãŒtí_	…<úšhÍ2<$;©GÇÝÈPó»X¶	Õ^8oñfyg°Î¦Sá…š…½]H¸ko)ž@ç¦ÿG2;
+ÖúP—jáœ«dxóý¼°r>·Žcfn~U¹zl|š=%¤)öu |bê °ÌÃC]ŸÙë”cßT“¢·Kvå¬¢Öˆ1OE®Z¨AW&Ç1$³¡^ç’€ÆTCá¤¥	Ã_ÆÇ7Ñb[B¸òw‚ê#]ì3·¶$Ð@úÒ;-ç\ž)QÌ^­uÆµ•6	2áxj±Á*1êk‰ÞáuÛê­B·…1óÓŽäDù’M&‡¸&]ŠÏ`¯rü Yá¢*hV%çóôž\×ƒx¹÷û7ïÀFÏL¥zÎócUU`•FobêM`ÂB…÷Só¿š'ió¶­áY,ôVý;Z	±¿Ç`8!ýE¡_¤WbQÓäF©·=î÷pŠ|‚Ñ%V~bã¦Ð3*Cãô°ò?B´”îƒˆºä$vSæ—NÓ
+¬¼ã´®í)iÞÅkÊšXXËæÑ
+ýÞM]rÔíÝEÊ>×t["roØ.Â3ƒ×¨¡µêäÔC>WßXCh6Vb2¨/º¤%çÍF‹ß¯ê6G8])G@ºTX¥Ë¸~å£;DÕ`Ú’Ü4í+Û%¥Üˆ¸NÌX—ïCy2•þýôtfM½ÿIF)ë§ï=›ü˜„h`ÜqÆgfRÚ]¼5cÀ·–jò®Îù²	Í:HÕ‚¸ÖÖ´2/È÷­ :¤n	3µÝMÙx&s‡1Ïàx¿7nµé*ÔÇŽh}D~³æãžJ¯Î£gÏÞ´&[Ä,¢Ê$óx>¸¯=Ý°`¥‚Ñù%‡×Ñ‹P7¸Ç=Z–ó‘ž_Hš2f"öãV•,£ƒù³o°µ¶{!þz¡Më&©Ÿí˜¾¹Kð—×úxå»Wx.°ÔuÖ’OÆ³ðná}í„Rùì˜>=Ê½‡6‘Zóp±,C¾ÈÛ[%%ÎAl˜À–³h³´:–`ßè}^›À¶C°òqF¡+–å…"KOë«Íú“X!ó;Ä3½ºÊûHU„¹¡»úylŠ`),?,–,¶sáBÆ¤lóWsÖ`¦25%¿Ì¾ƒ>ªAv€dEƒ(3ØúšÊÒ1ÅÙÿàL‚bOñŽ|®¯ÐøAOþ±‡º1¡ÕYÐncí;?RGŸÂ·]ªß]¸ö{¶“Žþº»›þIl#\†ÔÄ“Åÿ|÷˜½É§ÉWO×oëÕúüÔ••:ßUÛçšæÔûç~1¬¼Ï¹†ÑÓÂÖt¦,ý}øÉM¯Í„GYzM³R'kGç ÅTKþëP­cwä\rÑü÷¸ñ
+Ù9H†SËf—oŸ$Ð q‡?ìMBk°
+×A\!ã°Þ1r¥o€ ÍÜ+Ä´Áj6-‰+þœnôFÉú¾Ÿœ7†àÏ2
+Dâx_ Kø³Ldîžƒ¾ÆcY |žÑá]âolÍËGgËi0®ß·EOQîB]øà1ˆFÎËË tßTª2¦q·Ï	éÇ,v-RåÙhéæ¬Ã­‚ Kõè×R›ÈÌ£Ž` œ¿ÑO‹o©‡ÐÐ]E%…i„®¯ÚoPÃ:9ïrìÚKA¡‚³‹´mžB±ùÁL´]mfÐ=’gV¼#ü0¬o…¢ÅÏ¿	¢O2iµ‹¬¸¬X$`ìžÀ‚L‹Lnß-Ú¹ÌG’.©;—•oò¢O=N‚ÍöëaPxŽáïÛê³šgÁwó¦÷H~ûµ™GxzíòJÐlÒÖd@î…ÆOµ-n¸¶nf˜Çí4¨G(J
+Ôý‚‡z1Ôæe	Š·4a‘Ü°´µæd`¡ß,–â¢ÜžuEo¾Y¯f{«ªP×ë€p¦†}¿Šh‚'{sz½¡OäEaL$n„‡Ù¸2l¨¦0úW‚Çb¾¯N+ÉîV"ÐÆŠqëÛ}ÃX„Npm×ç67mbÎøö¶Ônî]†›ÕrÛœMM6³•Qf™ŠÈA«Ð‚@B¬H1‚û¶oWUâIñ!YXì&ÜaI‡†µ)“[!+ë ¡(Ýï†7Ù—oÓ”[°hõÚæ©QU”t3æÂ9¿~åôØõ6 êÖ/Çò*œ]}X?7Ñ6ýt^Ž,OG¬(ÔZk¾‡kÎã‹®ÝÝCŸÇ“h¡4µÏÂOúU¼¯5þgò¯!3Æsñ%¥&FÆÐ’½ñ
+;–h»´Ø0
+:À2\Z^ëÍÌü5Í³SÕT0™n'w<­LS,sÛ_!¡üÊ 9&b•¬ôeíã©b:E”c«Ë(W„P÷Î§++äeÃ&\y"ÊF¬ÿöJaÇw/Ã!MAÖoWó|`ÎrÜ÷G<±¶?ˆ®»m\Ãx~0‡NC+°Ú¨;DÌsÿYmz·7ú[è®Y…†é“ó:–r%ž‡v‰Yûÿ(œpø©Þ]”EeÁR¢ªqSíÜöû¥®½7,6úGpÔZ¬qqy‡žíA®2CNÝ±s
+¹5ëCA«¿±ÃXn\_†÷,ÿ/ªEÛ3çŒ3›ÅHŠ™Ìe™WÑÙO­4Ñrx„ý~Æ9_€(q7É:|¡¨<ƒ­ç%H¦²‡Jf×íÖjvízè“ü“+@z‡ÆºŽ\~ïÄùn·Þ°~]rÊ*•Tù3^]·/¾kOÿ‹&¦¿B×––ß=¿¼E4Aþžõ¢š´³íE›1”¾Úm´Þ. cêÃÇÿ×™Ý¤Þ¨	ÉœX­ƒÛ}»‘}cQ3Îqá4ñO¦[‘¢@C·rQ¹aYm‡ý|«LðÅèc$^ÖŒÖŽè¬k.‚NÖ›î…´1ò6:^./qóìQ®ón©P÷Œï¤òLmÁ[;¢²6{¡&k]>×üÎ2Ð£©©ywß»á?¬	î:ÂÉa‹i2B³°^
+‰©Ûgwÿ…¼˜Cû¶$ÕÊ‰@û¿‘ž)Ê›.Ã&ÊPBëq<9¥›>n/çàGÅJnËÐ±sH>m¨;ÓÝWš‘c8Šwlrá^õœ»aíT ÿG£<e–BÊp³™ÍÃqÝÇì§ &¢„›ÌˆŽlô“Þ0ÜXJ80
+§Â‚µS–¬SÓf­Ê¾Œ²$‹õ¯¡ÄH	ÑcIÖ6[ß¦rMÚ»¡+uÉ/h>ç~dŽHu¶¶«ã!˜}=G_pºfRóó1Å[OÁx#lßd–<€-"ŽTM+Ä·73ÃÑøÊ%§=L¶²Af1"bGåvðaåf+”_¤'/¤DÉTr~{•ž•³ÚdHŠ¶€ºmÈÜ3ÙÅÕ» À€ôJUXŒHg¢kuêÛçlÃ©Â–aÔ·Âkï0¬èî2cÐ¤ wÚkívöájº*ÆûwÏ{?§orá{õú#ÚŒž([û¢¿N©9ÍŸWL.Ze¢ü4=‹Ûh!¶`“ˆv¢û9•,3ÛðPm‹£Ú  XÇ&qæ`wŸþßªHÿÆöž	]k]2Zfƒƒ:ý5¯hSEý †ü’&éYˆu³º»ªÅï’9taÌâí+ƒ²Ò™³Ú¶Ï‘¶ÏE øÍÚ™f»!µ«ÍÅGì÷-çÒv'nNË:°ïA‚l…Lõ~7ÈÒ2*ºfªÉ 71\.U1zÚ7˜òÖ¥çuP…i8·Þ÷d¯ê•Jµîà X%ú<K“‹ûyÉSfBÿg“„7jAÄ0"¥–ímMÿZHÍ.4ž¥\ešF¥„ŒüoÛfc•$Š;
+ÜI"_#Œ±' ¥®+Ê3cÇò@@x aDÁgzñ®«3ndü{€$%|±>ŽÅ ¨ïA¿ð>¥‹Ç@0Oè`1%i_Ð]s³]ì:=uF3ü'¥_´Å>}2÷+4>Ú[kÐË¸‹W5>ÒçZŒ—µÖ¢\èßí¯yï"ÚšJ<ý­ ŠBŒ{Ršµ•Â™¨\Ã§2©¾‰Ô¡h´yÂi$+%n67/þ°!$wy-S˜ˆçŸ-²ÍÈ_Í£¸én*ÚNk’t+îÖÉU
+ƒpê;‹ç‰s„èU„%ÝL}f7o
+rd‚Ü¬§¸äßú>f]NÇ2Y„C-ÖxÒ´Ñøv¹ã\Î½ ïDVÉö{‘
+©…Á‚gF(“1 ù€&ëÚ8FßÕŽÖ‘¿‘m§×>´çß¾Þ9+%5ä«%‡ËTæA@ië|ì´‹ñ¿,öh¹ÞZ4©º+Q(‰ZåÛŸ-»b:ƒ­]Ò\WÂÛò;Ð÷M]NsýdéÚJeNq?uqggi¨A-h¶Ú§¡ÂdõtëšÑ°åˆAvl˜9ñÙAYf¶¦Ä8ûŸRòIÖÝŽþV`fí/½~¼É¿xÅß&Å¥“ý¹2àºUç¶¼	3Úã¤Êwoã¢yè¾ë\¦™JJªlÏiÌÝ™ÝuÒz·õ4Ÿ@xÓ²7ÿ!*Ï¤µÇb·Óýti¾Ï± Åö'7(¦Áü™]ã“ÓÁ&n^¬y©1.,b
+LZNÂ#wÝR²5+”
+ô-úq²‹âð*cü–¡Î˜ÍJóV)SmMh:yP­!‹b«8ñ/ÙLPw)ÜÜV[É¢¼ã«2“i×P-L 7Üùª-01«¢û±>"=÷1/©*QƒÿèT¤oƒD 9ú,ð¶	»vsH›EÙ+ãw«
+®)Ö&Ÿµ-Œ‚'}Îý!»Å´ûÚQWr,~±[¼Q%¬½ËÎ°6ud«‹<ë¨¦„6n/wÙ Õh^rëæ°Fµ¦</ $9¿ý·dÎ"l|(ñC’@Egd‘„šÁéáu¤h`è—àˆ:Áj‚ÄZ5+sûM»¸—å¶(øÜC½<²((E|ËT8*Ø¦ýO°~Üa‰nü[ýµ¨ÙÕð®8`E ¯AÁ8{RççæaîTFKžãM`6Šh~ø>Aæ`î-Ä¢Io)RôgcÕ/ Èc‚™Å4ô€zü w4= €}µôEáFN*à¨“_¿ËZÚËË’'°»ÐPŒ`Ç­¨ˆëP‘ôµSèð‘Lø#™TÊ02ÑŠv»{ž¾L’ÛøÝ´HL+á”ïÄŸ¬Øqá…¸F…L gðþ‚]×ÿüZW|l™…`/’êÎxÒx;7{”¥1•ø)ÏŒ ÛÃºÁÎÃÝ³qsgÕCìfe1^Àšƒ$QÖÉhš›r«Ö1WJe¥ßÎˆÕûO«à§5¥™˜;RëÓízúopÛ‡LW’‡Q¡Tuì5ë:¸)r¼ÓãSa€Ï¤¶íÆºû˜ÄàÇ•ú½®ñë©q
+B.è?“–ÿJKŠÝõ-,ç—ù°Ž–yxw,&úÕ6IÞ¦ñ·LÈ”	q(•Z´½¸·®–§w¢ÊÑéC®ö–ÓÈ9YrÓÃËÎXª K517‡E>(eaÈã÷Üm£cšdQéÌÈÞHmëØ}¿^Ë>°l±cÑ+’be½)OUÜq~×âŽ×†¨°íEÈ¯‡r÷mµ.G
+ÂN¨áê&ì„š¤”K˜3~‘óØTtÞsÉíž§?8ÈJesØóËÿdÇ¦YÆÂ‚qïIj©55,Ø;Å
+'x|†Ñïó¡#¢-NnD52¸¦sLK„à³{ƒP8­5;‹¤‹è2r«ÂóCôTz2ÁÞNÉ°@°ÏÌ#‹¤>wÃë?ëhÇë•ì¨ãý´ÒÍŒR;˜sõŸˆ]û¬‹rªWR‹˜ÿ·õs–4óI^æ¦“½Æ?ä8ua»Ž/óÙÁ¸ôðüýƒû0äÇ€a¯lƒV„h®1ÿ9¾•Ê…±ý€¼„CJP›ß5àñ0P“•K^˜£(UKúO¡r1vM	_!&”ÆjMpZ
+…}È¥þv¥……JõwþëÄv¿gGâØMg-¿w˜·†ÛÇ3fÔ´`·h2+¢Qç­!˜ekÏ®%tùÆ¯êà
+1=ç	a’ÓFñsìî$–dñù¹'éûè4ÖÇ#­qˆûNƒ‹£'IOiÆl´ÌÆ”gäV0>¥tï1¸A°<†m¶ÛÞøâ™¦‘Že${±°Ñ4[N^¤ã…¢î…ésHÝ9æ>ý“ïìãÀ¦•€9!6½ËÞøDÄÂÒ›i¼F‘Šn5XP3€‘AË„#¿¿u—.·Ç±¬±§!j5Ï8ë"CQªYar§á3ÕžÅ½]~9C30dá#‘‰-Šmz“FA%ÆLÂéÙQœÈ/H5À­Ã*ÛîB~­iÔõç%Àá€ý·z"lùçS£Zp0E¹tÅ¥ûÛ›‘üsÂ96¼
+=¡bõ"·¶®4[£ñcà­(>HçŸÏ–ZH.»ñ #AÞ&º7odè…5-ÜðÆ —$¡íŒJK/ÙhÉ)>^¡]âéêë—Òé=@0Ç2“”ñfÌÒ„"g³.×X\³ °Eo7 ‰{.Þn¹™~Ó1¥gãNòŠm!ÔLñ¬>Íë×lßÒ)ö£èˆ‘Ma26¢€ça¿tõõ8Œ;&ã¦,«Þ‘»ÞŠ+»™éí(²Ç‰ìæ}+W‹ÉÄÂg)ž×UáÔ5°Zô¼³‡¶¶eœôŽBs_ÍP¯*ófâàÅzõ©"®óS .Mžô õÙöµëY}Í„þÛu§œ)‰&;SF0—d’£ÕfÓî:½Å´—!Ù†5FKPú:¦]_1)©L·¹»z+fva–u36çÿª×y&í
+x†¬µ<wrÊ#šÝbÈ‚@ÿüÜìO!tÎú]>œ*ûìãüÛ¸ˆQÓ&)77Òv ‰^¶­ Ü›SBó'.:r†!qÔîÏbÃ&¤¨Q¬ó…n‚n©¤&8†ÎŽ¹@ó.º±iœýKÅoõIÆrÆ¢dËe‹ÓuYÓÊ:‘#¬ÖÄ‘52ÃÐ€I3ƒQ+Iê+žÊùê©FêÂŠ\¹ûFm„NØ«2CBO_Ð“–ðñNÓýO8V$.ÜR{u®‚/L]Nž§í
+ˆ2ÕÄ®cÇ;âÍ|‡-"Oà§ŒÆ÷µˆYC“­ »K¨p#ÇOØÀ«w ”T•iÿ‰iÆ4QÛÉ¹?‡êé ²hÛ?ÊlªëÎØ¶$U;¨öUÇ(&§ð¸æíW;¡7ÃGkõ"ÿ#Z	—‚6ö2Ï‘Þýz%ˆò_K^‹on±ð‘\‚RÒø>
+éº_¼–h³¡»±%	XÈ7†
+rvØJM°çåE#P÷mÊJè"Ñˆªrú«Ò†ô0wvëŠòn–•Ìžiþ›‚ ‡€i{EÒ¶û_!£PÝÉzè¸íwªºG¨Q?kaŠ©Û^Oª‚Žù%¨Ü÷¦F¢ÿˆÛ¤]ùé5£²œê;âhÀHà÷öÇfÃâZ™/ª¸°6ä@s¬E'òz'÷Eý8ötÿvòeÏ¾Hçê}Ü·ŠÄV3ÕŠã5ñ>^n¬eˆå·9÷ÃðµË&E°€hu‹¤È]›,¨?[ŠH!ˆeÂZ7»2 8zÓEžOÚnKé=l K/KI^Qä¶w„ßÞ67ügp(~~õ‚¦oï¢üÚÿùþâãþ€éú›7{KNþ›·ç¨‹Óý{á ?#]5RºDüq‡î÷à¯ºø¨z¹Z™õý«¿¯ÜÍ<É­—äC'6¶ÕwhÊ\'z^Ãuí>ç	ÕÓM©ôòþœ×ÃOÀr{P*ü¶qrkœs=T™ô›#iWïDM865ÄæyþÞˆü«û.©ž†V)!”§‘Ôò–¹àTg"·ŒÒsèæpyuáŽæ×+ý}‡²VÒq±\Ç.(ŒÙmZ1ÏÃ¿±À®l^!gà](r:­´Ù³U²ä+ÑÜ¦Î%Ð.¾gÖReaÂÏ¢ú·X@Ô„ƒÅ›^ã©Ež–¸û#úò.çÚ)àáÁæ;>‹®G9P×™µí”mUˆ7’œúŸ4vôl}£q¡·ÿ ,lfW	¤ÃV.V>x8$ñ Ò¯&­uêÌ}¯Â|ãˆì}¹è	 ±mëºþìÕg3€210“§©"ž@ß8ˆž…¾ûcðÌHGíYRõ¶éR¥ž6eÆ¼çÀbÌÙÛÜéhÆî— Í~`¹«\ú\›dÊtÒ–^À„O¬P‹þ¢t³šrqž–‡ÚúñSæV&fŒªP”ç!a)[ÞÍm.í÷ñA3ÐNwF¸}ÿÏÁpE‰ÕÕ.…­œQíßG]’ nMÅb?Æk”£—"±äü¿Í½€5C!D@8hÝù8CµÂÈÕ$â4êÀ·¬9 €‚N×``çÝõj-k0ÕÿHà#‘’ÛÞ€ÿ`xmM‡1ItüÅú·µ‹$òZBáã fbíYƒ@SRÜ”ªòÒ½'»Ð&™+›Ó/û‡À@„äSÓÙ
+ƒ•ˆwµ£6çÅO…XvzÍo›IE{ëSÔê	Žñ=³ÄŸ0Ãù-Þ·¯ø•ª!§3ßÍß:Õ‰-dÑ"´ G:Ìž-ªµ«PÕúûÁÖ“ˆ·ü“ë%dê=æ—Æªô¾üx9ë¾.¬síè©s¡óÇ?÷½__©Ð}ÎöF29MUÏH—»Uþ{ßÎâÓiù¬šØ»zú¿?UƒØnƒGü5éu7ÈÕ™Ô«2ÇrwÔúžüj¢çyñ¶äôÆ1¬ÍÄxàÐ-7ÎW»fÆØ·êöu8ÃT%2;²îŠ'ïžÛBæ0ü6¯6G„»â¹;Ø‹íYH„ö6¨®²3ž£CêL½ú¥ÊfŽQ­iPl”4[ƒ<†ÚÉ–SØÇË³‚ÿüÝTQ_%ŒúpD«éìŽ/ôÞÙž’œž±Ð]i´czz–è¤©ž=Âw,‰Òâ£ÏjÄno×ÔAj­óŽ¬ŽÈöcÖmßïr£ž‡üó²©(–ì	‰ôéù då'ÉM0l¹”Zv~ýâ_ÌHÚ¾J mêü6ü< ›í‚?Û®X¨z›Ø¾n`Ô¦¦Š¯äæþir…­ßzÛA¾·1Qy²·CÙÈÈ ƒÖ¶0ÑyŸhÊáÃÓ 5ï´ÝþÇÄ&'D^öãŸï³…Ó:ØY’#˜¨¡é:ùAN­-ÔJbÑ¹æjÇ5¬v%çÛƒ¤¿êæ8‚»>¥41:žDQÖÏsÚ‡wHIÊŸgÌ YÇ1o8`bnÛô[jwáE-vcóþÔoú[©u˜_Íõ‰&¿V¿Ý¬hbi>½5ØÇLû9çiWhCýÂ¢9ó”Á8¬H›>æbqcôÏ°ÔÑ3¿oT«[9Û1täFˆK„=u|6d¿ú`6”y¹ÄÑ;4ØÌ&ßmoîî²e´%$»÷cÆš)¥ù´ºK¾°¶®éÑÃè¥]ì×@K-F&w=z?jFC¯t³w1ÆƒÅŽB)}A|*›¯…Gƒ}©ÒßwÞxlÓªð&@.¬.w6û«>3mYÄÍ\4˜¨þ®›ð‡[ªYlŠ®I¯¨“ýœ±0•ú¥Þ©+9.—ZíÒDk „œ}ùrµ‰bP–`n€É¹è>Gy›Â.ÙYqrê¢Òðì4 ˆ™Q}+R¾Þ´ºuÎß†=]y$C2º¡S˜¸,AÇÂ¾œŒIß°Sä_|Ú
+ÿ¶¼.´–èuÇÏÚ„d

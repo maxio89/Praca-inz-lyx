@@ -146,14 +146,15 @@ key "Htk"
 \end_layout
 
 \begin_layout Standard
+
+\series bold
 W rozdziale drugim opisane są podstawy systemów rozpoznawania mowy (m.in.
  ich zastosowanie, parametry wpływające na skuteczność działania).
  Rozdział trzeci opisuje sygnał mowy, m.in.
  ekstrakcję cech, która jest bardzo ważnym punktem tworzenia systemów rozpoznawa
 nia mowy.
  W rozdziale czwartym przedstawiona jest metoda Ukrytych Modeli Markowa,
- która jest podstawą działania systemu stworzonemu na potrzeby niniejszej
- pracy.
+ będąca podstawą działania systemu stworzonego na potrzeby niniejszej pracy.
  W kolejnym rozdziale, zostało opisane narzędzie HTK, wykorzystane przy
  tworzeniu tego systemu.
  Następnie w rozdziale szóstym zaprezentowany jest efekt końcowy wraz z

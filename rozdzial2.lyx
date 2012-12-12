@@ -105,12 +105,6 @@ Podział zagadnień
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-Używać można czy możemy?
-\end_layout
-
-\begin_layout Standard
 Na początek warto określić miejsce systemów rozpoznawania mowy na tle innych
  zagadnień z tej dziedziny (rys.
  
@@ -192,7 +186,7 @@ Mowa jest najbardziej naturalnym oraz skutecznym sposobem porozumiewania
  się ludzi.
  Jest znacznie szybsza niż pisanie czy gestykulacja, a co najważniejsze
  nie wymaga użycia rąk.
- Nie dziwi więc fakt, że wraz z rozwojem sprzętu komputerowego, wzrostem
+ Nie dziwi zatem fakt, że wraz z rozwojem sprzętu komputerowego, wzrostem
  jego mocy obliczeniowej oraz miniaturyzacji, systemy rozpoznawania mowy
  mają coraz częstsze zastosowanie
 \series bold
@@ -230,6 +224,8 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
+
+\series bold
 Warto zaznaczyć, że systemy rozpoznawania mowy, nie znajdą zastosowania,
  tam 
 \color black
@@ -245,29 +241,42 @@ Skuteczność
 \end_layout
 
 \begin_layout Standard
-Parametry wpływające na skuteczność rozpoznawania:
+
+\series bold
+Na skuteczność oraz szybkość rozpoznawanie wpływa wiele parametrów.
+ Do najważniejszych z nich należą:
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 stopień zależności od mówcy (systemy zależne od mówcy (ang.
  speaker-depentent) oraz niezależne od mówcy (ang.
  speaker-independent)),
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 rozmiar słownika, w którym zdefiniowane są słowa rozpoznawane przez system,
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 podobieństwo akustyczne i fonetyczne,
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 stosunek sygnału do szumu (SNR, ang.
  signal-to-noise ratio) sygnału mowy,
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 parametry transmisji sygnału mowy.
  
 \begin_inset CommandInset citation
@@ -280,6 +289,8 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
+
+\series bold
 System stworzony na potrzeby tej pracy jest zależny od mówcy, oznacza to,
  że największą skuteczność uzyskuje dla osoby, której próbki głosu zostały
  wykorzystane do jego wytrenowania.
@@ -287,39 +298,31 @@ System stworzony na potrzeby tej pracy jest zależny od mówcy, oznacza to,
  wymaga to jednak większego oraz bardziej zróżnicowanego zbioru treningowego.
  Rozmiar słownika ma wpływ na skuteczność rozpoznawania jak i na szybkość
  działania systemu.
- Dla większych słowników rozpoznawanie trwa trochę dłużej a skuteczność
+ Dla większych słowników rozpoznawanie trwa trochę dłużej, a skuteczność
  zmniejsza się ze względu na większe prawdopodobieństwo wystąpienia słów
  podobnych fonetycznie lub akustycznie.
- Przy wyborze słownika, chcąc osiągnąć zadowalające wyniki warto wybierać
+ Przy wyborze słownika chcąc osiągnąć zadowalające wyniki warto wybierać
  słowa dłuższe oraz jak najbardziej różniące się od siebie w wymowie.
  Krótkie jednostki (słowa) trudniej rozpoznawać niż długie wypowiedzi.
 
-\series bold
- 
 \series default
-Jako parametry transmisji sygnału mowy na które warto zwrócić uwagę warto
- wymienić m.in.
+ 
+\series bold
+Jako parametry transmisji sygnału mowy mogące mieć wpływ na skuteczność
+ rozpoznawania warto wymienić m.in.
  zniekształcenia analogowego sygnału mowy wnoszone przez kanał transmisyjny,
  liczbę poziomów kwantyzacji oraz częstotliwość próbkowania.
  Skuteczność rozpoznawania zależy również od środowiska w jakim działa dany
  system.
  Może być ona inna dla zamkniętego pomieszczenia oraz otwartej przestrzeni.
- Negatywny wpływ mają tutaj wszelkiego rodzaju szumy (np.
+ Negatywny wpływ mają tutaj wszelkiego rodzaju szumy towarzyszące pracy
+ systemu rozpoznawania mowy (np.
  szum komputera, ruch uliczny, odgłosy rozmów innych ludzi).
  Nie bez wpływu pozostają również parametry sprzętu użytego do nagrań próbek
  głosu (np.
  redukcja szumu, czułość mikrofonu) jak również cechy samego mówcy.
- Istotny jest sposób wymowy (gwara, akcent), szybkość oraz głośność.
+ Istotny jest także sposób wymowy (gwara, akcent), szybkość oraz głośność.
  
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Jeśli czułość mikrofonu podczas nagrywania zostanie ustawiona na niską,
- wymaga to głośniejszych wypowiedzi w celu poprawnego zarejestrowania sygnału
- mowy, lecz w zamian za to przenosi mniej szumow otoczenia, ktore moga być
- obecne w czasie pracy systemu.
 \end_layout
 
 \begin_layout Section
@@ -334,7 +337,11 @@ Wśród rozwiązań komercyjnych obecnie przodujących na rynku warto wymienić
  Firmy, których produkty zdominowały rynek systemów przeznaczonych na urządzenia
  mobilne mają opracowane własne technologie rozpoznawania mowy połączone
  ze sztuczną inteligencją oraz syntezą mowy.
- I tak kolejno, Apple posiada Siri 
+ 
+\color black
+I tak kolejno
+\color inherit
+, Apple posiada Siri 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Sr"
@@ -356,12 +363,12 @@ key "Tlm"
 \end_inset
 
 .
- Produkty te, mają za zadanie ułatwić korzystanie z telefonu.
+ Wymienione produkty mają za zadanie ułatwić korzystanie z telefonu.
  Pełnią rolę wirtualnego asystenta, z którym można porozmawiać, zapytać
  o pogodę, najbliższą restaurację, poprosić o wpis do kalendarza lub przeczytani
-e sms'a.
- Produkt firmy Apple był najwcześniej wprowadzony na rynek więc wydaje się
- być technologią najbardziej zaawansowaną.
+e wiadomości SMS.
+ Produkt firmy Apple był najwcześniej wprowadzony na rynek, więc wydaje
+ się być technologią najbardziej zaawansowaną.
  Natomiast Google prócz nowej technologii Google Now, posiada również aplikację
  Google Mobile App 
 \begin_inset CommandInset citation
@@ -372,8 +379,8 @@ key "Gma"
 
 , która służy m.in.
  do wyszukiwania głosowego (np.
- kontaktów, wiadomości lub innych rzeczy korzystając z wyszukiwarki internetowej
- Google).
+ kontaktów, wiadomości lub innych informacji korzystając z wyszukiwarki
+ internetowej Google).
  Poza produktami wymienionych wcześniej firm, powstaje coraz więcej aplikacji
  typu third-party (czyli tworzone przez osoby lub firmy niezwiązane z producenta
 mi systemów operacyjnych) posiadających podobne funkcjonalności (np.
@@ -396,8 +403,8 @@ key "Drag"
 .
  Wymienione wyżej technologie (poza aplikacją Google Mobile App) nie są
  dostępne dla języka polskiego.
- Rozwiązania przeznaczone na urządzenia mobilne są uzupełniane o nowe języki
- więc w najbliższej przyszłości będą one dostępne również dla języka polskiego.
+ Rozwiązania przeznaczone na urządzenia mobilne są uzupełniane o nowe języki,
+ zatem w najbliższej przyszłości będą one dostępne również dla języka polskiego.
  
 \end_layout
 
@@ -471,9 +478,12 @@ key "Sar"
 \begin_layout Standard
 W obecnych czasach tworzenie systemów rozpoznawania mowy jest dużo prostsze,
  ze względu na obecność gotowych narzędzi wspomagających, m.in.
- HTK czy CMUSphinx, które posiadają zaimplementowane algorytmy, pozwalające
- stworzyć system rozpoznawania mowy nawet osobie nie znającej szczegółów
- aparatu matematycznego.
+ HTK czy CMUSphinx, 
+\series bold
+Khaldi ?
+\series default
+ które posiadają zaimplementowane algorytmy, pozwalające stworzyć system
+ rozpoznawania mowy nawet osobie nie znającej szczegółów aparatu matematycznego.
  Użytkownik korzystający z takich bibliotek często używa ich jak 
 \begin_inset Quotes pld
 \end_inset
@@ -509,14 +519,12 @@ reference "rys2"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename schematsystemu.png
-	lyxscale 80
-	display false
 	scale 90
 
 \end_inset
@@ -549,13 +557,19 @@ name "rys2"
 \end_layout
 
 \begin_layout Standard
-Proces tworzenia systemu rozpoznawania mowy możemy podzielić na dwe fazy,
+Proces tworzenia systemu rozpoznawania mowy można podzielić na dwie fazy,
  uczenie (trenowanie) oraz rozpoznawanie.
- Trenowanie ma na celu poprawę skuteczności rozpoznawania, co za tym idzie
- odbywa się najpierw.
- Podczas tej fazy przy pomocy wypowiedzi uczących tworzone są i ulepszane
- wzorce, z których korzystamy w trakcie rozpoznawania.
- Podczas rozpoznawania system dopasowuje najbardziej prawdopodobny wzorzec,
+ Trenowanie ma na celu przygotowanie systemu do rozpoznawania i musi zostać
+ wykonane w pierwszej kolejności.
+ Podczas tej fazy za pomocą
+\strikeout on
+\color red
+ 
+\strikeout default
+\color inherit
+wypowiedzi uczących są tworzone i ulepszane wzorce, z których system korzysta
+ w trakcie rozpoznawania.
+ W fazie rozpoznawania system dopasowuje najbardziej prawdopodobny wzorzec,
  czego wynikiem jest transkrypcja fonetyczna nieznanej wypowiedzi.
  Szczegóły wymienionych wyżej faz opisane są w kolejnych rozdziałach.
 \end_layout
@@ -570,19 +584,18 @@ Współczesne systemy rozpoznawania mowy zakładają, że sygnał mowy jest sekw
  głosek, fonemów lub słów).
  Charakteruzyje się on również pewna przypadkowością.
  Wypowiedź tego samego mówcy za każdym razem posiada niepowtarzalny przebieg
- czasowy, a co za tym idzie, nie możemy przyporządkować jej jednoznacznej
- sekwencji jednostek mowy.
- Wiąże się to m.in.
+ czasowy, co może stwarzać trudności w automatycznym rozpoznawaniu wypowiedzi.
+ Niepowtarzalność przebiegu czasowego wiąże się m.in.
  z tym, że nagrany sygnał mowy często bywa zaszumiony i zniekształcony.
 \end_layout
 
 \begin_layout Standard
-Metody klasyfikacji wykorzystywane w systemach rozpoznawania mowy możemy
+Metody klasyfikacji wykorzystywane w systemach rozpoznawania mowy można
  podzielić na dwie kategorie:
 \end_layout
 
 \begin_layout Itemize
-metody deterministyczne, w których obliczane są błedy porównania dźwięku
+metody deterministyczne, w których są obliczane błedy porównania dźwięku
  ze wzorcem,
 \end_layout
 
@@ -623,8 +636,8 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-Biorąc pod uwagę iż bardziej naturalnym dla człowieka jest wypowiadanie
- słów ciągiem (bez znaczących przerw między nimi) oraz, że przy analizie
+Biorąc pod uwagę fakt, że wypowiadanie słów ciągiem (bez znaczących przerw
+ między nimi) jest dla człowieka bardziej naturalne oraz, że przy analizie
  sygnału mowy warto uwzględnić jego przypadkowość, metody niederministyczne
  osiągają lepszą skuteczność rozpoznawania.
  Do takich właśnie metod należą Ukryte Modele Markowa (HMM, ang.
