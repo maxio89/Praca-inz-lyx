@@ -64,13 +64,6 @@
 
 \begin_layout Chapter
 Wstęp
-\begin_inset CommandInset label
-LatexCommand label
-name "cha:wprowadzenie"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -148,17 +141,18 @@ key "Htk"
 \begin_layout Standard
 
 \series bold
-W rozdziale drugim opisane są podstawy systemów rozpoznawania mowy (m.in.
+W rozdziale drugim przedstawione zostały podstawy systemów rozpoznawania
+ mowy (m.in.
  ich zastosowanie, parametry wpływające na skuteczność działania).
  Rozdział trzeci opisuje sygnał mowy, m.in.
  ekstrakcję cech, która jest bardzo ważnym punktem tworzenia systemów rozpoznawa
 nia mowy.
- W rozdziale czwartym przedstawiona jest metoda Ukrytych Modeli Markowa,
- będąca podstawą działania systemu stworzonego na potrzeby niniejszej pracy.
+ W rozdziale czwartym przedstawia metodę Ukrytych Modeli Markowa, będąca
+ podstawą działania systemu stworzonego na potrzeby niniejszej pracy.
  W kolejnym rozdziale, zostało opisane narzędzie HTK, wykorzystane przy
  tworzeniu tego systemu.
- Następnie w rozdziale szóstym zaprezentowany jest efekt końcowy wraz z
- jego opisem.
+ Następnie w rozdziale szóstym zaprezentowany został efekt końcowy wraz
+ z jego opisem.
  Ostatni rozdział podsumowuje niniejszą pracę oraz zawiera wnioski autora
  na temat zaprezentowanych wcześniej zagadnień / wyników zaimplementowanego
  systemu.

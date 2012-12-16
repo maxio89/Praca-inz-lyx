@@ -478,12 +478,9 @@ key "Sar"
 \begin_layout Standard
 W obecnych czasach tworzenie systemów rozpoznawania mowy jest dużo prostsze,
  ze względu na obecność gotowych narzędzi wspomagających, m.in.
- HTK czy CMUSphinx, 
-\series bold
-Khaldi ?
-\series default
- które posiadają zaimplementowane algorytmy, pozwalające stworzyć system
- rozpoznawania mowy nawet osobie nie znającej szczegółów aparatu matematycznego.
+ HTK czy CMUSphinx, które posiadają zaimplementowane algorytmy, pozwalające
+ stworzyć system rozpoznawania mowy nawet osobie nie znającej szczegółów
+ aparatu matematycznego.
  Użytkownik korzystający z takich bibliotek często używa ich jak 
 \begin_inset Quotes pld
 \end_inset
@@ -519,12 +516,13 @@ reference "rys2"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename schematsystemu.png
+	filename Figures/schematsystemu.pdf
+	display false
 	scale 90
 
 \end_inset
