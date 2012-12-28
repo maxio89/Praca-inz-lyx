@@ -123,13 +123,12 @@ reference "rys1"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename ogolnypodzial.png
-	display false
 	groupId rysunki
 
 \end_inset
@@ -224,8 +223,6 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-
-\series bold
 Warto zaznaczyć, że systemy rozpoznawania mowy, nie znajdą zastosowania,
  tam 
 \color black
@@ -241,42 +238,30 @@ Skuteczność
 \end_layout
 
 \begin_layout Standard
-
-\series bold
 Na skuteczność oraz szybkość rozpoznawanie wpływa wiele parametrów.
  Do najważniejszych z nich należą:
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
 stopień zależności od mówcy (systemy zależne od mówcy (ang.
  speaker-depentent) oraz niezależne od mówcy (ang.
  speaker-independent)),
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
 rozmiar słownika, w którym zdefiniowane są słowa rozpoznawane przez system,
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-podobieństwo akustyczne i fonetyczne,
+podobieństwo akustyczne i fonetyczne słów,
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
 stosunek sygnału do szumu (SNR, ang.
- signal-to-noise ratio) sygnału mowy,
+ signal-to-noise ratio),
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
 parametry transmisji sygnału mowy.
  
 \begin_inset CommandInset citation
@@ -289,8 +274,6 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-
-\series bold
 System stworzony na potrzeby tej pracy jest zależny od mówcy, oznacza to,
  że największą skuteczność uzyskuje dla osoby, której próbki głosu zostały
  wykorzystane do jego wytrenowania.
@@ -301,16 +284,16 @@ System stworzony na potrzeby tej pracy jest zależny od mówcy, oznacza to,
  Dla większych słowników rozpoznawanie trwa trochę dłużej, a skuteczność
  zmniejsza się ze względu na większe prawdopodobieństwo wystąpienia słów
  podobnych fonetycznie lub akustycznie.
- Przy wyborze słownika chcąc osiągnąć zadowalające wyniki warto wybierać
+ Przy doborze słownika chcąc osiągnąć zadowalające wyniki warto wybierać
  słowa dłuższe oraz jak najbardziej różniące się od siebie w wymowie.
  Krótkie jednostki (słowa) trudniej rozpoznawać niż długie wypowiedzi.
 
-\series default
- 
 \series bold
+ 
+\series default
 Jako parametry transmisji sygnału mowy mogące mieć wpływ na skuteczność
  rozpoznawania warto wymienić m.in.
- zniekształcenia analogowego sygnału mowy wnoszone przez kanał transmisyjny,
+ zniekształcenia analogowe sygnału mowy wnoszone przez kanał transmisyjny,
  liczbę poziomów kwantyzacji oraz częstotliwość próbkowania.
  Skuteczność rozpoznawania zależy również od środowiska w jakim działa dany
  system.
@@ -320,9 +303,12 @@ Jako parametry transmisji sygnału mowy mogące mieć wpływ na skuteczność
  szum komputera, ruch uliczny, odgłosy rozmów innych ludzi).
  Nie bez wpływu pozostają również parametry sprzętu użytego do nagrań próbek
  głosu (np.
- redukcja szumu, czułość mikrofonu) jak również cechy samego mówcy.
- Istotny jest także sposób wymowy (gwara, akcent), szybkość oraz głośność.
- 
+ redukcja szumu, czułość mikrofonu) jak również cechy samego mówcy takie
+ jak sposób wymowy (gwara, akcent), szybkość oraz głośność.
+ Jeżeli czułość mikrofonu podczas nagrywania zostanie ustawiona na niską,
+ wymaga to głośniejszych wypowiedzi w celu poprawnego zarejestrowania sygnału
+ mowy, lecz w zamian za to przenosi mniej szumow otoczenia, ktore moga być
+ obecne w czasie pracy systemu.
 \end_layout
 
 \begin_layout Section
@@ -392,15 +378,14 @@ mi systemów operacyjnych) posiadających podobne funkcjonalności (np.
 \begin_layout Standard
 Do najstarszych projektów komercyjnych korzystających z rozpoznawania mowy
  można zaliczyć IBM ViaVoice, Microsoft Speech API, Oracle Java Speech API
- oraz Dragon Naturally Speaking firmy Nuance, która ostatecznie przejęła
- od IBM technologię ViaVoice 
+ oraz Dragon Naturally Speaking 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Drag"
 
 \end_inset
 
-.
+ firmy Nuance, która ostatecznie przejęła od IBM technologię ViaVoice.
  Wymienione wyżej technologie (poza aplikacją Google Mobile App) nie są
  dostępne dla języka polskiego.
  Rozwiązania przeznaczone na urządzenia mobilne są uzupełniane o nowe języki,
@@ -418,7 +403,7 @@ W Polsce powstaje coraz więcej firm projektujących i wdrażających rozwiązan
  np.
  dla Zarządu Transportu Miejskiego w Warszawie, działające na zasadzie wirtualny
 ch konsultantów, informujących o rozkładach jazdy, cenach biletów, aktualnościac
-h lub przyjmujący różnego rodzaju zgłoszenia klientów) 
+h lub przyjmujących różnego rodzaju zgłoszenia klientów) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Pri"
@@ -426,7 +411,7 @@ key "Pri"
 \end_inset
 
 , MagicScribe (systemy zamieniające mowę na tekst, MagicScribeMedical -
- system stworzony dla medycyny, wpomagający obsługę pacjenta, tworzenie
+ system stworzony dla medycyny, wspomagający obsługę pacjenta, tworzenie
  dokumentacji medycznej itp.
  oraz MagicScribeLegal, rozwiązanie dla adwokatów, notariuszy, radców prawnych)
  
@@ -436,7 +421,9 @@ key "Mags"
 
 \end_inset
 
-, Stanusch Technologies S.A., VOICE LAB lub SkryBot.pl.
+.
+ Wśród innych firmych zajmujących się tematyką rozpoznawania mowy należałoby
+ wspomnieć o Stanusch Technologies S.A., VOICE LAB oraz SkryBot.pl.
 \end_layout
 
 \begin_layout Standard
@@ -473,6 +460,14 @@ key "Sar"
 
 .
  
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\color green
+O Kaldi nie doczytałem dokładnie jak działa i czy oferuje podobne możliwości
+ co HTK więc nie będe o tym wspominał póki co.
 \end_layout
 
 \begin_layout Standard
@@ -516,13 +511,12 @@ reference "rys2"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Figures/schematsystemu.pdf
-	display false
+	filename Figures/schematsystemu-ogolny.pdf
 	scale 90
 
 \end_inset
@@ -559,16 +553,10 @@ Proces tworzenia systemu rozpoznawania mowy można podzielić na dwie fazy,
  uczenie (trenowanie) oraz rozpoznawanie.
  Trenowanie ma na celu przygotowanie systemu do rozpoznawania i musi zostać
  wykonane w pierwszej kolejności.
- Podczas tej fazy za pomocą
-\strikeout on
-\color red
- 
-\strikeout default
-\color inherit
-wypowiedzi uczących są tworzone i ulepszane wzorce, z których system korzysta
- w trakcie rozpoznawania.
+ Podczas tej fazy za pomocą wypowiedzi uczących są tworzone i ulepszane
+ wzorce, z których system korzysta w trakcie rozpoznawania.
  W fazie rozpoznawania system dopasowuje najbardziej prawdopodobny wzorzec,
- czego wynikiem jest transkrypcja fonetyczna nieznanej wypowiedzi.
+ czego wynikiem jest etykieta nieznanej wypowiedzi.
  Szczegóły wymienionych wyżej faz opisane są w kolejnych rozdziałach.
 \end_layout
 
@@ -614,7 +602,7 @@ key "RmHMM"
 \begin_layout Standard
 Do metod deterministycznych należy m.in.
  nieliniowa transformata czasowa (DTW, ang.
- dynamic time wrapping), metoda skuteczna dla izolowanych słów.
+ Dynamic Time Wrapping), metoda skuteczna dla izolowanych słów.
  
 \end_layout
 

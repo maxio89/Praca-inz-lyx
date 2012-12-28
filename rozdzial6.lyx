@@ -63,25 +63,62 @@
 \begin_body
 
 \begin_layout Chapter
-System sterujący robotem za pomocą komend głosowych
+Aplikacja sterująca robotem za pomocą komend głosowych
 \end_layout
 
 \begin_layout Section
-Ogólny opis
+Schemat działania aplikacji
+\end_layout
+
+\begin_layout Standard
+Początkowo główna aplikacja nadzorująca działanie systemu rozpoznawania
+ mowy oraz łącząca w sobie funkcjonalności wybranych narzędzi została napisana
+ w języku C++ jako aplikacja okienkowa (typu desktop) z użyciem QT framework.
+ Ostatecznie jednak autor zdecydował, że skoro tematem przewodnim niniejszej
+ pracy jest komunikacja głosowa, to można zrezygnować z graficznego interfejsu
+ użytkownika.
+ Stąd finalna wersja aplikacji została napisana w języku programowania o
+ nazwie Python i jest uruchamiana w trybie konsolowym.
+ Python jest często określany jako język skryptowy, posiada w pełni dynamiczny
+ system typów a skrypty w nim napisane są wykonywane przez interpreter zainstalo
+wany w systemie.
+\end_layout
+
+\begin_layout Standard
+Schemat działania głównej aplikacji można przedstawić na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Schemat-blokowy-opisujący"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/schematsystemu.pdf
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Zdjęcie stanowiska
-\end_layout
+Schemat blokowy opisujący działanie systemu 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schemat-blokowy-opisujący"
 
 \end_inset
 
@@ -93,28 +130,93 @@ Zdjęcie stanowiska
 
 \end_layout
 
-\begin_layout Standard
-System stworzony na potrzeby niniejszej pracy jest zależny od mówcy (w tym
- przypadku od głosu autora), działa dla mowy ciągłej a jego najmniejszą
- jednostką fonetyczną są całe słowa, zamiast pojedyńczych fonemów.
- Strategia ta, zwana jest w literaturze 
-\emph on
-connected speech recognition
-\emph default
- 
+\end_inset
+
+Do wykonania pierwszych trzech etapów a mianowicie, detekcji sygnału mowy,
+ nagrywania oraz detekcji ciszy zostało wykorzystane narzędzie Linuxowego
+ o nazwie Sox 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Htkb"
+key "Sox"
 
 \end_inset
 
 .
- 
+ Nagrywanie zostaje rozpoczęte, gdy na mikrofonie zostanie wykryty dźwięk
+ o natężeniu większym niż 1% całości oraz trwający dłużej niż 0.1 s, a zakończone
+, gdy cisza (czyli natężenie mniejsze niż 1%) trwa dłużej niż 1 s.
+ Po zakończeniu nagrywania uruchomione zostaje rozpoznawanie do którego
+ wykorzystany jest pakiet HTK, którego biblioteki są integralną częścią
+ systemu rozpoznawania mowy.
+ Wynikiem rozpoznawania jest najbardziej prawdopodobne słowo lub sekwencja
+ słów.
+ Jeżeli zostało rozpoznane słowo kluczowe 
+\emph on
+koniec 
+\emph default
+aplikacja kończy swoje działanie (informując o tym użytkownika) a następnie
+ wyłącza urządzenie na którym pracuje.
+ Natomiast w przypadku rozpoznania innej komendy, przeprowadzane jest sprawdzeni
+e jej poprawności na danym etapie rozgrywki.
+ Jeżeli rozpoznana komenda zostanie uznana za dozwoloną (z punktu widzenia
+ gramatyki na danym etapie rozgrywki), to wtedy zostaje wykonana jakaś akcja.
+ Po wykonaniu akcji aplikacja powtarza swoje czynności i oczekuje na kolejną
+ komendę użytkownika.
+ Akcją może być np.
+ ruch robota przenoszącego figurę na szachownicy lub przejście do innego
+ etapu rozgrywki.
+ Szczegóły poszczególnych etapów rozgrywki zostaną wyjaśnione w jednym z
+ kolejnych podrozdziałów.
+ Aplikacje tego typu zwane są w literaturze 
+\emph on
+command and control, 
+\emph default
+czyli służą do sterowania za pomocą komend.
+\end_layout
+
+\begin_layout Section
+System mikroprocesorowy
 \end_layout
 
 \begin_layout Standard
-Dostępne gry to szachy oraz wilk i owce, ich ogólne zasady zostały wyjaśnione
- w kolejnych podrozdziałach.
+W początkowej fazie prac aplikacja stworzona na potrzeby niniejszej pracy
+ działała na laptopie z systemem operacyjnym Fedora 17 (dystrybucja Linuxa).
+ Autor doszedł jednak do wniosku, że skoro podstawą komunikacji systemu
+ z użytkownikiem jest mowa, to klawiatura oraz monitor (matryca laptopa)
+ są zbędne.
+ Do działania aplikacji nie jest również potrzebna duża moc obliczeniowa
+ jaką oferował laptop.
+ Zdecydowano się zamiast laptopa użyć systemu mikroprocesorowego o nazwie
+ Raspberry Pi, którego główną zaletą są małe rozmiary urządzenia.
+ Jego parametry opisane zostały w rozdziale 5 niniejszej pracy.
+\end_layout
+
+\begin_layout Standard
+Urządzenie pracuje na systemie Linuxowym opartym o dystrybucję Debian o
+ nazwie Raspbian.
+\end_layout
+
+\begin_layout Standard
+Niestety Raspberry Pi nie posiada wejścia dźwięku wymaganego do podpięcia
+ mikrofonu, dlatego zostało wyposażone w dodatkowy moduł USB firmy LogiLink
+ pełniący funkcję karty dźwiękowej, do której zostały podpięte słuchawki
+ z mikrofonem (firmy Sennheiser, model PC 3 Chat) umożliwiające nagrywanie
+ dźwięku.
+ Korzystanie ze słuchawek z mikfofonem ma dodatkową zaletę w postaci stałej
+ niewielkiej odległości mikrofonu od ust użytkownika.
+ Głośność nagrań oraz SNR sygnału mowy są
+\series bold
+ 
+\series default
+wtedy zależne jedynie od natężenia głosu użytkownika a nie od odległości
+ mikrofonu od ust mówiącego.
+ Dzięki temu ogranicza się wówczas zmienność parametrów sygnału mowy, będącą
+ potencjalnym źródłem błędów w rozpoznawaniu.
+ Ponadto ze względu na bliską odległość mikrofonu od ust mówiącego można
+ ustawić stosunkowo niski poziom nagrywania, dzięki temu tor audio znacząco
+ tłumi lub nawet eliminuje hałasy dochodzące z otoczenia.
+ Ponadto niski poziom nagrywania pozwala zminimalizować niekorzystny wpływ
+ przesterowania sygnału na skuteczność rozpoznawania.
 \end_layout
 
 \begin_layout Section
@@ -122,12 +224,23 @@ Szczegóły użycia HTK
 \end_layout
 
 \begin_layout Standard
-Zastosowane 15-sto stanowe modele HMM (13 stanów emitujących), 26 elementowe
- wektory cech z deltą energii...
- Testowano różne ilości stanów modelu (5, 7, 9, 11) lecz dla 15 uzyskano
- największą skuteczność rozpoznowania.
- Wyznacznikiem tej skuteczności było przetestowanie systemu na próbkach
- wykorzystanych do trenowania.
+System rozpoznawania mowy stworzony z użyciem HTK na potrzeby niniejszej
+ pracy jest zależny od mówcy (w tym przypadku od głosu autora), działa dla
+ połączonych słów (ang.
+ connected words) wypowiadanych ciągiem a jego najmniejszą jednostką fonetyczną
+ są całe słowa, zamiast pojedynczych fonemów.
+ Strategia ta, zwana jest w literaturze 
+\emph on
+connected speech recognition.
+ 
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
  
 \end_layout
 
@@ -137,153 +250,93 @@ Podczas rozpoznawania system zawsze dopasowuje najbardziej prawdopodobną
  Co za tym idzie, nawet w przypadku wypowiedzi zawierającej przypadkowe
  słowa lub dźwięki zostanie rozpoznane jakieś słowo lub słowa ze słownika
  systemu.
- Aby uodpornić system na niektóre sytuację, do słownika dodano sztuczne
- słowa takie jak kaszel, oddech oraz słuchawki, których modele zostały wytrenowa
-ne próbkami nagrań różnych szumów.
+ Jest to tzw.
+ system rozpoznawania komend ze zbioru zamkniętego.
+ System taki wymaga pewnej dyscypliny od użytkownika polegającej na tym,
+ że użytkownik nie może wypowiadać zbędnych słów, które mogłyby być rozpoznane
+ jako komendy sterujące.
+ Niemniej jednak,
+\series bold
+ 
+\series default
+aby uodpornić system na niektóre sytuację, do słownika dodano sztuczne słowa
+ takie jak cisza, kaszel, oddech oraz słuchawki (szmer słuchawek), których
+ modele zostały wytrenowane próbkami nagrań różnych szumów.
  W przypadku nagrania podobnego szumu, system z dużym prawdopodobieństwem
  przyporządkuje mu wymieniony wcześniej model zamiast słów uruchamiających
  sterowanie, co byłoby niezgodne z intencją użytkownika.
  
 \end_layout
 
-\begin_layout Section
-Schemat sterowania robotem
-\end_layout
-
 \begin_layout Standard
-Schemat sterowania robotem przedstawiono na rysunku .
- Użytkownik po wydaniu komendy dostaje od systemu odpowiedź zwrotną (która
- jest ustalonym sygnałem dźwiękowym lub nagraną wcześniej wypowiedzią) potwierdz
-ającą poprawne rozpoznanie wypowiedzi lub informującą o błędzie rozpoznawania.
- Wypowiedzi mają za zadanie symulować rozmowę z robotem.
- Komunikacja z robotem odbywa się za pomocą kabla sieciowego Ethernet.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename schemat-sterowania-robotem.png
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Uproszczony schemat sterowania robotem
+ 
+\backslash
+subsection{Przygotowanie danych}
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Schemat działania systemu
 \end_layout
 
 \begin_layout Standard
-Schemat działania samego systemu rozpoznawania mowy można przedstawić na
- rysunku .
+Jednym z początkowych kroków w trakcie pracy nad systemem rozpoznawania
+ mowy było stworzenie słownika, w którym zapisane są wszystkie używane przez
+ system słowa wraz z ich etykietami.
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename schemat-dzialania-systemu.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Schemat blokowy opisujący działanie systemu
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-Za pomocą narzedzia Linuxowego o nazwie SOX jest nagrywana wypowiedź użytkownika.
- Nagrywanie zostaje rozpoczęte, gdy na mikrofonie zostanie wykryty dźwięk
- o natężeniu większym niż 1% całości oraz trwający dłużej niż 0.1 s, a zakończone
-, gdy cisza (czyli natężenie mniejsze niż 1%) trwa krócej niż 0.1 s.
- Po zakończeniu nagrywania uruchomione zostaje rozpoznawanie i jeśli rozpoznana
- wypowiedź jest poprawna wykonana zostaje jakaś akcja (np.
- ruch robota).
- Jeśli rozpoznana wypowiedź jest niepoprawna system oczekuje kolejnej wypowiedzi.
-\end_layout
-
-\begin_layout Section
-Słownik
-\end_layout
-
-\begin_layout Standard
-W początkowym etapie prac, nazwy pól szachownicy określane były bardziej
- naturalnie, jako kombinacja litery i cyfry (np.
+W początkowej fazie prac, nazwy pól szachownicy określane były bardziej
+ naturalnie w tzn.
+ notacji algebraicznej, jako kombinacja litery oraz cyfry (np.
  A2, D8).
  Jako jednostka rozpoznowania są to słowa krótkie.
  Skuteczność rozpoznawania takich wyrazów nie była zadowalająca (na poziomie
  około 70%).
  Dosyć często zdarzały się przypadki, że pola zaczynające się od litery
- A były mylone z polami zaczynającymi się od litery H.
- Podobne błędy były w przypadku liter E oraz F.
- Ich źródłem był fakt, że te litery różnią się od siebie tylko częścią bezdźwięc
-zną, co utrudnia rozpoznawanie.
+ A były błędnie rozpoznawane jako pola zaczynające się od litery H.
+ Podobne błędy występowały w przypadku liter E oraz F.
+ Ich źródłem jest fakt, że te litery różnią się od siebie tylko częścią
+ bezdźwięczną, co utrudnia rozpoznawanie.
  Paradoksalnie krótkie słowa są trudniejsze do rozpoznawania od słów długich,
  ponieważ różnią się między sobą na mniejszej liczbie pozycji (bo są krótsze).
- W celu poprawienia skuteczności i wyeliminowania błędów rozpoznawania zastosowa
-no zamiast zwykłego alfabetu z pojedyńczymi literami alfabet fonetyczny
- ICAO.
+ W celu poprawienia skuteczności oraz wyeliminowania błędów rozpoznawania
+ zastosowano zamiast zwykłego alfabetu z pojedyńczymi literami alfabet fonetyczn
+y ICAO.
  Stosowany jest on m.in.
  w komunikacji radiowej w celu poprawienia jednoznaczności oraz odporności
  na zakłócenia.
  Zastosowano wymowę polską.
- W tabeli 1 oraz 2 wypisano wykorzystywane litery oraz cyfry i ich odpowiedniki
- z alfabetu ICAO.
- Zmiana wymowy w przypadku cyfry nastąpiła jedynie dla cyfry 1 oraz 5.
+ W tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Alfabet-fonetyczny-ICAO"
+
+\end_inset
+
+ oraz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Alfabet-fonetyczny-ICAO2"
+
+\end_inset
+
+ wypisano wykorzystywane litery oraz cyfry oraz ich odpowiedniki z alfabetu
+ ICAO.
+ Zmiana wymowy w przypadku cyfr nastąpiła jedynie dla cyfry 1 oraz 5.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -293,6 +346,13 @@ Alfabet fonetyczny ICAO wykorzystywany w systemie - litery
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Icao"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Alfabet-fonetyczny-ICAO"
 
 \end_inset
 
@@ -586,10 +646,6 @@ hotel
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -599,7 +655,7 @@ hotel
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -609,6 +665,13 @@ Alfabet fonetyczny ICAO wykorzystywany w systemie - cyfry
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Icao"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Alfabet-fonetyczny-ICAO2"
 
 \end_inset
 
@@ -818,10 +881,6 @@ osiem
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -879,6 +938,11 @@ CIEMNY
 \begin_layout Plain Layout
 
 CISZA 
+\end_layout
+
+\begin_layout Plain Layout
+
+COFNIJ
 \end_layout
 
 \begin_layout Plain Layout
@@ -1008,6 +1072,11 @@ TRZY
 
 \begin_layout Plain Layout
 
+TWÓJRUCH
+\end_layout
+
+\begin_layout Plain Layout
+
 WILKIEM
 \end_layout
 
@@ -1041,27 +1110,649 @@ ZATRZYMAJ
 
 \end_layout
 
-\begin_layout Section
-Gramatyka
+\begin_layout Standard
+Przy czym takie komendy jak CISZA, KASZEL, ODDECH oraz SLUCHAWKI nie są
+ akustycznie słowami lecz nagranymi odgłosami (środowiska pracy robota,
+ kaszlu, oddechu użytkownika oraz szmeru przestawianych słuchawek).
 \end_layout
 
 \begin_layout Standard
-Działanie systemu można podzielić na sześć etapów, podczas których wyczekiwana
- jest ustalowana sekwencja (lub słowo) i to ona determinuje wykonanie jakiejś
- akcji lub jej brak.
- Na rysunkach od 1 do 6 przedstawiono gramatyki systemu na każdym etapie.
- Wypowiedzi których rozpoznanie przechodzi do kolejnego etapu zaznaczono
- na czerwono.
- Wyjątkiem jest jedynie etap szósty, gdyż jest to ostatni etap, wypowiedź
+Kolejnym krokiem było ustalenie gramatyki systemu, czyli formatu wypowiedzi
+ które będą rozpoznawane.
+ 
+\end_layout
+
+\begin_layout Standard
+HTK dostarcza język definicji gramatyki.
+ Składa się on z zestawu definicji zmiennych zawierających wyrażenia regularne
+ będące słowami, które będą rozpoznawane.
+\end_layout
+
+\begin_layout Standard
+Przykładowa gramatyka dla wypowiedzi (listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis3"
+
+\end_inset
+
+) sterującymi ruchami robota podczas rozgrywki została zaprezentowana na
+ listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis4"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykładowe wypowiedzi sterujące podczas rozgrywki z robotem
+\begin_inset CommandInset label
+LatexCommand label
+name "lis3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Alfa jedynka na bravo dwa
+\end_layout
+
+\begin_layout Plain Layout
+
+Delta cztery na hotel piątka
+\end_layout
+
+\begin_layout Plain Layout
+
+Charlie trzy na foxtrot osiem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykład definicji gramatyki 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis4"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+$cyfra = JEDYNKA | DWA | TRZY | CZTERY | PIATKA | SZESC | SIEDEM | OSIEM;
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+$litera = ALFA | CHARLIE | BRAVO | DELTA | ECHO | FOXTROT | GOLF | HOTEL;
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+( SENT-START ($litera $cyfra NA $litera $cyfra) SENT-END )
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Znak 
+\begin_inset Quotes pld
+\end_inset
+
+|
+\begin_inset Quotes prd
+\end_inset
+
+ oznacza alternatywę.
+ Jeśli jakieś słowo ma być opcjonalne, trzeba je wstawić pomiędzy kwadratowe
+ nawiasy natomiast nawiasy ostre (
+\begin_inset Quotes pld
+\end_inset
+
+<
+\begin_inset Quotes prd
+\end_inset
+
+ oraz 
+\begin_inset Quotes pld
+\end_inset
+
+>
+\begin_inset Quotes prd
+\end_inset
+
+) oznaczają występowanie powtórzeń.
+ 
+\end_layout
+
+\begin_layout Standard
+Do poprawnego wytrenowania modeli HMM potrzeba wielu próbek zawierających
+ wielokrotne nagrania wszystkich słów ze słownika oraz powiązane z nimi
+ etykiety.
+ Etykiety mogą być zapisane w oddzielnych plikach powiązanych z każdą próbką,
+ lub w jednym głównym pliku zawierającym etykiety wszystkich próbek wykorzystany
+ch do trenowania systemu.
+ Zapis etykiet musi mieć odpowiedni format, dla HTK jest to format 
+\shape italic
+MLF
+\shape default
+.
+ Przykład dla pliku dźwiękowego 
+\shape italic
+sample1.wav
+\shape default
+ zawierającego nagranie 
+\shape italic
+\emph on
+wypowiedzi
+\emph default
+ Alfa jedynka na bravo dwa 
+\emph on
+pokazano na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis5"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykład etykiety w formacie MLF
+\begin_inset CommandInset label
+LatexCommand label
+name "lis5"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!MLF!# 
+\end_layout
+
+\begin_layout Plain Layout
+
+"*/sample1.wav" 
+\end_layout
+
+\begin_layout Plain Layout
+
+ALFA 
+\end_layout
+
+\begin_layout Plain Layout
+
+JEDYNKA
+\end_layout
+
+\begin_layout Plain Layout
+
+NA
+\end_layout
+
+\begin_layout Plain Layout
+
+BRAVO 
+\end_layout
+
+\begin_layout Plain Layout
+
+DWA
+\end_layout
+
+\begin_layout Plain Layout
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W niniejszym systemie została zastosowana strategia zwana w literaturze
+ jako 
+\emph on
+flat start monophones
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+.
+ Oznacza to, że zostały jedynie określone etykiety każdej próbki treningowej.
+ Drugą dostępną strategią jest określenie dokładnie w jakim odcinku czasowym
+ próbki dana etykieta występuje.
+ W niektórych przypadkach ta strategia zwiększa skuteczność rozpoznawania
+ systemu, niemniej jednak zastosowanie jej w przypadku rozpoznawania mowy
+ ciągłej, jest dosyć trudne do zrealizowania, ponieważ w wielu próbkach
+ treningowych niełatwo jest odnaleść granice pomiędzy poszczególnymi etykietami
+ (klasami słów) dlatego, że są wypowiadane bez znaczących przerw między
+ nimi i często się na siebie nakładają.
+ Trudności sprawiają również słowa kończące się głoskami bezdzwięcznymi.
+ W tym przypadku odsłuchując daną próbkę i próbując ustalić koniec takiego
+ słowa jest to również bardzo problematyczne.
+\end_layout
+
+\begin_layout Standard
+Jeżeli tworzy się system oparty o fonemy, narzędzie 
+\shape italic
+HLEd
+\shape default
+ konwertuje pliki etykiet, do plików zawierających transkrypcje fonemowe,
+ czyli zamienia zwykły alfabet języka na alfabet fonetyczny.
+ W przypadku niniejszej pracy, która nie jest oparta na fonemach lecz na
+ połączonych słowach został utworzony jedynie plik zawierający etykiety,
+ określające klasy rozpoznawanych słów.
+\end_layout
+
+\begin_layout Standard
+Do nagrania próbek sygnału mowy może zostać użyte narzędzie 
+\shape italic
+HSLab
+\shape default
+ lub inny rejestrator dźwięku.
+ W przypadku niniejszej pracy został wykorzystany darmowy program do obróbki
+ dźwięku o nazwie 
+\shape italic
+Audacity 
+\emph on
+w wersji 2.0.2
+\shape default
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Aud"
+
+\end_inset
+
+.
+
+\shape italic
+ 
+\shape default
+Rozdzielczość bitowa podczas nagrywania została ustawiona na 16 bitów, natomiast
+ częstotliwość próbkowania na 16 kHz.
+\end_layout
+
+\begin_layout Standard
+Otrzymane nagrania muszą zostać odpowiednio zparametryzowane (musi zostać
+ wykonana ekstrakcja cech).
+ Dokonuje się tego przy użyciu narzędzia 
+\shape italic
+HCopy, 
+\shape default
+które konwertuje pliki dźwiękowe do plików zawierających odpowiednie cechy
+ sygnału mowy.
+ W niniejszej pracy zostały wykorzystane cechy MFCC, opisane w rozdziale
+ 3 oraz w wielu pozycjach literaturowych m.in.
+ w 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+.
+ Przed użyciem narzędzia 
+\shape italic
+HCopy 
+\emph on
+musi zostać utworzony plik konfiguracyjny przechowujący parametry w dużym
+ stopniu wpływające na poprawność a przede wszystkim skuteczność działania
+ systemu rozpoznawania mowy.
+ Na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Plik-konfiguracyjny-narzędzia"
+
+\end_inset
+
+ został pokazany plik konfiguracyjny wykorzystany w niniejszej pracy a następnie
+ została wyjaśniona jego konstrukcja.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Plik konfiguracyjny narzędzia 
+\shape italic
+HCopy 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Plik-konfiguracyjny-narzędzia"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+SOURCEFORMAT = WAV 
+\end_layout
+
+\begin_layout Plain Layout
+
+SOURCERATE = 625
+\end_layout
+
+\begin_layout Plain Layout
+
+TARGETKIND = MFCC_0_D 
+\end_layout
+
+\begin_layout Plain Layout
+
+TARGETRATE = 100000.0 
+\end_layout
+
+\begin_layout Plain Layout
+
+SAVECOMPRESSED = T 
+\end_layout
+
+\begin_layout Plain Layout
+
+SAVEWITHCRC = T 
+\end_layout
+
+\begin_layout Plain Layout
+
+WINDOWSIZE = 250000.0
+\end_layout
+
+\begin_layout Plain Layout
+
+USEHAMMING = T 
+\end_layout
+
+\begin_layout Plain Layout
+
+PREEMCOEF = 0.97 
+\end_layout
+
+\begin_layout Plain Layout
+
+NUMCHANS = 26 
+\end_layout
+
+\begin_layout Plain Layout
+
+CEPLIFTER = 22 
+\end_layout
+
+\begin_layout Plain Layout
+
+NUMCEPS = 12
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wartość parametru 
+\emph on
+SOURCEFORMAT 
+\emph default
+określa format plików dźwiękowych z których zostaną wyekstrahowane cechy,
+ w tym przypadku jest to format WAV.
+\end_layout
+
+\begin_layout Standard
+Paratetr 
+\emph on
+SOURCERATE 
+\emph default
+przechowuje częstotliwość próbkowania nagrań dźwiękowych wykorzystanych
+ do trenowania.
+\end_layout
+
+\begin_layout Standard
+Wartość parametru 
+\emph on
+TARGETKIND 
+\emph default
+określa jakie cechy sygnału mowy zostaną wykorzystane (w tym przypadku MFCC)
+ oraz kolejno: 
+\end_layout
+
+\begin_layout Itemize
+cyfra 
+\emph on
+0 
+\emph default
+oznacza, że do wektora cech zostaje dołączona energia pierwszego współczynnika
+ cepstralnego (jeśli cyfra 
+\emph on
+0
+\emph default
+ zastąpiona byłaby literą 
+\emph on
+E
+\emph default
+, wtedy zostałaby obliczona sumaryczna energia wszystkich współczynników
+ cepstralnych), 
+\end_layout
+
+\begin_layout Itemize
+litera 
+\emph on
+D
+\emph default
+ oznacza, że wektor cech zostanie rozszerzony o pierwsze pochodne (czyli
+ współczynniki delta), jeśli zostałaby dopisana kolejno litera 
+\emph on
+A,
+\emph default
+ wtedy byłyby dołączone również drugie pochodne (delta-delta).
+\end_layout
+
+\begin_layout Standard
+Wartość parametru 
+\emph on
+TARGETRATE
+\emph default
+ określa ilość wektorów cech stworzonych przetwarzając jedną sekundę próbki
+ dźwiękowej.
+ 
+\end_layout
+
+\begin_layout Standard
+Parametr 
+\emph on
+SAVECOMPRESSED 
+\emph default
+ustawiony na 
+\emph on
+T
+\emph default
+ (oznacza true) włącza kompresje plików przechowujących wyekstrahowane cechy.
+\end_layout
+
+\begin_layout Standard
+Natomiast parametr 
+\emph on
+SAVEWITHCRC 
+\emph default
+ustawiony również na 
+\emph on
+T
+\emph default
+, sprawdza poprawność wykonanej kompresji.
+\end_layout
+
+\begin_layout Standard
+Wartość parametru 
+\emph on
+WINDOWSIZE 
+\emph default
+determinuje długość trwania pojedynczej ramki sygnału mowy.
+ 
+\end_layout
+
+\begin_layout Standard
+Wartości parametrów 
+\emph on
+SOURCERATE, TARGETRATE
+\emph default
+ oraz 
+\emph on
+WINDOWSIZE 
+\emph default
+podane sa w skali 100 ns.
+ Dla parametru 
+\emph on
+SOURCERATE 
+\emph default
+wartość 625 oznacza częstotliwość próbkowania 16 kHz, w przypadku 
+\emph on
+TARGETRATE 
+\emph default
+wartość 100000.0 oznacza, że z jednej sekundy nagrania zostanie utworzonych
+ sto wektorów cech, natomiast dla parametru 
+\emph on
+WINDOWSIZE 
+\emph default
+wartość 250000.0 oznacza, że pojedyncza ramka sygnału mowy trwa 25 ms.
+\end_layout
+
+\begin_layout Standard
+Parametr 
+\emph on
+USEHAMMING 
+\emph default
+ustawiony na wartość 
+\emph on
+T 
+\emph default
+powoduje użycie okna Hamminga w trakcie wyznaczania cech MFCC
+\emph on
+, PREEMCOEF 
+\emph default
+określa współczynnik preemfazy
+\emph on
+, NUMCHANS 
+\emph default
+określa rozmiar banku filtrów wykorzystywanych podczas wyznaczania MFCC,
  
 \emph on
-Twój ruch
+CEPLIFTER 
 \emph default
- informuje system, że ma wysłać sterowanie do robota, natomiast słowo 
+określa ilość współczynników poddanych liftrowaniu natomiast ostatni parametr
+ pliku konfiguracyjnego, 
 \emph on
-cofnij
+NUMCEPS, 
 \emph default
- wraca do poprzedniego etapu, czyli piątego.
+determinuje ilość współczynników cepstralnych.
+\end_layout
+
+\begin_layout Standard
+Podsumowując z każdej ramki sygnału o czasie trwania 25 ms oraz zachodzących
+ na siebie na odcinku 15 ms, zostały wyekstrahowane 25 elementowe wektory
+ cech z deltą energii.
 \end_layout
 
 \begin_layout Standard
@@ -1072,7 +1763,7 @@ status open
 
  
 \backslash
-subsection{Etap 1}
+subsection{Trenowanie}
 \end_layout
 
 \end_inset
@@ -1081,8 +1772,97 @@ subsection{Etap 1}
 \end_layout
 
 \begin_layout Standard
-Na rysunku przedstawiono gramatykę etapu pierwszego.
- System oczekuje tutaj od użytkownika przedstawienia się w wybranym formacie.
+Przed rozpoczęciem trenowania z użyciem HTK musi zostać utworzyć prototyp
+ modelu HMM, zapisany jako zwykły plik tekstowy, gdzie definiuje się topologię
+ modelu (określa ilość stanów, dopuszczalne przejścia między nimi oraz kilka
+ innych parametrów).
+ HTK zawiera skrypty generujące gotowe prototypy.
+ Modele HMM są tworzone dla każdego słowa ze słownika.
+ Procedura reestymacji przebiega równolegle dla każdego modelu w przypadku
+ mowy ciągłej, lub indywidualnie w przypadku izolowanych słów.
+ 
+\end_layout
+
+\begin_layout Standard
+Inicjalizacja niektórych parametrów HMM jest wykonywana za pomocą narzędzia
+ zwanego 
+\shape italic
+HInit
+\shape default
+.
+ Narzędzie to, najpierw przydziela po równo wektory obserwacji do każdego
+ ze stanów modelu (prócz stanów nieemitujących) a następnie wyznacza dla
+ nich początkowe wartości parametrów za pomocą wzorów:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\hat{\mu_{j}}=\frac{1}{T}\sum_{t=1}^{T}o_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\hat{\sum}_{j}=\frac{1}{T}\sum_{t=1}^{T}(o_{t}-\mu_{j})(o_{t}-\mu_{j})'
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tak dzieje się w przypadku izolowanych słów.
+ Dla mowy ciągłej zamiast narzędzia 
+\shape italic
+HInit 
+\shape default
+wykorzystywane jest narzędzie 
+\shape italic
+HCompV 
+\shape default
+a początkowe parametry są jednakowe dla wszystkich modeli.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+HTK do reestymacji parametrów HMM używa algorytmu Bauma-Welcha.
+ Ten algorytm jest zaimplementowany w narzędziu zwanym 
+\shape italic
+HERest 
+\shape default
+oraz 
+\shape italic
+HRest
+\shape default
+.
+ Narzędzie 
+\shape italic
+HRest 
+\shape default
+wykorzystywane jest tylko w przypadku izolowanych słów.
+ Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys23"
+
+\end_inset
+
+ pokazano jak przebiega proces trenowania HMM za pomocą narzędzi HTK.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1090,6 +1870,441 @@ Na rysunku przedstawiono gramatykę etapu pierwszego.
 wide false
 sideways false
 status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/htk-trenowanie.pdf
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Proces trenowania 
+\begin_inset CommandInset label
+LatexCommand label
+name "rys23"
+
+\end_inset
+
+ na podstawie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Narzędzie 
+\shape italic
+HHEd 
+\shape default
+przygotowuje modele HMM w zależności od kontekstu wypowiedzi.
+ W niniejszej pracy ten etap został pominięty, ponieważ system oparty jest
+ na połączonych słowach, których kontekst nie jest rozważany.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Testowanie}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Testowanie czyli właściwie faza rozpoznawania, polega na znalezieniu najbardziej
+ prawdopodobnej sekwencji przejść między stanami modelu HMM za pomocą algorytmu
+ Viterbiego zaimplementowanego w narzędziu 
+\shape italic
+HVite.
+ 
+\shape default
+Narzędzie to na wejściu przyjmuje sieć opisującą dostępne sekwencje słów,
+ słownik systemu oraz zestaw wytrenowanych modeli HMM.
+ Jako wynik działania 
+\shape italic
+HVite
+\shape default
+ otrzymujemy plik zawierający rozpoznane etykiety (klasy słów) nieznanej
+ wypowiedzi w formacie 
+\emph on
+MLF 
+\emph default
+(listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis6"
+
+\end_inset
+
+)
+\emph on
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykładowy wynik rozpoznawania w formacie MLF
+\begin_inset CommandInset label
+LatexCommand label
+name "lis6"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!MLF!# 
+\end_layout
+
+\begin_layout Plain Layout
+
+"*/sample1.rec" 
+\end_layout
+
+\begin_layout Plain Layout
+
+0 5000000 SENT-START -2374.491211 
+\end_layout
+
+\begin_layout Plain Layout
+
+5000000 22100000 ALFA -8464.383789 
+\end_layout
+
+\begin_layout Plain Layout
+
+22100000 24200000 JEDYNKA -2054.89383 
+\end_layout
+
+\begin_layout Plain Layout
+
+24200000 31200000 NA -804.563265 
+\end_layout
+
+\begin_layout Plain Layout
+
+31200000 42100000 BRAVO -1054.473267 
+\end_layout
+
+\begin_layout Plain Layout
+
+42100000 51200000 DWA -5322.543212 
+\end_layout
+
+\begin_layout Plain Layout
+
+51200000 62100000 SENT-END -2334.412611 
+\end_layout
+
+\begin_layout Plain Layout
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W wygenerowanym pliku podane są etykiety rozpoznanej wypowiedzi, czas (przedział
+ czasowy) w którym poszczególne słowo (etykieta) zostało wykryte, oraz prawdopod
+obieństwo z jakim zostało wykryte podane w skali logarytmicznej.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Analiza}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Po stworzeniu systemu rozpoznawania mowy warto przetestować jego skuteczność.
+ HTK udostępnia narzędzie zwane 
+\shape italic
+HResults, 
+\shape default
+które na wejśćiu przyjmuje testowe próbki wypowiedzi wraz z ich etykietami
+ a następnie porównuje z nimi etykiety otrzymane w wyniku rozpoznawania
+ i określa procentową skuteczność działania systemu (listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis7"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Przykładowy wynik narzędzia HResults 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis7"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+====================== HTK Results Analysis ============== 
+\end_layout
+
+\begin_layout Plain Layout
+
+Date: Sun Oct 22 16:14:45 2012 
+\end_layout
+
+\begin_layout Plain Layout
+
+Ref : testrefs.mlf 
+\end_layout
+
+\begin_layout Plain Layout
+
+Rec : recout.mlf 
+\end_layout
+
+\begin_layout Plain Layout
+
+------------------------ Overall Results ----------------- 
+\end_layout
+
+\begin_layout Plain Layout
+
+SENT: %Correct=98.50 [H=197, S=3, N=200]
+\end_layout
+
+\begin_layout Plain Layout
+
+WORD: %Corr=99.77, Acc=99.65 [H=853, D=1, S=1, I=1, N=855]
+\end_layout
+
+\begin_layout Plain Layout
+
+==========================================================
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gdzie w linii z 
+\shape italic
+SENT
+\shape default
+: 
+\end_layout
+
+\begin_layout Itemize
+H oznacza liczbę sentencji rozpoznanych, 
+\end_layout
+
+\begin_layout Itemize
+S sentencji nierozpoznanych, 
+\end_layout
+
+\begin_layout Itemize
+a N oznacza liczbę wszystkich sentencji.
+\end_layout
+
+\begin_layout Standard
+W przypadku linii z 
+\shape italic
+WORD
+\shape default
+ analogicznie tylko, że tutaj chodzi o pojedyncze słowa i tak kolejno: 
+\end_layout
+
+\begin_layout Itemize
+H oznacza liczbę słów nierozpoznanych,
+\end_layout
+
+\begin_layout Itemize
+S słów rozpoznanych,
+\end_layout
+
+\begin_layout Itemize
+N oznacza liczbę wszystkich słów,
+\end_layout
+
+\begin_layout Itemize
+a D oraz I są to błędy rozpoznawania.
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+\emph on
+Natomiast 
+\emph default
+Acc
+\shape default
+ oznacza skuteczność rozpoznawania podaną w procentach.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Etapy rozgrywki}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Działanie systemu można podzielić na sześć etapów, podczas których oczekiwana
+ jest ustalona sekwencja (lub słowo) i jej rozpoznanie determinuje wykonanie
+ jakiejś akcji lub jej brak.
+ O braku akcji w przypadku komendy niezgodnej z gramatyką systemu na danym
+ etapie, użytkownik zostaje poiformowany za pomocą komunikatu głosowego.
+ Na rysunkach od 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gramatyka-dla-etapu1"
+
+\end_inset
+
+ do 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gramatyka-dla-etapu6"
+
+\end_inset
+
+ przedstawiono gramatyki systemu na każdym etapie jego działania w postaci
+ sieci słów.
+ Wypowiedzi których rozpoznanie przechodzi do kolejnego etapu zaznaczono
+ na czerwono.
+ Wyjątkiem jest jedynie etap szósty, gdyż jest to ostatni etap, wypowiedź
+ 
+\emph on
+Twój ruch
+\emph default
+ informuje system, że on jako przeciwnik może wykonać swój ruch, natomiast
+ komenda 
+\emph on
+cofnij
+\emph default
+ uruchamia akcję cofającą ostatni wykonany ruch użytkownika i umożliwia
+ ponowne jego wykonanie wracając się do etapu piątego.
+\end_layout
+
+\begin_layout Standard
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gramatyka-dla-etapu1"
+
+\end_inset
+
+ przedstawiono gramatykę etapu pierwszego.
+ System oczekuje tutaj od użytkownika przedstawienia się w wybranym formacie.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1105,32 +2320,19 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Gramatyka dla etapu pierwszego
-\end_layout
+Gramatyka dla etapu pierwszego 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gramatyka-dla-etapu1"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Etap 2}
 \end_layout
 
 \end_inset
@@ -1139,7 +2341,14 @@ subsection{Etap 2}
 \end_layout
 
 \begin_layout Standard
-Na rysunku widoczna jest gramatyka dla etapu drugiego.
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gramatyka-dla-etapu2"
+
+\end_inset
+
+ widoczna jest gramatyka dla etapu drugiego.
  Na tym etapie użytkownik wybiera rodzaj rozgrywki.
 \end_layout
 
@@ -1147,7 +2356,7 @@ Na rysunku widoczna jest gramatyka dla etapu drugiego.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1163,32 +2372,19 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Gramatyka dla etapu drugiego
-\end_layout
+Gramatyka dla etapu drugiego 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gramatyka-dla-etapu2"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Etap 3}
 \end_layout
 
 \end_inset
@@ -1198,15 +2394,22 @@ subsection{Etap 3}
 
 \begin_layout Standard
 W kolejnym etapie o numerze trzy, którego gramatyka jest przedstawiona na
- rysunku użytkownik wybiera rodzaj figur w zależności od rozgrywki, którą
- wybrał w etapie poprzednim.
+ rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gramatyka-dla-etapu3"
+
+\end_inset
+
+ użytkownik wybiera rodzaj figur w zależności od rozgrywki, którą wybrał
+ w etapie poprzednim.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1222,8 +2425,10 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Gramatyka dla etapu trzeciego
-\end_layout
+Gramatyka dla etapu trzeciego 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gramatyka-dla-etapu3"
 
 \end_inset
 
@@ -1233,17 +2438,6 @@ Gramatyka dla etapu trzeciego
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Etap 4}
 \end_layout
 
 \end_inset
@@ -1252,17 +2446,23 @@ subsection{Etap 4}
 \end_layout
 
 \begin_layout Standard
-Etap numer cztery (gramatyka jest widoczna na rysunku ) ma za zadanie określić
- gracza rozpoczynającego rozgrywkę.
- Ten etap jest pomijany w przypadku gry w szachy, ponieważ zgodnie z ogólnie
- przyjętymi zasadami, rozpoczyna gracz, który wybrał jasne figury.
+Etap numer cztery (gramatyka jest widoczna na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gramatyka-dla-etapu4"
+
+\end_inset
+
+) ma za zadanie określić gracza rozpoczynającego rozgrywkę.
+ Ten etap jest pomijany w przypadku gry w szachy, ponieważ zgodnie z przyjętymi
+ zasadami, rozpoczyna gracz, który wybrał jasny kolor figur.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1278,8 +2478,10 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Gramatyka dla etapu czwartego
-\end_layout
+Gramatyka dla etapu czwartego 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gramatyka-dla-etapu4"
 
 \end_inset
 
@@ -1289,17 +2491,6 @@ Gramatyka dla etapu czwartego
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Etap 5}
 \end_layout
 
 \end_inset
@@ -1308,16 +2499,34 @@ subsection{Etap 5}
 \end_layout
 
 \begin_layout Standard
-Etap piąty (gramatyka widoczna na rysunku ) jest najważniejszym etapem działania
- systemu, ponieważ tutaj właśnie odbywa się właściwa rozgrywka.
- Etap ten jest powtarzany iteracyjnie aż do momentu wykrycia przez system
+Etap piąty (gramatyka widoczna na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gramatyka-dla-etapu5"
+
+\end_inset
+
+) jest najważniejszym etapem działania systemu, ponieważ tutaj odbywa się
+ właściwa rozgrywka.
+ Etap ten jest powtarzany iteracyjnie aż do momentu wykrycia przez aplikację
  ustawień figur na szachownicy oznaczających koniec rozgrywki (wygraną lub
- przegraną jednego z graczy) dla danej gry.
- Pole szachownicy (zawierającej 64 pól) jest zazwyczaj opisane literą (od
- A do H) oraz cyfrą (od 1 do 8).
+ przegraną jednego z graczy) dla danej gry lub przerwania przez gracza rozgrywki
+ za pomocą komendy 
+\emph on
+koniec
+\emph default
+.
+ Pole szachownicy (zawierającej 64 pól) jest opisane literą oraz cyfrą.
  Wypowiedź ma za zadanie określić ruch figury, jej pozycję źródłową oraz
  docelową.
- Format wypowiedzi jest pokazany na listingu.
+ Format wypowiedzi jest pokazany na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Format-wypowiedzi-określającej"
+
+\end_inset
+
+.
  Zmienne 
 \emph on
 pole_źródłowe 
@@ -1340,7 +2549,14 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Format wypowiedzi określającej przemieszczenie figury na szachownicy
+Format wypowiedzi określającej przemieszczenie figury na szachownicy 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Format-wypowiedzi-określającej"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1373,22 +2589,44 @@ alfa jedynka na hotel osiem
 \end_layout
 
 \begin_layout Standard
-Zgodnie z przykładem pokazanym na listingu 9, robot spróbuje przestawić
- figurę z pola A1 na pole H8.
+Zgodnie z przykładem pokazanym na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Format-wypowiedzi-określającej"
+
+\end_inset
+
+, wykonany zostanie ruch figury z pola A1 na pole H8.
+\end_layout
+
+\begin_layout Standard
+Na tym etapie istnieje również możliwość zatrzymania rozgrywki na maksymalny
+ czas (zdefiniowany w aplikacji) około pięciu minut (komenda 
+\emph on
+zatrzymaj
+\emph default
+).
+ Po tym czasie użytkownik zostaje poinformowany, że aplikacja przerywa pracę
+ i nastąpi jej wyłączenie.
+ Zanim jednak to nastąpi, po upływie około trzech minut użytkownik dostaje
+ ostrzeżenie, że niebawem rozgrywka zostanie przerwana.
+ Wznowienie rozgrywki jest możliwe korzystając z komendy 
+\emph on
+start
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Figures/etap5.pdf
-	lyxscale 80
-	display false
 	scale 80
 
 \end_inset
@@ -1400,8 +2638,10 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Gramatyka dla etapu piątego
-\end_layout
+Gramatyka dla etapu piątego 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gramatyka-dla-etapu5"
 
 \end_inset
 
@@ -1411,17 +2651,6 @@ Gramatyka dla etapu piątego
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Etap 6}
 \end_layout
 
 \end_inset
@@ -1430,18 +2659,23 @@ subsection{Etap 6}
 \end_layout
 
 \begin_layout Standard
-W etapie szóstym (gramatyka widoczna na rysunku ) użytkownik ma za zadanie
- zdecydować czy chce wykonać fizyczny ruch figury na szachownicy (za pomocą
- robota).
- Jeśli nie przemyślał swojej wypowiedzi w poprzednim etapie, może do niego
- powrócić oraz powtorzyć swoją komendę.
+W etapie szóstym (gramatyka widoczna na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gramatyka-dla-etapu6"
+
+\end_inset
+
+) użytkownik informuje swojego przeciwnika, że ten może wykonać swój ruch
+ lub ma możliwość cofnięcia posunięcia wykonanego na poprzednim etapie tj.
+ piątym.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1457,1057 +2691,207 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Gramatyka dla etapu szóstego
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Urządzenie
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Opis}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Początkowo system stworzony na potrzebny niniejszej pracy działał na laptopie
- z systemem operacyjnym Fedora 17 (dystrybucja Linuxa).
- Autor doszedł jednak do wniosku, że skoro podstawą komunikacji systemu
- z użytkownikiem jest mowa, to klawiatura oraz monitor (matryca laptopa)
- są zbędne.
- Do działania systemu nie trzeba również dużej mocy obliczeniowej jaką oferował
- laptop.
- Zdecydowano się zamiast laptopa użyć małego urządzenia o nazwie Raspberry
- Pi.
- Jest ono produktem fundacji non-profit, której celem było stworzenie taniej
- i w pełni funkcjonalnej platformy komputerowej.
-\end_layout
-
-\begin_layout Standard
-Urządzenie oparte jest na architekturze ARM, nie posiada wbudowanego dysku
- twardego, lecz w zamian posiada złącze kart SD w celu załadowania systemu
- operacyjnego i przechowywania danych.
- Raspberry Pi posiada również złącze USB do podłączenia dowolnych zewnętrznych
- urządzeń, wyjście dźwięku (np.
- do podpięcia głośników) oraz złącze Ethernet, które umożliwia podpięcie
- go do sieci Internet lub LAN za pomocą kabla.
- Urządzenie zasilane jest kablem mikrousb.
- Ciekawostką jest fakt, że Raspberry PI nie posiada wbudowanego zegara czasu
- rzeczywistego co powoduje, że system musi korzystać z zewnętrznego źródła
- czasu za pomocą sieci Internet lub pytać użytkownika o czas podczas uruchamiani
-a.
-\end_layout
-
-\begin_layout Standard
-Urządzenie pracuje na systemie Linuxowym opartym o dystrybucję Debiania
- o nazwie Raspbian zainstalowanym na karcie SD.
-\end_layout
-
-\begin_layout Standard
-Niestety Raspberry Pi nie posiada wejścia dźwięku wymaganego do podpięcia
- mikrofonu, dlatego został wyposażony w dodatkowy moduł USB firmy LogiLink
- pełniący funkcję karty dzwiękowej do której zostały podpięte słuchawki
- z mikrofonem (firmy Sennheiser, model PC 3 Chat) umożliwiające nagrywanie
- dźwięku.
- Korzystanie ze słuchawek z mikfofonem ma dodatkową zaletę w postaci stałej
- odległości mikrofonu od ust użytkownika.
- Głośność nagrań jest wtedy zależna jedynie od natężenia głosu użytkownika.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Parametry}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Na rysunku przedstawiono schemat Raspberry Pi a w tabeli jego szczegółową
- specyfikacje.
- Powstały dwa modele tego urządzenia A oraz B, różniące się nieco parametrami.
- Model B jest lepszy w porównaniu do A i to on został wykorzystany w niniejszej
- pracy.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename rpi.png
-	lyxscale 10
-	scale 40
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Schemat Raspberry Pi
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Specyfikacja urządzenia 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Rpi"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="18" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Parametr
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Model B
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-SoC:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Broadcom BCM2835
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-CPU:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-700 MHz ARM1176JZF-S core
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-GPU:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Broadcom VideoCore IV, OpenGL ES 2.0, 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1080p30 h.264/MPEG-4 AVC high-profile decode
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Pamięć:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-512 MB (współdzielona przez GPU)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Porty USB 2.0:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2 (za pomocą zintegrowanego koncentratora USB)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Wyjścia wideo:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Composite RCA, HDMI
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Wyjścia dźwięku:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-3.5 mm jack, HDMI
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Nośnik danych:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-złącze kart SD / MMC / SDIO
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Połączenia sieciowe:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10/100 Ethernet (RJ45)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Pozostałe łącza:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-8 x GPIO, UART, szyna I²C , szyna SPI z dwoma liniami CS, 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-+3.3 V, +5 V, masa
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Zasilanie:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-700 mA (3.5 W)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Źródło zasilania:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5 V przy pomocy złącza MicroUSB, ewentualnie za 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-pomocą złącza GPIO
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Wymiary
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-85.60 × 53.98 mm
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Obsługiwane systemy operacyjne:
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Debian GNU/Linux, Fedora, Arch Linux
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Robot przemysłowy 
-\end_layout
-
-\begin_layout Standard
-Robot przemysłowy z którym współpracuje urządzenie wraz z systemem rozpoznawania
- mowy jest produktem firmy Kawasaki, jego dystrybucją w Polsce zajmuje się
- firma ASTOR.
- Robot jest produktem z serii F oznaczonym symbolem FS03N.
- Waży zaledwie 20 kg.
- Posiada sześć stopni swobody, oznacza to, że jego ramię porusza się w sześciu
- płaszczyznach.
- Każda oś została oznaczona symbolem od JT1 do JT6 (rysunek ).
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Figures/robot-osie.pdf
-	display false
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Osie robota
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Maksymalna prędkość przemieszczania się wzdłuż każdej osi to 6 m/s.
-\end_layout
-
-\begin_layout Standard
-Kilka dodatkowych parametrów robota przedstawia tabela .
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Parametry modelu FS03N 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Rob"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Parametr
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-Wartość
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Udźwig
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-3 kg
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Zakres osi
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-JT1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm160\text{°}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-JT2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $+150\text{° \textasciitilde\ -}60\text{°}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-JT3
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $+120\text{° \textasciitilde\ -}150\text{°}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-JT4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm360\text{°}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-JT5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm160\text{°}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multirow="4" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-JT6
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm360\text{°}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Zasięg poziomy
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-700 mm
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Zasięg pionowy
-\end_layout
+Gramatyka dla etapu szóstego 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gramatyka-dla-etapu6"
 
 \end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
 
-\begin_layout Plain Layout
 
 \end_layout
 
 \end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
 
-\begin_layout Plain Layout
-830 mm
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Powtarzalność (dokładność)
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm0.05$
-\end_inset
-
-mm
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
 \end_inset
-
-
-\end_layout
 
-\begin_layout Standard
-Do podnoszenia figur położonych na szachownicy, zostały stworzone metalowe
- uchwyty przymocowane do chwytaka robota.
-\end_layout
 
-\begin_layout Standard
-Za sterowanie urządzeniem odpowiada kontroler serii D.
- Jest on wyposażony w port Ethernet co umożliwia komunikację za pomocą kabla
- sieciowego (korzystając z protokołu Telnet).
- Drugim możliwym interfejsem komunikacji jest port szeregowy COM, zwany
- też RS-232.
- 
 \end_layout
 
 \begin_layout Standard
-Robot może być sterowany panelem operatorskim (ang.
- teach pedant) lub zaprogramowanymi instrukcjami.
- Dostępne są dwa sposoby programowania robota, język AS oraz 
+Na każdym z dostępnych etapów istnieje możliwość przerwania rozgrywki poprzez
+ komendę 
 \emph on
-Block teaching
+koniec
 \emph default
- - metoda uczenia odtwarzania.
- Metoda uczenia polega na zmienianiu pozycji robota z użyciem panela operatorski
-ego, zapisywaniu wybranych pozycji a następnie odtwarzania zapisanych pozycji.
- Natomiast programy napisane w języku AS są zapisane w pamięci trwałej kontroler
-a robota.
- Użycie języka AS zostało opisane w pozycjach 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "As"
+.
+ Natomiast komenda 
+\emph on
+reset
+\emph default
+ jest dostępna na wszystkich etapach rozgrywki prócz pierwszego, pozwala
+ ona powrócić do etapu początkowego (pierwszego).
+\end_layout
 
-\end_inset
+\begin_layout Standard
 
- oraz 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "JezykAS"
+\series bold
+\color green
+Starałem się stworzyć jakiś sensowny schemat prezentujący wypowiedzi użytkownika
+ oraz odpowiedzi robota ale rozrósł się on na kilka stron i był mało czytelny.
+ Taki schemat prezentowałby być może pewną efektowność pracy ale nie niósłby
+ ze sobą zbyt wielu informacji merytorycznych także uważam, że obejdzie
+ się bez niego.
+ 
+\end_layout
+
+\begin_layout Section
+Robot 
+\end_layout
+
+\begin_layout Standard
+Robot przemysłowy z którym współpracuje system mikroprocesorowy wraz z systemem
+ rozpoznawania mowy jest wykorzystywany do podnoszenia figur położonych
+ na szachownicy.
+ Do tego celu zostały wycięte metalowe uchwyty przymocowane do chwytaka
+ robota.
+ Wszystkie pozycje figur zostały zapisane w pamięci kontrolera robota.
+ Zdjęcie stanowiska robota wraz z całym osprzętem pokazano na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Zdjęcie-stanowiska-robota"
 
 \end_inset
 
 .
- Na listingu 10 pokazano program napisany w języku AS, wykorzystywany przez
- kontroler do sterowania podczas rozgrywki z robotem.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/stanowisko.jpg
+	lyxscale 30
+	scale 20
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Zdjęcie stanowiska robota 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Zdjęcie-stanowiska-robota"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Schemat sterowania robotem przedstawiono na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Uproszczony-schemat-sterowania"
+
+\end_inset
+
+.
+ Użytkownik po wydaniu komendy dostaje od systemu odpowiedź zwrotną (która
+ jest ustalonym sygnałem dźwiękowym lub nagraną wcześniej wypowiedzią) potwierdz
+ającą uruchomienie rozpoznawania oraz informującą czy rozpoznana komenda
+ jest zgodna z gramatyką rozgrywki na danym etapie.
+ Nagrania odtwarzane przez aplikację mają za zadanie symulować rozmowę z
+ robotem.
+ Zostały nagrane z wykorzystanie syntezatora mowy Ivona na stronie domowej
+ projektu 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ivo"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Komunikacja ze sterownikiem robota odbywa się za pomocą kabla sieciowego
+ Ethernet po protokole Telnet.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename schemat-sterowania-robotem.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Uproszczony schemat sterowania robotem 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Uproszczony-schemat-sterowania"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Do kontrolowania ruchów robota podczas przenoszenia figur na szachownicy
+ został wykorzystany program napisany w języku AS.
+ Na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Program-sterujący-robotem"
+
+\end_inset
+
+ pokazano program wykorzystywany przez kontroler do sterowania robotem podczas
+ rozgrywki.
+ Jest on zapisany w pamięci trwałej kontrolera robota pod nazwą 
+\emph on
+pg753
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
@@ -2521,7 +2905,15 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Program sterujący robotem podczas rozgrywki
+Program napisany w języku AS, służący do sterowania robotem podczas rozgrywki
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Program-sterujący-robotem"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2535,12 +2927,16 @@ Program sterujący robotem podczas rozgrywki
 
 \begin_layout Plain Layout
 
-pole_źródłowe na pole_docelowe
+OPENI
 \end_layout
 
 \begin_layout Plain Layout
 
-Np.: alfa jedynka na hotel osiem
+CLOSEI
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -2549,18 +2945,181 @@ Np.: alfa jedynka na hotel osiem
 \end_layout
 
 \begin_layout Standard
-Instrukcja ...
- przenosi ramię robota (chwytak) nad figurę ...
+
+\series bold
+\color green
+Tutaj znajdzie się opis instrukcji użytych w powyższym programie lecz niestety
+ zapomniałem podejrzeć programu jak byłem ostatnio w D104 a jest on zapisany
+ tylko w pamięci kontrolera robota i składa się raptem z 10 prostych instrukcji
+ więc uzupełnie to po nowym roku.
 \end_layout
 
 \begin_layout Standard
-Kinematyka prosta oraz odwrotna została zaimplementowana w kontrolerze robota.
- Istnieją dwa układy współrzędnych, współrzędne globalne i układ współrzędnych
- narzędzia, umożliwiające bardziej precyzyjne sterowanie ruchami robota.
+W trakcie rozgrywki z robotem, aplikacja działająca na urządzeniu Raspberry
+ Pi wysyła polecenie po protokole Telnet przedstawione na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Polecenie-uruchamiające-program"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Polecenie uruchamiające program wykorzystywany do rozgrywki 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Polecenie-uruchamiające-program"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ex pg753
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Umożliwia ono wykonanie przez kontroler robota programu sterującego ruchami
+ robota podczas przenoszenia figur na szachownicy.
+ Wcześniej jednak ustawiane są zmienne globalne 
+\emph on
+source
+\emph default
+ oraz 
+\emph on
+target
+\emph default
+ przechowujące pozycję wybranych figur na szachownicy, które podobnie jak
+ program sterujący są zapisane w pamięci trwałej kontrolera robota.
+ Przykład ustawiania powyższych zmiennych pokazano na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Polecenia-ustawiające-zmienne"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Polecenia ustawiające zmienne 
+\emph on
+source
+\emph default
+ oraz 
+\emph on
+target
+\emph default
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Polecenia-ustawiające-zmienne"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+POINT #source=#b1
+\end_layout
+
+\begin_layout Plain Layout
+
+POINT #target=#a3
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Po ustawieniu zmiennych zgodnie z listingiem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Polecenia-ustawiające-zmienne"
+
+\end_inset
+
+ oraz wykonaniu polecenia uruchamiającego program sterujący ruchami robota,
+ przeniesie on figurę z pola B1 na pole A3.
 \end_layout
 
 \begin_layout Section
 Gry planszowe 
+\end_layout
+
+\begin_layout Standard
+Aplikacja wynik rozpoznanej komendy głosowej określającej ruch figury na
+ szachownicy zamienia na notację algebraiczną (np.
+ 
+\emph on
+alfa jedynka
+\emph default
+ zostaje zamienione na 
+\emph on
+A1
+\emph default
+), która jest łatwiejsza w interpretacji.
+ Otrzymana informacja jest wysyłana w odpowiednim formacie do programu Stockfish
+ lub funkcji realizującej algorytm gry Wilk i owce.
 \end_layout
 
 \begin_layout Standard
@@ -2580,11 +3139,100 @@ subsection{Szachy}
 \end_layout
 
 \begin_layout Standard
-Zasady
+Zasady gry w szachy są powszechnie znane oraz szeroko opisane w literaturze,
+ dlatego autor ograniczy się jedynie do podania przykładowej pozycji internetowe
+j w której można znaleść szczegółowy opis zasad rozgrywki, mianowicie 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ZasSza"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Cel
+Podczas komunikacji z programem szachowym Stockfish, aplikacja wysyła oraz
+ odbiera pozycje figur na szachownicy oraz uruchamia analizę umożliwiającą
+ ruch przeciwnika komputerowego.
+ W przypadku szachów, domyślnie pierwszy ruch wykonywany jest figurami jasnymi,
+ stąd jeśli użytkownik wybierze kolor jasny aplikacja automatycznie ustawi
+ ciemny kolor figur graczowi komputerowemu.
+ Natomiast w odwrotnym wypadku, gracz komputerowy wykona pierwszy ruch a
+ więc najpierw zostanie uruchomiona analiza, której efektem będzie otrzymanie
+ nowej pozycji figury jasnej.
+ Jeżeli użytkownik wybierze kolor jasny i wykona ruch aplikacja najpierw
+ wysyła programowi Stockfish pozycję figur na szachownicy zawierającą ruch
+ użytkownika, a następnie uruchamia analizę i odbiera wynik zawierający
+ nową pozycję figury ciemnej gracza komputerowego.
+\end_layout
+
+\begin_layout Standard
+Ruch gracza komputerowego można otrzymać wysyłając programowi Stockfish
+ komendę pokazaną na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Polecenie-uruchamiające-analizę"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Polecenie uruchamiające analizę dostępnych ruchów 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Polecenie-uruchamiające-analizę"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+go depth 20
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wartość po słowie 
+\emph on
+depth
+\emph default
+ ustala głębokość do której wykonywana jest analiza przez program Stockfish.
+ Im mniejsza wartość, tym ruchy będą mniej efektywne, można na tej zasadzie
+ ustawić poziom trudności rozgrywki z graczem komputerowym.
+\end_layout
+
+\begin_layout Standard
+W trakcie rozgrywki wykonywane jest sprawdzanie poprawności ruchu użytkownika,
+ który w razie próby wykonania ruchu niezgodnego z zasadami prowadzonej
+ gry otrzymuje ostrzeżenie głosowe o niedozwolonym ruchu.
 \end_layout
 
 \begin_layout Standard
@@ -2604,11 +3252,107 @@ subsection{Wilk i owce}
 \end_layout
 
 \begin_layout Standard
-Zasady
+Gra 
+\emph on
+Wilk i owce
+\emph default
+ znana jest również pod nazwą 
+\emph on
+Wilk i psy
+\emph default
+.
+ Jest to gra o typie warcabowym.
+ Jeden z graczy dysponuje jednym jasnym pionem (wilkiem) natomiast przeciwnik
+ ma do dyspozycji cztery piony czarne (owce).
+ Pozycja początkowa figur na szachownicy została przedstawiona na rysunku
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Pozycja-początkowa-figur"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Cel
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/szachownica-wilkiowce.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pozycja początkowa figur w grze Wilk i owce 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Pozycja-początkowa-figur"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ruchy odbywają się jedynie po ciemnych polach.
+ Owce zajmują pozycje w pierwszym rzędzie szachownicy, natomiast wilk zajmuje
+ jedną z czterech dostępnych pozycji w rzędzie ostatnim.
+\end_layout
+
+\begin_layout Standard
+Celem wilka jest przedostanie się na pierwszy rząd pól szachownicy natomiast
+ gracz mający do dyspozycji owce, wygrywa jeśli uda mu się zablokować wilka
+ tak aby nie mógł on wykonać żadnego posunięcia.
+ Wilk w jednym ruchu może przesunąć się o jedno pole po przekątnej w dowolną
+ stronę natomiast owce mogą przesuwać się również o jedno pole po przekątnej,
+ lecz tylko do przodu.
+ Gracz dysponujący wilkiem może się cofać, w przeciwieństwie do gracza dysponują
+cego owcami.
+ 
+\end_layout
+
+\begin_layout Standard
+Do rozgrywki został napisany prosty algorytm polegający z punktu widzenia
+ wilka, na ruchach do przodu jeśli istnieje taka możliwość a w przeciwnym
+ wypadku na cofaniu się.
+ W sytuacji gdy owce przesuwają się równomiernie, to znaczy, że wybrana
+ owca nie wykona więcej niż jednego ruchu przed pozostałymi trzema, to gracz
+ dysponujący wilkiem jest skazany na porażke.
+ Dlatego w stworzonym algorytmie owce nie poruszają się w sposób bezbłędny
+ aby umożliwić wilkowi wygraną w niektórych przypadkach.
+ 
+\end_layout
+
+\begin_layout Standard
+Tak jak podczas gry w szachy, tutaj również wykonywana jest walidacja ruchów
+ użytkownika.
 \end_layout
 
 \end_body

@@ -65,16 +65,149 @@
 Podsumowanie
 \end_layout
 
+\begin_layout Standard
+Część praktyczna niniejszej pracy składa się z silnika rozpoznawania mowy
+ wytrenowanego z użyciem HTK oraz aplikacji napisanej w Pythonie, która
+ łączy w sobie wszystkie założone funkcjonalności takie jak automatyczne
+ nagrywanie dźwięku, rozpoznawanie mowy z użyciem bibliotek HTK, sterowanie
+ robotem oraz gry planszowe (wilk i owce, szachy).
+ Aplikacja ta jest typu 
+\emph on
+proof of concept,
+\emph default
+ prezentuje przykładowe zastosowanie rozpoznawania mowy do sterowania urządzenie
+m elektronicznym jakim jest robot.
+ 
+\end_layout
+
 \begin_layout Section
 Jakość systemu
+\end_layout
+
+\begin_layout Standard
+HTK do poprawnego wytrenowania systemu wymaga conajmniej 3 próbek każdego
+ słowa ze słownika.
+ Do uzyskania zadowalającej skutecznośći systemu z małym słownikiem oraz
+ z małymi podobieństwami słów wystarczy już po 10 próbek dla każdego słowa.
+
+\series bold
+ 
+\series default
+System stworzony na potrzeby niniejszej pracy posiada słownik składający
+ się z 
+\series bold
+40 
+\series default
+słów, które występują conajmniej po 20 razy we wszystkich nagraniach treningowyc
+h.
+ Słowa zostały dobrane tak aby były długie oraz jak najbardziej różniły
+ się od siebie, co pomaga osiągnąć wysoką skuteczność rozpoznawania na poziomie
+ około 
+\series bold
+90%
+\series default
+.
+ Uzyskanie takiej skuteczności wymaga od użytkownika pewnej dyscypliny.
+ Komendy powinny być wypowiadane w normalnym tempie, wyraźnie oraz zachowaniem
+ odpowiedniej głośności (komendy nie muszą być wypowiadane podniesionym
+ głosem, lecz nie mogą być również wypowiadane zbyt cicho).
+ Użytkownik musi również uważać, żeby nie wypowiadać przypadkowych słów,
+ ponieważ zostaną im przyporządkowane słowa ze słownika systemu, które mogą
+ być komendami sterującymi.
+ Ilość stanów w modelu HMM została dobrana eksperymentalnie.
+ HTK domyślnie tworzy modele 5-cio stanowe, zostały również przetestowane
+ modele 7, 9, 11 oraz 15-sto stanowe.
+ Największą skuteczność uzyskanu w przypadku 15-sto stanowych modeli HMM,
+ z tym, że różnice w poprawie skutecznośći w zależności od ilości stanów
+ w modelu były niewielkie.
+ Początkowym wyznacznikiem tej skuteczności było przetestowanie systemu
+ na próbkach wykorzystanych do jego wytrenowania.
+ Po przeprowadzeniu takiego testu skutecznośc wyniosła 
+\series bold
+96%
+\series default
+.
+ W początkowej fazie prac, gdy słownik zawierał mniej słów oraz było mniej
+ nagrań treningowych rozpoznawanie próbek treningowych dawało 
+\series bold
+100% 
+\series default
+poprawność.
+ 
 \end_layout
 
 \begin_layout Section
 Możliwości rozwoju
 \end_layout
 
-\begin_layout Section
-Wnioski
+\begin_layout Standard
+W chwili składania tej pracy, dostępne gry to wilk i owce oraz szachy.
+ Sterowanie w nich przebiega w podobny, niezbyt skomplikowany sposób.
+ Warto byłoby przetestować jakąś grę, w której sposób sterowania jest w
+ większym stopniu skomplikowany, co za tym idzie, słownik systemu mógłby
+ ulec powiększeniu.
+ Wymagałoby to również nagrania większej ilości danych treningowych.
+ 
+\end_layout
+
+\begin_layout Standard
+Ciekawym kierunkiem rozwoju w opinii autora byłoby oparcie systemu rozpoznawania
+ mowy na fonemach jako najmniejszych jednostkach fonetycznych.
+ Umożliwiłoby to rozpoznawanie komend ze zbioru otwartego co jest przeciwieństwe
+m strategii zastosowanej w niniejszej pracy.
+ Pociąga to za sobą konieczność nagrania dużej ilości próbek treningowy
+ aby umożliwić poprawne wytrenowanie modeli HMM.
+ 
+\end_layout
+
+\begin_layout Standard
+Kolejnym interesującym kierunkiem rozwoju, byłoby stworzenie systemu rozpoznawan
+ia mowy niezależnego od mówcy.
+ Wymagałoby to wytrenowania systemu na nagraniach pochodzących od różnych
+ osób, których głosy mają odmienną tonacje (dzieci, kobiet, osób starszych).
+ Brak dostępu do bazy nagrań języka polskiego znacznie utrudnia to zadanie,
+ bo stworzenie takowej byłoby bardzo czasochłonne oraz mogłoby być osobnym
+ projektem, niezwiązanym z niniejszą pracą.
+ Taka baza byłaby również przydatna do wytrenowania systemu opartego na
+ fonemach.
+ Pierwszym pomysłem jaki nasunął się autorowi, umożliwiającym pokonanie
+ tej przeciwności, byłoby skorzystanie z darmowych nagrań znalezionych np.
+ w Internecie, lub wykorzystanie ksiażki w wersji 
+\emph on
+audiobook
+\emph default
+ i za pomocą takich nagrań wytrenować system rozpoznawania mowy.
+ Kolejną ideą zwiazaną z tworzeniem systemu niezależnego od mówcy jest rozwinięc
+ie aplikacji o możliwość automatycznej adaptapcji do mówcy.
+ Polegałoby to na poinstruowaniu użytkownika, który po raz pierwszy korzysta
+ z systemu oraz nagraniu jego głosu podczas ustalonych wypowiedzi, następnie
+ ponownym wytrenowaniu systemu na próbkach nowego głosu.
+ Taka czynność byłaby uruchamiana tylko przy pierwszym korzystaniu z systemu
+ oraz mogłaby być opcjonalna, uruchamiana tylko w przypadku niskiej skuteczności
+ rozpoznawania dla danego głosu w celu jej poprawienia.
+\end_layout
+
+\begin_layout Standard
+W dobie coraz większej popularności urządzeń mobilnych takich jak smartfony
+ lub tablety, działających na systemie Android, który posiada ponad połowę
+ światowego rynku urządzeń mobilnych dobrym pomysłem wydaje się stworzenie
+ wersji mobilnej aplikacji.
+ Bilioteki HTK są niezbędne do poprawnego działania aplikacji stworzonej
+ na potrzeby niniejszej pracy.
+ Zatem przeniesienie wszystkich funkcjonalności na system Android wiąże
+ się ze skompilowaniem bibliotek HTK na tym systemie.
+ W razie problemów z uruchomieniem HTK w systemie Android, alternatywą pozostaje
+ skorzystanie z urządzenia Raspberry Pi jako serwera na którym odbywa się
+ rozpoznawanie mowy za pomocą HTK.
+ Aplikacja działająca na urządzeniu mobilnym z systemem Android, nagrywałaby
+ wypowiedzi użytkownika, wysyłała do serwera skąd otrzymywałaby wyniki rozpoznaw
+ania a następnie odpowiadała za rozgrywkę oraz sterowanie robotem.
+\end_layout
+
+\begin_layout Standard
+Podsumowując, systemy rozpoznawania mowy dają duże spektrum możliwości rozwoju
+ oraz w opinii autora, mogą zostać ciekawym oraz przyszłościowym obiektem
+ zainteresowań.
 \end_layout
 
 \end_body

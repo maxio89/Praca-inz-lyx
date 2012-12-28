@@ -63,11 +63,27 @@
 \begin_body
 
 \begin_layout Chapter
-HTK (Hidden Markov Model Toolkit)
+Wykorzystane narzędzia
 \end_layout
 
 \begin_layout Section
-Podstawy HTK
+HTK (Hidden Markov Model Toolkit)
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Podstawy HTK}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -102,13 +118,12 @@ reference "rys18"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename htk-ogolny.png
-	display false
+	filename Figures/htk-ogolny.pdf
 	scale 80
 
 \end_inset
@@ -127,7 +142,7 @@ name "rys18"
 
 \end_inset
 
- 
+ na podstawie 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Htkb"
@@ -167,13 +182,12 @@ reference "rys19"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ogolna-idea-htk.png
-	display false
+	filename Figures/htk-idea.pdf
 
 \end_inset
 
@@ -191,7 +205,7 @@ name "rys19"
 
 \end_inset
 
- 
+na podstawie 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Htkb"
@@ -225,8 +239,8 @@ reference "chap:2"
 \end_layout
 
 \begin_layout Standard
-Budowa systemu rozpoznawania mowy ciągłej opartego o fonemy przy pomocy
- narzędzi HTK przebiega w czterech fazach (rys.
+Budowa systemu rozpoznawania mowy ciągłej z użyciem narzędzi HTK przebiega
+ w czterech fazach (rys.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -235,20 +249,19 @@ reference "rys20"
 \end_inset
 
 ).
- Zostały one opisane w jednym z kolejnych podrozdziałów.
+ Zostały one opisane w rozdziale 6 niniejszej pracy.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename htk-fazy.png
-	display false
+	filename Figures/htk-fazy.pdf
 	scale 80
 
 \end_inset
@@ -267,7 +280,7 @@ name "rys20"
 
 \end_inset
 
- 
+ na podstawie 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Htkb"
@@ -287,14 +300,26 @@ key "Htkb"
 
 \end_layout
 
-\begin_layout Section
-Architektura
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Architektura}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 Większość funkcjonalności HTK jest wbudowane w moduły, które są bibliotekami
- systemowymi (pliki z rozszerzeniem *.dll w systemach Windows lub *.lib dla
- systemów Unix).
+ systemowymi (pliki z rozszerzeniem *.dll w systemach Windows lub *.lib w
+ systemach Linux).
  Te moduły zapewniają każdemu narzędziu interfejs do komunikowania się ze
  światem zewnętrznym w podobny sposób.
  Dostarczają również centralny zasób najczęściej używanych funkcji.
@@ -305,21 +330,20 @@ reference "rys21"
 
 \end_inset
 
- przedstawione są typowe narzędzia HTK i pokazane interfejsy wejść oraz
- wyjść.
+ przedstawione zostały typowe narzędzia HTK oraz pokazane interfejsy wejść
+ i wyjść.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename htk-architektura.png
-	display false
+	filename Figures/htk-architektura.pdf
 
 \end_inset
 
@@ -337,7 +361,7 @@ name "rys21"
 
 \end_inset
 
- 
+ na podstawie 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Htkb"
@@ -451,8 +475,20 @@ key "Htkb"
 .
 \end_layout
 
-\begin_layout Section
-Parametry narzędzi
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+subsection{Parametry narzędzi HTK}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -535,7 +571,8 @@ i
  file2 
 \shape default
 oraz argumenty opcjonalne.
- Opcje zawsze zaczynają się od pojedyńczej litery poprzedzonej znakiem 
+ Argumenty zawsze zaczynają się od pojedynczej litery poprzedzonej znakiem
+ 
 \begin_inset Quotes pld
 \end_inset
 
@@ -543,13 +580,13 @@ oraz argumenty opcjonalne.
 \begin_inset Quotes prd
 \end_inset
 
- a następnie podawana jest wartość opcji.
- Kolejne opcje rozdzielone są znakiem spacji.
- Czasem wartość opcji jest wartością typu zmiennoprzecinkowego (opcja
+ a następnie podawana jest ich wartość.
+ Kolejne opcje (argumenty) rozdzielone są znakiem spacji.
+ Czasami wartość opcji jest wartością typu zmiennoprzecinkowego (opcja
 \shape italic
  -f)
 \shape default
- a czasem jest to wartość całkowita (opcja
+ a innym razem jest to wartość całkowita (opcja
 \shape italic
  -T, 
 \shape default
@@ -634,17 +671,38 @@ config
 \end_layout
 
 \begin_layout Standard
-Konsolowe działanie narzędzi HTK może wydawać się trochę staromodne w porównaniu
- z graficznymi interfejsami użytkownika różnych współczesnych aplikacji,
- lecz daje przejrzysty podgląd działania poszczególnych narzędzi oraz pozwala
- w prosty sposób zautomatyzować wykonanie kilku funkcji poprzez pisanie
- skryptów.
+Konsolowe działanie narzędzi HTK może wydawać się trochę przestarzałe w
+ porównaniu z graficznymi interfejsami użytkownika różnych współczesnych
+ aplikacji, lecz daje przejrzysty podgląd działania poszczególnych narzędzi
+ oraz pozwala w prosty sposób zautomatyzować wykonanie kilku funkcji poprzez
+ pisanie skryptów.
  Aby mieć podgląd wszystkich możliwych opcji wybranego narzędzia wystarczy
  wywołać je w konsoli bez żadnych dodatkowych argumentów.
 \end_layout
 
 \begin_layout Section
-Fazy budowy systemu rozpoznawania mowy
+Raspberry Pi
+\end_layout
+
+\begin_layout Standard
+Raspberry Pi jest produktem fundacji non-profit, której celem było stworzenie
+ taniej i w pełni funkcjonalnej platformy komputerowej.
+\end_layout
+
+\begin_layout Standard
+Urządzenie oparte jest na architekturze ARM, nie posiada wbudowanego dysku
+ twardego, lecz w zamian posiada złącze kart SD w celu załadowania systemu
+ operacyjnego i przechowywania danych.
+ Raspberry Pi posiada również złącze USB do podłączenia dowolnych zewnętrznych
+ urządzeń, wyjście dźwięku (np.
+ do podłączenia głośników) oraz złącze Ethernet, które umożliwia podłączenie
+ go do sieci Internet lub LAN za pomocą kabla Ethernet.
+ Urządzenie jest zasilane kablem micro USB.
+ Ciekawostką jest fakt, że Raspberry PI nie posiada wbudowanego zegara czasu
+ rzeczywistego co powoduje, że system musi korzystać z zewnętrznego źródła
+ czasu za pomocą sieci Internet lub pytać użytkownika o czas podczas uruchamiani
+a.
+ Urządzenie pracuje na systemie Linuxowym zainstalowanym na karcie SD.
 \end_layout
 
 \begin_layout Standard
@@ -655,7 +713,7 @@ status open
 
  
 \backslash
-subsection{Przygotowanie danych}
+subsection{Parametry}
 \end_layout
 
 \end_inset
@@ -664,184 +722,993 @@ subsection{Przygotowanie danych}
 \end_layout
 
 \begin_layout Standard
-Pierwszym krokiem jest stworzenie słownika systemu, w którym zapisane są
- wszystkie używane słowa wraz z ich zapisem fonetycznym.
- Następnie trzeba ustalić gramatykę systemu, czyli format wypowiedzi które
- będą rozpoznawane (listing 
+Na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "lis3"
+reference "fig:Schemat-Raspberry-Pi"
+
+\end_inset
+
+ przedstawiono schemat Raspberry Pi a w tabeli 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Specyfikacja-urządzenia-"
+
+\end_inset
+
+ jego szczegółową specyfikacje.
+ Powstały dwa modele tego urządzenia A oraz B, różniące się nieco parametrami.
+ Model B jest lepszy w porównaniu do A i to on został wykorzystany w niniejszej
+ pracy.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename rpi.png
+	lyxscale 10
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schemat Raspberry Pi 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Schemat-Raspberry-Pi"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Specyfikacja urządzenia 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rpi"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Specyfikacja-urządzenia-"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="18" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Parametr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Model B
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SoC:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broadcom BCM2835
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CPU:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+700 MHz ARM1176JZF-S core
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GPU:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broadcom VideoCore IV, OpenGL ES 2.0, 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1080p30 h.264/MPEG-4 AVC high-profile decode
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pamięć:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+256 MB (współdzielona przez GPU)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Porty USB 2.0:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 (za pomocą zintegrowanego koncentratora USB)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wyjścia wideo:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Composite RCA, HDMI
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wyjścia dźwięku:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.5 mm jack, HDMI
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nośnik danych:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+złącze kart SD / MMC / SDIO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Połączenia sieciowe:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/100 Ethernet (RJ45)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pozostałe łącza:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8 x GPIO, UART, szyna I²C , szyna SPI z dwoma liniami CS, 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++3.3 V, +5 V, masa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zasilanie:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+700 mA (3.5 W)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Źródło zasilania:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 V przy pomocy złącza MicroUSB, ewentualnie za 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+pomocą złącza GPIO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wymiary
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+85.60 × 53.98 mm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obsługiwane systemy operacyjne:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Debian GNU/Linux, Fedora, Arch Linux
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Robot przemysłowy Kawasaki
+\end_layout
+
+\begin_layout Standard
+Robot wykorzystywany do zaprezentowania sterowania głosowego jest produktem
+ firmy Kawasaki.
+ Jego dystrybucją w Polsce zajmuje się firma ASTOR.
+ Robot jest produktem z serii F oznaczonym symbolem FS03N.
+ Waży zaledwie 20 kg.
+ Posiada sześć stopni swobody co oznacza, że jego ramię porusza się w sześciu
+ płaszczyznach.
+ Każda oś została oznaczona symbolem od JT1 do JT6 (rysunek 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Osie-robota"
 
 \end_inset
 
 ).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/robot-osie.pdf
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Osie robota 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Osie-robota"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Maksymalna prędkość przemieszczania się wzdłuż każdej osi to około 6 m/s.
+\end_layout
+
+\begin_layout Standard
+Kilka dodatkowych parametrów robota przedstawia tabela 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Parametry-modelu-FS03N"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Parametry modelu FS03N 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rob"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Parametry-modelu-FS03N"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Parametr
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Wartość
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Udźwig
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 kg
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zakres osi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JT1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm160\text{°}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JT2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+150\text{° \textasciitilde\ -}60\text{°}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JT3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+120\text{° \textasciitilde\ -}150\text{°}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JT4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm360\text{°}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JT5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm160\text{°}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JT6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm360\text{°}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zasięg poziomy
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+700 mm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zasięg pionowy
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+830 mm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Powtarzalność (dokładność)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm0.05$
+\end_inset
+
+mm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Za sterowanie urządzeniem odpowiada kontroler serii D.
+ Jest on wyposażony w port Ethernet, który umożliwia komunikację za pomocą
+ kabla sieciowego (korzystając z protokołu Telnet).
+ Drugim możliwym interfejsem komunikacji jest port szeregowy COM, zwany
+ też RS-232.
  
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset listings
-inline false
-status open
+Sterowanie robotem może być wykonywane za pomocą panelu operatorskiego zwanego
+ 
+\emph on
+teach pedant,
+\emph default
+ który jest podłączony do kontrolera robota lub zaprogramowanymi instrukcjami.
+ Dostępne są dwa sposoby programowania robota, język AS oraz 
+\emph on
+Block teaching
+\emph default
+ - metoda uczenia odtwarzania.
+ Metoda uczenia polega na zmienianiu pozycji robota z użyciem panela operatorski
+ego, zapisywaniu wybranych pozycji a następnie odtwarzania zapisanych pozycji.
+ Natomiast programy napisane w języku AS są zapisane w pamięci trwałej kontroler
+a robota.
+ Użycie języka AS zostało opisane w pozycjach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "As"
 
-\begin_layout Plain Layout
-
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Przykładowe wypowiedzi 
-\begin_inset CommandInset label
-LatexCommand label
-name "lis3"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Wybierz jeden dwa cztery jeden pięć
-\end_layout
-
-\begin_layout Plain Layout
-
-Wybierz dwa zero zero osiem
-\end_layout
-
-\begin_layout Plain Layout
-
-Zadzwoń do Stefan Młody
-\end_layout
-
-\begin_layout Plain Layout
-
-Dzwoń do Kowalski
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-HTK dostarcza język definicji gramatyki.
- Składa się on z zestawu definicji zmiennych zawierających wyrażenia regularne
- będące słowami, które będą rozpoznawane.
-\end_layout
-
-\begin_layout Standard
-Dla powyższych wypowiedzi na listingu 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis4"
-
-\end_inset
-
- jest pokazany przykład definicji gramatyki.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Przykład definicji gramatyki 
-\begin_inset CommandInset label
-LatexCommand label
-name "lis4"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-$cyfry = JEDEN | DWA | TRZY | CZTERY | PIĘĆ | 
-\end_layout
-
-\begin_layout Plain Layout
-
-SZEŚĆ | SIEDEM | OSIEM | DZIEWIĘĆ | ZERO; 
-\end_layout
-
-\begin_layout Plain Layout
-
-$osoba = [ JAN ] KOWALSKI | 
-\end_layout
-
-\begin_layout Plain Layout
-
-[ STEFAN ] MŁODY; 
-\end_layout
-
-\begin_layout Plain Layout
-
-( SENT-START ( WYBIERZ <$cyfry> | (ZADZWOŃ|DZWOŃ) DO $osoba) SENT-END )
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Znak 
-\begin_inset Quotes pld
-\end_inset
-
-|
-\begin_inset Quotes prd
-\end_inset
-
- oznacza alternatywe, kwadratowe nawiasy oznaczają opcjonalność a nawiasy
- ostre (
-\begin_inset Quotes pld
-\end_inset
-
-<
-\begin_inset Quotes prd
 \end_inset
 
  oraz 
-\begin_inset Quotes pld
-\end_inset
-
->
-\begin_inset Quotes prd
-\end_inset
-
-) występowanie powtórzeń.
- Kompletna gramatyka systemu może być przedstawiona jako sieć słów pokazana
- na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "rys22"
+\begin_inset CommandInset citation
+LatexCommand cite
+key "JezykAS"
 
 \end_inset
 
@@ -849,285 +1716,68 @@ reference "rys22"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename htk-gramatyka.png
-	display false
-	scale 80
-
-\end_inset
-
-
+Kinematyka prosta oraz odwrotna została zaimplementowana w kontrolerze robota.
+ Istnieją dwa układy współrzędnych po których może poruszać się ramię robota,
+ umożliwiające bardziej precyzyjne sterowanie ruchami robota.
+ Są to współrzędne globalne oraz układ współrzędnych narzędzia.
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Przykładowa gramatyka systemu 
-\begin_inset CommandInset label
-LatexCommand label
-name "rys22"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
+\begin_layout Section
+Stockfish 
 \end_layout
 
 \begin_layout Standard
-Do poprawnego wytrenowania modeli HMM potrzeba wielu próbek zawierających
- wielokrotne nagrania wszystkich słów ze słownika oraz powiązane z nimi
- pliki transkrypcji.
- Transkrypcje te muszą być zapisane w odpowiednim formacie, dla HTK będzie
- to format 
-\shape italic
-MLF
-\shape default
-.
- Przykład dla pliku dźwiękowego 
-\shape italic
-sample1.wav
-\shape default
- zawierającego nagranie słów 
-\shape italic
-jeden dwa trzy 
-\emph on
-pokazano na listingu 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis5"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Przykład transkrypcji wypowiedzi w formacie MLF 
-\begin_inset CommandInset label
-LatexCommand label
-name "lis5"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-#!MLF!# 
-\end_layout
-
-\begin_layout Plain Layout
-
-"*/sample1.wav" 
-\end_layout
-
-\begin_layout Plain Layout
-
-JEDEN 
-\end_layout
-
-\begin_layout Plain Layout
-
-DWA
-\end_layout
-
-\begin_layout Plain Layout
-
-TRZY 
-\end_layout
-
-\begin_layout Plain Layout
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Do nagrania próbek sygnału mowy może zostać użyte narzędzie 
-\shape italic
-HSLab
-\shape default
- lub inny rejestrator dźwięku.
-\end_layout
-
-\begin_layout Standard
-Otrzymane nagrania trzeba zparametryzować (dokonać ekstrakcji cech).
- Dokonuje się tego przy użyciu narzędzia 
-\shape italic
-HCopy, 
-\shape default
-które konwertuje pliki dźwiękowe do plików zawierających odpowiednie cechy
- sygnału mowy.
-\end_layout
-
-\begin_layout Standard
-Transkrypcje plików dźwiękowych również muszą zostać odpowiednio przygotowane.
- Jeśli tworzy się system oparty o fonemy, narzędzie 
-\shape italic
-HLEd
-\shape default
- konwertuje pliki transkrypcji, do plików zawierających transkrypcje fonemowe,
- czyli zamienia zwykły alfabet języka na alfabet fonetyczny.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Trenowanie}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Przed rozpoczęciem trenowania trzeba utworzyć prototyp modelu HMM, zapisany
- jako zwykły plik tekstowy, gdzie definiuje się topologię modelu (określa
- ilość stanów, dopuszczalne przejścia między nimi oraz kilka innych parametrów).
- HTK zawiera skrypty generujące gotowe prototypy.
-\end_layout
-
-\begin_layout Standard
-Modele HMM są tworzone dla każdego słowa ze słownika.
- Procedura reestymacji przebiega równolegle dla każdego modelu w przypadku
- mowy ciągłej, lub indywidualnie w przypadku izolowanych słów.
+Stockfish jest to nazwa darmowego silnika wykorzystanego w niniejszej pracy
+ jako inteligencja robota podczas rozgrywki szachowej.
+ Jest to projekt wieloplatformowy, dostępny zarówno na systemy z rodziny
+ Windows, Linux jak i urządzenia mobilne.
+ W niniejszej pracy wykorzystywana jest wersja Linuxowa progamu.
  
 \end_layout
 
 \begin_layout Standard
-Inicjalizacja niektórych parametrów HMM jest wykonywana za pomocą narzędzia
- zwanego 
-\shape italic
-HInit
-\shape default
-.
- Narzędzie to, najpierw przydziela po równo wektory obserwacji do każdego
- ze stanów modelu (prócz stanów nieemitujących) a następnie wyznacza dla
- nich początkowe wartości parametrów za pomocą wzorów:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\hat{\mu_{j}}=\frac{1}{T}\sum_{t=1}^{T}o_{t}
-\end{equation}
+Silnik uruchamiany jest jako aplikacja konsolowa, z którą można się komunikować
+ po protokole UCI (ang.
+ Universal Chess Interface).
+ Protokół ten został stworzony aby umożliwić komunikację pomiędzy programami
+ szachowymi a interfejsem użytkownika.
+ Jego dokumentacja znajduje się w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UCI"
 
 \end_inset
 
-
+.
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\hat{\sum}_{j}=\frac{1}{T}\sum_{t=1}^{T}(o_{t}-\mu_{j})(o_{t}-\mu_{j})'
-\end{equation}
+Pozycje figur na szachownicy mogą być zapisywane w notacji FEN (ang.
+ Forsyth–Edwards Notation).
+ Więcej szczegółów na temat notacji FEN można znaleść w pozycji 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FEN"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Tak dzieje się w przypadku izolowanych słów.
- Dla mowy ciągłej zamiast narzędzia 
-\shape italic
-HInit 
-\shape default
-wykorzystywane jest narzędzie 
-\shape italic
-HCompV 
-\shape default
-a początkowe parametry są jednakowe dla wszystkich modeli.
-\end_layout
-
-\begin_layout Standard
-Warto wspomnieć, że podczas wyznaczania prawdopodobieństw 
-\shape italic
-forward
-\shape default
- i 
-\shape italic
-backward
-\shape default
- liczony jest iloczyn dużej liczby prawdopodobieństw.
- Oznacza to, że przetwarzane liczby mogą stać się bardzo małe.
- Stąd aby uniknąć problemów numerycznych, powyższe obliczenia przeprowadzane
- są przez HTK w skali logarytmicznej.
- HTK używa algorytmu Bauma-Welcha do reestymacji parametrów HMM.
- Ten algorytm jest zaimplementowany w narzędziu zwanym 
-\shape italic
-HERest 
-\shape default
-oraz 
-\shape italic
-HRest
-\shape default
 .
- Narzędzie 
-\shape italic
-HRest 
-\shape default
-wykorzystywane jest tylko w przypadku izolowanych słów.
- Na rysunku 
+ Przy założeniu, że startowe pozycje figur są takie ja na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "rys23"
+reference "fig:Pozycje-startowe-figur"
 
 \end_inset
 
- pokazano jak przebiega trenowanie za pomocą narzędzi HTK.
+, zapis ich pozycji pokazano na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Zapis-początkowych-pozycji"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -1135,14 +1785,13 @@ reference "rys23"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename htk-trenowanie.png
-	display false
-	scale 80
+	filename Figures/szachownica.jpg
+	scale 70
 
 \end_inset
 
@@ -1153,17 +1802,10 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Proces trenowania 
+Pozycje startowe figur 
 \begin_inset CommandInset label
 LatexCommand label
-name "rys23"
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Htkb"
+name "fig:Pozycje-startowe-figur"
 
 \end_inset
 
@@ -1185,22 +1827,38 @@ key "Htkb"
 \end_layout
 
 \begin_layout Standard
-Narzędzie 
-\shape italic
-HHEd 
-\shape default
-przygotowuje modele HMM w zależności od kontekstu wypowiedzi.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
+\align center
+\begin_inset listings
+inline false
 status open
 
 \begin_layout Plain Layout
 
- 
-\backslash
-subsection{Testowanie}
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Zapis początkowych pozycji figur 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Zapis-początkowych-pozycji"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+position startpos
 \end_layout
 
 \end_inset
@@ -1209,30 +1867,25 @@ subsection{Testowanie}
 \end_layout
 
 \begin_layout Standard
-Testowanie czyli właściwie faza rozpoznawania, polega na znalezieniu najbardziej
- prawdopodobnej sekwencji przejść między stanami modelu HMM za pomocą algorytmu
- Viterbiego zaimplementowanego w narzędziu 
-\shape italic
-HVite.
- 
-\shape default
-Narzędzie to na wejściu przyjmuje sieć opisującą dostępne sekwencje słów,
- słownik definiujący dostępne słowa wraz z ich zapisem fonetycznym oraz
- zestaw modeli HMM.
- Jako wynik jego działania otrzymujemy plik z transkypcją nieznanej wypowiedzi
- w formacie 
-\emph on
-MLF 
-\emph default
-(listing 
+W niniejszej pracy wykorzystano domyślne ustawienia silnika Stockfish, które
+ zakładają, że pierwszy ruch wykonują figury białe, w rozgrywce dostępne
+ są wszystkie roszady króla a ilość ruchów została ograniczona do pięćdziesięciu.
+ W przypadku wykonania maksymalnej liczby ruchów i nie doprowadzenia do
+ sytuacji w której jest mat (wygrana jednego z graczy) lub pat (kończy partię
+ remisem), wygrywa gracz, który ma lepszy bilans strat, lub jeśli straty
+ są takie same, ustanawiany jest remis.
+\end_layout
+
+\begin_layout Standard
+Dla przykładu, jeśli wykonano ruch białego piona z E2 na E4 a następnie
+ czarnego skoczka z B8 na C6 zapis pozycji figur na szachownicy przedstawiono
+ na listingu 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "lis6"
+reference "lis:Zapis-pozycji-figur"
 
 \end_inset
 
-)
-\emph on
 .
 \end_layout
 
@@ -1247,10 +1900,10 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Przykładowy wynik rozpoznawania w formacie MLF
+Zapis pozycji figur po wykonaniu dwóch ruchów 
 \begin_inset CommandInset label
 LatexCommand label
-name "lis6"
+name "lis:Zapis-pozycji-figur"
 
 \end_inset
 
@@ -1268,43 +1921,7 @@ name "lis6"
 
 \begin_layout Plain Layout
 
-#!MLF!# 
-\end_layout
-
-\begin_layout Plain Layout
-
-"*/sample1.rec" 
-\end_layout
-
-\begin_layout Plain Layout
-
-0 5000000 SENT-START -2374.491211 
-\end_layout
-
-\begin_layout Plain Layout
-
-5000000 22100000 DZWOŃ -8464.383789 
-\end_layout
-
-\begin_layout Plain Layout
-
-22100000 24200000 DO -2054.89383 
-\end_layout
-
-\begin_layout Plain Layout
-
-24200000 31200000 KOWALSKI -804.563265 
-\end_layout
-
-\begin_layout Plain Layout
-
-31200000 42100000 SENT-END -1054.473267 
-\end_layout
-
-\begin_layout Plain Layout
-
-.
- 
+position startpos moves e2e4 b8c6
 \end_layout
 
 \end_inset
@@ -1313,178 +1930,9 @@ name "lis6"
 \end_layout
 
 \begin_layout Standard
-W wygenerowanym pliku podana jest transkrypcja rozpoznanej wypowiedzi, czas
- (region czasowy) w którym poszczególne słowo zostało wykryte oraz prawdopodobie
-ństwo (z jakim zostało wykryte) podane w skali logarytmicznej.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
- 
-\backslash
-subsection{Analiza}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Po stworzeniu systemu rozpoznawania mowy warto przetestować jego skuteczność.
- HTK udostępnia narzędzie zwane 
-\shape italic
-HResults, 
-\shape default
-które na wejśćiu przyjmuje testowe próbki wypowiedzi wraz z ich transkrypcjami
- a następnie porównuje transkrypcje otrzymane w wyniku rozpoznawania i określa
- procentową skuteczność takiego systemu (listing 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis7"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Przykładowy wynik narzędzia HResults 
-\begin_inset CommandInset label
-LatexCommand label
-name "lis7"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-====================== HTK Results Analysis ============== 
-\end_layout
-
-\begin_layout Plain Layout
-
-Date: Sun Oct 22 16:14:45 1995 
-\end_layout
-
-\begin_layout Plain Layout
-
-Ref : testrefs.mlf 
-\end_layout
-
-\begin_layout Plain Layout
-
-Rec : recout.mlf 
-\end_layout
-
-\begin_layout Plain Layout
-
------------------------- Overall Results ----------------- 
-\end_layout
-
-\begin_layout Plain Layout
-
-SENT: %Correct=98.50 [H=197, S=3, N=200]
-\end_layout
-
-\begin_layout Plain Layout
-
-WORD: %Corr=99.77, Acc=99.65 [H=853, D=1, S=1, I=1, N=855]
-\end_layout
-
-\begin_layout Plain Layout
-
-==========================================================
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Gdzie w linii z 
-\shape italic
-SENT
-\shape default
-: 
-\end_layout
-
-\begin_layout Itemize
-H oznacza liczbę sentencji rozpoznanych, 
-\end_layout
-
-\begin_layout Itemize
-S sentencji nierozpoznanych, 
-\end_layout
-
-\begin_layout Itemize
-a N oznacza liczbę wszystkich sentencji.
-\end_layout
-
-\begin_layout Standard
-W przypadku linii z 
-\shape italic
-WORD
-\shape default
- analogicznie tylko, że tutaj chodzi o pojedyńcze słowa i tak kolejno: 
-\end_layout
-
-\begin_layout Itemize
-H oznacza liczbę słów nierozpoznanych,
-\end_layout
-
-\begin_layout Itemize
-S słów rozpoznanych,
-\end_layout
-
-\begin_layout Itemize
-N oznacza liczbę wszystkich słów,
-\end_layout
-
-\begin_layout Itemize
-a D oraz I to są błędy.
-\end_layout
-
-\begin_layout Standard
-
-\shape italic
-Acc
-\shape default
- oznacza skuteczność rozpoznawania podaną oczywiście w procentach.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Htkb"
-
-\end_inset
-
-
+W takim formacie pozycja figur przesyłana jest do programu Stockfish.
+ Następnie uruchamiana jest analiza możliwych ruchów a program zwraca nową
+ pozycję figury.
 \end_layout
 
 \end_body

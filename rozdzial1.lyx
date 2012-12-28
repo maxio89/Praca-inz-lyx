@@ -107,54 +107,46 @@ Przeglądając artykuły i prace dotyczące tematyki tutaj poruszanej często
  w przypadku innych języków, tzw.
  języków dominujących, takich jak angielski, niemiecki, francuski, hiszpański
  czy chiński.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Ops"
-
-\end_inset
-
  Ta granica powoli zaczyna się zacierać, coraz więcej rozwiązań tworzonych
  jest również z myślą o języku polskim.
 \end_layout
 
+\begin_layout Section
+Cel 
+\end_layout
+
 \begin_layout Standard
 Niniejsza praca koncentruje się na wykorzystaniu osiągnięć projektu HTK
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Htk"
-
-\end_inset
-
  oraz stworzeniu systemu rozpoznawania mowy dla języka polskiego na przykładzie
  sterowania robotem przemysłowym w grze planszowej.
  Rozgrywka polega na wydawaniu komend głosowych które sterują ruchami robota.
  Jest on zarówno przeciwnikiem użytkownika, jak również wykonuje za niego
  wszystkie ruchy podczas rozgrywki, użytkownik skupia się zatem tylko na
  wydawaniu poleceń głosowych.
- Gra z robotem jest formą demonstracji systemu stworzonego na potrzeby tej
- pracy, a więc jest jej poświęcone mniej uwagi niż tematyce rozpoznawania
+ Gra z robotem jest formą demonstracji systemu stworzonego na potrzeby niniejsze
+j pracy, a więc jest jej poświęcone mniej uwagi niż tematyce rozpoznawania
  mowy.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
+Zawartość
+\end_layout
 
-\series bold
+\begin_layout Standard
 W rozdziale drugim przedstawione zostały podstawy systemów rozpoznawania
  mowy (m.in.
  ich zastosowanie, parametry wpływające na skuteczność działania).
  Rozdział trzeci opisuje sygnał mowy, m.in.
  ekstrakcję cech, która jest bardzo ważnym punktem tworzenia systemów rozpoznawa
 nia mowy.
- W rozdziale czwartym przedstawia metodę Ukrytych Modeli Markowa, będąca
- podstawą działania systemu stworzonego na potrzeby niniejszej pracy.
- W kolejnym rozdziale, zostało opisane narzędzie HTK, wykorzystane przy
- tworzeniu tego systemu.
- Następnie w rozdziale szóstym zaprezentowany został efekt końcowy wraz
- z jego opisem.
+ W rozdziale czwartym przedstawiona zostaje metoda Ukrytych Modeli Markowa,
+ będąca podstawą działania systemu stworzonego na potrzeby niniejszej pracy.
+ W kolejnym rozdziale, zostały opisane narzędzia wykorzystane przy tworzeniu
+ niniejszej pracy.
+ Następnie w rozdziale szóstym zaprezentowany został efekt końcowy czyli
+ aplikacja sterująca robotem.
  Ostatni rozdział podsumowuje niniejszą pracę oraz zawiera wnioski autora
- na temat zaprezentowanych wcześniej zagadnień / wyników zaimplementowanego
+ na temat zaprezentowanych wcześniej zagadnień i wyników zaimplementowanego
  systemu.
 \end_layout
 

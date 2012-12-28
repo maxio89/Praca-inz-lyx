@@ -86,8 +86,17 @@ key "Ops"
 
 \end_inset
 
- Sprawdzają się również w wielu innych zastosowaniach, najczęściej tam gdzie
- mamy doczynienia z sygnałem niederministycznym, m.in.:
+ Sprawdzają się również w wielu innych zastosowaniach, głównie w przypadku
+ rozpoznawania sygnałów niedeterministycznych
+\series bold
+.
+ 
+\series default
+Można tutaj wymienić takie obszary zastosowań
+\series bold
+ 
+\series default
+jak:
 \end_layout
 
 \begin_layout Itemize
@@ -114,8 +123,8 @@ key "RmHMM"
 
 \end_inset
 
- Do celów rozpoznawania mowy zostały użyte poraz pierwszy w połowie lat
- siedemdziesiątych przez pracowników firmy IBM.
+ Do celów rozpoznawania mowy HMM zostały użyte poraz pierwszy w połowie
+ lat siedemdziesiątych przez pracowników firmy IBM.
  W obecnych czasach jest to najczęściej wykorzystywane narzędzie klasyfikacji
  w systemach rozpoznawania mowy.
  
@@ -220,8 +229,83 @@ Parametry modeli Markowa
 \end_layout
 
 \begin_layout Standard
-Macierz przejść definiuje możliwe przejścia pomiędzy stanami oraz wartości
- ich prawdopodobieństw:
+Na rysunku 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rys8"
+
+\end_inset
+
+ widoczny jest 5-cio stanowy model markowa typu left-to-right z przejściami
+ zapisanymi w macierzy 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:macierz-przejsc"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename hmm.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Model Markowa 5-cio stanowy typu left-to-right
+\begin_inset CommandInset label
+LatexCommand label
+name "rys8"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W rozpoznawaniu mowy zazwyczaj wykorzystywane są modele typu left-to-right
+ (wyjątek to np.
+ model ciszy) oznacza to, że z aktualnego stanu modelu możliwe jest przejście
+ do stanu kolejnego, pozostanie w aktualnym stanie, lub przejście o kilka
+ stanów do przodu, nie można się cofać.
+ 
+\end_layout
+
+\begin_layout Standard
+Stan początkowy oraz końcowy czyli w przypadku 5-cio stanowego modelu stan
+ 1 oraz stan 5 zwane są stanami nieemitującymi, ponieważ nie generują żadnych
+ obserwacji, mają za zadanie jedynie rozpocząć oraz zakończyć proces.
+\end_layout
+
+\begin_layout Standard
+Macierz przejść definiuje możliwe przejścia pomiędzy stanami modelu oraz
+ wartości ich prawdopodobieństw:
 \end_layout
 
 \begin_layout Standard
@@ -233,7 +317,7 @@ Macierz przejść definiuje możliwe przejścia pomiędzy stanami oraz wartości
 0 & 0 & a_{33} & a_{34} & 0\\
 0 & 0 & 0 & a_{44} & a_{45}\\
 0 & 0 & 0 & 0 & 0
-\end{bmatrix}
+\end{bmatrix}\label{eq:macierz-przejsc}
 \end{equation}
 
 \end_inset
@@ -271,75 +355,6 @@ Suma prawdopodobieństw w wierszach a więc suma wszystkich wyjść ze stanu
 \end_layout
 
 \begin_layout Standard
-Na rysunku 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "rys8"
-
-\end_inset
-
- widoczny jest 5-cio stanowy model markowa typu left-to-right z przejściami
- zapisanymi w powyższej macierzy.
-\end_layout
-
-\begin_layout Standard
-\align left
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename hmm.png
-	display false
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Model Markowa 5-cio stanowy typu left-to-right
-\begin_inset CommandInset label
-LatexCommand label
-name "rys8"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-W rozpoznawaniu mowy zazwyczaj wykorzystywane są modele typu left-to-right
- (wyjątek to np.
- model ciszy) oznacza to, że z aktualnego stanu możliwe jest przejście do
- stanu kolejnego, pozostanie w tym stanie, lub przejście o kilka stanów
- do przodu, nie można się cofać.
- 
-\end_layout
-
-\begin_layout Standard
-Stan początkowy oraz końcowy czyli w przypadku 5-cio stanowego modelu stan
- 1 oraz stan 5 zwane są stanami nieemitującymi, ponieważ nie generują żadnych
- obserwacji, mają za zadanie jedynie rozpocząć oraz zakończyć proces.
-\end_layout
-
-\begin_layout Standard
 Dla każdej ramki czasowej 
 \begin_inset Formula $t$
 \end_inset
@@ -357,8 +372,8 @@ Dla każdej ramki czasowej
 \end_inset
 
 .
- Suma prawdopodobieństw generowania obserwacji dla jednego stanu zawsze
- wynosi jeden.
+ Suma prawdopodobieństw generowania obserwacji dla jednego stanu również
+ zawsze wynosi jeden.
 \end_layout
 
 \begin_layout Standard
@@ -432,7 +447,7 @@ n - wymiar wektora obserwacji.
 \end_layout
 
 \begin_layout Standard
-Prawdopodobieństwo obserwacji możemy również aproskymować za pomocą mieszaniny
+Prawdopodobieństwo obserwacji można również aproskymować za pomocą mieszaniny
  wielowymiarowych rozkładów Gaussa:
 \end_layout
 
@@ -486,7 +501,7 @@ Gdzie:
 \begin_inset Formula $b{}_{jk}$
 \end_inset
 
- - k-te prawdopodobieńśtwo obserwacji dla stanu 
+ - k-te prawdopodobieństwo obserwacji dla stanu 
 \begin_inset Formula $j$
 \end_inset
 
@@ -496,8 +511,8 @@ Gdzie:
 \begin_layout Standard
 Duża liczba parametrów w przypadku mieszanin o większej liczbie rozkładów
  wymusza użycie dużej ilości danych treningowych.
- Można jednak uprościć model redukując liczbę jego parametrów np.
- poprzez: 
+ Można jednak uprościć model redukując liczbę jego parametrów poprzez np.:
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -544,15 +559,7 @@ Prawdopodobieństwo
 \noun default
 \color inherit
 \lang polish
- (gdzie sekwencja wektorów 
-\begin_inset Formula $X$
-\end_inset
-
- oznacza sekwencję obserwacji 
-\begin_inset Formula $o$
-\end_inset
-
-) wygenerowania przykładowej sekwencji wektorów obserwacji 
+ wygenerowania przykładowej sekwencji wektorów obserwacji 
 \begin_inset Formula $o_{1}$
 \end_inset
 
@@ -663,12 +670,50 @@ Gdzie:
 \begin_inset Formula $x(0)$
 \end_inset
 
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang polish
  i 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
 \begin_inset Formula $x(T+1)$
 \end_inset
 
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang polish
  to stan pierwszy i ostatni modelu czyli stany nieemitujące.
- 
 \end_layout
 
 \begin_layout Standard
@@ -720,8 +765,8 @@ subsection{Przebieg}
 \end_layout
 
 \begin_layout Standard
-Schemat blokowy fazy trenowania modeli Markowa widoczny jest na rysunku
- 
+Schemat blokowy fazy trenowania modeli Markowa przyjęty w pracy widoczny
+ jest na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "rys9"
@@ -741,8 +786,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename hmm-trenowanie.png
-	display false
+	filename Figures/trenowanie-hmm.pdf
 	scale 90
 
 \end_inset
@@ -786,31 +830,6 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-Gdzie:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\sum_{j}$
-\end_inset
-
- - macierz kowariancji,
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\mu{}_{j}$
-\end_inset
-
- - wektor średni obserwacji,
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $A{}_{T}$
-\end_inset
-
- - macierz przejść modelu.
-\end_layout
-
-\begin_layout Standard
 Jednofonowe modele Markowa dla ciszy i krótkich pauz są przedstawione kolejno
  na rysunku 
 \begin_inset CommandInset ref
@@ -834,13 +853,12 @@ reference "rys11"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename hmm-cisza.png
-	display false
 
 \end_inset
 
@@ -876,8 +894,8 @@ name "rys10"
 \end_layout
 
 \begin_layout Standard
-W modelu ciszy mamy dodatkowe przejście ze stanu 2 do stanu 4 oraz ze stanu
- 4 do stanu 2.
+W modelu ciszy znajduje się dodatkowe przejście ze stanu 2 do stanu 4 oraz
+ ze stanu 4 do stanu 2.
 \end_layout
 
 \begin_layout Standard
@@ -885,13 +903,12 @@ W modelu ciszy mamy dodatkowe przejście ze stanu 2 do stanu 4 oraz ze stanu
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename hmm-pauza.png
-	display false
+	filename Figures/hmm-pauza.pdf
 
 \end_inset
 
@@ -923,20 +940,17 @@ name "rys11"
 \end_layout
 
 \begin_layout Standard
-W modelu krótkiej pauzy mamy dodatkowe przejście pomiędzy stanami 1 oraz
- 3 czyli stanami nieemitującymi.
-\end_layout
-
-\begin_layout Standard
-Stan 3 z modelu ciszy oraz stan 2 z modelu krótkiej pauzy są takie same.
- Model krótkiej pauzy tworzymy na podstawie modelu ciszy, usuwając stany
+W modelu krótkiej pauzy znajduje się dodatkowe przejście pomiędzy stanami
+ 1 oraz 3 czyli stanami nieemitującymi.
+ Stan 3 modelu ciszy oraz stan 2 modelu krótkiej pauzy są takie same.
+ Model krótkiej pauzy tworzy się na podstawie modelu ciszy, usuwając stany
  2 oraz 4, powstaje wówczas model trzy-stanowy, gdzie poprzedni stan 3 staje
  się stanem 2 modelu.
 \end_layout
 
 \begin_layout Standard
 W przypadku gdy najmniejszą niepodzielną jednostką fonetyczną systemu są
- fonemy trzeba rozpatrywać modele nie tylko dla jednofonów, lecz również
+ fonemy powinno się rozpatrywać modele nie tylko dla jednofonów, lecz również
  dla trójfonów, czyli możliwych kombinacji fonemów w otoczeniu innych fonemów.
 \end_layout
 
@@ -956,13 +970,12 @@ reference "rys12"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename jednofony.png
-	display false
+	filename Figures/jednofony.pdf
 
 \end_inset
 
@@ -977,6 +990,13 @@ Zapis jednofonowy
 \begin_inset CommandInset label
 LatexCommand label
 name "rys12"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
 
 \end_inset
 
@@ -1013,13 +1033,12 @@ reference "rys13"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename trojfony.png
-	display false
 
 \end_inset
 
@@ -1034,6 +1053,13 @@ Zapis trójfonowy
 \begin_inset CommandInset label
 LatexCommand label
 name "rys13"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TM"
 
 \end_inset
 
@@ -1075,8 +1101,13 @@ Znak
 \end_layout
 
 \begin_layout Standard
+W przypadku niniejszej pracy opartej na połączonych słowach, powyższe kroki
+ zostały pominięte.
+\end_layout
+
+\begin_layout Standard
 Modele HMM są trenowane dla każdego słowa znajdującego się w słowniku systemu
- poprzez próbki dźwięku nagrane dla tego słowa.
+ poprzez wielokrotne próbki dźwięku nagrane dla tego słowa.
 \end_layout
 
 \begin_layout Standard
@@ -1100,7 +1131,7 @@ Algorytm ten jest oparty na kryterium ML (ang.
  Maximum Likelihood) - maksymalizacji prawdopodobieństwa wygenerowania sekwencji
  obserwacji przez model HMM.
  Wykorzystywany jest w procesie trenowania HMM.
- Jest to procedura iteracyjna w wyniku której możemy otrzymać lepsze estymaty
+ Jest to procedura iteracyjna w wyniku której można otrzymać lepsze estymaty
  parametrów HMM.
  Schemat blokowy przedstawiony jest na rysunku 
 \begin_inset CommandInset ref
@@ -1117,13 +1148,12 @@ reference "rys14"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename baum-welch.png
-	display false
+	filename Figures/baum-welch.pdf
 
 \end_inset
 
@@ -1177,7 +1207,7 @@ Początkowe parametry HMM określane są na zasadzie zgadywania, dokładniejsze
 \begin_inset Formula $\sum_{j}$
 \end_inset
 
- wyznaczane są ze wzorów:
+ dla pojedynczego wielowymiarowego rozkładu Gaussa wyznaczane są ze wzorów:
 \end_layout
 
 \begin_layout Standard
@@ -1210,7 +1240,7 @@ Gdzie:
 \begin_inset Formula $L_{j}(t)$
 \end_inset
 
- - oznacza prawdopodobieństwo bycia w stanie 
+ - oznacza prawdopodobieństwo przebywania w stanie 
 \begin_inset Formula $j$
 \end_inset
 
@@ -1253,7 +1283,7 @@ forward
 \emph on
 M
 \emph default
- zawierającemu 
+ zawierającego 
 \emph on
 N
 \emph default
@@ -1277,7 +1307,7 @@ Jest to połączone prawdopodobieństwo obserwacji pierwszego
 \begin_inset Formula $t$
 \end_inset
 
- wektora cech i bycia w stanie 
+ wektora cech oraz przebywania w stanie 
 \begin_inset Formula $j$
 \end_inset
 
@@ -1286,7 +1316,7 @@ Jest to połączone prawdopodobieństwo obserwacji pierwszego
 \end_inset
 
 .
- Obliczone jest za pomocą rekursji danej wzorem:
+ Obliczane jest za pomocą rekursji danej wzorem:
 \end_layout
 
 \begin_layout Standard
@@ -1301,7 +1331,7 @@ Jest to połączone prawdopodobieństwo obserwacji pierwszego
 \end_layout
 
 \begin_layout Standard
-Ta rekursja polega na tym, że prawdopodobieństwo bycia w stanie 
+Ta rekursja polega na tym, że prawdopodobieństwo przebywania w stanie 
 \begin_inset Formula $j$
 \end_inset
 
@@ -1309,8 +1339,8 @@ Ta rekursja polega na tym, że prawdopodobieństwo bycia w stanie
 \begin_inset Formula $t$
 \end_inset
 
- oraz emitowania obserwacji można wywnioskować poprzez zsumowanie prawdopodobień
-stw 
+ oraz emitowania obserwacji można wyliczyć poprzez zsumowanie prawdopodobieństw
+ 
 \shape italic
 forward
 \shape default
@@ -1436,7 +1466,7 @@ prawdopodobieństwo
 \shape italic
 backward 
 \shape default
-również liczone jest za pomocą rekursji:
+również jest liczone za pomocą rekursji:
 \end_layout
 
 \begin_layout Standard
@@ -1500,11 +1530,11 @@ dla
 \end_layout
 
 \begin_layout Standard
-Trzeba zauważyć, że w powyższych definicjach prawdopodobieństwo 
+Warto zauważyć, że w powyższych definicjach prawdopodobieństwo 
 \shape italic
 forward
 \shape default
- jest prawdopodobieństwem połączonym podczas, gdy prawdopodobieństwo 
+ jest prawdopodobieństwem połączonym, podczas gdy prawdopodobieństwo 
 \shape italic
 backward
 \shape default
@@ -1554,21 +1584,6 @@ Gdzie
 \end_layout
 
 \begin_layout Standard
-Operacja odcinania polega na zakończeniu sumowania prawdopodobieństw w algorytmi
-e 
-\shape italic
-Forward-Backward,
-\emph on
- gdy mamy doczynienia z bardzo dużą bazą treningową
-\emph default
-.
-
-\shape default
- Nie wpływa ona na skuteczność rozpoznawania, lecz zmniejsza ilość obliczeń
- a co za tym idzie, złożoność obliczeniową algorytmu.
-\end_layout
-
-\begin_layout Standard
 Zakłada się, że parametry dla HMM są reestymowane dla pojedyńczej sekwencji
  obserwacji, co odpowiada pojedyńczej próbce mowy nagranej do wytrenowania
  modelu.
@@ -1585,12 +1600,40 @@ key "Htkb"
 \end_layout
 
 \begin_layout Standard
+Wzory na reestymację parametrów dla mieszaniny rozkładów Gausssa można znaleźć
+ w rozdziale 8 pozycji.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Warto wspomnieć, że podczas wyznaczania prawdopodobieństw 
+\shape italic
+forward
+\shape default
+ i 
+\shape italic
+backward
+\shape default
+ liczony jest iloczyn dużej liczby prawdopodobieństw.
+ Oznacza to, że przetwarzane liczby mogą stać się bardzo małe.
+ Stąd aby uniknąć problemów numerycznych, powyższe obliczenia powinny być
+ przeprowadzane w skali logarytmicznej.
+\end_layout
+
+\begin_layout Standard
 Podsumowując, problem estymacji parametrów polega na doborze jak największych
  prawdopodobieństw przejść pomiędzy stanami oraz prawdopodobieństw wystąpienia
  obserwacji.
- Najpierw ustalamy początkowe przybliżone wartości tych parametrów a następnie
- przebiega reestymacja parametrów, czyli próba znalezienia ich dokładniejszych
- wartości.
+ Najpierw ustala się początkowe, przybliżone wartości tych parametrów a
+ następnie przebiega reestymacja parametrów, czyli próba znalezienia ich
+ dokładniejszych wartości.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1637,13 +1680,12 @@ reference "rys15"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename rozpoznawanie-hmm.png
-	display false
+	filename Figures/rozpoznawanie-hmm.pdf
 	scale 80
 
 \end_inset
@@ -1732,13 +1774,12 @@ reference "rys16"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename hmm-viterbi.png
-	display false
 
 \end_inset
 
@@ -1778,13 +1819,12 @@ name "rys16"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename viterbi.png
-	display false
 
 \end_inset
 
@@ -1911,8 +1951,15 @@ Największe prawdopodobieństwo
 \end_layout
 
 \begin_layout Standard
-Jak w przypadku reestymacji tutaj też jest stosowana skala logarytmiczna,
- stąd równanie ma postać:
+Jak w przypadku reestymacji tutaj także jest stosowana skala logarytmiczna,
+ stąd równanie ma postać 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Htkb"
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
@@ -1920,17 +1967,6 @@ Jak w przypadku reestymacji tutaj też jest stosowana skala logarytmiczna,
 \begin{equation}
 \psi_{j}(t)=\underset{i}{max}\{\psi_{i}(t-1)+log(a_{ij})\}+log(b_{j}(o_{t}))\}
 \end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Htkb"
 
 \end_inset
 

@@ -125,15 +125,42 @@ note = {\url{http://pl.wikipedia.org/wiki/Alfabet_fonetyczny_ICAO}
 title = {AS language reference manual},
 note = {\url{http://pl.scribd.com/doc/92216565/D-Controller-As-Language-Reference-Manual-deb}
 }
-@Manual{KD,
-title = {Instrukcja użytkownika - kontroler D},
-note = {\url{http://pl.wikipedia.org/wiki/Alfabet_fonetyczny_ICAO}
-}
 @Manual{Rob,
 title = {Kawasaki FS03N Robot with D76 Controler},
 note = {\url{http://www.kawasakirobot.com/PDFs/FS03REV06-06.pdf}
 }
-
+@Manual{Stock,
+title = {Stockfish. Powerful open source chess engine.},
+note = {\url{http://stockfishchess.org/}
+}
+@Manual{UCI,
+title = {Dokumentacja protoko\l{}u UCI},
+note = {\url{http://download.shredderchess.com/div/uci.zip}
+}
+@Manual{UCI,
+title = {Dokumentacja protoko\l{}u UCI},
+note = {\url{http://download.shredderchess.com/div/uci.zip}
+}
+@Manual{FEN,
+title = {Forsyth-Edwards Notation},
+note = {\url{http://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation}
+}
+@Manual{Wio,
+title = {Wilk i owce},
+note = {\url{http://pl.wikipedia.org/wiki/Wilk_i_owce}
+}
+@Manual{Aud,
+title = {Audacity},
+note = {\url{http://audacity.sourceforge.net/}
+}
+@Manual{Sox,
+title = {SoX - Sound eXchange.},
+note = {\url{http://sox.sourceforge.net/}
+}
+@Manual{ZasSza,
+title = {Zasady gry w szachy.},
+note = {\url{http://pl.wikipedia.org/wiki/Zasady_gry_w_szachy}
+}
 
 @Unpublished{TM,
 	author = {Wielgat R.},
