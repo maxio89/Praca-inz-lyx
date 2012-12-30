@@ -66,9 +66,8 @@ Dodatek A.
  Instrukcja wykorzystania skryptów do zautomatyzowania pracy z HTK
 \end_layout
 
-\begin_layout Section*
-A.1.
- Wstęp
+\begin_layout Section
+Wstęp
 \end_layout
 
 \begin_layout Standard
@@ -102,13 +101,6 @@ Pakiet HTK jest dostępny pod adresem http://htk.eng.cam.ac.uk/download.shtml
 \begin_layout Standard
 Struktura folderu, zawierającego pliki potrzebne do pracy z HTK podczas
  tworzenia systemu rozpoznawania mowy została pokazana na rysunku A.1.
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard

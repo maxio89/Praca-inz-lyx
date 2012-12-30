@@ -1893,7 +1893,7 @@ reference "rys23"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2876,7 +2876,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename schemat-sterowania-robotem.png
+	filename Figures/schemat-sterowania-robotem.png
 
 \end_inset
 

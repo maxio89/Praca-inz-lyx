@@ -198,10 +198,19 @@ departmentPL{Instytut Politechniczny}
 
 \begin_layout Plain Layout
 
-
-\backslash
-titlepages   
+ 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename title.pdf
+	display false
 
 \end_inset
 
@@ -359,7 +368,6 @@ Spis listingów
 \end_layout
 
 \begin_layout Standard
-
 \begin_inset ERT
 status open
 
@@ -393,16 +401,6 @@ filename "dodatek1.lyx"
 \begin_inset CommandInset include
 LatexCommand include
 filename "dodatek2.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "/home/piotrek/Pobrane/dodatek2.lyx"
 
 \end_inset
 

@@ -257,7 +257,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename hmm.png
+	filename Figures/hmm.png
 
 \end_inset
 
@@ -858,7 +858,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename hmm-cisza.png
+	filename Figures/hmm-cisza.png
 
 \end_inset
 
@@ -1039,7 +1039,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename trojfony.png
+	filename Figures/trojfony.png
 
 \end_inset
 
@@ -1778,7 +1778,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename hmm-viterbi.png
+	filename Figures/hmm-viterbi.png
 
 \end_inset
 
@@ -1823,7 +1823,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename viterbi.png
+	filename Figures/viterbi.png
 
 \end_inset
 

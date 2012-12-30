@@ -353,7 +353,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename reprezentacja_czasowa.png
+	filename Figures/reprezentacja_czasowa.png
 
 \end_inset
 
@@ -591,7 +591,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename spektrogram_trzy.png
+	filename Figures/spektrogram_trzy.png
 
 \end_inset
 
@@ -676,7 +676,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename segment_dzwieczny_bezdzwieczny.png
+	filename Figures/segment_dzwieczny_bezdzwieczny.png
 	scale 70
 
 \end_inset
@@ -977,7 +977,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename podzial_ramki.png
+	filename Figures/podzial_ramki.png
 
 \end_inset
 
