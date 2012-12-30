@@ -70,11 +70,21 @@ Na płycie dołączonej do pracy znajdują się następujące elementy:
 \end_layout
 
 \begin_layout Itemize
-sdadas
+raspbian.iso - obraz zawierający kopię systemu wraz z bibliotekami HTK oraz
+ wszystkimi plikami potrzebnymi do poprawnego działania systemu rozpoznawania
+ mowy
 \end_layout
 
 \begin_layout Itemize
-asdsda
+main.py - skrypt głównej aplikacji 
+\end_layout
+
+\begin_layout Itemize
+Literatura - folder zawierający niektóre pozycje wymienione w bibliografii
+\end_layout
+
+\begin_layout Itemize
+Praca.pdf - wersja elektroniczna niniejszej pracy
 \end_layout
 
 \end_body

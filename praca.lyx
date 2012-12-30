@@ -42,6 +42,7 @@
 \AtBeginDocument{%
   \renewcommand\tablename{Tabela}
 }
+\renewcommand{\lstlistlistingname}{}
 \end_preamble
 \options pdflatex
 \use_default_options true
@@ -302,6 +303,10 @@ options "plain"
 \end_layout
 
 \begin_layout Standard
+Data ostatniej aktualizacji adresów: 3.01.2013 r.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
 
@@ -317,6 +322,13 @@ options "plain"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset FloatList table
 
 \end_inset
@@ -325,7 +337,46 @@ options "plain"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+\size giant
 Spis listingów
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstlistoflistings
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -351,7 +402,7 @@ filename "dodatek2.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "dodatek3.lyx"
+filename "/home/piotrek/Pobrane/dodatek2.lyx"
 
 \end_inset
 

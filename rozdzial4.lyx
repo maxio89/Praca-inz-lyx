@@ -63,7 +63,7 @@
 \begin_body
 
 \begin_layout Chapter
-Ukryte Modele Markowa
+Ukryte Modele Markowa jako jedna z metod klasyfikacji sygnału mowy
 \end_layout
 
 \begin_layout Section
@@ -163,8 +163,8 @@ key "Rozp"
 
 \end_inset
 
- W przypadku mowy, wartości obserwowane bądź też obserwacje są to wektory
- cech wyekstrahowane z pojedynczej ramki sygnału mowy.
+ W przypadku sygnału mowy, wartości obserwowane bądź też obserwacje są to
+ wektory cech wyekstrahowane z pojedynczej ramki sygnału mowy.
  Ukryty model Markowa opisuje pewien układ (proces stochastyczny), który
  w danym momencie może znajdować się tylko w jednym ze stanów.
  
@@ -299,8 +299,8 @@ W rozpoznawaniu mowy zazwyczaj wykorzystywane są modele typu left-to-right
 
 \begin_layout Standard
 Stan początkowy oraz końcowy czyli w przypadku 5-cio stanowego modelu stan
- 1 oraz stan 5 zwane są stanami nieemitującymi, ponieważ nie generują żadnych
- obserwacji, mają za zadanie jedynie rozpocząć oraz zakończyć proces.
+ pierwszy oraz piąty zwane są stanami nieemitującymi, ponieważ nie generują
+ żadnych obserwacji, mają za zadanie jedynie rozpocząć oraz zakończyć proces.
 \end_layout
 
 \begin_layout Standard
@@ -798,7 +798,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Trenowanie modeli Markowa 
+Trenowanie modeli Markowa na podstawie
 \begin_inset CommandInset label
 LatexCommand label
 name "rys9"
@@ -831,7 +831,7 @@ key "TM"
 
 \begin_layout Standard
 Jednofonowe modele Markowa dla ciszy i krótkich pauz są przedstawione kolejno
- na rysunku 
+ na rysunkach 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "rys10"
@@ -894,8 +894,8 @@ name "rys10"
 \end_layout
 
 \begin_layout Standard
-W modelu ciszy znajduje się dodatkowe przejście ze stanu 2 do stanu 4 oraz
- ze stanu 4 do stanu 2.
+W modelu ciszy znajduje się dodatkowe przejście ze stanu drugiego do stanu
+ czwartego oraz ze stanu czwartego do stanu drugiego.
 \end_layout
 
 \begin_layout Standard
@@ -941,11 +941,12 @@ name "rys11"
 
 \begin_layout Standard
 W modelu krótkiej pauzy znajduje się dodatkowe przejście pomiędzy stanami
- 1 oraz 3 czyli stanami nieemitującymi.
- Stan 3 modelu ciszy oraz stan 2 modelu krótkiej pauzy są takie same.
+ pierwszym oraz trzecim czyli stanami nieemitującymi.
+ Stan trzeci modelu ciszy oraz stan drugi modelu krótkiej pauzy są takie
+ same.
  Model krótkiej pauzy tworzy się na podstawie modelu ciszy, usuwając stany
- 2 oraz 4, powstaje wówczas model trzy-stanowy, gdzie poprzedni stan 3 staje
- się stanem 2 modelu.
+ dwa oraz cztery, powstaje wówczas model trzy-stanowy, gdzie poprzedni stan
+ trzeci staje się stanem drugim modelu pauzy.
 \end_layout
 
 \begin_layout Standard
@@ -986,7 +987,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Zapis jednofonowy 
+Zapis jednofonowy na podstawie 
 \begin_inset CommandInset label
 LatexCommand label
 name "rys12"
@@ -1127,13 +1128,14 @@ subsection{Algorytm Bauma-Welcha}
 \end_layout
 
 \begin_layout Standard
-Algorytm ten jest oparty na kryterium ML (ang.
+Algorytm Bauma-Welcha jest wykorzystywany do reestymacji parametrów modeli
+ HMM.
+ Jest oparty na kryterium ML (ang.
  Maximum Likelihood) - maksymalizacji prawdopodobieństwa wygenerowania sekwencji
  obserwacji przez model HMM.
- Wykorzystywany jest w procesie trenowania HMM.
  Jest to procedura iteracyjna w wyniku której można otrzymać lepsze estymaty
  parametrów HMM.
- Schemat blokowy przedstawiony jest na rysunku 
+ Schemat blokowy został przedstawiony na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "rys14"
@@ -1303,10 +1305,7 @@ N
 \end_layout
 
 \begin_layout Standard
-Jest to połączone prawdopodobieństwo obserwacji pierwszego 
-\begin_inset Formula $t$
-\end_inset
-
+Jest to połączone prawdopodobieństwo obserwacji (wygenerowania) pierwszego
  wektora cech oraz przebywania w stanie 
 \begin_inset Formula $j$
 \end_inset
@@ -1339,7 +1338,7 @@ Ta rekursja polega na tym, że prawdopodobieństwo przebywania w stanie
 \begin_inset Formula $t$
 \end_inset
 
- oraz emitowania obserwacji można wyliczyć poprzez zsumowanie prawdopodobieństw
+ oraz emitowania obserwacji wylicza się poprzez zsumowanie prawdopodobieństw
  
 \shape italic
 forward
@@ -1391,7 +1390,7 @@ dla
 \end_layout
 
 \begin_layout Standard
-Zatem finalne waruki:
+A finalne waruki:
 \end_layout
 
 \begin_layout Standard
@@ -1466,7 +1465,7 @@ prawdopodobieństwo
 \shape italic
 backward 
 \shape default
-również jest liczone za pomocą rekursji:
+również liczy się za pomocą rekursji:
 \end_layout
 
 \begin_layout Standard
@@ -1587,8 +1586,8 @@ Gdzie
 Zakłada się, że parametry dla HMM są reestymowane dla pojedyńczej sekwencji
  obserwacji, co odpowiada pojedyńczej próbce mowy nagranej do wytrenowania
  modelu.
- Do uzyskania dobrych estymat parametrów potrzebne jest wiele próbek tego
- samego słowa.
+ Do uzyskania dobrych estymat parametrów potrzeba wielu próbek tego samego
+ słowa.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1617,7 +1616,7 @@ Warto wspomnieć, że podczas wyznaczania prawdopodobieństw
 \shape italic
 forward
 \shape default
- i 
+ oraz 
 \shape italic
 backward
 \shape default
@@ -1628,7 +1627,7 @@ backward
 \end_layout
 
 \begin_layout Standard
-Podsumowując, problem estymacji parametrów polega na doborze jak największych
+Podsumowując, problem reestymacji parametrów polega na doborze jak największych
  prawdopodobieństw przejść pomiędzy stanami oraz prawdopodobieństw wystąpienia
  obserwacji.
  Najpierw ustala się początkowe, przybliżone wartości tych parametrów a

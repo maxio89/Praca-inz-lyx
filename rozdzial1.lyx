@@ -112,14 +112,14 @@ Przeglądając artykuły i prace dotyczące tematyki tutaj poruszanej często
 \end_layout
 
 \begin_layout Section
-Cel 
+Cel
 \end_layout
 
 \begin_layout Standard
 Niniejsza praca koncentruje się na wykorzystaniu osiągnięć projektu HTK
  oraz stworzeniu systemu rozpoznawania mowy dla języka polskiego na przykładzie
- sterowania robotem przemysłowym w grze planszowej.
- Rozgrywka polega na wydawaniu komend głosowych które sterują ruchami robota.
+ sterowania robotem przemysłowym w grach planszowych.
+ Rozgrywka polega na wydawaniu komend głosowych, które sterują ruchami robota.
  Jest on zarówno przeciwnikiem użytkownika, jak również wykonuje za niego
  wszystkie ruchy podczas rozgrywki, użytkownik skupia się zatem tylko na
  wydawaniu poleceń głosowych.
@@ -139,8 +139,9 @@ W rozdziale drugim przedstawione zostały podstawy systemów rozpoznawania
  Rozdział trzeci opisuje sygnał mowy, m.in.
  ekstrakcję cech, która jest bardzo ważnym punktem tworzenia systemów rozpoznawa
 nia mowy.
- W rozdziale czwartym przedstawiona zostaje metoda Ukrytych Modeli Markowa,
- będąca podstawą działania systemu stworzonego na potrzeby niniejszej pracy.
+ W rozdziale czwartym przedstawiony zostaje ogólny zarys metody Ukrytych
+ Modeli Markowa, będącej podstawą działania systemu stworzonego na potrzeby
+ niniejszej pracy.
  W kolejnym rozdziale, zostały opisane narzędzia wykorzystane przy tworzeniu
  niniejszej pracy.
  Następnie w rozdziale szóstym zaprezentowany został efekt końcowy czyli

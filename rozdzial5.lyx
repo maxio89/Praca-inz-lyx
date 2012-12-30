@@ -198,7 +198,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Enkodowanie/dekodowanie wiadomości 
+Enkodowanie/dekodowanie sygnału mowy 
 \begin_inset CommandInset label
 LatexCommand label
 name "rys19"
@@ -318,9 +318,10 @@ subsection{Architektura}
 
 \begin_layout Standard
 Większość funkcjonalności HTK jest wbudowane w moduły, które są bibliotekami
- systemowymi (pliki z rozszerzeniem *.dll w systemach Windows lub *.lib w
- systemach Linux).
- Te moduły zapewniają każdemu narzędziu interfejs do komunikowania się ze
+ systemowymi.
+ Mogą zostać skompilowane zarówno w systemach z rodziny Windows jak również
+ w systemach opartych na Linuxie.
+ Moduły te zapewniają każdemu narzędziu interfejs do komunikowania się ze
  światem zewnętrznym w podobny sposób.
  Dostarczają również centralny zasób najczęściej używanych funkcji.
  Na rysunku 
@@ -331,7 +332,7 @@ reference "rys21"
 \end_inset
 
  przedstawione zostały typowe narzędzia HTK oraz pokazane interfejsy wejść
- i wyjść.
+ oraz wyjść.
 \end_layout
 
 \begin_layout Standard
@@ -437,7 +438,7 @@ HWave,
 HParm.
  
 \shape default
-Bezpośrednie wejście dzwięku zapewnia 
+Bezpośrednie wejście dźwięku zapewnia biblioteka 
 \shape italic
 HAudio
 \shape default
@@ -450,7 +451,7 @@ HGraf
 \shape italic
 HUtil 
 \shape default
-zawiera narzędzia manipulujące modelami HMM podczas gdy 
+zawiera narzędzia manipulujące modelami HMM podczas gdy biblioteki 
 \shape italic
 HTrain
 \shape default
@@ -458,7 +459,7 @@ HTrain
 \shape italic
 HFB
 \shape default
- zapewnia wsparcie w trakcie trenowania modeli.
+ zapewniają wsparcie w trakcie trenowania modeli.
  
 \shape italic
 HRec 
@@ -562,7 +563,7 @@ HFoo -T 1 -f 34.3 -a -s myfile file1 file2
 \end_layout
 
 \begin_layout Standard
-To narzędzie posiada dwa główne argumenty nazwane 
+Narzędzie to posiada dwa główne argumenty nazwane 
 \shape italic
 file1 
 \shape default
@@ -590,7 +591,7 @@ oraz argumenty opcjonalne.
 \shape italic
  -T, 
 \shape default
-która zawsze kontroluje wyjście narzędzia czyli, to co zostanie wydrukowane
+która zawsze kontroluje wyjście narzędzia czyli, to co zostanie wyświetlone
  w konsoli) lub też ciąg znaków (opcja
 \shape italic
  -s
@@ -630,7 +631,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Przykład wywołania narzędzia wraz z plikiem konfiguracyjnym 
+Przykład wywołania narzędzia HTK wraz z plikiem konfiguracyjnym 
 \begin_inset CommandInset label
 LatexCommand label
 name "lis2"
@@ -686,13 +687,13 @@ Raspberry Pi
 
 \begin_layout Standard
 Raspberry Pi jest produktem fundacji non-profit, której celem było stworzenie
- taniej i w pełni funkcjonalnej platformy komputerowej.
+ małej, taniej oraz w pełni funkcjonalnej platformy komputerowej.
 \end_layout
 
 \begin_layout Standard
 Urządzenie oparte jest na architekturze ARM, nie posiada wbudowanego dysku
- twardego, lecz w zamian posiada złącze kart SD w celu załadowania systemu
- operacyjnego i przechowywania danych.
+ twardego, lecz w zamian za to, posiada złącze kart SD w celu załadowania
+ systemu operacyjnego i przechowywania danych.
  Raspberry Pi posiada również złącze USB do podłączenia dowolnych zewnętrznych
  urządzeń, wyjście dźwięku (np.
  do podłączenia głośników) oraz złącze Ethernet, które umożliwia podłączenie
@@ -703,6 +704,14 @@ Urządzenie oparte jest na architekturze ARM, nie posiada wbudowanego dysku
  czasu za pomocą sieci Internet lub pytać użytkownika o czas podczas uruchamiani
 a.
  Urządzenie pracuje na systemie Linuxowym zainstalowanym na karcie SD.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rpi"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -768,6 +777,13 @@ Schemat Raspberry Pi
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Schemat-Raspberry-Pi"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RpiS"
 
 \end_inset
 
@@ -1730,7 +1746,7 @@ Stockfish
 Stockfish jest to nazwa darmowego silnika wykorzystanego w niniejszej pracy
  jako inteligencja robota podczas rozgrywki szachowej.
  Jest to projekt wieloplatformowy, dostępny zarówno na systemy z rodziny
- Windows, Linux jak i urządzenia mobilne.
+ Windows, Linux jak również urządzenia mobilne.
  W niniejszej pracy wykorzystywana jest wersja Linuxowa progamu.
  
 \end_layout

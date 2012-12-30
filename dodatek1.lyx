@@ -60,15 +60,1637 @@
 
 \begin_body
 
-\begin_layout Chapter*
+\begin_layout Chapter
 \start_of_appendix
-Dodatek A Instrukcja wykorzystania skryptów do zautomatyzowania pracy z
- HTK
+Dodatek A.
+ Instrukcja wykorzystania skryptów do zautomatyzowania pracy z HTK
+\end_layout
+
+\begin_layout Section*
+A.1.
+ Wstęp
 \end_layout
 
 \begin_layout Standard
-Tu, trzeba zamieszczać treść dodatkową np.
- fragmenty kodu aplikacji itp.
+Praca z HTK wymaga często powtarzania tych samych żmudnych czynności, takich
+ jak kopiowanie plików, tworzenie plików konfiguracyjnych lub plików zawierający
+ch ścieżki dostępu do innych plików.
+ Testowanie skuteczności systemu rozpoznawania mowy oraz zmiana różnych
+ jego parametrów wiąże się z ponownym wytrenowaniem tego systemu a więc
+ ponownym przejściem przez te same kroki.
+ Chcąc zaoszczędzić czas potrzebny na powtarzanie tych samych czynności
+ autor postanowił przygotować skrypty wykonujące różne funkcje z użyciem
+ bibliotek HTK, parsujące pliki tekstowe, lub tworzące odpowiednie pliki
+ konfiguracyjne wymagane do pracy z HTK.
+ Skrypty te zostały napisane w języku Perl (na wzór gotowych skryptów z
+ pakietu HTK) oraz w języku powłoki bash (powłoka systemowa UNIX), która
+ jest rozszerzeniem powłoki sh.
+ 
+\end_layout
+
+\begin_layout Standard
+Zostaną tutaj opisane najważniejsze skrypty oraz pliki pozwalające stworzyć
+ silnik systemu rozpoznawania mowy.
+\end_layout
+
+\begin_layout Standard
+Pakiet HTK jest dostępny pod adresem http://htk.eng.cam.ac.uk/download.shtml
+ zarówno dla systemu Windows jak i Linux.
+ Opis kompilacji bibliotek również dostępny jest w w/w źródle.
+\end_layout
+
+\begin_layout Standard
+Struktura folderu, zawierającego pliki potrzebne do pracy z HTK podczas
+ tworzenia systemu rozpoznawania mowy została pokazana na rysunku A.1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Figures/struktura-folderu-htk.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Rysunek A.1: Struktura folderu z plikami HTK 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Folder 
+\emph on
+hmm15
+\emph default
+ zawiera wytrenowane modele HMM, wykorzystywane podczas rozpoznawania.
+ Z punktu widzenia rozpoznawania, istotne są również pliki zawierające gramatykę
+ systemu (plik
+\emph on
+ gram
+\emph default
+),
+\emph on
+ 
+\emph default
+sieć słów (plik 
+\emph on
+wdnet) 
+\emph default
+utworzoną na podstawie gramatyki oraz słownik systemu (plik 
+\emph on
+dict
+\emph default
+), ścieżkę pliku dźwiękowego którego zawartość jest rozpoznawana (plik testQT.scp
+) oraz plik w którym zapisany jest wynik rozpoznawania (recoutQT.mlf).
+ W folderze 
+\emph on
+train/wav
+\emph default
+ znajdują się próbki treningowe, natomiast folder 
+\emph on
+train/mfcc 
+\emph default
+zawiera pliki z wyekstrahowanymi cechami próbek treningowych.
+ W folderze 
+\emph on
+scripts
+\emph default
+ znajdują się skrypty wykorzystywane w procesie trenowania systemu.
+ Z kolei folder 
+\emph on
+main
+\emph default
+ zawiera główne skrytpy przeprowadzające (automatyzujące) proces trenowania
+ oraz uruchamiające rozpoznawanie.
+\end_layout
+
+\begin_layout Section*
+A.2.
+ Trenowanie oraz rozpoznawanie
+\end_layout
+
+\begin_layout Standard
+Zgodnie z tym co zostało napisane w rozdziale 6 niniejszej pracy, jednym
+ z pierwszych kroków podczas pracy nad systemem jest utworzenie słownika
+ oraz gramatyki widocznych na listingach A.1.
+ oraz A.2.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+Listing A.1: Słownik systemu
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ALFA            [ALFA]          alfa sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+BRAVO           [BRAVO]         bravo sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+CHARLIE         [CHARLIE]       charlie sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+CIEMNY          [CIEMNY]        ciemny sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+CISZA           [CISZA]         cisza sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+COFNIJ          [COFNIJ]        cofnij sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+CZTERY          [CZTERY]        cztery sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+DELTA           [DELTA]         delta sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+DWA             [DWA]           dwa sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+ECHO            [ECHO]          echo sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+FOXTROT         [FOXTROT]       foxtrot sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+GOLF            [GOLF]          golf sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+HOTEL           [HOTEL]         hotel sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+JAROZPOCZYNAM   [JAROZPOCZYNAM] jarozpoczynam sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+JASNY           [JASNY]         jasny sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+JEDYNKA         [JEDYNKA]       jedynka sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+JESTEM          [JESTEM]        jestem sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+KASZEL          [KASZEL]        kaszel sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+KONIEC          [KONIEC]        koniec sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+NA              [NA]            na sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+ODDECH          [ODDECH]        oddech sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+OSIEM           [OSIEM]         osiem sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+OWCAMI          [OWCAMI]        owcami sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+PIATKA          [PIATKA]        piatka sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+PIOTR           [PIOTR]         piotr sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+RESET           [RESET]         reset sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+ROZPOCZNIJ      [ROZPOCZNIJ]    rozpocznij sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+SENT-END        [SENT-END]      sil 
+\end_layout
+
+\begin_layout Plain Layout
+
+SENT-START      [SENT-START]    sil 
+\end_layout
+
+\begin_layout Plain Layout
+
+SIEDEM          [SIEDEM]        siedem sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+SLUCHAWKI       [SLUCHAWKI]     sluchawki sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+START           [START]         start sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+SZESC           [SZESC]         szesc sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+TRZY            [TRZY]          trzy sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+TWOJRUCH        [TWOJRUCH]      twojruch sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+WILKIEM         [WILKIEM]       wilkiem sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+WITAJ           [WITAJ]         witaj sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+WSZACHY         [WSZACHY]       wszachy sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+WWILKIOWCE      [WWILKIOWCE]    wwilkiowce sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+ZAGRAJMY        [ZAGRAJMY]      zagrajmy sp 
+\end_layout
+
+\begin_layout Plain Layout
+
+ZATRZYMAJ       [ZATRZYMAJ]     zatrzymaj sp
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Skrót 
+\emph on
+sp
+\emph default
+ oznacza krótką pauzę, natomiast 
+\emph on
+sil
+\emph default
+ ciszę.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+Listing A.2: Gramatyka systemu
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+$number = JEDYNKA | DWA | TRZY | CZTERY | PIATKA | SZESC | SIEDEM | OSIEM;
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+$field = ALFA | CHARLIE | BRAVO | DELTA | ECHO | FOXTROT | GOLF | HOTEL;
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+$noise = ODDECH | CISZA | SLUCHAWKI | ODDECH; $word = ALFA | CHARLIE | 
+\end_layout
+
+\begin_layout Plain Layout
+
+BRAVO | DELTA | ECHO | FOXTROT | GOLF | HOTEL | JEDYNKA | DWA | TRZY | 
+\end_layout
+
+\begin_layout Plain Layout
+
+CZTERY | PIATKA | SZESC | SIEDEM | OSIEM | START | KONIEC | RESET | 
+\end_layout
+
+\begin_layout Plain Layout
+
+ZATRZYMAJ | COFNIJ | TWOJRUCH | WILKIEM | OWCAMI | JASNY | CIEMNY | 
+\end_layout
+
+\begin_layout Plain Layout
+
+ROZPOCZNIJ | JAROZPOCZYNAM | WITAJ | JESTEM  |ZAGRAJMY | WSZACHY | 
+\end_layout
+
+\begin_layout Plain Layout
+
+WWILKIOWCE | PIOTR; 
+\end_layout
+
+\begin_layout Plain Layout
+
+( SENT-START (($field $number NA $field $number) | $word | $word $word |
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+$word $word $word | $word $noise) SENT-END )
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gdy pliki zawierające słownik oraz gramatykę są już gotowe, potrzeba nagrać
+ próbki treningowe zgodne z gramatyką systemu, zawierąjące wielokrotne powtórzen
+ia wszystkich słów ze słownika.
+\end_layout
+
+\begin_layout Standard
+Do poprawnego zadziałania skryptu (listing A.3.) przeprowadzającego trenowanie
+ systemu, kolejne próbki dźwiękowe zawierające wypowiedzi treningowe muszą
+ zostać nazwane wg.
+ odpowiedniej konwencji.
+ Dla pierwszej próbki będzie to 
+\emph on
+sample1.wav
+\emph default
+, w nazwach każdej kolejnej próbki zmienia się tylko jej numer, tzn.
+ 
+\emph on
+sample2.wav
+\emph default
+, 
+\emph on
+sample3.wav
+\emph default
+, aż do 
+\emph on
+sampleN.wav
+\emph default
+, gdzie 
+\emph on
+N
+\emph default
+ jest to liczba wszystkich próbek treningowych.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+Listing A.3: Główny skrypt main.sh uruchamiający proces trenowania
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+#$1 - number of prompt files 
+\end_layout
+
+\begin_layout Plain Layout
+
+#$2 - number of states 
+\end_layout
+
+\begin_layout Plain Layout
+
+#$3 - how many steps we omit counting from the first
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ARGC="$#" 
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $ARGC -eq 2 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	NOSTEP="0" 
+\end_layout
+
+\begin_layout Plain Layout
+
+else 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	NOSTEP=$3 
+\end_layout
+
+\begin_layout Plain Layout
+
+fi
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $NOSTEP -eq 0 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	sh main/step1.sh 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo " ----------------- STEP1 --------- " 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 
+\end_layout
+
+\begin_layout Plain Layout
+
+fi
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $NOSTEP -eq 0 ] || [ $NOSTEP -eq 1 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	sh main/step2.sh 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo " ------------------ STEP2 --------- " 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 
+\end_layout
+
+\begin_layout Plain Layout
+
+fi
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $NOSTEP -eq 0 ] || [ $NOSTEP -eq 1 ] || [ $NOSTEP -eq 2 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	sh main/step3.sh $1 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo " ------------------ STEP3 --------- " 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ fi
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $NOSTEP -eq 0 ] || [ $NOSTEP -eq 1 ] || [ $NOSTEP -eq 2 ] || 
+\end_layout
+
+\begin_layout Plain Layout
+
+[ $NOSTEP -eq 3 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	sh main/step4.sh proto$2 $1 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo " ------------------ STEP4 --------- " 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 
+\end_layout
+
+\begin_layout Plain Layout
+
+fi
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $NOSTEP -eq 0 ] || [ $NOSTEP -eq 1 ] || [ $NOSTEP -eq 2 ] || 
+\end_layout
+
+\begin_layout Plain Layout
+
+[ $NOSTEP -eq 3 ] || [ $NOSTEP -eq 4 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	sh main/step5.sh $2 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo " ------------------ STEP5 --------- " 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 
+\end_layout
+
+\begin_layout Plain Layout
+
+fi
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $NOSTEP -eq 0 ] || [ $NOSTEP -eq 1 ] || [ $NOSTEP -eq 2 ] || 
+\end_layout
+
+\begin_layout Plain Layout
+
+[ $NOSTEP -eq 3 ] || [ $NOSTEP -eq 4 ] || [ $NOSTEP -eq 5 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	sh main/step6.sh 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo " ------------------ STEP6 --------- " 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 
+\end_layout
+
+\begin_layout Plain Layout
+
+fi
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $NOSTEP -eq 0 ] || [ $NOSTEP -eq 1 ] || [ $NOSTEP -eq 2 ] || 
+\end_layout
+
+\begin_layout Plain Layout
+
+[ $NOSTEP -eq 3 ] || [ $NOSTEP -eq 4 ] || [ $NOSTEP -eq 5 ] || 
+\end_layout
+
+\begin_layout Plain Layout
+
+[ $NOSTEP -eq 6 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	sh main/step7.sh 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo " ------------------ STEP7 --------- " 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________  
+\end_layout
+
+\begin_layout Plain Layout
+
+fi
+\end_layout
+
+\begin_layout Plain Layout
+
+if [ $NOSTEP -eq 0 ] || [ $NOSTEP -eq 1 ] || [ $NOSTEP -eq 2 ] || 
+\end_layout
+
+\begin_layout Plain Layout
+
+[ $NOSTEP -eq 3 ] || [ $NOSTEP -eq 4 ] || [ $NOSTEP -eq 5 ] || 
+\end_layout
+
+\begin_layout Plain Layout
+
+[ $NOSTEP -eq 6 ] || [ $NOSTEP -eq 7 ]; then  	
+\end_layout
+
+\begin_layout Plain Layout
+
+	sh main/step8.sh 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo " ------------------ STEP8 --------- " 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo _____________________________________ 
+\end_layout
+
+\begin_layout Plain Layout
+
+fi
+\end_layout
+
+\begin_layout Plain Layout
+
+#cp train/wav/* test/
+\end_layout
+
+\begin_layout Plain Layout
+
+#perl scripts/prompts2mlf testref2.mlf test/prompts 
+\end_layout
+
+\begin_layout Plain Layout
+
+#perl scripts/fixtestref.pl testref2.mlf testref.mlf
+\end_layout
+
+\begin_layout Plain Layout
+
+#perl scripts/create_test.pl test.scp $1
+\end_layout
+
+\begin_layout Plain Layout
+
+#sh main/recognize_tests.sh 
+\end_layout
+
+\begin_layout Plain Layout
+
+#perl scripts/create_stats.pl train/wav/wlist recout.mlf testref.mlf statsP
+\end_layout
+
+\begin_layout Plain Layout
+
+#cat statsP
+\end_layout
+
+\begin_layout Plain Layout
+
+#leafpad main/main_log 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Skrypt 
+\emph on
+main.sh
+\emph default
+ jako dwa główne argumenty przyjmuje ilość wszystkich próbek treningowych
+ zawartą w pliku 
+\emph on
+prompts
+\emph default
+ znajdującym się w folderze 
+\emph on
+train/wav
+\emph default
+ oraz ilość stanów modelu HMM.
+\end_layout
+
+\begin_layout Standard
+Zakomentowane linie na końcu skryptu (z użyciem znaku #) służą do przeprowadzeni
+a testu skuteczności systemu na próbkach wykorzystanych do jego wytrenowania.
+\end_layout
+
+\begin_layout Standard
+W pliku 
+\emph on
+main_log
+\emph default
+ zapisane są wyniki lub błędy działania niektórych funkcji oraz skryptów
+ wykorzystanych w procesie trenowania.
+\end_layout
+
+\begin_layout Standard
+Proces trenowania systemu został podzielony na osiem kroków, co odpowiada
+ ośmiu skryptom wywoływanym z głównego 
+\emph on
+main.sh
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+Listing A.4: Podgląd pliku step1.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+HParse gram wdnet 
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/prompts2mlf train/wav/words.mlf train/wav/prompts 
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/prompts2wlist train/wav/prompts train/wav/wlist 
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/fixwlist.pl train/wav/wlist
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W kroku pierwszym (listing A.4.) zostaje utworzona sieć słów na podstawie
+ gramatyki systemu a następnie przygotowywany jest plik (
+\emph on
+words.mlf)
+\emph default
+ zawierający etykiety próbek treningowych w formacie MLF oraz plik zawierający
+ listę wszystkich słów zawierających się w tych etykietach (bez powtórzeń).
+ Lista ta musi się zgadzać ze słownikiem systemu.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Podgląd pliku step1.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+HParse gram wdnet 
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/prompts2mlf train/wav/words.mlf train/wav/prompts 
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/prompts2wlist train/wav/prompts train/wav/wlist 
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/fixwlist.pl train/wav/wlist
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+W kroku drugim (listing A.5.) 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+Listing A.5: Podgląd pliku step2.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+HDMan -A -D -T 1 -m -w train/wav/wlist -n monophones1 -i -l dlog dict dict2
+\end_layout
+
+\begin_layout Plain Layout
+
+#perl scripts/remove_double_sp.pl dict2 dict
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/create_monophones0.pl
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+das
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Podgląd pliku step3.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+HLEd -A -D -T 1 -l '*' -d dict -i phones0.mlf mkphones0.led train/wav/words.mlf
+\end_layout
+
+\begin_layout Plain Layout
+
+HLEd -A -D -T 1 -l '*' -d dict -i phones1.mlf mkphones1.led train/wav/words.mlf
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/create_codetrain.pl codetrain.scp $1
+\end_layout
+
+\begin_layout Plain Layout
+
+HCopy -A -D -T 1 -C wav_config -S codetrain.scp
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+das
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Podgląd pliku step4.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Podgląd pliku step2.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/create_train.pl train.scp $2
+\end_layout
+
+\begin_layout Plain Layout
+
+HCompV -A -D -T 1 -C config -f 0.01 -m -S train.scp -M hmm0 $1
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/create_hmmdefs.pl monophones0 $1 hmm0/hmmdefs
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/create_macros.pl hmm0/$1 hmm0/vFloors hmm0/macros
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I phones0.mlf -t 250.0 150.0 1000.0 -S train.scp
+  -H hmm0/macros -H hmm0/hmmdefs -M hmm1 monophones0 
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I phones0.mlf -t 250.0 150.0 1000.0 -S train.scp
+  -H hmm1/macros -H hmm1/hmmdefs -M hmm2 monophones0 
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I phones0.mlf -t 250.0 150.0 1000.0 -S train.scp
+  -H hmm2/macros -H hmm2/hmmdefs -M hmm3 monophones0 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+das
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Podgląd pliku step5.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/create_hmm4.pl hmm3/macros hmm4/macros hmm3/hmmdefs hmm4/hmmdefs
+ $1
+\end_layout
+
+\begin_layout Plain Layout
+
+HHEd -A -D -T 1 -H hmm4/macros -H hmm4/hmmdefs -M hmm5 sil.hed monophones1
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I phones1.mlf -t 250.0 150.0 3000.0 -S train.scp
+  -H hmm5/macros -H hmm5/hmmdefs -M hmm6 monophones1
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I phones1.mlf -t 250.0 150.0 3000.0 -S train.scp
+  -H hmm6/macros -H hmm6/hmmdefs -M hmm7 monophones1
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+asd
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Podgląd pliku step6.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+HVite -A -D -T 1 -l '*' -o SWT -b SENT-END -C config -H hmm7/macros -H hmm7/hmmd
+efs -i aligned.mlf -m -t 250.0 150.0 1000.0 -y lab -a -I train/wav/words.mlf
+ -S train.scp dict monophones1> HVite_log
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I aligned.mlf -t 250.0 150.0 3000.0 -S train.scp
+  -H hmm7/macros -H hmm7/hmmdefs -M hmm8 monophones1
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I aligned.mlf -t 250.0 150.0 3000.0 -S train.scp
+  -H hmm8/macros -H hmm8/hmmdefs -M hmm9 monophones1
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+asd
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Podgląd pliku step7.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+HLEd -A -D -T 1 -n triphones1 -l '*' -i wintri.mlf mktri.led aligned.mlf 
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/maketrihed monophones1 triphones1 
+\end_layout
+
+\begin_layout Plain Layout
+
+HHEd -A -D -T 1 -H hmm9/macros -H hmm9/hmmdefs -M hmm10 mktri.hed monophones1
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I wintri.mlf -t 250.0 150.0 3000.0 -S train.scp
+ -H hmm10/macros -H hmm10/hmmdefs -M hmm11 triphones1 
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -C config -I wintri.mlf -t 250.0 150.0 3000.0 -s stats -S
+ train.scp -H hmm11/macros -H hmm11/hmmdefs -M hmm12 triphones1
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+asddas
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Podgląd pliku step8.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+HDMan -A -D -T 1 -b sp -n fulllist -g global.ded -l flog dict-tri dict
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/remove_double_sp.pl dict-tri dict-tri2 
+\end_layout
+
+\begin_layout Plain Layout
+
+mv dict-tri2 dict-tri
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/create_treeHed_part1.pl treeTMP.hed tree.hed
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/mkclscript.prl TB 350 monophones0 >> tree.hed
+\end_layout
+
+\begin_layout Plain Layout
+
+perl scripts/create_treeHed_part2.pl tree.hed
+\end_layout
+
+\begin_layout Plain Layout
+
+HHEd -A -D -T 1 -H hmm12/macros -H hmm12/hmmdefs -M hmm13 tree.hed triphones1
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -T 1 -C config -I wintri.mlf  -s stats -t 250.0 150.0 3000.0
+ -S train.scp -H hmm13/macros -H hmm13/hmmdefs -M hmm14 tiedlist 
+\end_layout
+
+\begin_layout Plain Layout
+
+HERest -A -D -T 1 -T 1 -C config -I wintri.mlf  -s stats -t 250.0 150.0 3000.0
+ -S train.scp -H hmm14/macros -H hmm14/hmmdefs -M hmm15 tiedlist 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+asddas
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Podgląd pliku recognize_live.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sh main/record.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+HVite -C config3  -H hmm15/macros -H hmm15/hmmdefs -S testQT.scp -l '*' -i
+ recoutQT.mlf -w wdnet -p 0.0 -s 5.0 dict tiedlist 
+\end_layout
+
+\begin_layout Plain Layout
+
+cat recoutQT.mlf
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

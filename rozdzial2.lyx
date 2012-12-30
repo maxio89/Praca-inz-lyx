@@ -279,7 +279,7 @@ System stworzony na potrzeby tej pracy jest zależny od mówcy, oznacza to,
  wykorzystane do jego wytrenowania.
  Systemy niezależne od mówcy z założenia mają działać dla różnych osób,
  wymaga to jednak większego oraz bardziej zróżnicowanego zbioru treningowego.
- Rozmiar słownika ma wpływ na skuteczność rozpoznawania jak i na szybkość
+ Rozmiar słownika ma wpływ na skuteczność rozpoznawania jak również na szybkość
  działania systemu.
  Dla większych słowników rozpoznawanie trwa trochę dłużej, a skuteczność
  zmniejsza się ze względu na większe prawdopodobieństwo wystąpienia słów
@@ -307,8 +307,8 @@ Jako parametry transmisji sygnału mowy mogące mieć wpływ na skuteczność
  jak sposób wymowy (gwara, akcent), szybkość oraz głośność.
  Jeżeli czułość mikrofonu podczas nagrywania zostanie ustawiona na niską,
  wymaga to głośniejszych wypowiedzi w celu poprawnego zarejestrowania sygnału
- mowy, lecz w zamian za to przenosi mniej szumow otoczenia, ktore moga być
- obecne w czasie pracy systemu.
+ mowy, lecz w zamian za to, przenosi mniej szumow otoczenia, które moga
+ być obecne w czasie pracy systemu.
 \end_layout
 
 \begin_layout Section
@@ -463,14 +463,6 @@ key "Sar"
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-\color green
-O Kaldi nie doczytałem dokładnie jak działa i czy oferuje podobne możliwości
- co HTK więc nie będe o tym wspominał póki co.
-\end_layout
-
-\begin_layout Standard
 W obecnych czasach tworzenie systemów rozpoznawania mowy jest dużo prostsze,
  ze względu na obecność gotowych narzędzi wspomagających, m.in.
  HTK czy CMUSphinx, które posiadają zaimplementowane algorytmy, pozwalające
@@ -485,7 +477,7 @@ czarnej skrzynki
 \end_inset
 
 , niemniej jednak potrafi stworzyć w pełni działający system.
- Na tyle skuteczny, by nie musieć zagłębiać szczegółów zaimplementowanych
+ Na tyle skuteczny, aby nie musieć zagłębiać szczegółów zaimplementowanych
  algorytmów.
  Co prawda taka niewiedza stwarza problemy przy doborze optymalnych parametrów
  mających istotny wpływ na działanie systemu, lecz nie przeszkadza w doborze
@@ -568,7 +560,7 @@ Podział metod klasyfikacji
 Współczesne systemy rozpoznawania mowy zakładają, że sygnał mowy jest sekwencją
  pewnych elementarnych jednostek fonetycznych (np.
  głosek, fonemów lub słów).
- Charakteruzyje się on również pewna przypadkowością.
+ Charakteruzyje się on również pewną przypadkowością.
  Wypowiedź tego samego mówcy za każdym razem posiada niepowtarzalny przebieg
  czasowy, co może stwarzać trudności w automatycznym rozpoznawaniu wypowiedzi.
  Niepowtarzalność przebiegu czasowego wiąże się m.in.

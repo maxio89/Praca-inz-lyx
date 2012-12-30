@@ -71,13 +71,13 @@ Mowa w języku polskim
 \end_layout
 
 \begin_layout Standard
-Alfabet języka polskiego składa sie˛ z 32 liter.
+Alfabet języka polskiego składa się z 32 liter.
  Łacińskie litery q, v i x występują jedynie w pisowni wyrazów obcych.
  Alfabet fonetyczny języka polskiego składa się z około 78 dźwięków.
  Dokładna liczba głosek zależy od sposobu traktowania wariantów.
  Relacja litera – głoska jest typu wiele – wiele.
  Tak jest również w wielu innych językach.
- Strukturę języka możemy przedstawić w postaci modelu warstwowego (rys.
+ Strukturę języka można przedstawić w postaci modelu warstwowego (rys.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -231,9 +231,9 @@ key "Fone"
  funkcji w procesie komunikacji.
  Podstawową jednostką fonologii jest fonem.
  Fonem uznaje się za najmniejszy rozróżnialny segment dźwiękowy mowy, który
- może odróżniać znaczenie dzwieków mowy danego jezyka o różnicach wynikajacych
- wyłacznie z charakteru indywidualnej wymowy lub kontekstu.
- Dla systemów rozpoznawania mowy istotne jest to, że każdy fonem, jest zespołem
+ może odróżniać znaczenie dźwieków mowy danego jezyka o różnicach wynikajacych
+ wyłącznie z charakteru indywidualnej wymowy lub kontekstu.
+ Dla systemów rozpoznawania mowy istotne jest to, że każdy fonem jest zespołem
  cech dystynktywnych pozwalających na odróżnienie go od pozostałych fonemów,
  co przekłada się bezpośrednio na parametry akustyczne sygnału.
  
@@ -365,13 +365,9 @@ status open
 
 \begin_layout Plain Layout
 Reprezentacja słowa 
-\begin_inset Quotes pld
-\end_inset
-
+\emph on
 trzy
-\begin_inset Quotes prd
-\end_inset
-
+\emph default
  w dziedzinie czasu
 \end_layout
 
@@ -398,7 +394,7 @@ Matematycznie można go przedstawić jako splot przebiegu czasowego sygnału
 \begin_inset Formula $u{}_{z}\left(t\right)$
 \end_inset
 
- i odpowiedzi impulsowej kanału głosowego 
+ oraz odpowiedzi impulsowej kanału głosowego 
 \begin_inset Formula $h\left(t\right)$
 \end_inset
 
@@ -497,7 +493,7 @@ h za pomocą okna
 \end_layout
 
 \begin_layout Standard
-Szerokość okna determinuje roździelczość częstotliwościową i czasową otrzymanego
+Szerokość okna determinuje rozdzielczość częstotliwościową i czasową otrzymanego
  widma czasowo-częstotliwościowego.
  Najprostszą funkcją okna jest okno prostokątne 
 \begin_inset CommandInset citation
@@ -607,13 +603,9 @@ status open
 
 \begin_layout Plain Layout
 Reprezentacja słowa 
-\begin_inset Quotes pld
-\end_inset
-
+\emph on
 trzy
-\begin_inset Quotes prd
-\end_inset
-
+\emph default
  w dziedzinie częstotliwości 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -670,7 +662,8 @@ reference "rys6"
 \end_inset
 
 ).
- Co za tym idzie, słowa różniące się tylko częścią bezdźwięczną trudno rozpoznać.
+ Co za tym idzie, słowa różniące się tylko częścią bezdźwięczną trudniej
+ rozpoznawać.
  
 \end_layout
 
@@ -855,7 +848,7 @@ Ekstrakcja cech
 \end_layout
 
 \begin_layout Standard
-Najczęściej stosowane cechy sygnału mowy:
+Najczęściej stosowane cechy sygnału mowy to:
 \end_layout
 
 \begin_layout Itemize
@@ -866,11 +859,6 @@ współczynniki LPC (ang.
 \begin_layout Itemize
 parametry mel-cepstralne (MFCC, ang.
  Mel-frequency cepstral coefficients),
-\end_layout
-
-\begin_layout Itemize
-parametry mel-spektralne (MFC, ang.
- Mel-frequency cepstrum),
 \end_layout
 
 \begin_layout Itemize
@@ -897,7 +885,7 @@ key "TM"
 
 \begin_layout Standard
 Pakiet HTK może korzystać zarówno z cech mel-cepstralnych jak i LPC.
- Opisane zostały jedynie cechy mel-cepstralne ponieważ zostały wykorzystane
+ Opisane zostały jedynie cechy mel-cepstralne, ponieważ zostały one wykorzystane
  w systemie stworzonym na potrzeby niniejszej pracy.
 \end_layout
 
@@ -924,7 +912,7 @@ subsection{MFCC}
 
 \begin_layout Standard
 Ekstrakcję cech sygnału mowy za pomocą wpółczynników MFCC można ogólnie
- przestawić w następujących krokach:
+ przedstawić w następujących krokach:
 \end_layout
 
 \begin_layout Itemize
@@ -1028,7 +1016,7 @@ name "rys7"
 \end_layout
 
 \begin_layout Standard
-Następnie ramki się wymnaża z oknem Hamminga i oblicza FFT.
+Następnie ramki wymnaża się z oknem Hamminga i oblicza FFT.
 \end_layout
 
 \begin_layout Standard
@@ -1052,7 +1040,7 @@ key "Przetw"
 \end_inset
 
  Jest to spowodowane tym, że ucho człowieka reaguje nieliniowo na zmieniającą
- się częstotliwość dzwięku.
+ się częstotliwość dźwięku.
  Częstotliwości powyżej 1 kHz są słabiej odczuwane niż różnice w zakresie
  niskich częstotliwości.
  Dlatego im wyższa częstotliwość tym są potrzebne coraz większe odstępy
@@ -1233,7 +1221,7 @@ key "Htkb"
 \end_layout
 
 \begin_layout Standard
-Natężenie dźwięku jest odczuwane przez ludzi w skali logarytmicznej dlatego
+Natężenie dźwięku jest odczuwane przez ludzi w skali logarytmicznej, dlatego
  przy obliczaniu cepstrum sygnał otrzymany po przejściu przez bank filtrów
  melowych jest logarytmowany.
 \end_layout
@@ -1299,14 +1287,14 @@ Aby usunąć szkodliwy wpływ podstawowych drgań krtaniowych na zestaw cech
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $c_{i}^{lift}=(1+\frac{\text{λ}}{2}sin(\frac{\text{πn}}{\text{λ}}))c_{i}$
+\begin_inset Formula 
+\begin{equation}
+c_{i}^{lift}=(1+\frac{\text{λ}}{2}sin(\frac{\text{πn}}{\text{λ}}))c_{i}dlai=1,...,\text{λ},
+\end{equation}
+
 \end_inset
 
- dla 
-\begin_inset Formula $i=1,...,\text{λ}$
-\end_inset
 
-, 
 \end_layout
 
 \begin_layout Standard
@@ -1340,14 +1328,14 @@ energetyczną
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $E{}^{(\text{τ)}}=\sum_{i=1}^{M}f_{i}^{2}$
+\begin_inset Formula 
+\begin{equation}
+E{}^{(\text{τ)}}=\sum_{i=1}^{M}f_{i}^{2}
+\end{equation}
+
 \end_inset
 
- 
-\begin_inset space \quad{}
-\end_inset
 
- 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AnalizaS,Rozp"

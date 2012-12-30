@@ -63,7 +63,7 @@
 \begin_body
 
 \begin_layout Chapter
-Aplikacja sterująca robotem za pomocą komend głosowych
+System sterujący robotem za pomocą komend głosowych
 \end_layout
 
 \begin_layout Section
@@ -133,7 +133,7 @@ name "fig:Schemat-blokowy-opisujący"
 \end_inset
 
 Do wykonania pierwszych trzech etapów a mianowicie, detekcji sygnału mowy,
- nagrywania oraz detekcji ciszy zostało wykorzystane narzędzie Linuxowego
+ nagrywania oraz detekcji ciszy zostało wykorzystane narzędzie linuxowe
  o nazwie Sox 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -157,14 +157,16 @@ koniec
 aplikacja kończy swoje działanie (informując o tym użytkownika) a następnie
  wyłącza urządzenie na którym pracuje.
  Natomiast w przypadku rozpoznania innej komendy, przeprowadzane jest sprawdzeni
-e jej poprawności na danym etapie rozgrywki.
- Jeżeli rozpoznana komenda zostanie uznana za dozwoloną (z punktu widzenia
+e jej poprawności.
+ Jeżeli rozpoznana komenda zostanie uznana za poprawną (z punktu widzenia
  gramatyki na danym etapie rozgrywki), to wtedy zostaje wykonana jakaś akcja.
  Po wykonaniu akcji aplikacja powtarza swoje czynności i oczekuje na kolejną
  komendę użytkownika.
  Akcją może być np.
  ruch robota przenoszącego figurę na szachownicy lub przejście do innego
  etapu rozgrywki.
+ Aplikacja uruchamiana jest automatycznie, zaraz po załadowaniu systemu
+ operacyjnego urządzenia na którym pracuje.
  Szczegóły poszczególnych etapów rozgrywki zostaną wyjaśnione w jednym z
  kolejnych podrozdziałów.
  Aplikacje tego typu zwane są w literaturze 
@@ -179,30 +181,30 @@ System mikroprocesorowy
 \end_layout
 
 \begin_layout Standard
-W początkowej fazie prac aplikacja stworzona na potrzeby niniejszej pracy
- działała na laptopie z systemem operacyjnym Fedora 17 (dystrybucja Linuxa).
- Autor doszedł jednak do wniosku, że skoro podstawą komunikacji systemu
+W początkowej fazie prac system stworzony na potrzeby niniejszej pracy działał
+ na laptopie z systemem operacyjnym Fedora 17 (dystrybucja Linuxa).
+ Autor doszedł jednak do wniosku, że jeśli podstawą komunikacji systemu
  z użytkownikiem jest mowa, to klawiatura oraz monitor (matryca laptopa)
  są zbędne.
- Do działania aplikacji nie jest również potrzebna duża moc obliczeniowa
- jaką oferował laptop.
+ Do działania systemu rozpoznawania mowy nie jest również potrzebna duża
+ moc obliczeniowa jaką oferował laptop.
  Zdecydowano się zamiast laptopa użyć systemu mikroprocesorowego o nazwie
  Raspberry Pi, którego główną zaletą są małe rozmiary urządzenia.
- Jego parametry opisane zostały w rozdziale 5 niniejszej pracy.
+ Jego parametry zostały opisane w rozdziale 5 niniejszej pracy.
 \end_layout
 
 \begin_layout Standard
-Urządzenie pracuje na systemie Linuxowym opartym o dystrybucję Debian o
- nazwie Raspbian.
+Urządzenie pracuje na systemie Linuxowym o nazwie Raspbian opartym o dystrybucję
+ Debian.
 \end_layout
 
 \begin_layout Standard
-Niestety Raspberry Pi nie posiada wejścia dźwięku wymaganego do podpięcia
- mikrofonu, dlatego zostało wyposażone w dodatkowy moduł USB firmy LogiLink
+Niestety Raspberry Pi nie posiada wejścia dźwięku wymaganego do podłączenia
+ mikrofonu, dlatego zostało wyposażone w dodatkowy moduł USB (firmy LogiLink)
  pełniący funkcję karty dźwiękowej, do której zostały podpięte słuchawki
  z mikrofonem (firmy Sennheiser, model PC 3 Chat) umożliwiające nagrywanie
  dźwięku.
- Korzystanie ze słuchawek z mikfofonem ma dodatkową zaletę w postaci stałej
+ Korzystanie ze słuchawek z mikrofonem ma dodatkową zaletę w postaci stałej,
  niewielkiej odległości mikrofonu od ust użytkownika.
  Głośność nagrań oraz SNR sygnału mowy są
 \series bold
@@ -211,11 +213,11 @@ Niestety Raspberry Pi nie posiada wejścia dźwięku wymaganego do podpięcia
 wtedy zależne jedynie od natężenia głosu użytkownika a nie od odległości
  mikrofonu od ust mówiącego.
  Dzięki temu ogranicza się wówczas zmienność parametrów sygnału mowy, będącą
- potencjalnym źródłem błędów w rozpoznawaniu.
+ potencjalnym źródłem błędów rozpoznawania.
  Ponadto ze względu na bliską odległość mikrofonu od ust mówiącego można
  ustawić stosunkowo niski poziom nagrywania, dzięki temu tor audio znacząco
  tłumi lub nawet eliminuje hałasy dochodzące z otoczenia.
- Ponadto niski poziom nagrywania pozwala zminimalizować niekorzystny wpływ
+ Dodatkowo niski poziom nagrywania pozwala zminimalizować niekorzystny wpływ
  przesterowania sygnału na skuteczność rozpoznawania.
 \end_layout
 
@@ -247,7 +249,7 @@ key "Htkb"
 \begin_layout Standard
 Podczas rozpoznawania system zawsze dopasowuje najbardziej prawdopodobną
  sekwencję jednostek mowy zgodną z gramatyką systemu.
- Co za tym idzie, nawet w przypadku wypowiedzi zawierającej przypadkowe
+ Co za tym idzie, nawet w przypadku wypowiedzi zawierających przypadkowe
  słowa lub dźwięki zostanie rozpoznane jakieś słowo lub słowa ze słownika
  systemu.
  Jest to tzw.
@@ -259,9 +261,9 @@ Podczas rozpoznawania system zawsze dopasowuje najbardziej prawdopodobną
 \series bold
  
 \series default
-aby uodpornić system na niektóre sytuację, do słownika dodano sztuczne słowa
- takie jak cisza, kaszel, oddech oraz słuchawki (szmer słuchawek), których
- modele zostały wytrenowane próbkami nagrań różnych szumów.
+aby uodpornić system na niektóre sytuację, do słownika systemu dodano sztuczne
+ słowa takie jak cisza, kaszel, oddech oraz słuchawki (szmer słuchawek),
+ których modele zostały wytrenowane próbkami nagrań różnych szumów.
  W przypadku nagrania podobnego szumu, system z dużym prawdopodobieństwem
  przyporządkuje mu wymieniony wcześniej model zamiast słów uruchamiających
  sterowanie, co byłoby niezgodne z intencją użytkownika.
@@ -287,7 +289,7 @@ subsection{Przygotowanie danych}
 \begin_layout Standard
 Jednym z początkowych kroków w trakcie pracy nad systemem rozpoznawania
  mowy było stworzenie słownika, w którym zapisane są wszystkie używane przez
- system słowa wraz z ich etykietami.
+ system słowa wraz z ich etykietami lub transkrypcjami fonetycznymi.
  
 \end_layout
 
@@ -887,8 +889,15 @@ osiem
 \end_layout
 
 \begin_layout Standard
-Na listingu 8 przedstawiono wszystkie słowa składające się na komendy rozpoznawa
-ne przez system.
+Na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Słownik-systemu"
+
+\end_inset
+
+ przedstawiono wszystkie słowa składające się na komendy rozpoznawane przez
+ system.
 \end_layout
 
 \begin_layout Standard
@@ -903,7 +912,14 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Słownik systemu
+Słownik systemu 
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:Słownik-systemu"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1117,15 +1133,15 @@ Przy czym takie komendy jak CISZA, KASZEL, ODDECH oraz SLUCHAWKI nie są
 \end_layout
 
 \begin_layout Standard
-Kolejnym krokiem było ustalenie gramatyki systemu, czyli formatu wypowiedzi
- które będą rozpoznawane.
+Kolejnym krokiem po określeniu słownika, było ustalenie gramatyki systemu,
+ czyli formatu wypowiedzi które będą rozpoznawane.
  
 \end_layout
 
 \begin_layout Standard
 HTK dostarcza język definicji gramatyki.
  Składa się on z zestawu definicji zmiennych zawierających wyrażenia regularne
- będące słowami, które będą rozpoznawane.
+ będące słowami, które są rozpoznawane.
 \end_layout
 
 \begin_layout Standard
@@ -1259,8 +1275,24 @@ Znak
 \end_inset
 
  oznacza alternatywę.
- Jeśli jakieś słowo ma być opcjonalne, trzeba je wstawić pomiędzy kwadratowe
- nawiasy natomiast nawiasy ostre (
+ Jeżeli jakieś słowo ma być opcjonalne, trzeba je wstawić pomiędzy kwadratowe
+ nawiasy (
+\begin_inset Quotes pld
+\end_inset
+
+[
+\begin_inset Quotes pld
+\end_inset
+
+ oraz 
+\begin_inset Quotes pld
+\end_inset
+
+]
+\begin_inset Quotes prd
+\end_inset
+
+) natomiast nawiasy ostre (
 \begin_inset Quotes pld
 \end_inset
 
@@ -1282,8 +1314,8 @@ Znak
 
 \begin_layout Standard
 Do poprawnego wytrenowania modeli HMM potrzeba wielu próbek zawierających
- wielokrotne nagrania wszystkich słów ze słownika oraz powiązane z nimi
- etykiety.
+ powtarzające się nagrania wszystkich słów ze słownika oraz powiązane z
+ nimi etykiety.
  Etykiety mogą być zapisane w oddzielnych plikach powiązanych z każdą próbką,
  lub w jednym głównym pliku zawierającym etykiety wszystkich próbek wykorzystany
 ch do trenowania systemu.
@@ -1433,22 +1465,13 @@ Do nagrania próbek sygnału mowy może zostać użyte narzędzie
 \shape italic
 HSLab
 \shape default
- lub inny rejestrator dźwięku.
- W przypadku niniejszej pracy został wykorzystany darmowy program do obróbki
- dźwięku o nazwie 
+ z pakietu HTK lub inny rejestrator dźwięku.
+ W przypadku niniejszej pracy zostało wykorzystane darmowe 
 \shape italic
-Audacity 
 \emph on
-w wersji 2.0.2
+narzędzie linuxowe o nazwie Sox
 \shape default
 \emph default
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Aud"
-
-\end_inset
-
 .
 
 \shape italic
@@ -1482,8 +1505,7 @@ key "Htkb"
 HCopy 
 \emph on
 musi zostać utworzony plik konfiguracyjny przechowujący parametry w dużym
- stopniu wpływające na poprawność a przede wszystkim skuteczność działania
- systemu rozpoznawania mowy.
+ stopniu wpływające na poprawność działania systemu rozpoznawania mowy.
  Na listingu 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1597,7 +1619,7 @@ Wartość parametru
 \emph on
 SOURCEFORMAT 
 \emph default
-określa format plików dźwiękowych z których zostaną wyekstrahowane cechy,
+określa format plików dźwiękowych, z których zostaną wyekstrahowane cechy,
  w tym przypadku jest to format WAV.
 \end_layout
 
@@ -1625,7 +1647,9 @@ cyfra
 0 
 \emph default
 oznacza, że do wektora cech zostaje dołączona energia pierwszego współczynnika
- cepstralnego (jeśli cyfra 
+ cepstralnego 
+\series bold
+(jeśli cyfra 
 \emph on
 0
 \emph default
@@ -1736,8 +1760,8 @@ określa współczynnik preemfazy
 \emph on
 , NUMCHANS 
 \emph default
-określa rozmiar banku filtrów wykorzystywanych podczas wyznaczania MFCC,
- 
+określa rozmiar banku filtrów wykorzystywanych podczas wyznaczania cech
+ MFCC, 
 \emph on
 CEPLIFTER 
 \emph default
@@ -1924,6 +1948,13 @@ przygotowuje modele HMM w zależności od kontekstu wypowiedzi.
 \end_layout
 
 \begin_layout Standard
+Wynikiem trenowania jest utworzenie modelu akustycznego, który jest podstawą
+ działania rozpoznawania.
+ Model akustyczny zawiera statystyczną reprezentację jednostek (słów) rozpoznawa
+nych w systemie.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1949,11 +1980,11 @@ HVite.
 \shape default
 Narzędzie to na wejściu przyjmuje sieć opisującą dostępne sekwencje słów,
  słownik systemu oraz zestaw wytrenowanych modeli HMM.
- Jako wynik działania 
+ Jako wynik działania narzędzia 
 \shape italic
 HVite
 \shape default
- otrzymujemy plik zawierający rozpoznane etykiety (klasy słów) nieznanej
+ tworzony jest plik zawierający rozpoznane etykiety (klasy słów) nieznanej
  wypowiedzi w formacie 
 \emph on
 MLF 
@@ -2274,8 +2305,8 @@ reference "fig:Gramatyka-dla-etapu6"
  sieci słów.
  Wypowiedzi których rozpoznanie przechodzi do kolejnego etapu zaznaczono
  na czerwono.
- Wyjątkiem jest jedynie etap szósty, gdyż jest to ostatni etap, wypowiedź
- 
+ Wyjątkiem jest jedynie etap szósty, gdyż jest to ostatni etap rozgrywki,
+ wypowiedź 
 \emph on
 Twój ruch
 \emph default
@@ -2285,7 +2316,7 @@ Twój ruch
 cofnij
 \emph default
  uruchamia akcję cofającą ostatni wykonany ruch użytkownika i umożliwia
- ponowne jego wykonanie wracając się do etapu piątego.
+ ponowne jego wykonanie wracając do etapu piątego.
 \end_layout
 
 \begin_layout Standard
@@ -2401,7 +2432,7 @@ reference "fig:Gramatyka-dla-etapu3"
 
 \end_inset
 
- użytkownik wybiera rodzaj figur w zależności od rozgrywki, którą wybrał
+ użytkownik wybiera kolor figur w zależności od rozgrywki, którą wybrał
  w etapie poprzednim.
 \end_layout
 
@@ -2508,10 +2539,10 @@ reference "fig:Gramatyka-dla-etapu5"
 
 ) jest najważniejszym etapem działania systemu, ponieważ tutaj odbywa się
  właściwa rozgrywka.
- Etap ten jest powtarzany iteracyjnie aż do momentu wykrycia przez aplikację
- ustawień figur na szachownicy oznaczających koniec rozgrywki (wygraną lub
- przegraną jednego z graczy) dla danej gry lub przerwania przez gracza rozgrywki
- za pomocą komendy 
+ Etap ten wraz z kolejnym są powtarzane iteracyjnie aż do momentu wykrycia
+ przez aplikację ustawień figur na szachownicy oznaczających koniec rozgrywki
+ (wygraną lub przegraną jednego z graczy) dla danej gry lub przerwania przez
+ gracza rozgrywki za pomocą komendy 
 \emph on
 koniec
 \emph default
@@ -2609,7 +2640,7 @@ zatrzymaj
  Po tym czasie użytkownik zostaje poinformowany, że aplikacja przerywa pracę
  i nastąpi jej wyłączenie.
  Zanim jednak to nastąpi, po upływie około trzech minut użytkownik dostaje
- ostrzeżenie, że niebawem rozgrywka zostanie przerwana.
+ ostrzeżenie (komunikat głosowy), że niebawem rozgrywka zostanie przerwana.
  Wznowienie rozgrywki jest możliwe korzystając z komendy 
 \emph on
 start
@@ -2748,7 +2779,8 @@ Robot przemysłowy z którym współpracuje system mikroprocesorowy wraz z syste
  na szachownicy.
  Do tego celu zostały wycięte metalowe uchwyty przymocowane do chwytaka
  robota.
- Wszystkie pozycje figur zostały zapisane w pamięci kontrolera robota.
+ Wszystkie pozycje figur zostały zapisane na stałe w pamięci kontrolera
+ robota.
  Zdjęcie stanowiska robota wraz z całym osprzętem pokazano na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2803,7 +2835,7 @@ name "fig:Zdjęcie-stanowiska-robota"
 \end_layout
 
 \begin_layout Standard
-Schemat sterowania robotem przedstawiono na rysunku 
+Uproszczony schemat sterowania robotem przedstawiono na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Uproszczony-schemat-sterowania"
@@ -2817,7 +2849,7 @@ ającą uruchomienie rozpoznawania oraz informującą czy rozpoznana komenda
  jest zgodna z gramatyką rozgrywki na danym etapie.
  Nagrania odtwarzane przez aplikację mają za zadanie symulować rozmowę z
  robotem.
- Zostały nagrane z wykorzystanie syntezatora mowy Ivona na stronie domowej
+ Zostały nagrane z wykorzystaniem syntezatora mowy Ivona na stronie domowej
  projektu 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2887,11 +2919,7 @@ reference "lis:Program-sterujący-robotem"
 
  pokazano program wykorzystywany przez kontroler do sterowania robotem podczas
  rozgrywki.
- Jest on zapisany w pamięci trwałej kontrolera robota pod nazwą 
-\emph on
-pg753
-\emph default
-.
+ Jest on zapisany w pamięci trwałej kontrolera robota.
 \end_layout
 
 \begin_layout Standard
@@ -3331,7 +3359,7 @@ Celem wilka jest przedostanie się na pierwszy rząd pól szachownicy natomiast
  gracz mający do dyspozycji owce, wygrywa jeśli uda mu się zablokować wilka
  tak aby nie mógł on wykonać żadnego posunięcia.
  Wilk w jednym ruchu może przesunąć się o jedno pole po przekątnej w dowolną
- stronę natomiast owce mogą przesuwać się również o jedno pole po przekątnej,
+ stronę, natomiast owce mogą przesuwać się również o jedno pole po przekątnej,
  lecz tylko do przodu.
  Gracz dysponujący wilkiem może się cofać, w przeciwieństwie do gracza dysponują
 cego owcami.
@@ -3339,9 +3367,9 @@ cego owcami.
 \end_layout
 
 \begin_layout Standard
-Do rozgrywki został napisany prosty algorytm polegający z punktu widzenia
- wilka, na ruchach do przodu jeśli istnieje taka możliwość a w przeciwnym
- wypadku na cofaniu się.
+Jako inteligencja robota podczas rozgrywki został napisany prosty algorytm
+ polegający z punktu widzenia wilka, na ruchach do przodu jeśli istnieje
+ taka możliwość a w przeciwnym wypadku na cofaniu się.
  W sytuacji gdy owce przesuwają się równomiernie, to znaczy, że wybrana
  owca nie wykona więcej niż jednego ruchu przed pozostałymi trzema, to gracz
  dysponujący wilkiem jest skazany na porażke.
