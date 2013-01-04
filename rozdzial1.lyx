@@ -79,7 +79,11 @@ iach.
 
 \begin_layout Standard
 Systemy rozpoznawania mowy są rozwijane od wielu lat zarówno jako projekty
- komercyjne, jak i naukowe.
+ komercyjne, jak 
+\begin_inset Newline linebreak
+\end_inset
+
+i naukowe.
  Obecnie większość telefonów komórkowych, tzw.
  
 \begin_inset Quotes pld
@@ -133,13 +137,22 @@ Zawartość
 \end_layout
 
 \begin_layout Standard
-W rozdziale drugim przedstawione zostały podstawy systemów rozpoznawania
+We 
+\begin_inset Quotes pld
+\end_inset
+
+Wstępie
+\begin_inset Quotes prd
+\end_inset
+
+ (rozdział 1) przybliżono tematykę oraz cel niniejszej pracy.
+ W rozdziale drugim przedstawione zostały podstawy systemów rozpoznawania
  mowy (m.in.
  ich zastosowanie, parametry wpływające na skuteczność działania).
  Rozdział trzeci opisuje sygnał mowy, m.in.
  ekstrakcję cech, która jest bardzo ważnym punktem tworzenia systemów rozpoznawa
 nia mowy.
- W rozdziale czwartym przedstawiony zostaje ogólny zarys metody Ukrytych
+ W rozdziale czwartym przedstawiony został ogólny zarys metody Ukrytych
  Modeli Markowa, będącej podstawą działania systemu stworzonego na potrzeby
  niniejszej pracy.
  W kolejnym rozdziale, zostały opisane narzędzia wykorzystane przy tworzeniu

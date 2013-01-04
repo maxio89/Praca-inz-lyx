@@ -126,9 +126,9 @@ słów, z których każde występuje conajmniej po 20 razy we wszystkich nagrani
  Komendy powinny być wypowiadane w normalnym tempie, wyraźnie oraz z zachowaniem
  odpowiedniej głośności (komendy nie muszą być wypowiadane podniesionym
  głosem, lecz nie mogą być również wypowiadane zbyt cicho).
- Użytkownik musi również uważać, żeby nie wypowiadać przypadkowych słów,
- ponieważ zostaną im przyporządkowane słowa ze słownika systemu, które mogą
- być komendami sterującymi.
+ Użytkownik musi także uważać, aby nie wypowiadać przypadkowych słów, ponieważ
+ zostaną im przyporządkowane słowa ze słownika systemu, które mogą być komendami
+ sterującymi.
  Ilość stanów w modelu HMM została dobrana eksperymentalnie.
  HTK domyślnie tworzy modele 5-cio stanowe, zostały również przetestowane
  modele 7, 9, 11 oraz 15-sto stanowe.
@@ -138,7 +138,7 @@ słów, z których każde występuje conajmniej po 20 razy we wszystkich nagrani
  Początkowym wyznacznikiem tej skuteczności było przetestowanie systemu
  na próbkach wykorzystanych do jego wytrenowania.
  Po przeprowadzeniu takiego testu skutecznośc wyniosła blisko 100% jeśli
- chodzi o rozpoznawanie pojedyńczych słów oraz około 95% w przypadku rozpoznawan
+ chodzi o rozpoznawanie pojedynczych słów oraz około 95% w przypadku rozpoznawan
 ia całych sentencji.
  W początkowej fazie prac, gdy słownik zawierał mniej słów oraz było mniej
  nagrań treningowych rozpoznawanie próbek treningowych dawało 100%
@@ -190,7 +190,7 @@ ia mowy niezależnego od mówcy.
 \emph on
 audiobook
 \emph default
- i za pomocą takich nagrań wytrenować system rozpoznawania mowy.
+ i za pomocą takich nagrań możnaby wytrenować system rozpoznawania mowy.
  Kolejną ideą zwiazaną z tworzeniem systemu niezależnego od mówcy jest rozwinięc
 ie aplikacji o możliwość automatycznej adaptapcji do mówcy.
  Polegałoby to na poinstruowaniu użytkownika, który po raz pierwszy korzysta

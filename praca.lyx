@@ -13,6 +13,8 @@
 % dodatkowe pakiety
 \usepackage{enumerate}
 \usepackage{listings}
+
+
 \lstloadlanguages{TeX}
 
 %---------------------------------------------------------------------------
@@ -37,11 +39,13 @@
 %---------------------------------------------------------------------------
 \departmentPL{Katedra Automatyki}
 
-\usepackage{hyperref}
+
 \usepackage{babel}
 \AtBeginDocument{%
   \renewcommand\tablename{Tabela}
+
 }
+\renewcommand{\appendixname}{Anexo}
 \renewcommand{\lstlistlistingname}{}
 \end_preamble
 \options pdflatex
@@ -68,7 +72,16 @@
 \index_command default
 \paperfontsize 11
 \spacing single
-\use_hyperref false
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize default
 \use_geometry false
 \use_amsmath 1
@@ -149,7 +162,8 @@ thesistypePL{Praca inżynierska}
 
 
 \backslash
-supervisorPL{dr Robert Wielgat}
+supervisorPL{dr inż.
+ Robert Wielgat}
 \end_layout
 
 \begin_layout Plain Layout
@@ -211,6 +225,7 @@ departmentPL{Instytut Politechniczny}
 	template PDFPages
 	filename title.pdf
 	display false
+	extra LaTeX "pages=-"
 
 \end_inset
 
@@ -304,7 +319,7 @@ filename "rozdzial7.lyx"
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "bibliografia"
-options "plain"
+options "bibtotoc,plain"
 
 \end_inset
 
@@ -390,17 +405,7 @@ lstlistoflistings
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "dodatek1.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "dodatek2.lyx"
+filename "dodatki.lyx"
 
 \end_inset
 

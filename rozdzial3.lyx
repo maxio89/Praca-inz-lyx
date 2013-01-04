@@ -25,7 +25,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement h
+\float_placement H
 \paperfontsize 11
 \spacing onehalf
 \use_hyperref false
@@ -537,11 +537,6 @@ key "Przetw"
 \end_inset
 
 : 
-\series bold
-\color green
-(książka prof.
- Zielińskiego s.
- 104, chodzi tutaj poprostu o szerokość listka głównego):
 \end_layout
 
 \begin_layout Standard
@@ -803,8 +798,8 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-W widmie mowy więcej energii znajduje się w niskich częstotliwościach, to
- niekorzystne z punktu widzenia przetwarzania sygnałów zjawisko nazywane
+W widmie sygnału mowy więcej energii znajduje się w niskich częstotliwościach,
+ to niekorzystne z punktu widzenia przetwarzania sygnałów zjawisko nazywane
  jest przekrzywieniem widma (ang.
  spectral tilt).
  Aby usunąć skutki przekrzywienia stosuje się w/w preemfazę według następującego
@@ -828,7 +823,7 @@ gdzie
 \begin_inset Formula $a$
 \end_inset
 
- to współczynnik preemfazy 
+ to współczynnik preemfazy, 
 \begin_inset Formula $0.9\leq a\leq1$
 \end_inset
 
@@ -929,9 +924,6 @@ filtracja za pomocą melowego banku filtrów,
 
 \begin_layout Itemize
 obliczenie mocy FFT w określonych pasmach częstotliwościowych, 
-\series bold
-\color green
-Czy ten krok nie wykonuje się przed filtracją?
 \end_layout
 
 \begin_layout Itemize
@@ -1049,7 +1041,7 @@ key "Przetw"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Rozp"
+key "Rozp,Przetw"
 
 \end_inset
 
@@ -1080,17 +1072,6 @@ f=700\cdot(10^{m/2595}-1)\label{eq:melToHz}
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Przetw"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 W skali melowej (rysunek 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1109,6 +1090,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Figures/bank-filtrow.pdf
 	scale 70
@@ -1122,7 +1104,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Bank filtrów w skali melowej 
+Bank filtrów w skali melowej na podstawie 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Bank-filtrów-w"
@@ -1235,7 +1217,7 @@ a według następującego wzoru:
 \align center
 \begin_inset Formula 
 \begin{equation}
-c_{i}=\sqrt{\frac{2}{N}}\sum_{j=1}^{N}m_{j}cos(\frac{\text{π}i}{N}(j-0.5)),
+c_{i}=\sqrt{\frac{2}{N}}\sum_{j=1}^{N}m_{j}cos(\frac{\text{π}i}{N}(j-0.5)).
 \end{equation}
 
 \end_inset
@@ -1289,7 +1271,7 @@ Aby usunąć szkodliwy wpływ podstawowych drgań krtaniowych na zestaw cech
 \align center
 \begin_inset Formula 
 \begin{equation}
-c_{i}^{lift}=(1+\frac{\text{λ}}{2}sin(\frac{\text{πn}}{\text{λ}}))c_{i}dlai=1,...,\text{λ},
+c_{i}^{lift}=(1+\frac{\text{λ}}{2}sin(\frac{\text{πn}}{\text{λ}}))c_{i}\, dla\, i=1,\,...,\,\text{λ},
 \end{equation}
 
 \end_inset
@@ -1361,17 +1343,6 @@ cych informację o treści wypowiedzi i będących niezależnymi od indywidualny
  cech głosu mówcy.
  Parametry te tworzą wektory cech, na podstawie których dokonuje się klasyfikacj
 i sygnału.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-\color green
-Tym razem powyższy podrozdział został napisany głównie w oparciu o książkę
- prof.
- Zielińskiego (dla dociekliwych - s.
- 586) oraz HTK Book.
- Mam nadzieję, że teraz to wygląda mniej chaotycznie.
 \end_layout
 
 \end_body

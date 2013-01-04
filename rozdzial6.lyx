@@ -25,7 +25,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement !h
+\float_placement H
 \paperfontsize 11
 \spacing onehalf
 \use_hyperref false
@@ -289,7 +289,7 @@ subsection{Przygotowanie danych}
 \begin_layout Standard
 Jednym z początkowych kroków w trakcie pracy nad systemem rozpoznawania
  mowy było stworzenie słownika, w którym zapisane są wszystkie używane przez
- system słowa wraz z ich etykietami lub transkrypcjami fonetycznymi.
+ system słowa wraz z ich etykietami.
  
 \end_layout
 
@@ -312,8 +312,8 @@ W początkowej fazie prac, nazwy pól szachownicy określane były bardziej
  zastosowano zamiast zwykłego alfabetu z pojedyńczymi literami alfabet fonetyczn
 y ICAO.
  Stosowany jest on m.in.
- w komunikacji radiowej w celu poprawienia jednoznaczności oraz odporności
- na zakłócenia.
+ w komunikacji radiowej w celu poprawienia jednoznaczności wypowiedzi oraz
+ odporności na zakłócenia.
  Zastosowano wymowę polską.
  W tabeli 
 \begin_inset CommandInset ref
@@ -344,7 +344,8 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Alfabet fonetyczny ICAO wykorzystywany w systemie - litery 
+Alfabet fonetyczny ICAO wykorzystywany w systemie - litery na podstawie
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Icao"
@@ -663,7 +664,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Alfabet fonetyczny ICAO wykorzystywany w systemie - cyfry 
+Alfabet fonetyczny ICAO wykorzystywany w systemie - cyfry na podstawie 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Icao"
@@ -1435,7 +1436,7 @@ key "Htkb"
 
 .
  Oznacza to, że zostały jedynie określone etykiety każdej próbki treningowej.
- Drugą dostępną strategią jest określenie dokładnie w jakim odcinku czasowym
+ Inną możliwą strategią jest określenie dokładnie w jakim odcinku czasowym
  próbki dana etykieta występuje.
  W niektórych przypadkach ta strategia zwiększa skuteczność rozpoznawania
  systemu, niemniej jednak zastosowanie jej w przypadku rozpoznawania mowy
@@ -1647,9 +1648,7 @@ cyfra
 0 
 \emph default
 oznacza, że do wektora cech zostaje dołączona energia pierwszego współczynnika
- cepstralnego 
-\series bold
-(jeśli cyfra 
+ cepstralnego (jeśli cyfra 
 \emph on
 0
 \emph default
@@ -1796,7 +1795,7 @@ subsection{Trenowanie}
 \end_layout
 
 \begin_layout Standard
-Przed rozpoczęciem trenowania z użyciem HTK musi zostać utworzyć prototyp
+Przed rozpoczęciem trenowania z użyciem HTK musi zostać utworzony prototyp
  modelu HMM, zapisany jako zwykły plik tekstowy, gdzie definiuje się topologię
  modelu (określa ilość stanów, dopuszczalne przejścia między nimi oraz kilka
  innych parametrów).
@@ -1839,6 +1838,45 @@ HInit
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Gdzie 
+\begin_inset Formula $\hat{\mu_{j}}$
+\end_inset
+
+ oraz 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\hat{\sum}_{j}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang polish
+ to maksymalne estymaty wektora średniego obserwacji oraz macierzy kowariancji.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2393,6 +2431,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Figures/etap2.pdf
+	scale 80
 
 \end_inset
 
@@ -2432,8 +2471,8 @@ reference "fig:Gramatyka-dla-etapu3"
 
 \end_inset
 
- użytkownik wybiera kolor figur w zależności od rozgrywki, którą wybrał
- w etapie poprzednim.
+ użytkownik wybiera kolor figur w zależności od rodzaju rozgrywki, który
+ wybrał w etapie poprzednim.
 \end_layout
 
 \begin_layout Standard
@@ -2570,6 +2609,35 @@ pole_docelowe
 \end_layout
 
 \begin_layout Standard
+Zgodnie z przykładem pokazanym na listingu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:Format-wypowiedzi-określającej"
+
+\end_inset
+
+, wykonany zostanie ruch figury z pola A1 na pole H8.
+\end_layout
+
+\begin_layout Standard
+Na tym etapie istnieje również możliwość zatrzymania rozgrywki na maksymalny
+ czas (zdefiniowany w aplikacji) około pięciu minut (komenda 
+\emph on
+zatrzymaj
+\emph default
+).
+ Po tym czasie użytkownik zostaje poinformowany, że aplikacja przerywa pracę
+ i nastąpi jej wyłączenie.
+ Zanim jednak to nastąpi, po upływie około trzech minut użytkownik dostaje
+ ostrzeżenie (komunikat głosowy), że niebawem rozgrywka zostanie przerwana.
+ Wznowienie rozgrywki jest możliwe korzystając z komendy 
+\emph on
+start
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset listings
 inline false
@@ -2620,35 +2688,6 @@ alfa jedynka na hotel osiem
 \end_layout
 
 \begin_layout Standard
-Zgodnie z przykładem pokazanym na listingu 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lis:Format-wypowiedzi-określającej"
-
-\end_inset
-
-, wykonany zostanie ruch figury z pola A1 na pole H8.
-\end_layout
-
-\begin_layout Standard
-Na tym etapie istnieje również możliwość zatrzymania rozgrywki na maksymalny
- czas (zdefiniowany w aplikacji) około pięciu minut (komenda 
-\emph on
-zatrzymaj
-\emph default
-).
- Po tym czasie użytkownik zostaje poinformowany, że aplikacja przerywa pracę
- i nastąpi jej wyłączenie.
- Zanim jednak to nastąpi, po upływie około trzech minut użytkownik dostaje
- ostrzeżenie (komunikat głosowy), że niebawem rozgrywka zostanie przerwana.
- Wznowienie rozgrywki jest możliwe korzystając z komendy 
-\emph on
-start
-\emph default
-.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -2658,7 +2697,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Figures/etap5.pdf
-	scale 80
+	scale 70
 
 \end_inset
 
@@ -2755,18 +2794,6 @@ reset
 \emph default
  jest dostępna na wszystkich etapach rozgrywki prócz pierwszego, pozwala
  ona powrócić do etapu początkowego (pierwszego).
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-\color green
-Starałem się stworzyć jakiś sensowny schemat prezentujący wypowiedzi użytkownika
- oraz odpowiedzi robota ale rozrósł się on na kilka stron i był mało czytelny.
- Taki schemat prezentowałby być może pewną efektowność pracy ale nie niósłby
- ze sobą zbyt wielu informacji merytorycznych także uważam, że obejdzie
- się bez niego.
- 
 \end_layout
 
 \begin_layout Section
@@ -2955,12 +2982,62 @@ name "lis:Program-sterujący-robotem"
 
 \begin_layout Plain Layout
 
+CLOSEI
+\end_layout
+
+\begin_layout Plain Layout
+
+JAPPRO #source,100
+\end_layout
+
+\begin_layout Plain Layout
+
+LMOVE #source
+\end_layout
+
+\begin_layout Plain Layout
+
 OPENI
 \end_layout
 
 \begin_layout Plain Layout
 
+TWAIT 2
+\end_layout
+
+\begin_layout Plain Layout
+
+LDEPART 120
+\end_layout
+
+\begin_layout Plain Layout
+
+JAPPRO #target,100
+\end_layout
+
+\begin_layout Plain Layout
+
+LMOVE #target
+\end_layout
+
+\begin_layout Plain Layout
+
 CLOSEI
+\end_layout
+
+\begin_layout Plain Layout
+
+TWAIT 2
+\end_layout
+
+\begin_layout Plain Layout
+
+LDEPART 120
+\end_layout
+
+\begin_layout Plain Layout
+
+LMOVE #center
 \end_layout
 
 \begin_layout Plain Layout
@@ -2973,13 +3050,12 @@ CLOSEI
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-\color green
-Tutaj znajdzie się opis instrukcji użytych w powyższym programie lecz niestety
- zapomniałem podejrzeć programu jak byłem ostatnio w D104 a jest on zapisany
- tylko w pamięci kontrolera robota i składa się raptem z 10 prostych instrukcji
- więc uzupełnie to po nowym roku.
+Polecenie CLOSEI otwiera chwytak robota, natomiast OPENI zamyka (trochę
+ mało intuicyjne nazewnictwo w tym przypadku).
+ Instrukcja JAPPRO służy do przesunięcia chwytaka robota na podaną odległość
+ powyżej celu, instrukcja LMOVE przechodzi ruchem liniowym do celu, instrukcja
+ LDEPART unosi chwytak nad szachownicę (na podaną wysokość) natomiast instrukcja
+ TWAIT opóźnia wykonanie programu o podaną wartość w sekundach.
 \end_layout
 
 \begin_layout Standard
@@ -3242,6 +3318,10 @@ name "lis:Polecenie-uruchamiające-analizę"
 go depth 20
 \end_layout
 
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
 
@@ -3260,7 +3340,8 @@ depth
 \begin_layout Standard
 W trakcie rozgrywki wykonywane jest sprawdzanie poprawności ruchu użytkownika,
  który w razie próby wykonania ruchu niezgodnego z zasadami prowadzonej
- gry otrzymuje ostrzeżenie głosowe o niedozwolonym ruchu.
+ gry otrzymuje ostrzeżenie w formie komunikatu głosowego o niedozwolonym
+ ruchu.
 \end_layout
 
 \begin_layout Standard
@@ -3292,8 +3373,18 @@ Wilk i psy
  Jest to gra o typie warcabowym.
  Jeden z graczy dysponuje jednym jasnym pionem (wilkiem) natomiast przeciwnik
  ma do dyspozycji cztery piony czarne (owce).
- Pozycja początkowa figur na szachownicy została przedstawiona na rysunku
  
+\end_layout
+
+\begin_layout Standard
+Ruchy odbywają się jedynie po ciemnych polach.
+ Owce zajmują pozycje w pierwszym rzędzie szachownicy, natomiast wilk zajmuje
+ jedną z czterech dostępnych pozycji w rzędzie ostatnim.
+\end_layout
+
+\begin_layout Standard
+Pozycja początkowa figur na szachownicy przyjęta w pracy podczas gry Wilk
+ i owce została przedstawiona na rysunku 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Pozycja-początkowa-figur"
@@ -3339,24 +3430,14 @@ name "fig:Pozycja-początkowa-figur"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Ruchy odbywają się jedynie po ciemnych polach.
- Owce zajmują pozycje w pierwszym rzędzie szachownicy, natomiast wilk zajmuje
- jedną z czterech dostępnych pozycji w rzędzie ostatnim.
-\end_layout
-
-\begin_layout Standard
-Celem wilka jest przedostanie się na pierwszy rząd pól szachownicy natomiast
- gracz mający do dyspozycji owce, wygrywa jeśli uda mu się zablokować wilka
+Celem wilka jest przedostanie się na pierwszy rząd pól szachownicy, natomiast
+ gracz mający do dyspozycji owce wygrywa jeśli uda mu się zablokować wilka
  tak aby nie mógł on wykonać żadnego posunięcia.
  Wilk w jednym ruchu może przesunąć się o jedno pole po przekątnej w dowolną
  stronę, natomiast owce mogą przesuwać się również o jedno pole po przekątnej,

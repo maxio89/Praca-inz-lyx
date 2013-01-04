@@ -238,7 +238,7 @@ Skuteczność
 \end_layout
 
 \begin_layout Standard
-Na skuteczność oraz szybkość rozpoznawanie wpływa wiele parametrów.
+Na skuteczność oraz szybkość rozpoznawania wpływa wiele parametrów.
  Do najważniejszych z nich należą:
 \end_layout
 
@@ -274,8 +274,8 @@ key "TM"
 \end_layout
 
 \begin_layout Standard
-System stworzony na potrzeby tej pracy jest zależny od mówcy, oznacza to,
- że największą skuteczność uzyskuje dla osoby, której próbki głosu zostały
+System stworzony na potrzeby niniejszej pracy jest zależny od mówcy, oznacza
+ to, że największą skuteczność uzyskuje dla osoby, której próbki głosu zostały
  wykorzystane do jego wytrenowania.
  Systemy niezależne od mówcy z założenia mają działać dla różnych osób,
  wymaga to jednak większego oraz bardziej zróżnicowanego zbioru treningowego.
@@ -307,7 +307,7 @@ Jako parametry transmisji sygnału mowy mogące mieć wpływ na skuteczność
  jak sposób wymowy (gwara, akcent), szybkość oraz głośność.
  Jeżeli czułość mikrofonu podczas nagrywania zostanie ustawiona na niską,
  wymaga to głośniejszych wypowiedzi w celu poprawnego zarejestrowania sygnału
- mowy, lecz w zamian za to, przenosi mniej szumow otoczenia, które moga
+ mowy, lecz w zamian za to, przenosi mniej szumów otoczenia, które mogą
  być obecne w czasie pracy systemu.
 \end_layout
 
@@ -368,8 +368,9 @@ key "Gma"
  kontaktów, wiadomości lub innych informacji korzystając z wyszukiwarki
  internetowej Google).
  Poza produktami wymienionych wcześniej firm, powstaje coraz więcej aplikacji
- typu third-party (czyli tworzone przez osoby lub firmy niezwiązane z producenta
-mi systemów operacyjnych) posiadających podobne funkcjonalności (np.
+ typu third-party (czyli tworzonych przez osoby lub firmy niezwiązane z
+ producentami systemów operacyjnych) posiadających podobne funkcjonalności
+ (np.
  S-Voice firmy Samsung lub Iris, obie przeznaczone na platformę Android
  firmy Google).
  
@@ -422,12 +423,13 @@ key "Mags"
 \end_inset
 
 .
- Wśród innych firmych zajmujących się tematyką rozpoznawania mowy należałoby
- wspomnieć o Stanusch Technologies S.A., VOICE LAB oraz SkryBot.pl.
+ Spośród innych polskich firm zajmujących się tematyką rozpoznawania mowy
+ należałoby wspomnieć o Stanusch Technologies S.A., VOICE LAB oraz SkryBot.pl.
 \end_layout
 
 \begin_layout Standard
-Z pośród projektów naukowych związanych z rozpoznawaniem mowy warto wymienić
+Jeśli chodzi zaś o projekty naukowe związane z rozpoznawaniem mowy, to warto
+ wymienić tutaj m.in.
  HTK 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -480,8 +482,8 @@ czarnej skrzynki
  Na tyle skuteczny, aby nie musieć zagłębiać szczegółów zaimplementowanych
  algorytmów.
  Co prawda taka niewiedza stwarza problemy przy doborze optymalnych parametrów
- mających istotny wpływ na działanie systemu, lecz nie przeszkadza w doborze
- ich w sposób eksperymentalny i osiągnięciu zadowalającej skuteczności.
+ mających istotny wpływ na działanie systemu, lecz nie przeszkadza na dobór
+ ich w sposób eksperymentalny i osiągnięcie zadowalającej skuteczności.
 \end_layout
 
 \begin_layout Section

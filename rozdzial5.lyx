@@ -25,7 +25,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement !h
+\float_placement H
 \paperfontsize 11
 \spacing onehalf
 \use_hyperref false
@@ -93,7 +93,7 @@ HTK jest zbiorem narzędzi napisanych w języku C i korzystających z HMM w
  Zespołem kierował profesor Steve Young.
  Projekt początkowo był finansowany przez Microsoft Corporation, ostatecznie
  jego prawa autorskie przejął Cambridge University Engineering Department.
- Ostatnia jego wersja o numerze 3.4 powstała w 2006 roku.
+ Ostatnia jego wersja o numerze 3.4 powstała w roku 2006.
  Na tej właśnie wersji opiera się niniejsza praca.
 \end_layout
 
@@ -108,8 +108,8 @@ reference "rys18"
 \end_inset
 
 , działanie HTK można ogólnie podzielić na dwie główne fazy.
- Pierwsza w której odbywa się estymacja parametrów HMM i druga podczas której
- przy użyciu narzędzi do rozpoznawania mowy otrzymujemy transkrypcję fonetyczną
+ Pierwsza w której odbywa się trenowanie HMM i druga podczas której przy
+ użyciu narzędzi do rozpoznawania mowy otrzymuje się transkrypcję fonetyczną
  nieznanej wypowiedzi.
  
 \end_layout
@@ -235,7 +235,7 @@ reference "chap:2"
 
 \end_inset
 
-.
+ niniejszej pracy.
 \end_layout
 
 \begin_layout Standard
@@ -319,8 +319,8 @@ subsection{Architektura}
 \begin_layout Standard
 Większość funkcjonalności HTK jest wbudowane w moduły, które są bibliotekami
  systemowymi.
- Mogą zostać skompilowane zarówno w systemach z rodziny Windows jak również
- w systemach opartych na Linuxie.
+ Mogą zostać skompilowane zarówno na systemach z rodziny Windows jak również
+ na systemach opartych o jądro Linuxa.
  Moduły te zapewniają każdemu narzędziu interfejs do komunikowania się ze
  światem zewnętrznym w podobny sposób.
  Dostarczają również centralny zasób najczęściej używanych funkcji.
@@ -1671,7 +1671,7 @@ Powtarzalność (dokładność)
 \begin_inset Formula $\pm0.05$
 \end_inset
 
-mm
+ mm
 \end_layout
 
 \end_inset
@@ -1746,7 +1746,7 @@ Stockfish
 Stockfish jest to nazwa darmowego silnika wykorzystanego w niniejszej pracy
  jako inteligencja robota podczas rozgrywki szachowej.
  Jest to projekt wieloplatformowy, dostępny zarówno na systemy z rodziny
- Windows, Linux jak również urządzenia mobilne.
+ Windows, Linux jak również na urządzenia mobilne.
  W niniejszej pracy wykorzystywana jest wersja Linuxowa progamu.
  
 \end_layout
@@ -1884,8 +1884,8 @@ position startpos
 
 \begin_layout Standard
 W niniejszej pracy wykorzystano domyślne ustawienia silnika Stockfish, które
- zakładają, że pierwszy ruch wykonują figury białe, w rozgrywce dostępne
- są wszystkie roszady króla a ilość ruchów została ograniczona do pięćdziesięciu.
+ zakładają, że pierwszy ruch wykonują figury białe a ilość ruchów została
+ ograniczona do pięćdziesięciu.
  W przypadku wykonania maksymalnej liczby ruchów i nie doprowadzenia do
  sytuacji w której jest mat (wygrana jednego z graczy) lub pat (kończy partię
  remisem), wygrywa gracz, który ma lepszy bilans strat, lub jeśli straty
